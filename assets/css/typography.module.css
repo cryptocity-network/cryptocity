@@ -1,0 +1,205 @@
+@layer components {
+  .prose {
+    @apply text-18 xl:text-[19px] 2xl:text-20;
+
+    & > *:first-child {
+      @apply !mt-0;
+    }
+
+    &:not(.no-margin) > *:not(.large) {
+      @apply max-w-[700px] mx-auto;
+    }
+
+    h1 {
+      @apply mb-112 xl:mb-120;
+    }
+
+    h1,
+    h1 + p {
+      @apply mt-112 xl:mt-120;
+    }
+
+    h2 {
+      @apply mt-96 xl:mt-104;
+    }
+
+    h3 {
+      @apply mt-80 xl:mt-96;
+    }
+
+    h4 {
+      @apply mt-64 xl:mt-80;
+    }
+
+    h2 + p,
+    h3 + p {
+      @apply mt-32;
+    }
+
+    h1 + h2 {
+      @apply mt-56 xl:mt-64;
+    }
+
+    h2 + h3 {
+      @apply mt-48 xl:mt-56;
+    }
+
+    h3 + h4 {
+      @apply mt-40 xl:mt-48;
+    }
+
+    a:not([href^='#']) {
+      @apply font-semibold;
+    }
+
+    a[href^='#'] {
+      @apply before:content-[''] before:hover:content-['#'] before:text-blue-dark/30 before:absolute before:-ml-16 lg:before:-ml-32;
+    }
+
+    p,
+    pre,
+    iframe,
+    ul,
+    ol,
+    .img-wrapper {
+      @apply mt-24 xl:mt-32;
+    }
+
+    pre {
+      @apply overflow-y-auto p-16 xl:p-24 rounded-6 relative nq_small-text;
+
+      &::after {
+        @apply empty-content absolute right-0 top-0 h-full w-16;
+      }
+    }
+
+    .img-wrapper {
+      @apply relative w-[calc(100%+16px)] -left-8 sm:left-0 sm:w-full;
+
+      a {
+        @apply block transition-opacity opacity-100 hover:opacity-80 focus:opacity-80;
+      }
+
+      img {
+        @apply max-w-full mx-auto rounded-6;
+      }
+
+      small {
+        @apply relative left-8 sm:left-0 pr-16 sm:pr-0 block mt-16 font-regular;
+      }
+    }
+
+    iframe {
+      @apply w-full h-full rounded-6 aspect-video;
+    }
+
+    li + li {
+      @apply mt-12 xl:mt-16;
+    }
+
+    ul,
+    ol {
+      @apply pl-32 xl:pl-48;
+
+      li {
+        @apply relative;
+
+        &:before {
+          @apply absolute -left-12 xl:-left-16 transform -translate-x-full;
+        }
+      }
+    }
+
+    ol {
+      @apply counter-reset;
+
+      li {
+        @apply counter-increment;
+
+        &:before {
+          @apply counter-result font-bold;
+        }
+      }
+    }
+
+    ul li:before {
+      @apply empty-content w-6 h-6 lg:w-8 lg:h-8 rounded translate-y-10 xl:translate-y-[11px] 2xl:translate-y-12;
+    }
+
+    &.small {
+      @apply text-16 xl:text-17 2xl:text-18;
+
+      p,
+      ul,
+      ol {
+        @apply mt-16 xl:mt-24;
+      }
+
+      li {
+        @apply text-14 xl:text-15 2xl:text-16;
+      }
+
+      li + li {
+        @apply mt-8;
+      }
+
+      ul,
+      ol {
+        @apply pl-16 xl:pl-18;
+
+        li:before {
+          @apply -left-8 xl:-left-12;
+        }
+      }
+
+      ul li:before {
+        @apply w-6 h-6 translate-y-8 xl:translate-y-[9px] 2xl:translate-y-10;
+      }
+    }
+
+    /* This is part of typography, because content editor can use tables from the RichText in Prismic */
+    table {
+      @apply mt-56 block overflow-auto rounded-8;
+
+      &.large {
+        @apply max-w-[1200px] -mx-24 lg:mx-auto;
+      }
+
+      & tr th {
+        @apply font-bold leading-1 tracking-wide uppercase text-12 xl:text-13 2xl:text-14 whitespace-nowrap px-8 py-18 text-left;
+      }
+
+      /* TODO This seems to be broken between columns :/ */
+      & tr th ~ th.spacer {
+        @apply rounded-tr-8;
+      }
+
+      & tr th + th.spacer {
+        @apply rounded-tl-8 border-none;
+      }
+
+      & tr td {
+        @apply leading-1.4 text-18 px-8 py-18;
+      }
+
+      & tr th,
+      & tr td {
+        @apply min-w-[1rem] align-top border-b-1;
+      }
+
+      & .gap {
+        @apply w-16 p-0 border-none;
+      }
+    }
+
+    /* Rich text labels */
+    .nq_small-label {
+      @apply nq_r-mt-136;
+    }
+
+    .highlight {
+      @apply nq_large-text text-green p-24 border-y-2 border-blue-dark/10;
+    }
+  }
+}
+  

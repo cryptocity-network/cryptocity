@@ -1,0 +1,80 @@
+@import 'animations.module.css';
+@import 'fonts.module.css';
+@import 'typography.module.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* Global styles */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    html {
+        line-height: 1.5;
+        -webkit-text-size-adjust: 100%;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        font-family: Mulish,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    }
+  
+    /* FIXME I just tried the static website on my phone, and when navigating from the bottom of one page to another, it scrolls up (smoothly), but since not all content is loaded immediately, it actually stopped scrolling somewhere in the middle of the page, never got to the top.
+    html {
+      @apply scroll-smooth;
+    } */
+  
+    body,
+    .default-text {
+      @apply leading-1.5 text-16 xl:text-17 2xl:text-18 text-blue-dark;
+    }
+  
+    h1 {
+      @apply font-bold leading-1.2 text-40 xl:text-44 2xl:text-48;
+    }
+  
+    h2 {
+      @apply font-bold leading-1.3 text-32 xl:text-36 2xl:text-40;
+    }
+  
+    h3 {
+      @apply font-semibold leading-1.3 text-22 xl:text-26 2xl:text-28;
+    }
+  
+    h4 {
+      @apply font-semibold leading-1.3 text-20 xl:text-22 2xl:text-24;
+    }
+  
+    strong {
+      @apply font-bold;
+    }
+  
+    em {
+      @apply italic;
+    }
+  
+    small {
+      @apply font-bold text-14 xl:text-15 2xl:text-16;
+    }
+  
+    /* Ensures visually small interactive elements have at least 42px height/width of clickable area */
+    a,
+    button,
+    [role='button'],
+    .clickable {
+      @apply relative w-fit-content;
+  
+      &::after {
+        @apply absolute w-full top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2;
+  
+        min-width: 42px;
+        min-height: 42px;
+      }
+    }
+  
+    /* Ensures svg's aren't reduced by flexbox */
+    svg {
+      @apply shrink-0;
+    }
+  }

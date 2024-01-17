@@ -1,0 +1,11 @@
+<svg version="1.1" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  x="0px" y="0px" viewBox="0 0 40 40" xml:space="preserve">
+  <path style="fill:none; stroke-width:1.5;" opacity="0.6"
+    d="M39.25,20c0,10.63-8.62,19.25-19.25,19.25S0.75,30.63,0.75,20S9.37,0.75,20,0.75S39.25,9.37,39.25,20z" />
+  <path style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" d="M24.8,28.69L24.06,29c-0.76,0.32-1.59,0.49-2.42,0.49h-0.42c-3.44,0-6.23-2.79-6.23-6.23v-6.15
+	c0-3.44,2.79-6.23,6.23-6.23h0.88c0.92,0,1.83,0.2,2.66,0.6l0.54,0.25" />
+  <line style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" x1="12.5" y1="18.19" x2="22.9"
+    y2="18.19" />
+  <line style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" x1="12.5" y1="22.39" x2="21.3"
+    y2="22.39" />
+</svg>

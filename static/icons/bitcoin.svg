@@ -1,0 +1,21 @@
+<svg version="1.1" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40 40" xml:space="preserve">
+	<path style="fill:none; stroke-width:1.5;" opacity="0.6"
+		d="M39.25,20c0,10.63-8.62,19.25-19.25,19.25S0.75,30.63,0.75,20S9.37,0.75,20,0.75S39.25,9.37,39.25,20z" />
+	<path style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;"
+		d="M16.34,12.68h5.62c1.92,0,3.48,1.56,3.48,3.48l0,0c0,1.92-1.56,3.48-3.48,3.48h-5.62V12.68z" />
+	<path style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;"
+		d="M16.34,19.64h5.89c2.07,0,3.75,1.68,3.75,3.75l0,0c0,2.07-1.68,3.75-3.75,3.75h-5.89V19.64z" />
+	<line style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" x1="17.85" y1="12.58"
+		x2="17.85" y2="10.1" />
+	<line style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" x1="17.85" y1="29.71"
+		x2="17.85" y2="27.23" />
+	<line style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" x1="21.06" y1="12.58"
+		x2="21.06" y2="10.1" />
+	<line style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" x1="21.06" y1="29.71"
+		x2="21.06" y2="27.23" />
+	<line style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" x1="16.78" y1="27.23"
+		x2="14.3" y2="27.23" />
+	<line style="fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;" x1="16.78" y1="12.78"
+		x2="14.3" y2="12.78" />
+</svg>
