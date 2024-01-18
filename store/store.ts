@@ -1,4 +1,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
+import useGraphqlQuery from '../composables/useGraphqlQuery'
+import { defineStore } from 'pinia'
+
 export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
     return {
@@ -7,7 +10,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     }
   },
   getters: {
-    getDomainId: (state) => state.domain?.id
+    getCurrentDomain (state) { return state.domain }
   },
   actions: {
     async setNavigation () {
@@ -36,7 +39,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
         `
 
       const { data, error } = await useGraphqlQuery({ query: QUERY })
-      console.log('hello', data.value, error)
       this.pages = data.value.domain.pages
       this.domain = data.value.domain
     }

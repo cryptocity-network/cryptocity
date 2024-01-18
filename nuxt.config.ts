@@ -7,5 +7,14 @@ export default defineNuxtConfig({
       GRAPHQL_TOKEN: process.env.GRAPHQL_TOKEN, // can be overridden by NUXT_PUBLIC_API_BASE environment variable
       DATO_DOMAIN: process.env.DATO_DOMAIN
     }
+  },
+  components: {
+    dirs: [
+      {
+        path: '~/components/datocms-blocks',
+        global: true
+      },
+      '~/components'
+    ]
   }
 })

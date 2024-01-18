@@ -11,14 +11,13 @@
         <TheLink
           class="!pr-12 "
           :text="link.label"
-          :href="link.url"
+          :link="link.url"
         />
       </li>
     </ul>
     <nuxt-link
       to="/"
       class="mt-16 transition-opacity hover:opacity-70 focus:opacity-70"
-      href=""
     >
       <img
         src="/horizontal mono.svg"

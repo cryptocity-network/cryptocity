@@ -54,12 +54,14 @@
       >
         <TheLink
           :text="item._modelApiKey"
+          link="/"
           compact
         />
       </li>
       <li>
         <TheLink
           text="Contact"
+          link="/"
           compact
           variant="info"
         />
@@ -67,6 +69,7 @@
       <li>
         <TheLink
           text="English"
+          link="/"
           compact
         />
       </li>
@@ -77,6 +80,7 @@
 <script lang="ts" setup>
 import { useWebsiteStore } from '../store/store'
 import { onMounted, onUnmounted } from 'vue'
+
 const store = useWebsiteStore()
 
 const pages = store.pages

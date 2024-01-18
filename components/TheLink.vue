@@ -12,7 +12,6 @@
   >
     <div
       v-if="text"
-      :class="[medium ? 'font-medium' : 'font-normal']"
       class="leading-none"
     >
       {{ text }}
@@ -37,7 +36,7 @@ export default {
       required: true,
       default: null
     },
-    href: {
+    link: {
       type: String,
       required: true,
       default: null
@@ -47,49 +46,10 @@ export default {
       required: false,
       default: false
     },
-    disabled: {
+    invert: {
       type: Boolean,
       required: false,
       default: false
-    },
-    square: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    type: {
-      type: String,
-      required: false,
-      default: 'light-blue',
-      validator: (value) => {
-        // The value must match one of these strings
-        return ['light-blue', 'danger', 'info', 'warning', 'disabled', ''].includes(value)
-      }
-    },
-    transparent: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    reversed: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    medium: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    noPropagation: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    name: {
-      type: String,
-      required: false,
-      default: null
     }
   },
   emits: ['click'],
@@ -99,7 +59,7 @@ export default {
         case 'info':
           return 'text-white shadow bg-blue-light bg-radial-blue-light hover:bg-radial-blue-light-darker focus:bg-radial-blue-light-darker active:bg-radial-blue-light-darker'
         default:
-          return '!p-0 text-blue-dark/50 hover:text-blue-dark/70'
+          return this.invert ? '!p-0 text-white' : '!p-0 text-blue-dark/50 hover:text-blue-dark/70'
       }
     }
   },
