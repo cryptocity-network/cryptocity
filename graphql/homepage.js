@@ -1,9 +1,10 @@
 // import { useRuntimeConfig, useFetch } from 'nuxt/app'
-export default (domainId) => {
+export default (countryId) => {
   return `query {
-    homepage(filter: {site: {eq: "${domainId}"}}) {
+    homePage(filter: {site: {eq: "${countryId}"}}) {
       herosection {
         _modelApiKey
+        id
         label
         link
         linkLabel
@@ -13,16 +14,34 @@ export default (domainId) => {
           url
         }
       }
-      cardCarousel {
+      citiesCarousel {
         _modelApiKey
         id
-        cards {
-          id
+        cities {
           name
-          image {
+          mainImage {
             url
-            title
             alt
+          }
+          id
+          heroSection {
+            subline
+            linkLabel
+            link
+            label
+            image {
+              url
+            }
+            id
+            headline
+          }
+          gallery {
+            url
+            alt
+          }
+          country {
+            name
+            id
           }
         }
       }
@@ -32,12 +51,13 @@ export default (domainId) => {
         label
         link
         linkLabel
-        headline
         subline
+        headline
         image {
           url
         }
       }
     }
-  }`
+  }
+  `
 }

@@ -1,55 +1,49 @@
 <template>
-  <div>
-    UID View
-  </div>
+  <section
+    v-for="(component, index) in data[`${route.params.uid}Page`]"
+    :key="component[0].id"
+    :class="{
+      '-mt-160': index > 0
+    }"
+  >
+    <BlockRenderer
+      :componentName="component[0]._modelApiKey"
+      :data="component[0]"
+    />
+  </section>
 </template>
 
 <script lang="ts" setup>
-const QUERY = `
-    query {
-      domain(filter: {url: {eq: "kryptostadt.de"}}) {
-        id
-        pages {
-          ... on AboutRecord {
-            id
-            herosection {
-              headline
-              label
-              subline
-              _modelApiKey
-            }
-            _modelApiKey
-          }
-          ... on HomepageRecord {
-            id
-            cardCarousel {
-              cards {
-                comingSoon
-                comingSoonText
-                description
-                id
-                name
-                image {
-                  url
-                  title
-                }
-              }
-              _modelApiKey
-            }
-            herosection {
-              subline
-              label
-              id
-              headline
-              _modelApiKey
-            }
-            _modelApiKey
-          }
-        }
-      }
-    }
-  `;
+import useGraphqlQuery from '../composables/useGraphqlQuery'
+import merchantPage from '../graphql/merchantPage'
+import beginnerPage from '../graphql/beginnerPage'
+import aboutPage from '../graphql/aboutPage'
+import networkPage from '../graphql/networkPage'
 
-  const { data, error } = await useGraphqlQuery({ query: QUERY });
-
+const props = defineProps({
+  country: {
+    type: Object,
+    default: null
+  }
+})
+const route = useRoute()
+let query = null
+switch (route.params.uid) {
+  case 'merchant':
+    query = merchantPage(props.country.id)
+    break;
+  case 'beginner':
+    query = beginnerPage(props.country.id)
+    break;
+    case 'about':
+    query = aboutPage(props.country.id)
+    break;
+    case 'network':
+    query = networkPage(props.country.id)
+    break;
+  default:
+    break;
+}
+console.log(query)
+const {data, error} = await useGraphqlQuery({ query: query })
 </script>

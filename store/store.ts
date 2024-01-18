@@ -5,42 +5,85 @@ import { defineStore } from 'pinia'
 export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
     return {
-      domain: null,
+      country: null,
       pages: null
     }
   },
   getters: {
-    getCurrentDomain (state) { return state.domain }
+    getCurrentCountry (state) { return state.country }
   },
   actions: {
-    async setNavigation () {
-      const domain = useRuntimeConfig().public.DATO_DOMAIN
-      const QUERY = `
-          query {
-            domain(filter: {url: {eq: "${domain}"}}) {
-              id
-              pages {
-                ... on HomepageRecord {
+    async setNavigation (isGlobal) {
+      if (isGlobal) {
+        const QUERY = `{
+          global {
+            id
+            content {
+              ... on CountriesCarouselRecord {
+                id
+                countries {
+                  url
+                  name
                   id
-                  _modelApiKey
                 }
-                ... on AboutRecord {
-                  id
-                  _modelApiKey
+              }
+              ... on HeroSectionRecord {
+                id
+                image {
+                  url
+                  alt
                 }
-                ... on PageRecord {
-                  id
-                  title
-                  _modelApiKey
-                }
+                link
+                linkLabel
+                subline
+                label
+                headline
               }
             }
           }
-        `
+        }`
+        const { data, error } = await useGraphqlQuery({ query: QUERY })
+        this.country = data.value.global
+      } else {
+        const country = useRuntimeConfig().public.DATO_DOMAIN
+        const QUERY = `
+            query {
+              country(filter: {url: {eq: "${country}"}}) {
+                id
+                pages {
+                  ... on AboutPageRecord {
+                    id
+                    _modelApiKey
+                  }
+                  ... on BeginnerPageRecord {
+                    id
+                    _modelApiKey
+                  }
+                  ... on HomePageRecord {
+                    id
+                    _modelApiKey
+                  }
+                  ... on MerchantPageRecord {
+                    id
+                    _modelApiKey
+                  }
+                  ... on NetworkPageRecord {
+                    id
+                    _modelApiKey
+                  }
+                  ... on PageRecord {
+                    id
+                    _modelApiKey
+                  }
+                }
+              }
+            }
+          `
 
-      const { data, error } = await useGraphqlQuery({ query: QUERY })
-      this.pages = data.value.domain.pages
-      this.domain = data.value.domain
+        const { data, error } = await useGraphqlQuery({ query: QUERY })
+        this.pages = data.value.country.pages
+        this.country = data.value.country
+      }
     }
   }
 })

@@ -1,10 +1,13 @@
 <template>
   <div
     v-if="fetchedData"
-    class=" bg-gray"
+    class=" max-w-screeen flex min-h-screen flex-col bg-gray"
   >
     <TheNavigation />
-    <NuxtPage :domain="fetchedData" />
+    <NuxtPage
+      :country="fetchedData"
+      class="grow"
+    />
     <TheFooter />
   </div>
   <div v-else>
@@ -17,6 +20,6 @@
 import { useWebsiteStore } from './store/store'
 import { computed } from 'vue'
 const store = useWebsiteStore()
-store.setNavigation()
-const fetchedData = computed(() => { return store.getCurrentDomain })
+store.setNavigation(false)
+const fetchedData = computed(() => { return store.getCurrentCountry })
 </script>

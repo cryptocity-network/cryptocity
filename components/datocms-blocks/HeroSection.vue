@@ -54,24 +54,3 @@ defineProps({
   }
 })
 </script>
-
-<!-- heroTitle: {
-  type: String,
-  required: true
-},
-label: {
-  type: String,
-  required: true
-},
-link: {
-  type: String,
-  required: false
-},
-subHeading: {
-  type: String,
-  required: true
-},
-image: {
-  type: Object,
-  required: true
-} -->

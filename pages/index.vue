@@ -1,25 +1,28 @@
 <template>
-  <div
-    v-for="(component, i) in data.homepage"
-    :key="component[0]._modelApiKey + Math.random()"
+  <section
+    v-for="(component, index) in data.homePage"
+    :key="component[0].id"
+    :class="{
+      '-mt-160': index > 0
+    }"
   >
     <BlockRenderer
       :componentName="component[0]._modelApiKey"
       :data="component[0]"
     />
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>
 import useGraphqlQuery from '../composables/useGraphqlQuery'
-import homepage from '../graphql/homepage'
+import homePage from '../graphql/homePage'
 const props = defineProps({
-  domain: {
+  country: {
     type: Object,
     default: null
   }
 })
 
-const homepageQuery = homepage(props.domain.id)
+const homepageQuery = homePage(props.country.id)
 const {data, error} = await useGraphqlQuery({ query: homepageQuery })
 </script>

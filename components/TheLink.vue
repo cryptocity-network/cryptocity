@@ -12,7 +12,7 @@
   >
     <div
       v-if="text"
-      class="leading-none"
+      class="leading-none capitalize"
     >
       {{ text }}
     </div>

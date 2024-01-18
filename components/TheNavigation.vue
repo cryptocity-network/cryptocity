@@ -15,6 +15,7 @@
   >
     <nuxt-link
       class="nuxt-link-active opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
+      to="/"
     >
       <svg
         class="h-32 shrink-0"
@@ -53,8 +54,9 @@
         :key="item._modelApiKey"
       >
         <TheLink
-          :text="item._modelApiKey"
-          link="/"
+          v-if="item._modelApiKey !== 'home_page'"
+          :text="item._modelApiKey.replace(/_.*/, '')"
+          :link="'/' + item._modelApiKey.replace(/_.*/, '')"
           compact
         />
       </li>

@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="data"
-    class="pb-160"
+    class="pb-160 pt-80"
   >
     
     <div class="relative">
@@ -9,40 +9,36 @@
         ref="scroller"
         class="flex w-full gap-16 pt-12 pb-40 overflow-x-auto scroll-smooth xl:gap-32 xl:pt-16 no-scrollbar !px-[max(16px,calc((100vw-255px)/2))] md:!px-[calc((100vw-2*232px-16px)/2)] xl:!px-[calc((100vw-3*245px-2*32px)/2)] 2xl:!px-[calc((100vw-3*295px-2*32px)/2)]"
         >
-        <!-- @scroll.passive="calculateStep" -->
         <li
-          v-for="(card, i) in data.cards"
-          :key="card.id"
+          v-for="(city, i) in data.cities"
+          :key="city.id"
           ref="slides"
           class="relative w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always transition-all
           hover:-translate-y-12
           hover:shadow"
-          data-card
+          data-city
         >
-            <!-- focus-within:lg:-translate-y-12 hover:lg:-translate-y-16
-            focus-within:-translate-y-12
-            focus-within:shadow -->
-            <a
+            <nuxt-link
               class="flex size-full"
-              href="http://"
+              :to="'/cities/' + city.name.toLowerCase()"
             >
               <img
-                v-if="card.image"
+                v-if="city.mainImage"
                 class="aspect-video size-full rounded-6 object-cover"
-                :src="card.image.url"
-                :alt="card.image.alt"
+                :src="city.mainImage.url"
+                :alt="city.mainImage.alt"
                 srcset=""
               >
               <div class="absolute inset-0 rounded-6 opacity-40 [background:linear-gradient(0deg,_#1F2348_0%,_rgba(31,_35,_72,_0)_100%)]" />
               <div class="absolute inset-0 rounded-6 bg-blue-dark/20" />
               <div class="absolute inset-0 z-1 flex size-full flex-col justify-end p-16">
                 <TheLink
-                  :text="card.name"
+                  :text="city.name"
                   invert
                   link="/"
                 />
               </div>
-            </a>
+            </nuxt-link>
         </li>
       </ul>
       <button v-if="activeIndex > 0"
@@ -55,7 +51,7 @@
           </svg>
       </button>
 
-      <button v-if="activeIndex < data.cards.length - 1"
+      <button v-if="activeIndex < data.cities.length - 1"
         class="absolute top-1/2 right-32 -translate-y-1/2 z-10 justify-center items-center w-48 h-48 text-white rounded transition-[background-color] cursor-pointer flex bg-blue-dark hocus:bg-blue-dark/30 active:bg-blue-dark/40"
         @click="goToNext">
         <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-mr-4 cursor-pointer rotate-180">
@@ -69,7 +65,7 @@
       <div
         class="relative flex mx-auto mt-48"
       >
-        <button v-for="(_, i) in data.cards" :key="i"
+        <button v-for="(_, i) in data.cities" :key="i"
           class="mx-4 cursor-pointer last:mr-4 first:ml-0 w-8 after:min-w-[16px] h-8 after:min-h-[16px] rounded transition-transform delay-75 cursor-pointer bg-blue-dark/10"
           @click="() => slideTo(i)"></button>
         <div class="absolute w-full h-8 rounded pointer-events-none">
@@ -104,10 +100,10 @@ const scrollerStyles = ref<CSSStyleDeclaration | null>(null)
 const scrollerPaddingLeft = computed(() => parseFloat(scrollerStyles.value?.paddingLeft || '0'))
 const scrollerPaddingRight = computed(() => parseFloat(scrollerStyles.value?.paddingRight || '0'))
 const scrollerGap = computed(() => parseFloat(scrollerStyles.value?.gap || '0'))
-const visibleCards = ref(1)
+const visibleCities = ref(1)
 
 function onWindowResize() {
-  visibleCards.value = window.innerWidth < 768 ? 1 : window.innerWidth < 1152 ? 2 : 3
+  visibleCities.value = window.innerWidth < 768 ? 1 : window.innerWidth < 1152 ? 2 : 3
 
   if (scroller.value) {
     scrollerStyles.value = window.getComputedStyle(scroller.value)
@@ -121,22 +117,22 @@ function calculateStep(event: Event) {
 
     const padding = scrollerPaddingLeft.value + scrollerPaddingRight.value
     const gap = scrollerGap.value
-    const cards = visibleCards.value
-    const cardWidth = (target.offsetWidth - padding) / cards + (gap * 1) / cards
+    const cities = visibleCities.value
+    const cityWidth = (target.offsetWidth - padding) / cities + (gap * 1) / cities
 
-    activeIndex.value = Math.round(target.scrollLeft / cardWidth)
+    activeIndex.value = Math.round(target.scrollLeft / cityWidth)
     // emit('indexChanged', activeIndex.value)
   }
 
   function slideTo(index: number) {
       // Clamp new index
-      // index = Math.min(Math.max(0, index), props.data.cards.length - visibleCards.value)
+      // index = Math.min(Math.max(0, index), props.data.cities.length - visibleCities.value)
 
-      const card = scroller.value?.querySelectorAll('[data-card]')[index] as HTMLElement
+      const city = scroller.value?.querySelectorAll('[data-city]')[index] as HTMLElement
       activeIndex.value = index
       scroller.value!.scrollTo({
         top: 0,
-        left: card.offsetLeft - scrollerPaddingLeft.value,
+        left: city.offsetLeft - scrollerPaddingLeft.value,
         behavior: 'smooth',
       })
     }
