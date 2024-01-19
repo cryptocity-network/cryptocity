@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       GRAPHQL_TOKEN: process.env.GRAPHQL_TOKEN, // can be overridden by NUXT_PUBLIC_API_BASE environment variable
-      DATO_DOMAIN: process.env.DATO_DOMAIN
+      DATO_DOMAIN: process.env.DATO_DOMAIN,
+      DATO_DEFAULT_LOCALE: process.env.DATO_DEFAULT_LOCALE
     }
   },
   components: {

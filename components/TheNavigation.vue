@@ -68,13 +68,7 @@
           variant="info"
         />
       </li>
-      <li>
-        <TheLink
-          text="English"
-          link="/"
-          compact
-        />
-      </li>
+      <LocalizationDropdown />
     </ul>
   </header>
 </template>
@@ -84,9 +78,9 @@ import { useWebsiteStore } from '../store/store'
 import { onMounted, onUnmounted } from 'vue'
 
 const store = useWebsiteStore()
-
 const pages = store.pages
 
+// Code for hide/show navbar
 const localState = reactive({
   selectedApp: 0,
   prevScrollPos: 0,
@@ -98,7 +92,6 @@ const localState = reactive({
 
 const root$ = ref(null)
 
-// Hide header on scroll down, show on scroll up
 function handleHeaderStyles () {
   const currentScrollPos = window.pageYOffset
 

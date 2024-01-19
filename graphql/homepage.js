@@ -1,7 +1,7 @@
-// import { useRuntimeConfig, useFetch } from 'nuxt/app'
-export default (countryId) => {
+export default (countryId, locale) => {
+  // locale: de
   return `query {
-    homePage(filter: {site: {eq: "${countryId}"}}) {
+    homePage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
       herosection {
         _modelApiKey
         id

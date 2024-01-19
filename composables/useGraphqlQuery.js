@@ -1,4 +1,4 @@
-// import { useRuntimeConfig, useFetch } from 'nuxt/app'
+
 export default (options) => {
   const { query, variables = {} } = options
   const runtimeConfig = useRuntimeConfig()

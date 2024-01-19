@@ -1,4 +1,3 @@
-// import { useRuntimeConfig, useFetch } from 'nuxt/app'
 export default (countryId) => {
   return `query {
     merchantPage(filter: {site: {eq: "${countryId}"}}) {

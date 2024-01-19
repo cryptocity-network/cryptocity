@@ -1,4 +1,3 @@
-// import { useRuntimeConfig, useFetch } from 'nuxt/app'
 export default (countryId) => {
   return `query {
     beginnerPage(filter: {site: {eq: "${countryId}"}}) {

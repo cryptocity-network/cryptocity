@@ -1,13 +1,11 @@
 <template>
   <div
     v-if="fetchedData"
+    :key="store.localization.userSelectedLocale"
     class=" max-w-screeen flex min-h-screen flex-col bg-gray"
   >
     <TheNavigation />
-    <NuxtPage
-      :country="fetchedData"
-      class="grow"
-    />
+    <NuxtPage />
     <TheFooter />
   </div>
   <div v-else>
