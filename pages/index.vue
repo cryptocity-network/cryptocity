@@ -22,9 +22,6 @@ import homePage from '../graphql/homePage'
 import { useWebsiteStore } from '../store/store'
 const store = useWebsiteStore()
 
-onMounted(() => {
-  console.log('MOUNTED')
-})
 const homepageQuery = homePage(store.country.id, store.getCurrentLocale)
 const {data, error} = await useGraphqlQuery({ query: homepageQuery })
 </script>

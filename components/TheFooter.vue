@@ -17,49 +17,34 @@
     </ul>
     <nuxt-link
       to="/"
-      class="mt-16 transition-opacity hover:opacity-70 focus:opacity-70"
+      class="my-32 transition-opacity hover:opacity-70 focus:opacity-70"
     >
       <img
         src="/horizontal mono.svg"
         alt="logo"
       >
     </nuxt-link>
-    <div class="mt-16 flex flex-col gap-x-48 gap-y-16 !text-blue-dark/50 md:flex-row md:justify-between ">
-      <div>
-        <p>Copyright 2024</p>
-      </div>
+    <div class="opacity-60 text-blue-dark flex flex-col gap-8">
+        <h5 class="font-bold uppercase">⚠ {{ data.footer.title }} ⚠</h5>
+        <a href="">Detailed Disclaimer</a>
+        <p v-html="marked.parse(data.footer.legal)"></p>
+        <a href="">Data</a>
+        <a href="">Cookies</a>
+        <p>{{ data.footer.copyrightText }}</p>
     </div>
   </footer>
 </template>
 
 <script lang="ts" setup>
 
-const footerLinks = [
-  {
-    label: 'Fur Handler',
-    url: '/haendler'
-  },
-  {
-    label: 'Fur Beginner',
-    url: '/beginner'
-  },
-  {
-    label: 'Das Network',
-    url: '/network'
-  },
-  {
-    label: 'Uber Uns',
-    url: '/ueber-uns'
-  },
-  {
-    label: 'Kontakt',
-    url: '/Kontaxt'
-  },
-  {
-    label: 'Wallet',
-    url: '/wallet'
-  }
-]
+import useGraphqlQuery from '../composables/useGraphqlQuery'
+import footer from '../graphql/footer'
+import { useWebsiteStore } from '../store/store'
+import { marked } from 'marked';
+
+const store = useWebsiteStore()
+const footerQuery = footer(store.getCurrentLocale)
+const {data, error} = await useGraphqlQuery({ query: footerQuery })
 </script>
 
 <style></style>
