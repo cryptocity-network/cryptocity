@@ -10,7 +10,7 @@
         class="flex w-full gap-16 pt-12 pb-40 overflow-x-auto scroll-smooth xl:gap-32 xl:pt-16 no-scrollbar !px-[max(16px,calc((100vw-255px)/2))] md:!px-[calc((100vw-2*232px-16px)/2)] xl:!px-[calc((100vw-3*245px-2*32px)/2)] 2xl:!px-[calc((100vw-3*295px-2*32px)/2)]"
         >
         <li
-          v-for="(city, i) in data.cities"
+          v-for="(city, i) in data.allCities"
           :key="city.id"
           ref="slides"
           class="relative w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always transition-all
@@ -51,7 +51,7 @@
           </svg>
       </button>
 
-      <button v-if="activeIndex < data.cities.length - 1"
+      <button v-if="activeIndex < data.allCities.length - 1"
         class="absolute top-1/2 right-32 -translate-y-1/2 z-10 justify-center items-center w-48 h-48 text-white rounded transition-[background-color] cursor-pointer flex bg-blue-dark hocus:bg-blue-dark/30 active:bg-blue-dark/40"
         @click="goToNext">
         <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-mr-4 cursor-pointer rotate-180">
@@ -65,7 +65,7 @@
       <div
         class="relative flex mx-auto mt-48"
       >
-        <button v-for="(_, i) in data.cities" :key="i"
+        <button v-for="(_, i) in data.allCities" :key="i"
           class="mx-4 cursor-pointer last:mr-4 first:ml-0 w-8 after:min-w-[16px] h-8 after:min-h-[16px] rounded transition-transform delay-75 cursor-pointer bg-blue-dark/10"
           @click="() => slideTo(i)"></button>
         <div class="absolute w-full h-8 rounded pointer-events-none">
@@ -81,12 +81,23 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import useEventListener from '~/composables/useEventListener'
-const props = defineProps({
-  data: {
-    type: Object,
-    required: true
-  }
-})
+import citiesByCountry from '../../graphql/citiesByCountry'
+import { useWebsiteStore } from '../../store/store'
+const store = useWebsiteStore()
+
+// const props = defineProps({
+//   data: {
+//     type: Object,
+//     required: true
+//   }
+// })
+
+
+const citiesQuery = citiesByCountry(store.country.id, store.getCurrentLocale)
+const {data, error} = await useGraphqlQuery({ query: citiesQuery })
+
+
+
 
 const scroller = ref<HTMLDivElement | null>(null)
 const slides = ref<HTMLDivElement[]>([])
@@ -126,7 +137,7 @@ function calculateStep(event: Event) {
 
   function slideTo(index: number) {
       // Clamp new index
-      // index = Math.min(Math.max(0, index), props.data.cities.length - visibleCities.value)
+      // index = Math.min(Math.max(0, index), props.data.allCities.length - visibleCities.value)
 
       const city = scroller.value?.querySelectorAll('[data-city]')[index] as HTMLElement
       activeIndex.value = index

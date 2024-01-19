@@ -17,33 +17,6 @@ export default (countryId, locale) => {
       citiesCarousel {
         _modelApiKey
         id
-        cities {
-          name
-          mainImage {
-            url
-            alt
-          }
-          id
-          heroSection {
-            subline
-            linkLabel
-            link
-            label
-            image {
-              url
-            }
-            id
-            headline
-          }
-          gallery {
-            url
-            alt
-          }
-          country {
-            name
-            id
-          }
-        }
       }
       contactsection {
         _modelApiKey
