@@ -1,18 +1,19 @@
 <template>
-  <section
-    section
-    v-for="(component, index) in data[`${route.params.uid}Page`]"
+  <!-- <BlockRenderer
+  v-for="(component, index) in data[`${route.params.uid}Page`]"
+  :key="component[0].id"
+  :componentName="component[0]._modelApiKey"
+  :data="component[0]"
+  :index="index"
+  /> -->
+  <component
+    v-for="(component, index, k) in data[`${route.params.uid}Page`]"
     :key="component[0].id"
-    class="pt-104 pb-160"
-    :class="{
-      '!pb-0': index > 0
-    }"
-  >
-    <BlockRenderer
-      :componentName="component[0]._modelApiKey"
-      :data="component[0]"
-    />
-  </section>
+    :componentName="component[0]._modelApiKey"
+    :data="component[0]"
+    :index="k"
+    :is="component[0]._modelApiKey.replace(/(^|_)./g, s => s.slice(-1).toUpperCase())"
+  />
 </template>
 
 <script lang="ts" setup>

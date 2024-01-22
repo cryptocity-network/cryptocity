@@ -1,4 +1,7 @@
 <template>
+  <section
+    class="pt-104 pb-160"
+  >
     <div class="relative" 
     v-if="data">
       <ul
@@ -71,6 +74,7 @@
         </div>
       </div>
     </div>
+  </section>
 </template>
 
 <script lang="ts" setup>

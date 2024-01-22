@@ -23,6 +23,18 @@ export default (countryId, locale) => {
           alt
         }
       }
+      consultationHero {
+        subline
+        linkLabel
+        link
+        label
+        image {
+          url
+        }
+        id
+        headline
+        _modelApiKey
+      }
     }
   }`
 }
