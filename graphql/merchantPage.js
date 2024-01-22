@@ -35,6 +35,28 @@ export default (countryId, locale) => {
         headline
         _modelApiKey
       }
+      zigZagContent {
+        id
+        _modelApiKey
+        blocks {
+          secondaryButtonLink
+          secondaryButtonLabel
+          logo {
+            alt
+            url
+          }
+          label
+          image {
+            url
+            alt
+          }
+          headline
+          description
+          buttonLink
+          buttonLabel
+          badge
+        }
+      }
     }
   }`
 }

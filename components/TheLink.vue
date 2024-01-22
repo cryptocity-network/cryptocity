@@ -8,7 +8,9 @@
       compact ? 'px-16 py-4' : 'px-24 py-6',
       colorClasses,
       // text ? (compact ? 'min-w-[4rem]' : 'min-w-[6rem]') : '',
-    ]"
+    ],{
+      '!px-0': secondary
+    }"
   >
     <div
       v-if="text"
@@ -46,7 +48,7 @@ export default {
       required: false,
       default: false
     },
-    invert: {
+    secondary: {
       type: Boolean,
       required: false,
       default: false
@@ -57,7 +59,9 @@ export default {
     colorClasses () {
       switch (this.variant) {
         case 'info':
-          return 'text-white shadow bg-blue-light bg-radial-blue-light hover:bg-radial-blue-light-darker focus:bg-radial-blue-light-darker active:bg-radial-blue-light-darker'
+          return this.secondary
+            ? 'text-blue-light'
+            : 'text-white shadow bg-blue-light bg-radial-blue-light hover:bg-radial-blue-light-darker focus:bg-radial-blue-light-darker active:bg-radial-blue-light-darker'
         default:
           return this.invert ? '!p-0 text-white' : '!p-0 text-blue-dark/50 hover:text-blue-dark/70'
       }
