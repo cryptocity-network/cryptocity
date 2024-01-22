@@ -1,6 +1,6 @@
-export default (countryId) => {
+export default (countryId, locale) => {
   return `query {
-    aboutPage(filter: {site: {eq: "${countryId}"}}) {
+    aboutPage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
       herosection {
         subline
         linkLabel

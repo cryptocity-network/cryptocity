@@ -1,6 +1,6 @@
-export default (countryId) => {
+export default (countryId, locale) => {
   return `query {
-    networkPage(filter: {site: {eq: "${countryId}"}}) {
+    networkPage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
       herosection {
         subline
         linkLabel

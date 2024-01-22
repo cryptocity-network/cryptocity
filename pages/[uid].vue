@@ -1,10 +1,11 @@
 <template>
   <section
+    section
     v-for="(component, index) in data[`${route.params.uid}Page`]"
     :key="component[0].id"
     class="pt-104 pb-160"
     :class="{
-      '-mt-160 !pb-0': index > 0
+      '!pb-0': index > 0
     }"
   >
     <BlockRenderer
@@ -24,20 +25,21 @@ import { useWebsiteStore } from '~/store/store'
 
 const store = useWebsiteStore()
 const countryId = store.country.id
+const locale =  store.getCurrentLocale
 const route = useRoute()
 let query = null
 switch (route.params.uid) {
   case 'merchant':
-    query = merchantPage(countryId)
+    query = merchantPage(countryId, locale)
     break;
   case 'beginner':
-    query = beginnerPage(countryId)
+    query = beginnerPage(countryId, locale)
     break;
     case 'about':
-    query = aboutPage(countryId)
+    query = aboutPage(countryId, locale)
     break;
     case 'network':
-    query = networkPage(countryId)
+    query = networkPage(countryId, locale)
     break;
   default:
     break;
@@ -45,3 +47,9 @@ switch (route.params.uid) {
 console.log(query)
 const {data, error} = await useGraphqlQuery({ query: query })
 </script>
+
+<style>
+  section + section {
+    @apply -mt-160
+  }
+</style>
