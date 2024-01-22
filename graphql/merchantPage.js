@@ -8,6 +8,7 @@ export default (countryId, locale) => {
         label
         image {
           url
+          alt
         }
         id
         headline
@@ -30,6 +31,7 @@ export default (countryId, locale) => {
         label
         image {
           url
+          alt
         }
         id
         headline
@@ -56,6 +58,32 @@ export default (countryId, locale) => {
           buttonLabel
           badge
         }
+      }
+      whyCrypto {
+        id
+        _modelApiKey
+        headline
+        subline
+        linkLabel
+        link
+        label
+        image {
+          alt
+          url
+        }
+      }
+      grid {
+        gridItems {
+          id
+          headline
+          subline
+          icon {
+            alt
+            url
+          }
+        }
+        _modelApiKey
+        id
       }
     }
   }`
