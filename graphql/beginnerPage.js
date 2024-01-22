@@ -1,7 +1,7 @@
 export default (countryId, locale) => {
   return `query {
     beginnerPage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
-      herosection {
+      halfImageHero {
         subline
         linkLabel
         link
