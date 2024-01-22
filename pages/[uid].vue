@@ -2,8 +2,9 @@
   <section
     v-for="(component, index) in data[`${route.params.uid}Page`]"
     :key="component[0].id"
+    class="pt-104 pb-160"
     :class="{
-      '-mt-160': index > 0
+      '-mt-160 !pb-0': index > 0
     }"
   >
     <BlockRenderer
@@ -19,27 +20,24 @@ import merchantPage from '../graphql/merchantPage'
 import beginnerPage from '../graphql/beginnerPage'
 import aboutPage from '../graphql/aboutPage'
 import networkPage from '../graphql/networkPage'
+import { useWebsiteStore } from '~/store/store'
 
-const props = defineProps({
-  country: {
-    type: Object,
-    default: null
-  }
-})
+const store = useWebsiteStore()
+const countryId = store.country.id
 const route = useRoute()
 let query = null
 switch (route.params.uid) {
   case 'merchant':
-    query = merchantPage(props.country.id)
+    query = merchantPage(countryId)
     break;
   case 'beginner':
-    query = beginnerPage(props.country.id)
+    query = beginnerPage(countryId)
     break;
     case 'about':
-    query = aboutPage(props.country.id)
+    query = aboutPage(countryId)
     break;
     case 'network':
-    query = networkPage(props.country.id)
+    query = networkPage(countryId)
     break;
   default:
     break;

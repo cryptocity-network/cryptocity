@@ -2,10 +2,11 @@
   <div v-if="data">
 
     <section
-      v-for="(component, index) in data.homePage"
+      v-for="(component, index, k) in data.homePage"
       :key="component[0].id"
+      class="pt-104 pb-160"
       :class="{
-        '-mt-160': index > 0
+        '-mt-160 !pb-0': k > 0
       }"
     >
       <BlockRenderer

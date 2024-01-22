@@ -13,6 +13,16 @@ export default (countryId) => {
         headline
         _modelApiKey
       }
+      tiltVideo {
+        id
+        _modelApiKey
+        headline
+        youtubeVideoLink
+        thumbnail {
+          url
+          alt
+        }
+      }
     }
   }`
 }

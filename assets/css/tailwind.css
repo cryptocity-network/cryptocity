@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+svg.nuxt-icon {
+  width: auto;
+  height: auto;
+  margin-bottom: 0;
+}
+
 @layer base {
     /* Global styles */
     * {

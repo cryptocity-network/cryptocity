@@ -1,10 +1,6 @@
 <template>
-  <div
-    v-if="data"
-    class="pb-160 pt-80"
-  >
-    
-    <div class="relative">
+    <div class="relative" 
+    v-if="data">
       <ul
         ref="scroller"
         class="flex w-full gap-16 pt-12 pb-40 overflow-x-auto scroll-smooth xl:gap-32 xl:pt-16 no-scrollbar !px-[max(16px,calc((100vw-255px)/2))] md:!px-[calc((100vw-2*232px-16px)/2)] xl:!px-[calc((100vw-3*245px-2*32px)/2)] 2xl:!px-[calc((100vw-3*295px-2*32px)/2)]"
@@ -75,7 +71,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts" setup>
