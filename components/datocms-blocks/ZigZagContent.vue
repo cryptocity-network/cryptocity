@@ -101,17 +101,12 @@
           class="content px-24 pt-64 md:items-center md:py-80 lg:flex-1 lg:px-0 lg:py-96"
         >
           <div
-            class="mb-24 flex max-h-40 w-max md:mx-auto md:items-center lg:mx-unset lg:w-full"
+            class="mb-24 flex w-max md:mx-auto md:items-center lg:mx-unset lg:w-full"
             :class="{
               'flex flex-col-reverse flex-wrap justify-between gap-16 sm:flex-row lg:justify-between':
                 item.badge,
             }"
           >
-            <!-- <prismic-image
-              v-if="Object.keys(item.logo).length > 0"
-              :field="item.logo"
-              class="max-w-[200px]"
-            /> -->
             <img
               v-if="item.logo"
               :src="item.logo.url"
