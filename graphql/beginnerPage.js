@@ -43,6 +43,55 @@ export default (countryId, locale) => {
           }
         }
       }
+      zigZagContent {
+        id
+        _modelApiKey
+        blocks {
+          secondaryButtonLink
+          secondaryButtonLabel
+          youtubeLink
+          logo {
+            alt
+            url
+          }
+          label
+          image {
+            url
+            alt
+          }
+          headline
+          description
+          buttonLink
+          buttonLabel
+          badge
+        }
+      }
+      knowledge {
+        id
+        _modelApiKey
+        headline
+        subline
+        linkLabel
+        link
+        label
+        image {
+          alt
+          url
+        }
+      }
+      grid {
+        gridItems {
+          id
+          headline
+          subline
+          icon {
+            alt
+            url
+          }
+        }
+        _modelApiKey
+        id
+      }
     }
   }`
 }

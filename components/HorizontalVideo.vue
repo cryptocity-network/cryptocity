@@ -8,7 +8,7 @@
       class="flex overflow-hidden relative items-end shadow child:rounded-6"
     >
       <h2
-        v-if="showHeadline"
+        v-if="showHeadline && headline"
         class="p-24 max-w-xs font-semibold sm:max-w-none md:p-48 xl:p-72 z-1 !text-blue-dark text-18"
       >
         {{ headline }}
@@ -34,6 +34,11 @@
           class="absolute right-0 w-[175px] translate-x-[40%] translate-y-[64%] md:w-[300px] xl:w-[450px] text-blue-dark/[0.03]"
         />
       </template>
+      <template v-else>
+        <div class="absolute w-full h-full z-1 bg-blue-dark/[.15]" />
+        <img :src="thumbnail" class="object-contain absolute w-full h-full" />
+      </template>
+
       <button
         class="grid absolute top-0 left-0 place-items-center w-full h-full drop-shadow-md z-1"
         @click="showYoutubeIframe"
@@ -67,12 +72,12 @@ const props = defineProps({
     default: "https://www.youtube.com/watch?v=9UHW0L0NZs0",
   },
   headline: {
-    default: () => [],
+    default: null,
     type: String,
   },
   thumbnail: {
-    default: () => {},
-    type: Object,
+    default: null,
+    type: String,
   },
 });
 // if (!props.youtubeUrl?.startsWith('https://www.youtube.com/watch?v=')) {

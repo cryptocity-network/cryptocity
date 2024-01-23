@@ -17,62 +17,41 @@
           'lg:flex-row': i % 2 !== 0,
         }"
       >
-        <PrismicVideo
-          v-if="data.variation === 'default' && item.videoHigh"
+        <!-- <NimiqVideo
+          v-if="item.youtube"
           class="aspect-video lg:flex-1"
-          :high-res="item.videoHigh.url"
-          :medium-res="item.videoHigh.url"
-          :low-res="item.videoHigh.url"
-          :poster="item.videoPoster"
-        />
+          :high-res="item.video.url"
+          :medium-res="item.video.url"
+          :low-res="item.video.url"
+        /> -->
+        <!-- :poster="item.videoPoster" -->
 
-        <div
-          v-else-if="item.embedded"
+        <!-- <div
+          v-if="item.embedded"
           class="relative flex h-[550px] w-full justify-center child:mx-auto child:rounded-6 child:max-md:w-full max-lg:h-360 md:px-32 child:md:max-lg:w-[calc(100vw-64px*2)] lg:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
         >
           <iframe
             :src="item.embedded"
             class="size-full rounded-8 border border-blue-dark/20 shadow"
           />
-        </div>
-
+        </div> -->
         <div
-          v-else-if="item.youtubeVideo && item.youtubeVideo.url"
-          class="relative flex h-max w-full items-center justify-center child:mx-auto child:rounded-6 child:max-md:w-full md:px-32 child:md:max-lg:w-[calc(100vw-64px*2)] lg:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
+          v-if="item.youtubeLink"
+          class="relative flex items-center justify-center child:max-md:w-full md:px-32 child:md:max-lg:w-[calc(100vw-64px*2)] lg:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
         >
           <HorizontalVideo
-            :youtube-url="item.youtubeVideo.url"
-            :poster="item.image"
+            :youtube-url="item.youtubeLink"
+            :thumbnail="item.image?.url"
             class="w-full"
           />
         </div>
-
         <div
-          v-else-if="Object.keys(item.image).length > 0"
-          class="relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full max-lg:h-360 md:px-32 child:md:max-lg:w-[calc(100vw-64px*2)] lg:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
+          v-else
+          class="relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full max-lg:h-360 md:px-32 child:md:max-lg:w-[calc(100vw-64px*2)] lg:w-[calc(50vw-32px*2)] lg:items-center 2xl:w-[calc(1440px/2-32px*2)]"
         >
-          <!-- <image
-            v-if="Object.keys(item.stamp).length > 0"
-            :field="item.stamp"
-            class="pointer-events-none absolute bottom-24 left-24 z-10 !w-160 md:left-[88px] lg:bottom-56 lg:!w-280"
-          />
-          <div
-            v-if="Object.keys(item.stamp).length > 0"
-            class="pointer-events-none absolute inset-0 opacity-40 lg:inset-x-32"
-            style="
-              background: linear-gradient(
-                0deg,
-                #1f2348 0%,
-                rgba(31, 35, 72, 0) 100%
-              );
-            "
-          />
-          <div
-            v-if="Object.keys(item.stamp).length > 0"
-            class="pointer-events-none absolute inset-0 bg-blue-dark/20 lg:inset-x-32"
-          /> -->
           <img
-            class="size-full rounded-8 border border-blue-dark/20 object-cover shadow lg:max-h-[80vh] lg:w-[calc(50vw-32px*2)]"
+            v-if="item.image"
+            class="rounded-8 border border-blue-dark/20 object-cover shadow lg:max-h-[80vh] lg:w-[calc(50vw-32px*2)]"
             :src="item.image.url"
           >
         </div>
@@ -114,6 +93,7 @@
               alt=""
             >
             <div
+              v-if="item.badge"
               class="hidden h-32 w-max items-center gap-8 rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] lg:flex"
             >
               <svg
@@ -172,8 +152,6 @@
 
 <script lang="ts" setup>
 // import { useBreakpoints } from "~/composables/useBreakpoints";
-import HorizontalVideo from '~/components/HorizontalVideo.vue'
-
 defineProps({
   data: {
     type: Object,
@@ -184,10 +162,6 @@ defineProps({
     required: true
   }
 })
-// const { smallScreen } = useBreakpoints();
-const secondaryButtonLabel = computed(() =>
-  true ? 'secondaryButtonLabelMobile' : 'secondaryButtonLabel'
-)
 </script>
 
 <style scoped>

@@ -43,6 +43,7 @@ export default (countryId, locale) => {
         blocks {
           secondaryButtonLink
           secondaryButtonLabel
+          youtube_link
           logo {
             alt
             url
