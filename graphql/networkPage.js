@@ -13,6 +13,38 @@ export default (countryId, locale) => {
         headline
         _modelApiKey
       }
+      partners {
+        id
+        _modelApiKey
+        grid {
+          youtube
+          whatsapp
+          twitter
+          telegram
+          logo {
+            url
+            alt
+          }
+          linkedIn
+          linkUrl
+          linkLabel
+          label
+          instagram
+          id
+          headlineLogo {
+            url
+            alt
+          }
+          headline
+          facebook
+          email
+          discord
+          description {
+            value
+          }
+          badge
+        }
+      }
     }
   }`
 }
