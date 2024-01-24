@@ -3,15 +3,15 @@
 
     <section
       v-for="(component, index, k) in data.homePage"
-      :key="component[0].id"
+      :key="component.id"
       class="pt-104 pb-160"
       :class="{
         '-mt-160 !pb-0': k > 0
       }"
     >
       <BlockRenderer
-        :componentName="component[0]._modelApiKey"
-        :data="component[0]"
+        :componentName="component._modelApiKey"
+        :data="component"
       />
     </section>
   </div>

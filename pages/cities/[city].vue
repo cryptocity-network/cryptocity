@@ -1,18 +1,12 @@
 <template>
-  <div>
-    <section
-      v-for="(component, index) in data.city"
-      :key="component[0]"
-      :class="{
-        '-mt-160': index > 0
-      }"
-    >
-      <BlockRenderer
-        :componentName="component[0]._modelApiKey"
-        :data="component[0]"
-      />
-    </section>
-  </div>
+  <component
+    v-for="(component, index, k) in data.city"
+    :key="component.id"
+    :componentName="component._modelApiKey"
+    :data="component"
+    :index="k"
+    :is="component._modelApiKey.replace(/(^|_)./g, s => s.slice(-1).toUpperCase())"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -21,12 +15,6 @@ import city from '../../graphql/city'
 import { useWebsiteStore } from '../../store/store'
 const store = useWebsiteStore()
 
-defineProps({
-  country: {
-    type: Object,
-    default: null
-  }
-})
 const route = useRoute()
 console.log(route)
 const cityName = route.params.city.charAt(0).toUpperCase() + route.params.city.slice(1)

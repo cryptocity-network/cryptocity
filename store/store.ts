@@ -23,7 +23,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     async setNavigation () {
       const QUERY = `
           query {
-            country(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${useRuntimeConfig().public.DATO_DEFAULT_LOCALE}) {
+            country(filter: {url: {eq: "kryptostadt.de"}}, locale: de) {
               id
               _locales
               pages {
@@ -44,10 +44,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
                   _modelApiKey
                 }
                 ... on NetworkPageRecord {
-                  id
-                  _modelApiKey
-                }
-                ... on PageRecord {
                   id
                   _modelApiKey
                 }

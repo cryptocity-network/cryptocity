@@ -1,18 +1,11 @@
 <template>
-  <!-- <BlockRenderer
-  v-for="(component, index) in data[`${route.params.uid}Page`]"
-  :key="component[0].id"
-  :componentName="component[0]._modelApiKey"
-  :data="component[0]"
-  :index="index"
-  /> -->
   <component
     v-for="(component, index, k) in data[`${route.params.uid}Page`]"
-    :key="component[0].id"
-    :componentName="component[0]._modelApiKey"
-    :data="component[0]"
+    :key="component.id"
+    :componentName="component._modelApiKey"
+    :data="component"
     :index="k"
-    :is="component[0]._modelApiKey.replace(/(^|_)./g, s => s.slice(-1).toUpperCase())"
+    :is="component._modelApiKey.replace(/(^|_)./g, s => s.slice(-1).toUpperCase())"
   />
 </template>
 
