@@ -48,6 +48,16 @@ export const useWebsiteStore = defineStore('websiteStore', {
                   _modelApiKey
                 }
               }
+              socialLinks {
+                name
+                image{
+                  url
+                }
+                twitter
+                telegram
+                email
+                linkedIn
+              }
             }
           }
         `

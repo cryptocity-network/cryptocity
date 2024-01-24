@@ -14,9 +14,8 @@ import useGraphqlQuery from '../../composables/useGraphqlQuery'
 import city from '../../graphql/city'
 import { useWebsiteStore } from '../../store/store'
 const store = useWebsiteStore()
-
 const route = useRoute()
-console.log(route)
+
 const cityName = route.params.city.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.localization.userSelectedLocale)
 const {data, error} = await useGraphqlQuery({ query: cityQuery })

@@ -7,6 +7,7 @@
     :index="k"
     :is="component._modelApiKey.replace(/(^|_)./g, s => s.slice(-1).toUpperCase())"
   />
+  <ContactForm showHeader />
 </template>
 
 <script lang="ts" setup>
