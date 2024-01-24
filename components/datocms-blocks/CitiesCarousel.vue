@@ -99,13 +99,6 @@ import citiesByCountry from "../../graphql/citiesByCountry";
 import { useWebsiteStore } from "../../store/store";
 const store = useWebsiteStore();
 
-// const props = defineProps({
-//   data: {
-//     type: Object,
-//     required: true
-//   }
-// })
-
 const citiesQuery = citiesByCountry(store.country.id, store.getCurrentLocale);
 const { data, error } = await useGraphqlQuery({ query: citiesQuery });
 
@@ -178,13 +171,6 @@ function goToPrevious() {
 function goToNext() {
   slideTo(activeIndex.value + 1);
 }
-
-// function goToStep(index: number) {
-//   const slide = slides.value[index]
-//   step.value = index
-//   if (!slide) return
-//   slideTo(slide)
-// }
 
 onMounted(() => {
   onWindowResize();

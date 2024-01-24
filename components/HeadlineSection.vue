@@ -33,7 +33,7 @@
     >
       <TheLink
         :text="linkLabel"
-        :url="link"
+        :link="link"
         variant="info"
       />
     </div>

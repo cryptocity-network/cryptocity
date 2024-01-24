@@ -41,7 +41,7 @@
         >
           <HorizontalVideo
             :youtube-url="item.youtubeLink"
-            :thumbnail="item.image?.url"
+            :thumbnail="item.image"
             class="w-full"
           />
         </div>

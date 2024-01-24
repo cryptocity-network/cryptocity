@@ -63,7 +63,7 @@
       <li>
         <TheLink
           text="Contact"
-          link="/"
+          link="/contact"
           compact
           variant="info"
         />

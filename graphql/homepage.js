@@ -1,34 +1,17 @@
+import CitiesCarousel from './blocks/CitiesCarousel'
+import HeroSection from './blocks/HeroSection'
+
 export default (countryId, locale) => {
-  // locale: de
   return `query {
     homePage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
       herosection {
-        _modelApiKey
-        id
-        label
-        link
-        linkLabel
-        headline
-        subline
-        image {
-          url
-        }
+        ${HeroSection()}
       }
       citiesCarousel {
-        _modelApiKey
-        id
+        ${CitiesCarousel()}
       }
       contactsection {
-        _modelApiKey
-        id
-        label
-        link
-        linkLabel
-        subline
-        headline
-        image {
-          url
-        }
+        ${HeroSection()}
       }
     }
   }

@@ -14,7 +14,7 @@
         {{ headline }}
       </h2>
 
-      <template v-if="!hasPoster">
+      <template v-if="!thumbnail">
         <div
           class="absolute w-full h-full opacity-10"
           style="
@@ -36,7 +36,7 @@
       </template>
       <template v-else>
         <div class="absolute w-full h-full z-1 bg-blue-dark/[.15]" />
-        <img :src="thumbnail" class="object-contain absolute w-full h-full" />
+        <img :src="thumbnail?.url" class="object-contain absolute w-full h-full" />
       </template>
 
       <button
@@ -77,7 +77,7 @@ const props = defineProps({
   },
   thumbnail: {
     default: null,
-    type: String,
+    type: Object,
   },
 });
 // if (!props.youtubeUrl?.startsWith('https://www.youtube.com/watch?v=')) {

@@ -1,96 +1,29 @@
+import Grid from './blocks/Grid'
+import HalfImageHero from './blocks/HalfImageHero'
+import HeroSection from './blocks/HeroSection'
+import MediaCarousel from './blocks/MediaCarousel'
+import ZigZagContent from './blocks/ZigZagContent'
+
 export default (countryId, locale) => {
   return `query {
     beginnerPage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
       halfImageHero {
-        subline
-        linkLabel
-        link
-        label
-        image {
-          url
-        }
-        id
-        headline
-        _modelApiKey
+        ${HalfImageHero()}
       }
       carouselHero {
-        id
-        _modelApiKey
-        headline
-        subline
-        linkLabel
-        link
-        label
-        image {
-          alt
-          url
-        }
+        ${HeroSection()}
       }
       mediaCarousel {
-        id
-        _modelApiKey
-        carousel {
-          id
-          _modelApiKey
-          headline
-          media {
-            mimeType
-            url
-            video {
-              streamingUrl
-            }
-            alt
-          }
-        }
+        ${MediaCarousel()}
       }
       zigZagContent {
-        id
-        _modelApiKey
-        blocks {
-          secondaryButtonLink
-          secondaryButtonLabel
-          youtubeLink
-          logo {
-            alt
-            url
-          }
-          label
-          image {
-            url
-            alt
-          }
-          headline
-          description
-          buttonLink
-          buttonLabel
-          badge
-        }
+        ${ZigZagContent()}
       }
       knowledge {
-        id
-        _modelApiKey
-        headline
-        subline
-        linkLabel
-        link
-        label
-        image {
-          alt
-          url
-        }
+        ${HeroSection()}
       }
       grid {
-        gridItems {
-          id
-          headline
-          subline
-          icon {
-            alt
-            url
-          }
-        }
-        _modelApiKey
-        id
+        ${Grid()}
       }
     }
   }`

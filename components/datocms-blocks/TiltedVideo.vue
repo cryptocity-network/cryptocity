@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mx-auto w-full px-64 "
+    class="mx-auto w-full max-w-[1440px] px-64 "
   >
     <div
       ref="media$"
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, nextTick, onMounted, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import { useEventListener } from '#imports'
 defineProps({
   data: {
