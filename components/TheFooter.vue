@@ -2,25 +2,12 @@
   <footer
     class="relative inline-flex w-full flex-col gap-16 bg-gray px-32 pb-40 text-14 !text-blue-dark md:px-64 md:pb-80 xl:px-72 xl:pb-104 2xl:pb-136"
   >
-    <!-- <ul class="flex flex-wrap gap-x-12 pt-16">
-      <li
-        v-for="(link, i) in footerLinks"
-        :key="link.url"
-        :class="{'border-r border-blue-dark/10': i < footerLinks.length - 1}"
-      >
-        <TheLink
-          class="!pr-12 "
-          :text="link.label"
-          :link="link.url"
-        />
-      </li>
-    </ul> -->
     <nuxt-link
       to="/"
       class="my-32 transition-opacity hover:opacity-70 focus:opacity-70"
     >
       <img
-        src="/horizontal mono.svg"
+        src="/horizontal-mono.svg"
         alt="logo"
       >
     </nuxt-link>
@@ -29,7 +16,7 @@
         ⚠ {{ data.footer.title }} ⚠
       </h5>
       <a href="">Detailed Disclaimer</a>
-      <p v-html="marked.parse(data.footer.legal)" />
+      <div v-html="marked.parse(data.footer.legal)" />
       <a href="">Data</a>
       <a href="">Cookies</a>
       <p>{{ data.footer.copyrightText }}</p>

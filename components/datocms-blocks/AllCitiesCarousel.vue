@@ -137,7 +137,7 @@
 </template>
 
 <script lang="ts" setup>
-import citiesByCountry from '../../graphql/citiesByCountry'
+import allCities from '../../graphql/allCities'
 import { useWebsiteStore } from '../../store/store'
 import useEventListener from '~/composables/useEventListener'
 
@@ -153,7 +153,7 @@ defineProps({
 })
 
 const store = useWebsiteStore()
-const citiesQuery = citiesByCountry(store?.country?.id, store.getCurrentLocale)
+const citiesQuery = allCities(store.getCurrentLocale)
 const { data: response } = await useGraphqlQuery({ query: citiesQuery })
 
 const scroller = ref<HTMLDivElement | null>(null)

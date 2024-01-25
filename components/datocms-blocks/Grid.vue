@@ -12,6 +12,7 @@
         class="grid auto-cols-[auto_1fr] auto-rows-[auto_1fr] gap-x-20 gap-y-12 lg:gap-y-16"
       >
         <img
+          v-if="item.icon"
           :src="item.icon.url"
           :alt="item.icon.alt"
           class="size-48 lg:size-56 xl:size-64"

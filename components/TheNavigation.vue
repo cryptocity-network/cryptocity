@@ -57,6 +57,7 @@
           :text="item._modelApiKey.replace(/_.*/, '')"
           :link="'/' + item._modelApiKey.replace(/_.*/, '')"
           compact
+          hide-arrow
         />
       </li>
       <li>
@@ -65,6 +66,7 @@
           link="/contact"
           compact
           variant="info"
+          hide-arrow
         />
       </li>
       <LocalizationDropdown />

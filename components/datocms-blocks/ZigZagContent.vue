@@ -5,7 +5,7 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <ul class="mx-auto px-24 2xl:!max-w-[1440px]">
+    <ul class="wide mx-auto px-24 2xl:!max-w-[1440px]">
       <li
         v-for="(item, i) in data.blocks"
         :key="i"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mobile-wide child:aspect-video child:rounded-6 child:shadow"
+    class="mobile-wide bg-white child:aspect-video child:rounded-6 child:shadow"
     :class="{ 'bg-video': !hasPoster }"
   >
     <div

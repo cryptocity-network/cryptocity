@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 // enum Color {
 //   WHITE = 'white',
-//   GREY = 'grey',
+//   gray = 'gray',
 //   BLUE = 'blue',
 //   DARK_BLUE = 'blue-dark',
 //   DARK_BLUE_DIMMED = 'blue-dark-dimmed',
@@ -58,9 +58,8 @@ defineProps({
 })
 </script>
 
-<style scoped>
-section > *:not(.wider):not(.wide):not(.widest),
-section ::v-deep .default-x-padding {
+<style>
+section > *:not(.wider):not(.wide):not(.widest) {
   @apply max-w-screen-2xl mx-auto px-32 md:px-64 xl:px-72 2xl:px-136;
 }
 
@@ -118,7 +117,7 @@ section > .widest {
 }
 
 section.bg-white,
-section.nq_bg-grey,
+section.nq_bg-gray,
 section.nq_bg-blue-light,
 section.nq_bg-blue-dark,
 section.nq_bg-blue-dark-dimmed,
@@ -130,13 +129,19 @@ section.nq_bg-green {
   }
 }
 
-section.nq_bg-white:not(.respect-size) + section.nq_bg-white,
-section.nq_bg-grey:not(.respect-size) + section.nq_bg-grey,
-section.nq_bg-blue-light:not(.respect-size) + section.nq_bg-blue-light,
-section.nq_bg-blue-dark:not(.respect-size) + section.nq_bg-blue-dark,
-section.nq_bg-blue-dark-dimmed:not(.respect-size)
-  + section.nq_bg-blue-dark-dimmed,
-section.nq_bg-green:not(.respect-size) + section.nq_bg-green {
+section.bg-white:not(.respect-size) + section.bg-white,
+section.bg-gray:not(.respect-size) + section.bg-gray,
+section.bg-blue-light:not(.respect-size) + section.bg-blue-light,
+section.bg-blue-dark:not(.respect-size) + section.bg-blue-dark,
+section.bg-blue-dark-dimmed:not(.respect-size)
+  + section.bg-blue-dark-dimmed,
+section.bg-green:not(.respect-size) + section.bg-green {
   @apply -mt-160 xl:-mt-200;
 }
+
+section.bg-white + section:not(.bg-white),
+section.bg-gray + section:not(.bg-gray) {
+  margin-top: 0 !important;
+}
+
 </style>
