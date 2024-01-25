@@ -116,7 +116,7 @@ defineProps({
 const store = useWebsiteStore()
 const citiesQuery = citiesByCountry(store?.country?.id, store.getCurrentLocale)
 const { data: response, error } = await useGraphqlQuery({ query: citiesQuery })
-console.warn('QUERY ERROR', error)
+
 const scroller = ref<HTMLDivElement | null>(null)
 const slides = ref<HTMLDivElement[]>([])
 const activeIndex = ref(0)

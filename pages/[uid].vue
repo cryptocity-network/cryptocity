@@ -14,10 +14,10 @@
 
 <script lang="ts" setup>
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
-import merchantPage from '@/graphql/merchantPage'
-import beginnerPage from '@/graphql/beginnerPage'
-import aboutPage from '@/graphql/aboutPage'
-import networkPage from '@/graphql/networkPage'
+import merchantPage from '@/graphql/merchantPage.js'
+import beginnerPage from '@/graphql/beginnerPage.js'
+import aboutPage from '@/graphql/aboutPage.js'
+import networkPage from '@/graphql/networkPage.js'
 import { useWebsiteStore } from '~/store/store'
 
 const store = useWebsiteStore()
@@ -42,7 +42,7 @@ switch (route.params.uid) {
     break
 }
 const { data, error } = await useGraphqlQuery({ query })
-console.warn('QUERY ERROR', error)
+
 </script>
 
 <style>

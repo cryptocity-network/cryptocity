@@ -12,12 +12,12 @@
 </template>
 
 <script lang="ts" setup>
-import useGraphqlQuery from '@/composables/useGraphqlQuery'
-import homePage from '@/graphql/homePage'
+import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
+import homePage from '@/graphql/homePage.js'
 import { useWebsiteStore } from '@/store/store'
 const store = useWebsiteStore()
 
 const homepageQuery = homePage(store.country?.id, store.getCurrentLocale)
 const { data, error } = await useGraphqlQuery({ query: homepageQuery })
-console.warn('QUERY ERROR', error)
+
 </script>

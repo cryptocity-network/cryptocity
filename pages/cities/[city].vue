@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts" setup>
-import useGraphqlQuery from '@/composables/useGraphqlQuery'
-import city from '@/graphql/city'
+import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
+import city from '@/graphql/city.js'
 import { useWebsiteStore } from '@/store/store'
 const store = useWebsiteStore()
 const route = useRoute()
@@ -24,5 +24,5 @@ const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.localization.userSelectedLocale)
 const { data, error } = await useGraphqlQuery({ query: cityQuery })
-console.warn('QUERY ERROR', error)
+
 </script>

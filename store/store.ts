@@ -84,7 +84,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
           }
         `
       const { data, error } = await useGraphqlQuery({ query: QUERY })
-      console.warn('QUERY ERROR', error)
+
       this.pages = data.value.country.pages
       this.country = data.value.country
       this.localization.siteLocales = data.value.country._locales
