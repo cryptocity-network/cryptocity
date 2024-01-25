@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts" setup>
-import useGraphqlQuery from '../composables/useGraphqlQuery'
-import homePage from '../graphql/homePage'
-import { useWebsiteStore } from '../store/store'
+import useGraphqlQuery from '@/composables/useGraphqlQuery'
+import homePage from '@/graphql/homePage'
+import { useWebsiteStore } from '@/store/store'
 const store = useWebsiteStore()
 
 const homepageQuery = homePage(store.country?.id, store.getCurrentLocale)

@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-import useGraphqlQuery from '../../composables/useGraphqlQuery'
-import city from '../../graphql/city'
-import { useWebsiteStore } from '../../store/store'
+import useGraphqlQuery from '@/composables/useGraphqlQuery'
+import city from '@/graphql/city'
+import { useWebsiteStore } from '@/store/store'
 const store = useWebsiteStore()
 const route = useRoute()
 
