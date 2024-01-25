@@ -1,6 +1,6 @@
 export default (countryId, locale) => {
   return `query {
-    allCities(filter: {country: {eq: "fTo46Ty8To6ukIQsBTRhPQ"}}, locale: en) {
+    allCities(filter: {country: {eq: "${countryId}"}}, locale: ${locale}) {
       name
       mainImage {
         url

@@ -15,7 +15,7 @@
         :headline="data.headline"
         :subline="data.subline"
         :link="data.link"
-        :linkLabel="data.linkLabel"
+        :link-label="data.linkLabel"
       />
     </div>
   </section>

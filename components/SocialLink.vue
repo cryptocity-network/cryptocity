@@ -1,6 +1,6 @@
 <template>
   <a
-    v-if="socialMediaData.url"
+    v-if="socialMediaData"
     :href="socialMediaData.url"
     :title="socialMediaData.name"
     target="_blank"
@@ -73,18 +73,18 @@
 </template>
 
 <script lang="ts" setup>
-import TwitterLogo from '@/static/logos/twitter.svg?skipsvgo'
-import RedditLogo from '@/static/logos/reddit.svg?skipsvgo'
-import FacebookLogo from '@/static/logos/facebook.svg?skipsvgo'
-import YouTubeLogo from '@/static/logos/youtube.svg?skipsvgo'
-import InstagramLogo from '@/static/logos/instagram.svg?skipsvgo'
-import DiscordLogo from '@/static/logos/discord.svg?skipsvgo'
-import TelegramLogo from '@/static/logos/telegram.svg?skipsvgo'
-import NimiqForumLogo from '@/static/logos/nimiq-forum.svg?skipsvgo'
-import GithubLogo from '@/static/logos/github.svg?skipsvgo'
-import LinkedInLogo from '@/static/logos/linkedin.svg?skipsvgo'
-import EmailLogo from '@/static/logos/email.svg?skipsvgo'
-import WhatsappLogo from '@/static/logos/whatsapp.svg?skipsvgo'
+import TwitterLogo from '@/assets/logos/twitter.svg'
+import RedditLogo from '@/assets/logos/reddit.svg'
+import FacebookLogo from '@/assets/logos/facebook.svg'
+import YouTubeLogo from '@/assets/logos/youtube.svg'
+import InstagramLogo from '@/assets/logos/instagram.svg'
+import DiscordLogo from '@/assets/logos/discord.svg'
+import TelegramLogo from '@/assets/logos/telegram.svg'
+import NimiqForumLogo from '@/assets/logos/nimiq-forum.svg'
+import GithubLogo from '@/assets/logos/github.svg'
+import LinkedInLogo from '@/assets/logos/linkedin.svg'
+import EmailLogo from '@/assets/logos/email.svg'
+import WhatsappLogo from '@/assets/logos/whatsapp.svg'
 
 const props = defineProps({
   socialMedia: {
@@ -100,9 +100,16 @@ defineEmits(['onFocus', 'onClick'])
 
 const onFocus = () => emit('onFocus')
 
-const onClick = (e) => {
+const onClick = (e: MouseEvent) => {
   e.target instanceof HTMLElement && e.target.blur()
   emit('onClick')
+}
+
+interface SocialMedia {
+  url: string,
+  name: string,
+  key: string,
+  color: string,
 }
 
 const socialMedias = [
@@ -162,17 +169,17 @@ const socialMedias = [
   }
 ]
 
-let socialMediaData = null
+let socialMediaData = null as SocialMedia | null
 if (props.socialMediaKey) {
   const socialMedia = socialMedias.find(
-    (socialMedia) => socialMedia.key === props.socialMediaKey
+    socialMedia => socialMedia.key === props.socialMediaKey
   )
   if (!socialMedia) {
     throw new Error('Invalid Social Media ' + props.socialMediaKey)
   }
-  socialMediaData = socialMedia
+  socialMediaData = socialMedia as SocialMedia
 } else {
-  socialMediaData = props.socialMedia
+  socialMediaData = props.socialMedia as SocialMedia
 }
 </script>
 

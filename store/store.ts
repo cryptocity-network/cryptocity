@@ -1,21 +1,43 @@
 import { useRuntimeConfig } from 'nuxt/app'
-import useGraphqlQuery from '../composables/useGraphqlQuery'
 import { defineStore } from 'pinia'
+import useGraphqlQuery from '../composables/useGraphqlQuery'
+interface SocialLinks {
+  role: string,
+  name: string,
+  email: string,
+  telegram: string,
+  linkedin: string,
+  image: Object,
+}
+interface Page {
+  id?: string;
+  _modelApiKey: string;
+}
+interface Country {
+  pages: Array<Page>;
+  id?: string;
+  _locale?: string;
+  socialLinks?: SocialLinks;
+}
+interface Localization {
+  siteLocales: Array<string> | undefined,
+  userSelectedLocale: string | undefined
+}
 
 export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
     return {
-      country: null,
-      pages: null,
-      localization: {
-        siteLocales: null,
-        userSelectedLocale: null
+      country: null as Country | null,
+      pages: null as Array<Page> | null,
+      localization: <Localization>{
+        siteLocales: undefined as string | undefined,
+        userSelectedLocale: undefined as string | undefined
       }
     }
   },
   getters: {
-    getCurrentCountry (state) { return state.country },
-    getCurrentLocale (state) {
+    getCurrentCountry (state): Object | null { return state.country },
+    getCurrentLocale (): string | null {
       return this.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
     }
   },
@@ -62,11 +84,12 @@ export const useWebsiteStore = defineStore('websiteStore', {
           }
         `
       const { data, error } = await useGraphqlQuery({ query: QUERY })
+      console.warn('QUERY ERROR', error)
       this.pages = data.value.country.pages
       this.country = data.value.country
       this.localization.siteLocales = data.value.country._locales
     },
-    setLocale (locale) {
+    setLocale (locale: string) {
       this.localization.userSelectedLocale = locale
       this.setNavigation()
     }

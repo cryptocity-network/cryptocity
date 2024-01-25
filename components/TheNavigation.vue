@@ -51,7 +51,7 @@
     >
       <li
         v-for="item in pages"
-        :key="item._modelApiKey"
+        :key="String(item._modelApiKey)"
       >
         <TheLink
           v-if="item._modelApiKey !== 'home_page'"
@@ -74,8 +74,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useWebsiteStore } from '../store/store'
 import { onMounted, onUnmounted } from 'vue'
+import { useWebsiteStore } from '../store/store'
 
 const store = useWebsiteStore()
 const pages = store.pages

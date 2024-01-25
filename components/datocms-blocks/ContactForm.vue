@@ -1,7 +1,7 @@
 <template>
   <div class="relative z-1 mx-auto flex w-full max-w-lg flex-col rounded-8 bg-white shadow lg:divide-y-1 lg:divide-blue/10 ">
     <ContactCard
-      v-if="showHeader"
+      v-if="showHeader && socialLinks"
       :name="socialLinks.name"
       :role="socialLinks.role"
       :email="socialLinks.email"
@@ -24,7 +24,7 @@ defineProps({
   showHeader: {
     type: Boolean,
     default: true,
-    required: true
+    required: false
   }
 })
 

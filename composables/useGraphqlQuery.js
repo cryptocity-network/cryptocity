@@ -1,4 +1,3 @@
-
 export default (options) => {
   const { query, variables = {} } = options
   const runtimeConfig = useRuntimeConfig()
@@ -14,7 +13,7 @@ export default (options) => {
       variables
     },
     transform: ({ data, errors }) => {
-      if (errors) throw errors
+      if (errors) { throw errors }
       return data
     }
   })

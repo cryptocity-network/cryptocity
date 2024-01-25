@@ -5,28 +5,30 @@ module.exports = {
     node: true
   },
   extends: [
-    'standard',
+    '@nuxtjs/eslint-config-typescript',
     'plugin:vue/vue3-recommended',
     'plugin:tailwindcss/recommended'
   ],
   rules: {
-    'vue/max-attributes-per-line': [
-      'error',
-      {
-        singleline: { max: 1 },
-        multiline: { max: 1 }
-      }
-    ],
-    'vue/html-closing-bracket-newline': [
-      'error',
-      {
-        singleline: 'never',
-        multiline: 'always'
-      }
-    ],
-    'vue/attribute-hyphenation': 'off',
-    'vue/no-v-html': 'off',
-    'vue/v-on-event-hyphenation': 'off',
+    // 'vue/max-attributes-per-line': [
+    //   'error',
+    //   {
+    //     singleline: { max: 1 },
+    //     multiline: { max: 1 }
+    //   }
+    // ],
+    // 'vue/html-closing-bracket-newline': [
+    //   'error',
+    //   {
+    //     singleline: 'never',
+    //     multiline: 'always'
+    //   }
+    // ],
+    // 'vue/attribute-hyphenation': 'off',
+    // 'vue/no-v-html': 'off',
+    'vue/no-multiple-template-root': 'off',
+    // 'vue/v-on-event-hyphenation': 'off',
+    'vue/multi-word-names': 'off',
     'tailwindcss/no-custom-classname': 'off',
     'tailwindcss/no-arbitrary-value': 'off'
   }

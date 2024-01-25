@@ -1,11 +1,11 @@
 <template>
   <component
+    :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
     v-for="(component, index, k) in data.city"
     :key="component.id"
-    :componentName="component._modelApiKey"
+    :component-name="component._modelApiKey"
     :data="component"
     :index="k"
-    :is="component._modelApiKey.replace(/(^|_)./g, s => s.slice(-1).toUpperCase())"
   />
 </template>
 
@@ -16,7 +16,9 @@ import { useWebsiteStore } from '../../store/store'
 const store = useWebsiteStore()
 const route = useRoute()
 
-const cityName = route.params.city.charAt(0).toUpperCase() + route.params.city.slice(1)
+const param = route.params.city as string
+const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.localization.userSelectedLocale)
-const {data, error} = await useGraphqlQuery({ query: cityQuery })
+const { data, error } = await useGraphqlQuery({ query: cityQuery })
+console.warn('QUERY ERROR', error)
 </script>

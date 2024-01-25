@@ -1,13 +1,14 @@
 <template>
   <component
+    :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
     v-for="(component, index, k) in data[`${route.params.uid}Page`]"
     :key="component.id"
-    :componentName="component._modelApiKey"
+    :component-name="component._modelApiKey"
     :data="component"
     :index="k"
-    :is="component._modelApiKey.replace(/(^|_)./g, s => s.slice(-1).toUpperCase())"
+    :style="`background-color: ${component.settings?.backgroundColor}`"
   />
-  <ContactForm showHeader />
+  <ContactForm show-header />
 </template>
 
 <script lang="ts" setup>
@@ -19,28 +20,28 @@ import networkPage from '../graphql/networkPage'
 import { useWebsiteStore } from '~/store/store'
 
 const store = useWebsiteStore()
-const countryId = store.country.id
-const locale =  store.getCurrentLocale
+const countryId = store?.country?.id
+const locale = store.getCurrentLocale
 const route = useRoute()
 let query = null
 switch (route.params.uid) {
   case 'merchant':
     query = merchantPage(countryId, locale)
-    break;
+    break
   case 'beginner':
     query = beginnerPage(countryId, locale)
-    break;
-    case 'about':
+    break
+  case 'about':
     query = aboutPage(countryId, locale)
-    break;
-    case 'network':
+    break
+  case 'network':
     query = networkPage(countryId, locale)
-    break;
+    break
   default:
-    break;
+    break
 }
-console.log(query)
-const {data, error} = await useGraphqlQuery({ query: query })
+const { data, error } = await useGraphqlQuery({ query })
+console.warn('QUERY ERROR', error)
 </script>
 
 <style>

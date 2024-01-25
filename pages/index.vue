@@ -1,16 +1,15 @@
 <template>
   <div v-if="data">
-
     <section
       v-for="(component, index, k) in data.homePage"
       :key="component.id"
-      class="pt-104 pb-160"
+      class="pb-160 pt-104"
       :class="{
         '-mt-160 !pb-0': k > 0
       }"
     >
       <BlockRenderer
-        :componentName="component._modelApiKey"
+        :component-name="component._modelApiKey"
         :data="component"
       />
     </section>
@@ -23,6 +22,7 @@ import homePage from '../graphql/homePage'
 import { useWebsiteStore } from '../store/store'
 const store = useWebsiteStore()
 
-const homepageQuery = homePage(store.country.id, store.getCurrentLocale)
-const {data, error} = await useGraphqlQuery({ query: homepageQuery })
+const homepageQuery = homePage(store.country?.id, store.getCurrentLocale)
+const { data, error } = await useGraphqlQuery({ query: homepageQuery })
+console.warn('QUERY ERROR', error)
 </script>

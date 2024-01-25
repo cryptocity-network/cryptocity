@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="fetchedData"
-    :key="store.localization.userSelectedLocale"
+    :key="String(store.localization.userSelectedLocale)"
     class=" max-w-screeen flex min-h-screen flex-col bg-gray"
   >
     <TheNavigation />
@@ -15,9 +15,9 @@
 
 <script lang="ts" setup>
 
-import { useWebsiteStore } from './store/store'
 import { computed } from 'vue'
+import { useWebsiteStore } from './store/store'
 const store = useWebsiteStore()
-store.setNavigation(false)
+store.setNavigation()
 const fetchedData = computed(() => { return store.getCurrentCountry })
 </script>

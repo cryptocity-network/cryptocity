@@ -18,20 +18,20 @@
 
 <script lang="ts" setup>
 import { nextTick, onMounted, ref } from 'vue'
-import { useEventListener } from '#imports'
+import useEventListener from '@/composables/useEventListener'
 defineProps({
   data: {
     type: Object,
     required: true
   }
 })
-const media$ = ref < HTMLImageElement | null > (null)
+const media$ = ref < HTMLImageElement | null >(null)
 const placeholder = ref(true)
 
 useEventListener('scroll', setRotation)
 
 function setRotation () {
-  if (!media$.value || !process.client) return
+  if (!media$.value || !process.client) { return }
 
   // distance from top of viewport to top of image
   const mediaDistance = media$.value.getBoundingClientRect().top

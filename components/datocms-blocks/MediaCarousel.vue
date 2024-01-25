@@ -1,5 +1,5 @@
 <template>
-  <div class="relative pt-72 pb-160 -mt-160">
+  <div class="relative -mt-160 pb-160 pt-72">
     <ul
       ref="$scroller"
       class="widest slides !mt-80"
@@ -9,32 +9,30 @@
         v-for="(item, i) in data.carousel"
         :key="`slide-${i}`"
         ref="$slides"
-        class="slide w-full ease-[cubic-bezier(.25,0,0,1)] duration-[0.4s]"
+        class="slide w-full duration-[0.4s] ease-[cubic-bezier(.25,0,0,1)]"
         :class="{ active: step === i }"
         @click="() => goToStep(i)"
       >
         <div class="grow">
           <NimiqVideo
             v-if="isVideo(i)"
-            :high-res="item.media.url"
-            :medium-res="item.media.url"
-            :low-res="item.media.url"
+            :video="item.media.url"
             :poster="item.poster"
-            class="flex items-center mx-auto max-h-[60vh] aspect-[var(--aspect)] !w-auto child:w-full"
+            class="mx-auto flex aspect-[var(--aspect)] max-h-[60vh] !w-auto items-center child:w-full"
             :style="`--aspect: ${item.ratio || '9 / 19.5'};`"
             :class="{ 'pointer-events-none': step !== i }"
           />
           <img
             v-else
             :src="item.media.url"
-            class="h-full w-full object-cover rounded-6 shadow"
-          />
+            class="size-full rounded-6 object-cover shadow"
+          >
         </div>
         <div
-          class="flex flex-col max-w-xl mx-auto gap-y-16 child:text-center mt-48 child:z-50"
+          class="mx-auto mt-48 flex max-w-xl flex-col gap-y-16 child:z-50 child:text-center"
         >
           <h3
-            class="!text-blue-dark/60 font-bold leading-none tracking-[0.095em] pl-16 uppercase whitespace-nowrap text-12"
+            class="leading-none whitespace-nowrap pl-16 text-12 font-bold uppercase tracking-[0.095em] !text-blue-dark/60"
             style="text-wrap: initial"
           >
             {{ item.headline }}
@@ -45,22 +43,22 @@
       </li>
     </ul>
 
-    <div class="relative flex justify-center mx-auto w-max mt-48">
+    <div class="relative mx-auto mt-48 flex w-max justify-center">
       <button
         v-for="(_, i) in data.carousel"
         :key="i"
-        class="last:mr-4 first:ml-0 w-8 after:min-w-[16px] h-8 after:min-h-[16px] rounded transition-transform delay-75 cursor-pointer bg-blue-dark/10"
+        class="size-8 cursor-pointer rounded bg-blue-dark/10 transition-transform delay-75 after:min-h-[16px] after:min-w-[16px] first:ml-0 last:mr-4"
         :class="{
-          'ml-8 mr-8 scale-0': i === step,
-          'ml-4 mr-4 scale-100': i !== step,
+          'mx-8 scale-0': i === step,
+          'mx-4 scale-100': i !== step,
         }"
         @click="() => goToStep(i)"
-      ></button>
-      <div class="absolute w-full h-8 rounded pointer-events-none">
+      />
+      <div class="pointer-events-none absolute h-8 w-full rounded">
         <div
-          class="w-16 h-full transition-all duration-300 rounded bg-green"
+          class="h-full w-16 rounded bg-green transition-all duration-300"
           :style="`margin-left: ${16 * step - (step === 0 ? 4 : 0)}px`"
-        ></div>
+        />
       </div>
     </div>
   </div>
@@ -70,56 +68,56 @@
 const props = defineProps({
   data: {
     type: Object,
-    required: true,
-  },
-});
+    required: true
+  }
+})
 
-const step = ref(0);
-const $scroller = ref<HTMLDivElement | null>(null);
-const $slides = ref<Array<HTMLDivElement>>([]);
+const step = ref(0)
+const $scroller = ref<HTMLDivElement | null>(null)
+const $slides = ref<Array<HTMLDivElement>>([])
 
-const windowWidth = ref(0);
+const windowWidth = ref(0)
 
-function onWindowResize() {
-  windowWidth.value = window.innerWidth;
+function onWindowResize () {
+  windowWidth.value = window.innerWidth
 }
 
-useEventListener("resize", onWindowResize, undefined, {
+useEventListener('resize', onWindowResize, undefined, {
   immediate: true,
-  passive: true,
-});
+  passive: true
+})
 
-const slideWidth = computed(() => $slides.value[0].clientWidth);
-const padding = computed(() => windowWidth.value - slideWidth.value);
-const numberOfSlides = computed(() => props.data.carousel.length);
+const slideWidth = computed(() => $slides.value[0].clientWidth)
+const padding = computed(() => windowWidth.value - slideWidth.value)
+const numberOfSlides = computed(() => props.data.carousel.length)
 
-function calculateStep(event: Event) {
-  const target = event.target as HTMLDivElement;
+function calculateStep (event: Event) {
+  const target = event.target as HTMLDivElement
 
-  const scrollableWidth = target.scrollWidth - padding.value;
+  const scrollableWidth = target.scrollWidth - padding.value
   const gap =
     (scrollableWidth - slideWidth.value * numberOfSlides.value) /
-    (numberOfSlides.value - 1);
+    (numberOfSlides.value - 1)
 
-  step.value = Math.round(target.scrollLeft / (slideWidth.value + gap));
+  step.value = Math.round(target.scrollLeft / (slideWidth.value + gap))
 }
 
-function goToSlide(slide: HTMLDivElement) {
+function goToSlide (slide: HTMLDivElement) {
   $scroller.value!.scrollTo({
     top: 0,
     left: slide.offsetLeft - padding.value / 2,
-    behavior: "smooth",
-  });
+    behavior: 'smooth'
+  })
 }
 
-function goToStep(step: number) {
-  const slide = $slides.value[step];
-  if (!slide) return;
-  goToSlide(slide);
+function goToStep (step: number) {
+  const slide = $slides.value[step]
+  if (!slide) { return }
+  goToSlide(slide)
 }
 
-function isVideo(i: number) {
-  return props.data.carousel[i].media?.mimeType.includes("video");
+function isVideo (i: number) {
+  return props.data.carousel[i].media?.mimeType.includes('video')
 }
 </script>
 

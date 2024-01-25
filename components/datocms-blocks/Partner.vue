@@ -1,3 +1,4 @@
+// eslint-disable-next-line vue/multi-word-component-names
 <template>
   <li
     class="flex flex-col gap-y-16 px-32 py-40 md:gap-y-20 md:px-40 md:py-48 lg:gap-y-24 lg:px-48 lg:py-56"
@@ -168,7 +169,8 @@
 </template>
 
 <script lang="ts" setup>
-import { StructuredText as DatocmsStructuredText } from 'vue-datocms'
+import type { PropType } from 'vue'
+import { StructuredText as DatocmsStructuredText, type StructuredTextDocument } from 'vue-datocms'
 
 defineProps({
   logo: {
@@ -192,8 +194,8 @@ defineProps({
     type: String
   },
   description: {
-    default: () => [],
-    type: Array
+    type: Object as PropType<StructuredTextDocument>,
+    default: null
   },
   linkHref: {
     default: '',
@@ -244,7 +246,8 @@ defineProps({
     type: Boolean
   },
   badge: {
-    type: String
+    type: String,
+    default: null
   },
   backgroundColor: {
     default: 'transparent',

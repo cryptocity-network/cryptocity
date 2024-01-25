@@ -151,7 +151,6 @@
 </template>
 
 <script lang="ts" setup>
-// import { useBreakpoints } from "~/composables/useBreakpoints";
 defineProps({
   data: {
     type: Object,

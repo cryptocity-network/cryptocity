@@ -8,8 +8,8 @@
         :headline="data.headline"
         :subline="data.subline"
         :link="data.link"
-        :linkLabel="data.linkLabel"
-        :textAlign="'left'"
+        :link-label="data.linkLabel"
+        :text-align="'left'"
       />
       <!-- <div
         v-if="contactName && contactPicture && contactTitleLabel"

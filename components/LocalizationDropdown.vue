@@ -57,17 +57,19 @@
 </template>
 
 <script lang="ts" setup>
-import { useWebsiteStore } from '../store/store'
 import { computed } from 'vue'
+import { useWebsiteStore } from '../store/store'
 const store = useWebsiteStore()
 
 const locales = store.localization.siteLocales
 
-const localeIcons = computed((locale) => {
-  const iconArray = []
-  locales.forEach(locale => {
-    iconArray.push(locale !== 'en' ? locale : 'gb')
-  })
+const localeIcons = computed(() => {
+  const iconArray = [] as Array<string>
+  if (locales) {
+    locales.forEach((locale) => {
+      iconArray.push(locale !== 'en' ? locale : 'gb')
+    })
+  }
   return iconArray
 })
 
@@ -77,7 +79,7 @@ const selectedLocale = computed(() => {
   return currentLocale !== 'en' ? currentLocale : 'gb'
 })
 
-const setLocale = (option) => {
+const setLocale = (option: string) => {
   isDropdownExpanded.value = false
   store.setLocale(option !== 'gb' ? option : 'en')
 }

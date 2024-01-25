@@ -2,7 +2,7 @@
   <footer
     class="bg-grey relative inline-flex w-full flex-col gap-16 px-32 pb-40 text-14 !text-blue-dark md:px-64 md:pb-80 xl:px-72 xl:pb-104 2xl:pb-136"
   >
-    <ul class="flex flex-wrap gap-x-12 pt-16">
+    <!-- <ul class="flex flex-wrap gap-x-12 pt-16">
       <li
         v-for="(link, i) in footerLinks"
         :key="link.url"
@@ -14,7 +14,7 @@
           :link="link.url"
         />
       </li>
-    </ul>
+    </ul> -->
     <nuxt-link
       to="/"
       class="my-32 transition-opacity hover:opacity-70 focus:opacity-70"
@@ -24,27 +24,30 @@
         alt="logo"
       >
     </nuxt-link>
-    <div class="opacity-60 text-blue-dark flex flex-col gap-8">
-        <h5 class="font-bold uppercase">⚠ {{ data.footer.title }} ⚠</h5>
-        <a href="">Detailed Disclaimer</a>
-        <p v-html="marked.parse(data.footer.legal)"></p>
-        <a href="">Data</a>
-        <a href="">Cookies</a>
-        <p>{{ data.footer.copyrightText }}</p>
+    <div class="flex flex-col gap-8 text-blue-dark opacity-60">
+      <h5 class="font-bold uppercase">
+        ⚠ {{ data.footer.title }} ⚠
+      </h5>
+      <a href="">Detailed Disclaimer</a>
+      <p v-html="marked.parse(data.footer.legal)" />
+      <a href="">Data</a>
+      <a href="">Cookies</a>
+      <p>{{ data.footer.copyrightText }}</p>
     </div>
   </footer>
 </template>
 
 <script lang="ts" setup>
 
+import { marked } from 'marked'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import footer from '../graphql/footer'
 import { useWebsiteStore } from '../store/store'
-import { marked } from 'marked';
 
 const store = useWebsiteStore()
 const footerQuery = footer(store.getCurrentLocale)
-const {data, error} = await useGraphqlQuery({ query: footerQuery })
+const { data, error } = await useGraphqlQuery({ query: footerQuery })
+console.warn('QUERY ERROR', error)
 </script>
 
 <style></style>

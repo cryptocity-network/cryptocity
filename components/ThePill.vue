@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     triggerClick (e) {
-      if (this.noPropagation) e.stopPropagation()
+      if (this.noPropagation) { e.stopPropagation() }
       this.$emit('click', e)
     }
   }
@@ -129,7 +129,7 @@ export default {
     text-decoration: none;
     font-weight: bold;
     padding: 0 1.5rem;
-    background-color: rgba(31, 35, 72, 0.07); /* Based on Nimiq Blue */
+    background-color: rgba(31, 35, 72, 0.07);
     color: theme(colors.blue.DEFAULT);
     border-radius: 1.6875rem;
     transition: color 300ms ease-in-out, background-color 300ms ease-in-out;

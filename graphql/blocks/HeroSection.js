@@ -1,10 +1,8 @@
-// import baseBlockValues from './blockValues'
+import baseBlockValues from './blockValues'
 
 export default () => {
-  // ${baseBlockValues()}
   return `
-    id
-    _modelApiKey
+    ${baseBlockValues()}
     label
     headline
     subline

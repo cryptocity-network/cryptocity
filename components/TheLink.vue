@@ -1,4 +1,3 @@
-<!-- eslint-disable tailwindcss/no-arbitrary-value -->
 <template>
   <nuxt-link
     :to="link"
@@ -7,7 +6,6 @@
       compact ? 'text-14' : 'text-16',
       compact ? 'px-16 py-4' : 'px-24 py-6',
       colorClasses,
-      // text ? (compact ? 'min-w-[4rem]' : 'min-w-[6rem]') : '',
     ],{
       '!px-0': secondary
     }"
