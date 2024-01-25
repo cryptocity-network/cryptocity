@@ -73,18 +73,18 @@
 </template>
 
 <script lang="ts" setup>
-import TwitterLogo from '@/assets/logos/twitter.svg'
-import RedditLogo from '@/assets/logos/reddit.svg'
-import FacebookLogo from '@/assets/logos/facebook.svg'
-import YouTubeLogo from '@/assets/logos/youtube.svg'
-import InstagramLogo from '@/assets/logos/instagram.svg'
-import DiscordLogo from '@/assets/logos/discord.svg'
-import TelegramLogo from '@/assets/logos/telegram.svg'
-import NimiqForumLogo from '@/assets/logos/nimiq-forum.svg'
-import GithubLogo from '@/assets/logos/github.svg'
-import LinkedInLogo from '@/assets/logos/linkedin.svg'
-import EmailLogo from '@/assets/logos/email.svg'
-import WhatsappLogo from '@/assets/logos/whatsapp.svg'
+import TwitterLogo from '@/static/logos/twitter.svg'
+import RedditLogo from '@/static/logos/reddit.svg'
+import FacebookLogo from '@/static/logos/facebook.svg'
+import YouTubeLogo from '@/static/logos/youtube.svg'
+import InstagramLogo from '@/static/logos/instagram.svg'
+import DiscordLogo from '@/static/logos/discord.svg'
+import TelegramLogo from '@/static/logos/telegram.svg'
+import NimiqForumLogo from '@/static/logos/nimiq-forum.svg'
+import GithubLogo from '@/static/logos/github.svg'
+import LinkedInLogo from '@/static/logos/linkedin.svg'
+import EmailLogo from '@/static/logos/email.svg'
+import WhatsappLogo from '@/static/logos/whatsapp.svg'
 
 const props = defineProps({
   socialMedia: {
@@ -97,11 +97,12 @@ const props = defineProps({
   }
 })
 defineEmits(['onFocus', 'onClick'])
-
+// @ts-ignore
 const onFocus = () => emit('onFocus')
 
 const onClick = (e: MouseEvent) => {
   e.target instanceof HTMLElement && e.target.blur()
+  // @ts-ignore
   emit('onClick')
 }
 

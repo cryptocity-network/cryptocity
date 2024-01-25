@@ -1,12 +1,17 @@
 <template>
-  <section class="pb-160 pt-104">
-    <div v-if="data" class="relative">
+  <BlockWrapper
+    :block-background-color="data.settings.backgroundColor"
+    :padding-top="96"
+    :no-padding-bottom="false"
+    :overlaps-next-section="false"
+  >
+    <div v-if="response" class="relative">
       <ul
         ref="scroller"
         class="no-scrollbar flex w-full gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-255px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*232px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*245px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*295px-2*32px)/2)]"
       >
         <li
-          v-for="(city) in data.allCities"
+          v-for="(city) in response.allCities"
           :key="city.id"
           ref="slides"
           class="relative w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always transition-all hover:-translate-y-12 hover:shadow"
@@ -55,7 +60,7 @@
       </button>
 
       <button
-        v-if="activeIndex < data.allCities.length - 1"
+        v-if="activeIndex < response.allCities.length - 1"
         class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 flex size-48 -translate-y-1/2 cursor-pointer items-center justify-center rounded bg-blue-dark text-white transition-[background-color] active:bg-blue-dark/40"
         @click="goToNext"
       >
@@ -76,7 +81,7 @@
     <div class="flex flex-col">
       <div class="relative mx-auto mt-48 flex">
         <button
-          v-for="(_, i) in data.allCities"
+          v-for="(_, i) in response.allCities"
           :key="i"
           class="mx-4 size-8 cursor-pointer rounded bg-blue-dark/10 transition-transform delay-75 after:min-h-[16px] after:min-w-[16px] first:ml-0 last:mr-4"
           @click="() => slideTo(i)"
@@ -89,17 +94,28 @@
         </div>
       </div>
     </div>
-  </section>
+  </BlockWrapper>
 </template>
 
 <script lang="ts" setup>
 import citiesByCountry from '../../graphql/citiesByCountry'
 import { useWebsiteStore } from '../../store/store'
 import useEventListener from '~/composables/useEventListener'
-const store = useWebsiteStore()
 
+defineProps({
+  data: {
+    type: Object,
+    required: true
+  },
+  index: {
+    type: Number,
+    required: true
+  }
+})
+
+const store = useWebsiteStore()
 const citiesQuery = citiesByCountry(store?.country?.id, store.getCurrentLocale)
-const { data, error } = await useGraphqlQuery({ query: citiesQuery })
+const { data: response, error } = await useGraphqlQuery({ query: citiesQuery })
 console.warn('QUERY ERROR', error)
 const scroller = ref<HTMLDivElement | null>(null)
 const slides = ref<HTMLDivElement[]>([])
@@ -150,7 +166,7 @@ useEventListener('resize', onWindowResize, undefined, {
 
 function slideTo (index: number) {
   // Clamp new index
-  // index = Math.min(Math.max(0, index), props.data.allCities.length - visibleCities.value)
+  // index = Math.min(Math.max(0, index), props.response.allCities.length - visibleCities.value)
 
   const city = scroller.value?.querySelectorAll('[data-city]')[
     index

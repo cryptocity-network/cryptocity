@@ -1,5 +1,10 @@
 <template>
-  <div class="relative -mt-160 pb-160 pt-72">
+  <BlockWrapper
+    :block-background-color="data.settings.backgroundColor"
+    :padding-top="96"
+    :no-padding-bottom="false"
+    :overlaps-next-section="false"
+  >
     <ul
       ref="$scroller"
       class="widest slides !mt-80"
@@ -37,7 +42,7 @@
           >
             {{ item.headline }}
           </h3>
-          <!-- <RichTextComponent :field="item.description" />
+        <!-- <RichTextComponent :field="item.description" />
           <span class="font-bold leading-none tracking-[0.095em] pl-16 uppercase whitespace-nowrap text-12">{{ item.subline }}</span> -->
         </div>
       </li>
@@ -61,7 +66,7 @@
         />
       </div>
     </div>
-  </div>
+  </BlockWrapper>
 </template>
 
 <script lang="ts" setup>

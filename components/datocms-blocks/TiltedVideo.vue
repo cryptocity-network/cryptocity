@@ -1,19 +1,26 @@
 <template>
-  <div
-    class="mx-auto w-full max-w-[1440px] px-64 "
+  <BlockWrapper
+    :block-background-color="data.settings.backgroundColor"
+    :padding-top="96"
+    :no-padding-bottom="false"
+    :overlaps-next-section="false"
   >
     <div
-      ref="media$"
-      class="custom-transform tilted-media-component h-full"
-      :class="{ placeholder }"
+      class="mx-auto w-full max-w-[1440px] px-64"
     >
-      <HorizontalVideo
-        :youtube-url="data.youtubeVideoLink"
-        :headline="data.headline"
-        :thumbnail="data.thumbnail"
-      />
+      <div
+        ref="media$"
+        class="custom-transform tilted-media-component h-full"
+        :class="{ placeholder }"
+      >
+        <HorizontalVideo
+          :youtube-url="data.youtubeVideoLink"
+          :headline="data.headline"
+          :thumbnail="data.thumbnail"
+        />
+      </div>
     </div>
-  </div>
+  </BlockWrapper>
 </template>
 
 <script lang="ts" setup>

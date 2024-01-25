@@ -1,6 +1,9 @@
 <template>
-  <section
-    class="pb-160 pt-80"
+  <BlockWrapper
+    :block-background-color="data.settings.backgroundColor"
+    :padding-top="96"
+    :no-padding-bottom="false"
+    :overlaps-next-section="false"
   >
     <ul
       v-if="data"
@@ -40,7 +43,7 @@
         }"
       />
     </ul>
-  </section>
+  </BlockWrapper>
 </template>
 
 <script lang="ts" setup>

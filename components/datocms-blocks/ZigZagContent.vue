@@ -1,6 +1,9 @@
 <template>
-  <section
-    class="pb-160 pt-96"
+  <BlockWrapper
+    :block-background-color="data.settings.backgroundColor"
+    :padding-top="96"
+    :no-padding-bottom="false"
+    :overlaps-next-section="false"
   >
     <ul class="mx-auto px-24 2xl:!max-w-[1440px]">
       <li
@@ -147,7 +150,7 @@
         </div>
       </li>
     </ul>
-  </section>
+  </BlockWrapper>
 </template>
 
 <script lang="ts" setup>

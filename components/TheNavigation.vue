@@ -2,16 +2,15 @@
   <header
     v-if="pages"
     ref="root$"
-    class="sticky z-50 mt-0 flex items-center justify-between gap-x-16 rounded-8 p-16 text-left transition-[border-radius,opacity,box-shadow]"
-    :class="{
-      'bg-white': true,
+    class="sticky z-50 mt-0 flex items-center justify-between gap-x-16 rounded-8 bg-white p-16 text-left transition-[border-radius,opacity,box-shadow]"
+    :class="[{
       'top-16 mx-16': true,
       'shadow': localState.isScrolled,
       'rounded-br-0': localState.isGetStartedModalVisible,
       'pointer-events-none opacity-0': localState.isScrolled,
-      'pointer-events-auto bg-white !opacity-100 shadow': localState.isSticky,
+      'pointer-events-auto !opacity-100 shadow': localState.isSticky,
       'mb-32': pages.length > 0
-    }"
+    }, `bg-${backgroundColor}`]"
   >
     <nuxt-link
       class="nuxt-link-active opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
@@ -76,6 +75,13 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted } from 'vue'
 import { useWebsiteStore } from '../store/store'
+
+defineProps({
+  backgroundColor: {
+    type: String,
+    default: 'white'
+  }
+})
 
 const store = useWebsiteStore()
 const pages = store.pages

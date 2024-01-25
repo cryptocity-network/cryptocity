@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="bg-grey relative inline-flex w-full flex-col gap-16 px-32 pb-40 text-14 !text-blue-dark md:px-64 md:pb-80 xl:px-72 xl:pb-104 2xl:pb-136"
+    class="relative inline-flex w-full flex-col gap-16 bg-gray px-32 pb-40 text-14 !text-blue-dark md:px-64 md:pb-80 xl:px-72 xl:pb-104 2xl:pb-136"
   >
     <!-- <ul class="flex flex-wrap gap-x-12 pt-16">
       <li

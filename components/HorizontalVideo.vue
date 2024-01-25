@@ -89,6 +89,7 @@ const hasPoster = computed(() => props.thumbnail !== undefined)
 const showHeadline = computed(() => props.headline)
 
 onMounted(() => {
+  // @ts-ignore
   if (!window.YT) {
     const tag = document.createElement('script')
     tag.src = 'https://www.youtube.com/iframe_api'
@@ -109,6 +110,7 @@ async function showYoutubeIframe () {
 // For example in Brave: https://github.com/mediaelement/mediaelement/issues/2722#issuecomment-596573115
 // Chrome and Firefox seems to work fine.
 function initYoutube () {
+  // @ts-ignore
   // eslint-disable-next-line no-new
   new window.YT.Player('video-container', {
     videoId,

@@ -56,8 +56,8 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import PlayButton from '~/assets/icons/ui/play-button.svg'
-import NimiqHexagon from '~/assets/icons/ui/nimiq-hexagon-filled.svg'
+import PlayButton from '~/static/icons/play-button.svg'
+import NimiqHexagon from '~/static/icons/nimiq-hexagon-filled.svg'
 
 const props = defineProps({
   video: {

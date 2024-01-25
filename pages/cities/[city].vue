@@ -1,12 +1,16 @@
 <template>
-  <component
-    :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-    v-for="(component, index, k) in data.city"
-    :key="component.id"
-    :component-name="component._modelApiKey"
-    :data="component"
-    :index="k"
-  />
+  <TheNavigation />
+  <main v-if="data">
+    <component
+      :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+      v-for="(component, index, k) in data.city"
+      :key="component.id"
+      :component-name="component._modelApiKey"
+      :data="component"
+      :index="k"
+    />
+  </main>
+  <TheFooter />
 </template>
 
 <script lang="ts" setup>

@@ -1,19 +1,14 @@
 <template>
-  <div v-if="data">
-    <section
-      v-for="(component, index, k) in data.homePage"
-      :key="component.id"
-      class="pb-160 pt-104"
-      :class="{
-        '-mt-160 !pb-0': k > 0
-      }"
-    >
-      <BlockRenderer
-        :component-name="component._modelApiKey"
-        :data="component"
-      />
-    </section>
-  </div>
+  <TheNavigation />
+  <component
+    :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+    v-for="(component, index, k) in data.homePage"
+    :key="component.id"
+    :component-name="component._modelApiKey"
+    :data="component"
+    :index="k"
+  />
+  <TheFooter />
 </template>
 
 <script lang="ts" setup>

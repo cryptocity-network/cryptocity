@@ -1,5 +1,10 @@
 <template>
-  <section class="mx-auto max-w-screen-2xl px-32 pb-160 pt-96 lg:px-64">
+  <BlockWrapper
+    :block-background-color="data.settings.backgroundColor"
+    :padding-top="96"
+    :no-padding-bottom="false"
+    :overlaps-next-section="false"
+  >
     <ul class="grid grid-cols-[repeat(1,minmax(0,1fr))] gap-48 lg:grid-cols-[repeat(2,minmax(0,1fr))] lg:gap-72 xl:grid-cols-[repeat(3,minmax(0,1fr))] 2xl:gap-80">
       <li
         v-for="(item, i) in data.gridItems"
@@ -19,7 +24,7 @@
         </p>
       </li>
     </ul>
-  </section>
+  </BlockWrapper>
 </template>
 
 <script lang="ts" setup>

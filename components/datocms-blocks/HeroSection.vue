@@ -1,7 +1,9 @@
 <template>
-  <section
-    class="pb-160"
-    :class="index > 0 ? 'pt-240' : 'pt-104'"
+  <BlockWrapper
+    :block-background-color="data.settings.backgroundColor"
+    :padding-top="index === 0 ? 136 : 240"
+    :no-padding-bottom="false"
+    :overlaps-next-section="false"
   >
     <img
       v-if="data.image"
@@ -18,7 +20,7 @@
         :link-label="data.linkLabel"
       />
     </div>
-  </section>
+  </BlockWrapper>
 </template>
 
 <script lang="ts" setup>
