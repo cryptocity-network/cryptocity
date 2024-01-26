@@ -13,6 +13,7 @@ interface Page {
   id?: string;
   _modelApiKey: string;
   navigationLabel: string;
+  slug: string;
 }
 interface Country {
   pages: Array<Page>;
@@ -33,21 +34,26 @@ export const useWebsiteStore = defineStore('websiteStore', {
       localization: <Localization>{
         siteLocales: undefined as string | undefined,
         userSelectedLocale: undefined as string | undefined
-      }
+      },
+      pageType: null as string | null
     }
   },
   getters: {
-    getCurrentCountry (state): Object | null { return state.country },
+    getCurrentCountry (state): Country | null { return state.country },
     getCurrentLocale (): string | null {
       return this.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+    },
+    getCurrentPageType (): string | null {
+      return this.pageType
     }
   },
   actions: {
     async setNavigation () {
-      const pageFields = `
+      const pageFields = (showSlug = true) => `
         id
         _modelApiKey
         navigationLabel
+        ${showSlug ? 'slug' : ''}
       `
       const QUERY = `
           query {
@@ -56,19 +62,19 @@ export const useWebsiteStore = defineStore('websiteStore', {
               _locales
               pages {
                 ... on AboutPageRecord {
-                  ${pageFields}
+                  ${pageFields()}
                 }
                 ... on BeginnerPageRecord {
-                  ${pageFields}
+                  ${pageFields()}
                 }
                 ... on HomePageRecord {
-                  ${pageFields}
+                  ${pageFields(false)}
                 }
                 ... on MerchantPageRecord {
-                  ${pageFields}
+                  ${pageFields()}
                 }
                 ... on NetworkPageRecord {
-                  ${pageFields}
+                  ${pageFields()}
                 }
               }
               socialLinks {
@@ -91,8 +97,11 @@ export const useWebsiteStore = defineStore('websiteStore', {
       this.localization.siteLocales = data.value.country._locales
     },
     setLocale (locale: string) {
-      this.localization.userSelectedLocale = locale
+      if (locale) { this.localization.userSelectedLocale = locale }
       this.setNavigation()
+    },
+    setPageType (pageType: string) {
+      this.pageType = pageType
     }
   }
 })

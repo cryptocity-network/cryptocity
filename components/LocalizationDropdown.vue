@@ -82,6 +82,8 @@ const selectedLocale = computed(() => {
 const setLocale = (option: string) => {
   isDropdownExpanded.value = false
   store.setLocale(option !== 'gb' ? option : 'en')
+  // Route to home as route slugs are language specific
+  useRouter().push('/')
 }
 </script>
 

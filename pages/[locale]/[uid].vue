@@ -1,7 +1,5 @@
 <template>
-  <p v-if="error">
-    Something bad happened!
-  </p>
+  <div v-if="error || !data" class="size-screen block" />
   <component
     :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
     v-for="(component, index, k) in data[`${currentPageType}Page`]"
@@ -26,6 +24,10 @@ const store = useWebsiteStore()
 const countryId = store?.country?.id
 const locale = store.getCurrentLocale
 const route = useRoute()
+
+if (route.params.locale !== store.getCurrentLocale) {
+  store.setLocale(route.params.locale as string)
+}
 
 const currentPageType = computed(() => {
   if (store.getCurrentPageType) {

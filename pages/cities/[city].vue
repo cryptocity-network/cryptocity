@@ -1,5 +1,4 @@
 <template>
-  <TheNavigation />
   <main v-if="data">
     <component
       :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
@@ -10,7 +9,6 @@
       :index="k"
     />
   </main>
-  <TheFooter />
 </template>
 
 <script lang="ts" setup>
