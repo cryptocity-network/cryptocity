@@ -12,6 +12,7 @@ interface SocialLinks {
 interface Page {
   id?: string;
   _modelApiKey: string;
+  navigationLabel: string;
 }
 interface Country {
   pages: Array<Page>;
@@ -43,31 +44,31 @@ export const useWebsiteStore = defineStore('websiteStore', {
   },
   actions: {
     async setNavigation () {
+      const pageFields = `
+        id
+        _modelApiKey
+        navigationLabel
+      `
       const QUERY = `
           query {
-            country(filter: {url: {eq: "kryptostadt.de"}}, locale: de) {
+            country(filter: {url: {eq: "kryptostadt.de"}}, locale: ${this.getCurrentLocale}) {
               id
               _locales
               pages {
                 ... on AboutPageRecord {
-                  id
-                  _modelApiKey
+                  ${pageFields}
                 }
                 ... on BeginnerPageRecord {
-                  id
-                  _modelApiKey
+                  ${pageFields}
                 }
                 ... on HomePageRecord {
-                  id
-                  _modelApiKey
+                  ${pageFields}
                 }
                 ... on MerchantPageRecord {
-                  id
-                  _modelApiKey
+                  ${pageFields}
                 }
                 ... on NetworkPageRecord {
-                  id
-                  _modelApiKey
+                  ${pageFields}
                 }
               }
               socialLinks {

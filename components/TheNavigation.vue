@@ -54,8 +54,8 @@
       >
         <TheLink
           v-if="item._modelApiKey !== 'home_page'"
-          :text="item._modelApiKey.replace(/_.*/, '')"
-          :link="'/' + item._modelApiKey.replace(/_.*/, '')"
+          :text="item.navigationLabel"
+          :link="'/' + item.navigationLabel"
           compact
           hide-arrow
         />
@@ -86,7 +86,7 @@ defineProps({
 })
 
 const store = useWebsiteStore()
-const pages = store.pages
+const pages = computed(() => store.pages)
 
 // Code for hide/show navbar
 const localState = reactive({
