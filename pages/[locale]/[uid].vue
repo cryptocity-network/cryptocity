@@ -1,18 +1,17 @@
 <template>
-  <p v-if="error || !data">
-    Something bad happened!
-  </p>
-  <template v-else>
-    <component
-      :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-      v-for="(component, index, k) in data[`${currentPageType}Page`]"
-      :key="component.id"
-      :component-name="component._modelApiKey"
-      :data="component"
-      :index="k"
-    />
-    <ContactForm show-header />
-  </template>
+  <main class="min-h-screen">
+    <template v-if="data">
+      <component
+        :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+        v-for="(component, index, k) in data[`${currentPageType}Page`]"
+        :key="component.id"
+        :component-name="component._modelApiKey"
+        :data="component"
+        :index="k"
+      />
+      <ContactForm v-if="data[`${currentPageType}Page`]" show-header />
+    </template>
+  </main>
 </template>
 
 <script lang="ts" setup>
@@ -33,14 +32,10 @@ if (route.params.locale !== store.getCurrentLocale) {
 }
 
 const currentPageType = computed(() => {
-  if (store.getCurrentPageType) {
-    return store.getCurrentPageType
-  } else {
-    const pageType = store.getCurrentCountry?.pages.find((x) => {
-      return x.slug === route.params.uid
-    })
-    return pageType?._modelApiKey.replace(/_.*/, '')
-  }
+  const pageType = store.getCurrentCountry?.pages.find((x) => {
+    return x.slug === route.params.uid
+  })
+  return pageType?._modelApiKey.replace(/_.*/, '')
 })
 let query = null
 
@@ -60,7 +55,7 @@ switch (currentPageType.value) {
   default:
     break
 }
-const { data, error } = await useGraphqlQuery({ query })
+const { data } = await useGraphqlQuery({ query })
 
 </script>
 

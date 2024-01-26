@@ -68,7 +68,6 @@
       v-if="socialMediaData.key === 'whatsapp'"
       class="whatsapp"
     />
-    <!-- <span v-if="socialMediaData.key === 'whatsapp'" class="whatsapp">Whatsapp</span> -->
   </a>
 </template>
 

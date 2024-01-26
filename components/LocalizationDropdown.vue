@@ -6,7 +6,8 @@
       @blur="isDropdownExpanded = false"
     >
       <img
-        :src="`https://flagcdn.com/84x63/${selectedLocale}.png`"
+        :key="flagUrl"
+        :src="flagUrl"
         class="w-20"
         alt=""
         srcset=""
@@ -74,16 +75,16 @@ const localeIcons = computed(() => {
 })
 
 const isDropdownExpanded = ref(false)
-const selectedLocale = computed(() => {
-  const currentLocale = store.getCurrentLocale
-  return currentLocale !== 'en' ? currentLocale : 'gb'
+const flagUrl = computed(() => {
+  const currentLocale = store.localization.siteLocales?.find(x => x === route.params.locale) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+  const treatedLocale = currentLocale !== 'en' ? currentLocale : 'gb'
+  return `https://flagcdn.com/84x63/${treatedLocale}.png`
 })
 
 const setLocale = (option: string) => {
   isDropdownExpanded.value = false
   store.setLocale(option !== 'gb' ? option : 'en')
   // Route to home as route slugs are language specific'
-  store.setPageType('home')
   if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
     useRouter().push('/')
   } else {

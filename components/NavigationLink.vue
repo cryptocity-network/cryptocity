@@ -96,7 +96,7 @@ const isExternalLink = computed(() => {
 })
 
 const goToLink = () => {
-  store.setPageType(props.pageModel)
+  // store.setPageType(props.pageModel)
   const link = store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE ? props.link : '/' + store.getCurrentLocale + props.link
   router.push(link)
 }
