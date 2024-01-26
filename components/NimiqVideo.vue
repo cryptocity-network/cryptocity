@@ -28,10 +28,10 @@
 
       <template v-else>
         <div class="absolute z-1 size-full bg-blue-dark/[.15]" />
-        <prismic-image
-          :field="poster"
+        <img
+          :src="poster.url"
           class="absolute size-full object-contain"
-        />
+        >
       </template>
 
       <button

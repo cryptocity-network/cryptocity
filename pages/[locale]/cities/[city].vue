@@ -17,9 +17,11 @@ import city from '@/graphql/city.js'
 import { useWebsiteStore } from '@/store/store'
 const store = useWebsiteStore()
 const route = useRoute()
-
+if (route.params.locale !== store.getCurrentLocale) {
+  store.setLocale(route.params.locale as string)
+}
 const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
-const cityQuery = city(cityName, store.localization.userSelectedLocale)
+const cityQuery = city(cityName, store.getCurrentLocale)
 const { data, error } = await useGraphqlQuery({ query: cityQuery })
 </script>

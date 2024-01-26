@@ -1,0 +1,25 @@
+<template>
+  <component
+    :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+    v-for="(component, index, k) in data.homePage"
+    :key="component.id"
+    :component-name="component._modelApiKey"
+    :data="component"
+    :index="k"
+  />
+</template>
+
+<script lang="ts" setup>
+import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
+import homePage from '@/graphql/homePage.js'
+import { useWebsiteStore } from '@/store/store'
+const store = useWebsiteStore()
+const route = useRoute()
+if (route.params.locale !== store.getCurrentLocale) {
+  store.setLocale(route.params.locale as string)
+}
+
+const homepageQuery = homePage(store.country?.id, store.getCurrentLocale)
+const { data, error } = await useGraphqlQuery({ query: homepageQuery })
+
+</script>

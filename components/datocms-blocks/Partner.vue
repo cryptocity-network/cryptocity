@@ -36,11 +36,11 @@
         <span class="whitespace-nowrap text-16 font-bold"> {{ badge }}</span>
       </div>
     </div>
-    <prismic-image
+    <img
       v-if="image && Object.keys(image).length > 0"
-      :field="image"
+      :src="image"
       class="mx-auto w-full max-w-lg md:w-unset"
-    />
+    >
     <span
       v-if="label"
       class="nq_small-label"
@@ -52,11 +52,11 @@
         'justify-center': center,
       }"
     >
-      <prismic-image
+      <img
         v-if="Object.keys(headlineLogo).length > 0"
-        :field="headlineLogo"
+        :src="headlineLogo"
         class="w-[42px] md:w-[58px]"
-      />
+      >
       <h3
         v-if="headline"
         class="nq_boldline text-24"

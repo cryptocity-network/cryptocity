@@ -14,7 +14,7 @@
   >
     <nuxt-link
       class="nuxt-link-active opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
-      to="/"
+      :to="getHomeRoute"
     >
       <svg
         class="h-32 shrink-0"
@@ -88,6 +88,14 @@ defineProps({
 
 const store = useWebsiteStore()
 const pages = computed(() => store.pages)
+
+const getHomeRoute = computed(() => {
+  if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
+    return '/'
+  } else {
+    return '/' + store.getCurrentLocale + '/home'
+  }
+})
 
 // Code for hide/show navbar
 const localState = reactive({

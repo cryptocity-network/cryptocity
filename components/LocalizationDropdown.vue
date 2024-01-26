@@ -60,7 +60,7 @@
 import { computed } from 'vue'
 import { useWebsiteStore } from '../store/store'
 const store = useWebsiteStore()
-
+const route = useRoute()
 const locales = store.localization.siteLocales
 
 const localeIcons = computed(() => {
@@ -75,15 +75,19 @@ const localeIcons = computed(() => {
 
 const isDropdownExpanded = ref(false)
 const selectedLocale = computed(() => {
-  const currentLocale = store.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+  const currentLocale = route.params.locale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
   return currentLocale !== 'en' ? currentLocale : 'gb'
 })
 
 const setLocale = (option: string) => {
   isDropdownExpanded.value = false
   store.setLocale(option !== 'gb' ? option : 'en')
-  // Route to home as route slugs are language specific
-  useRouter().push('/')
+  // Route to home as route slugs are language specific'
+  if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
+    useRouter().push('/')
+  } else {
+    useRouter().push('/' + store.getCurrentLocale + '/home')
+  }
 }
 </script>
 

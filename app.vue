@@ -1,11 +1,15 @@
 <template>
   <div
     v-if="fetchedData"
-    class=" max-w-screeen flex min-h-screen flex-col"
+    class="max-w-screeen flex min-h-screen flex-col"
   >
-    <TheNavigation :key="String(store.localization.userSelectedLocale)" />
+    <TheNavigation
+      :key="String(store.localization.userSelectedLocale)"
+    />
     <NuxtPage />
-    <TheFooter :key="String(store.localization.userSelectedLocale)" />
+    <TheFooter
+      :key="String(store.localization.userSelectedLocale)"
+    />
   </div>
   <div v-else>
     <LoadingState />

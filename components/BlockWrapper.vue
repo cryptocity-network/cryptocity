@@ -117,11 +117,11 @@ section > .widest {
 }
 
 section.bg-white,
-section.nq_bg-gray,
-section.nq_bg-blue-light,
-section.nq_bg-blue-dark,
-section.nq_bg-blue-dark-dimmed,
-section.nq_bg-green {
+section.bg-gray,
+section.bg-blue-light,
+section.bg-blue-dark,
+section.bg-blue-dark-dimmed,
+section.bg-green {
   @apply pb-160 xl:pb-200;
 
   &.no-pb {
