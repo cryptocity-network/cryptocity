@@ -28,7 +28,7 @@
 
 import { marked } from 'marked'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
-import footer from '../graphql/footer'
+import footer from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
 
 const store = useWebsiteStore()

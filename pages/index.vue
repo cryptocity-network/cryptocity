@@ -16,11 +16,11 @@
 
 <script lang="ts" setup>
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
-import homePage from '@/graphql/homePage.js'
-import merchantPage from '@/graphql/merchantPage.js'
-import beginnerPage from '@/graphql/beginnerPage.js'
-import aboutPage from '@/graphql/aboutPage.js'
-import networkPage from '@/graphql/networkPage.js'
+import homePage from '@/graphql/HomePage.js'
+import merchantPage from '@/graphql/MerchantPage.js'
+import beginnerPage from '@/graphql/BeginnerPage.js'
+import aboutPage from '@/graphql/AboutPage.js'
+import networkPage from '@/graphql/NetworkPage.js'
 import { useWebsiteStore } from '~/store/store'
 
 const store = useWebsiteStore()

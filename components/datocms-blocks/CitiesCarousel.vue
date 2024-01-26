@@ -137,7 +137,7 @@
 </template>
 
 <script lang="ts" setup>
-import citiesByCountry from '../../graphql/citiesByCountry'
+import citiesByCountry from '../../graphql/CitiesByCountry'
 import { useWebsiteStore } from '../../store/store'
 import useEventListener from '~/composables/useEventListener'
 

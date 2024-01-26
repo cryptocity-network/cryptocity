@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
-import city from '@/graphql/city.js'
+import city from '@/graphql/City.js'
 import { useWebsiteStore } from '@/store/store'
 const store = useWebsiteStore()
 const route = useRoute()
