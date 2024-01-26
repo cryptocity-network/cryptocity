@@ -1,7 +1,7 @@
 <template>
   <div class="text-lg relative text-16">
     <button
-      class="flex w-full items-center justify-between gap-8 rounded-8  px-16 py-4"
+      class="flex w-fit items-center justify-between gap-8 rounded-8 px-0 py-4 lg:px-16"
       @click="isDropdownExpanded = !isDropdownExpanded"
       @blur="isDropdownExpanded = false"
     >
@@ -37,12 +37,12 @@
     >
       <ul
         v-show="isDropdownExpanded"
-        class="absolute inset-x-0 top-full my-8 cursor-pointer divide-y divide-blue-darker/10 overflow-hidden rounded-8 border-gray bg-white shadow"
+        class="absolute inset-x-0 top-full z-50 my-8 w-fit cursor-pointer divide-y divide-blue-darker/10 overflow-hidden rounded-8 border-gray bg-white shadow"
       >
         <li
           v-for="(locale, index) in localeIcons"
           :key="index"
-          class="px-16 py-6 transition-colors duration-300 hover:bg-blue-light/20"
+          class="w-fit bg-white px-16 py-6 transition-colors duration-300 hover:bg-blue-light/20"
           @mousedown.prevent="setLocale(locale)"
         >
           <img
@@ -76,7 +76,7 @@ const localeIcons = computed(() => {
 
 const isDropdownExpanded = ref(false)
 const flagUrl = computed(() => {
-  const currentLocale = store.localization.siteLocales?.find(x => x === route.params.locale) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+  const currentLocale = store.localization.userSelectedLocale || store.localization.siteLocales?.find(x => x === route.params.locale) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
   const treatedLocale = currentLocale !== 'en' ? currentLocale : 'gb'
   return `https://flagcdn.com/84x63/${treatedLocale}.png`
 })

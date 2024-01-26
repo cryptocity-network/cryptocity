@@ -7,7 +7,7 @@
   >
     <div class="px-8 xl:grid xl:grid-cols-2 xl:px-24">
       <div
-        class="px-24 py-80 md:py-80 lg:!ml-auto lg:px-72 lg:py-96 xl:max-h-[max(80vh,700px)] xl:max-w-[calc(684px+160px)] xl:px-96 2xl:px-160"
+        class="px-24 pb-80 md:pb-80 lg:!ml-auto lg:px-72 lg:pb-96 xl:max-h-[max(80vh,700px)] xl:max-w-[calc(684px+160px)] xl:px-96 2xl:px-160"
       >
         <HeadlineSection
           :label="data.label"

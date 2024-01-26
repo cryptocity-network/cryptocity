@@ -1,9 +1,9 @@
 <template>
   <div
-    class="headline-section flex max-w-[480px] flex-col justify-center sm:mx-auto xl:max-w-[824px] 2xl:max-w-[900px]"
+    class="headline-section flex max-w-[480px] flex-col justify-center  xl:max-w-[824px] 2xl:max-w-[900px]"
     :class="{
       'text-left': textAlign === 'left',
-      'items-center text-center': textAlign === 'center'
+      'items-center text-center sm:mx-auto': textAlign === 'center'
     }"
   >
     <div
