@@ -1,5 +1,5 @@
 <template>
-  <main v-if="data">
+  <main v-if="!error && data">
     <component
       :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
       v-for="(component, index, k) in data.city"
@@ -20,6 +20,6 @@ const route = useRoute()
 
 const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
-const cityQuery = city(cityName, store.localization.userSelectedLocale)
+const cityQuery = city(cityName, store.getCurrentLocale)
 const { data, error } = await useGraphqlQuery({ query: cityQuery })
 </script>

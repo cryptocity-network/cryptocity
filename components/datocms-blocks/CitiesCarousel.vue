@@ -20,7 +20,7 @@
           >
             <nuxt-link
               class="flex size-full"
-              :to="'/cities/' + city.name.toLowerCase()"
+              :to="`cities/` + city.name.toLowerCase()"
             >
               <img
                 v-if="city.mainImage"
@@ -112,7 +112,7 @@
       >
         <nuxt-link
           class="flex size-full"
-          :to="'/cities/' + city.name.toLowerCase()"
+          :to="`cities/` + city.name.toLowerCase()"
         >
           <img
             v-if="city.mainImage"
@@ -155,6 +155,10 @@ defineProps({
 const store = useWebsiteStore()
 const citiesQuery = citiesByCountry(store?.country?.id, store.getCurrentLocale)
 const { data: response } = await useGraphqlQuery({ query: citiesQuery })
+
+const addLocale = computed(() => {
+  return store.getCurrentLocale !== useRuntimeConfig().public.DATO_DEFAULT_LOCALE ? store.getCurrentLocale + '/' : ''
+})
 
 const scroller = ref<HTMLDivElement | null>(null)
 const slides = ref<HTMLDivElement[]>([])
