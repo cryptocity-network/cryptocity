@@ -75,7 +75,7 @@ const localeIcons = computed(() => {
 
 const isDropdownExpanded = ref(false)
 const selectedLocale = computed(() => {
-  const currentLocale = route.params.locale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+  const currentLocale = store.getCurrentLocale
   return currentLocale !== 'en' ? currentLocale : 'gb'
 })
 
@@ -83,6 +83,7 @@ const setLocale = (option: string) => {
   isDropdownExpanded.value = false
   store.setLocale(option !== 'gb' ? option : 'en')
   // Route to home as route slugs are language specific'
+  store.setPageType('home')
   if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
     useRouter().push('/')
   } else {

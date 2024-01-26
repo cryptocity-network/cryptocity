@@ -12,9 +12,9 @@
       'mb-32': pages.length > 0
     }, `bg-${backgroundColor}`]"
   >
-    <nuxt-link
-      class="nuxt-link-active opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
-      :to="getHomeRoute"
+    <div
+      class="cursor-pointer opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
+      @click="goHome"
     >
       <svg
         class="h-32 shrink-0"
@@ -43,7 +43,7 @@
         d="M71.51 123.27h41.67a27.28 27.28 0 0 1-7.987 19.343A27.278 27.278 0 0 1 85.85 150.6H44.29a27.33 27.33 0 0 1 27.22-27.33Z"
         fill="#0582CA"
       /></svg>
-    </nuxt-link>
+    </div>
 
     <ul
       class="hidden items-center gap-x-24 lg:flex"
@@ -89,13 +89,16 @@ defineProps({
 const store = useWebsiteStore()
 const pages = computed(() => store.pages)
 
-const getHomeRoute = computed(() => {
+const goHome = () => {
+  store.setPageType('home')
+  let link
   if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
-    return '/'
+    link = '/'
   } else {
-    return '/' + store.getCurrentLocale
+    link = '/' + store.getCurrentLocale + '/'
   }
-})
+  useRouter().push(link)
+}
 
 // Code for hide/show navbar
 const localState = reactive({

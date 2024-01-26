@@ -1,17 +1,18 @@
 <template>
-  <p v-if="error">
+  <p v-if="error || !data">
     Something bad happened!
   </p>
-  <component
-    :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-    v-for="(component, index, k) in data[`${currentPageType}Page`]"
-    v-else
-    :key="component.id"
-    :component-name="component._modelApiKey"
-    :data="component"
-    :index="k"
-  />
-  <ContactForm show-header />
+  <template v-else>
+    <component
+      :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+      v-for="(component, index, k) in data[`${currentPageType}Page`]"
+      :key="component.id"
+      :component-name="component._modelApiKey"
+      :data="component"
+      :index="k"
+    />
+    <ContactForm show-header />
+  </template>
 </template>
 
 <script lang="ts" setup>
@@ -26,6 +27,10 @@ const store = useWebsiteStore()
 const countryId = store?.country?.id
 const locale = store.getCurrentLocale
 const route = useRoute()
+
+if (route.params.locale !== store.getCurrentLocale) {
+  store.setLocale(route.params.locale as string)
+}
 
 const currentPageType = computed(() => {
   if (store.getCurrentPageType) {

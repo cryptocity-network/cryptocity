@@ -32,7 +32,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       country: null as Country | null,
       pages: null as Array<Page> | null,
       localization: <Localization>{
-        siteLocales: undefined as string | undefined,
+        siteLocales: undefined as Array<string> | undefined,
         userSelectedLocale: undefined as string | undefined
       },
       pageType: null as string | null
