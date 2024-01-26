@@ -1,17 +1,19 @@
 <template>
-  <p v-if="error">
-    Something bad happened!
-  </p>
-  <component
-    :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-    v-for="(component, index, k) in data[`${currentPageType}Page`]"
-    v-else
-    :key="component.id"
-    :component-name="component._modelApiKey"
-    :data="component"
-    :index="k"
-  />
-  <ContactForm show-header />
+  <main>
+    <p v-if="error">
+      Something bad happened!
+    </p>
+    <component
+      :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+      v-for="(component, index, k) in data[`${currentPageType}Page`]"
+      v-else
+      :key="component.id"
+      :component-name="component._modelApiKey"
+      :data="component"
+      :index="k"
+    />
+    <ContactForm :key="($route.params.path as string)" show-header />
+  </main>
 </template>
 
 <script lang="ts" setup>
@@ -29,9 +31,7 @@ const locale = store.getCurrentLocale
 const route = useRoute()
 
 const currentPageType = computed(() => {
-  if (store.getCurrentPageType) {
-    return store.getCurrentPageType
-  } else if (route.path === '/') {
+  if (route.path === '/') {
     return 'home'
   } else {
     const pageType = store.getCurrentCountry?.pages.find((x) => {

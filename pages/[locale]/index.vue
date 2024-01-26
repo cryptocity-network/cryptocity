@@ -1,8 +1,5 @@
 <template>
-  <div v-if="error || !data" class="min-h-screen">
-    Something bad happened!
-  </div>
-  <template v-else>
+  <main v-if="data" class="min-h-screen">
     <component
       :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
       v-for="(component, index, k) in data[`${currentPageType}Page`]"
@@ -11,36 +8,32 @@
       :data="component"
       :index="k"
     />
-    <ContactForm show-header />
-  </template>
+    <ContactForm v-if="data[`${currentPageType}Page`]" show-header />
+  </main>
 </template>
 
 <script lang="ts" setup>
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
+import homePage from '@/graphql/HomePage.js'
 import merchantPage from '@/graphql/MerchantPage.js'
 import beginnerPage from '@/graphql/BeginnerPage.js'
 import aboutPage from '@/graphql/AboutPage.js'
 import networkPage from '@/graphql/NetworkPage.js'
-import homePage from '@/graphql/HomePage.js'
 import { useWebsiteStore } from '~/store/store'
 
 const store = useWebsiteStore()
 const countryId = store?.country?.id
 const locale = store.getCurrentLocale
 const route = useRoute()
-console.log('/something')
-console.log(store.localization.siteLocales, store.localization.siteLocales?.some(x => x === route.params.locale), route.params.locale)
+
 if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
-  console.log('set')
   store.setLocale(route.params.locale as string)
 } else {
   store.setLocale(useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
 }
-// console.log(route.params.uid)
+
 const currentPageType = computed(() => {
-  if (store.getCurrentPageType) {
-    return store.getCurrentPageType
-  } else if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
+  if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
     return 'home'
   } else {
     const pageType = store.getCurrentCountry?.pages.find((x) => {
@@ -50,7 +43,6 @@ const currentPageType = computed(() => {
   }
 })
 let query = null
-
 switch (currentPageType.value) {
   case 'home':
     query = homePage(countryId, locale)
@@ -70,8 +62,8 @@ switch (currentPageType.value) {
   default:
     break
 }
-const { data, error } = await useGraphqlQuery({ query })
-
+const { data } = await useGraphqlQuery({ query })
+// error available
 </script>
 
 <style>
