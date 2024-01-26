@@ -72,6 +72,13 @@
       </li>
       <LocalizationDropdown />
     </ul>
+
+    <!-- :is-inverted="usableBackgroundColor.needsColorInversion && !localState.isScrolled" -->
+    <MobileMenu
+      class="lg:hidden"
+      :is-scrolled="localState.isScrolled"
+      :is-sticky="localState.isSticky"
+    />
   </header>
 </template>
 
