@@ -34,7 +34,7 @@ import { useWebsiteStore } from '../store/store'
 const store = useWebsiteStore()
 const footerQuery = footer(store.getCurrentLocale)
 const { data, error } = await useGraphqlQuery({ query: footerQuery })
-
+console.log(error)
 </script>
 
 <style></style>
