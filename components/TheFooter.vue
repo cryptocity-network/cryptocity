@@ -17,8 +17,16 @@
       </h5>
       <a href="">Detailed Disclaimer</a>
       <div v-html="marked.parse(data.footer.legal)" />
-      <a href="">Data</a>
-      <a href="">Cookies</a>
+
+      <nuxt-link to="/data-protection">
+        Data Protection
+      </nuxt-link>
+      <nuxt-link to="/cookies">
+        Cookies
+      </nuxt-link>
+      <nuxt-link to="/impressum">
+        Impressum
+      </nuxt-link>
       <p>{{ data.footer.copyrightText }}</p>
     </div>
   </footer>
