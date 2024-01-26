@@ -93,7 +93,7 @@ const getHomeRoute = computed(() => {
   if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
     return '/'
   } else {
-    return '/' + store.getCurrentLocale + '/home'
+    return '/' + store.getCurrentLocale
   }
 })
 

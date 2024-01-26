@@ -86,7 +86,7 @@ const setLocale = (option: string) => {
   if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
     useRouter().push('/')
   } else {
-    useRouter().push('/' + store.getCurrentLocale + '/home')
+    useRouter().push('/' + store.getCurrentLocale + '/')
   }
 }
 </script>
