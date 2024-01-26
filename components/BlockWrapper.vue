@@ -144,4 +144,7 @@ section.bg-gray + section:not(.bg-gray) {
   margin-top: 0 !important;
 }
 
+.bg-white.i p, .bg-white p {
+    color: rgba(31,35,72,.6);
+}
 </style>
