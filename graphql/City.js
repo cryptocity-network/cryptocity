@@ -6,6 +6,9 @@ export default (cityName, locale) => {
       heroSection {
         ${HeroSection()}
       }
+      partnersHero {
+        ${HeroSection()}
+      }
     }
   }`
 }
