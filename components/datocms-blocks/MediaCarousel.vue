@@ -42,13 +42,11 @@
           >
             {{ item.headline }}
           </h3>
-        <!-- <RichTextComponent :field="item.description" />
-          <span class="font-bold leading-none tracking-[0.095em] pl-16 uppercase whitespace-nowrap text-12">{{ item.subline }}</span> -->
         </div>
       </li>
     </ul>
 
-    <div class="relative mx-auto mt-48 flex w-max justify-center">
+    <div class="relative mx-auto mt-48 flex w-max justify-center !p-0">
       <button
         v-for="(_, i) in data.carousel"
         :key="i"
@@ -59,7 +57,7 @@
         }"
         @click="() => goToStep(i)"
       />
-      <div class="pointer-events-none absolute h-8 w-full rounded">
+      <div class="pointer-events-none absolute top-0 h-8 w-full rounded">
         <div
           class="h-full w-16 rounded bg-green transition-all duration-300"
           :style="`margin-left: ${16 * step - (step === 0 ? 4 : 0)}px`"

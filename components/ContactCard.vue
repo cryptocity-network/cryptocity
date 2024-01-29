@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-32 px-40 py-16 lg:px-56 lg:pb-32 lg:pt-48 ">
+  <div class="flex flex-col gap-32 px-32 py-40 lg:px-56 lg:pb-32 lg:pt-48 ">
     <img
       :src="picture.url"
       class="w-full object-cover "
