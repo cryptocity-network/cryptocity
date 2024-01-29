@@ -1,6 +1,29 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
+interface Partner {
+  badge: string,
+  companyName: string,
+  description: string,
+  label: string,
+  linkLabel: string,
+  linkUrl: string,
+  logo: {
+    url: string,
+    alt: string,
+  }
+  socials: {
+    youtube: string
+    whatsapp: string
+    twitter: string
+    telegram: string
+    linkedIn: string
+    instagram: string
+    facebook: string
+    email: string
+    discord: string
+  }
+}
 interface SocialLinks {
   role: string,
   name: string,
@@ -19,6 +42,7 @@ interface Country {
   pages: Array<Page>;
   id?: string;
   _locale?: string;
+  partners?: Array<Partner>;
   socialLinks?: SocialLinks;
 }
 interface Localization {
@@ -75,6 +99,29 @@ export const useWebsiteStore = defineStore('websiteStore', {
                 }
                 ... on NetworkPageRecord {
                   ${pageFields()}
+                }
+              }
+              partners {
+                badge
+                companyName
+                description
+                label
+                linkLabel
+                linkUrl
+                logo {
+                  url
+                  alt
+                }
+                socials {
+                  youtube
+                  whatsapp
+                  twitter
+                  telegram
+                  linkedIn
+                  instagram
+                  facebook
+                  email
+                  discord
                 }
               }
               socialLinks {

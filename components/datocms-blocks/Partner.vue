@@ -47,31 +47,26 @@
       :class="{ 'text-white/70': backgroundColor !== 'transparent' }"
     >{{ label }}</span>
     <div
+      v-if="companyName"
       class="flex items-center gap-x-16"
       :class="{
         'justify-center': center,
       }"
     >
-      <img
-        v-if="Object.keys(headlineLogo).length > 0"
-        :src="headlineLogo"
-        class="w-[42px] md:w-[58px]"
-      >
       <h3
-        v-if="headline"
         class="nq_boldline text-24"
         :class="{
           'text-primary': backgroundColor === 'transparent',
           '!text-white': backgroundColor !== 'transparent',
         }"
       >
-        {{ headline }}
+        {{ companyName }}
       </h3>
     </div>
 
-    <DatocmsStructuredText
-      :data="description"
+    <div
       class="prose text-blue/60"
+      v-html="marked.parse(description)"
     />
 
     <TheLink
@@ -169,9 +164,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
-import { StructuredText as DatocmsStructuredText, type StructuredTextDocument } from 'vue-datocms'
-
+import { marked } from 'marked'
 defineProps({
   logo: {
     default: '',
@@ -181,11 +174,7 @@ defineProps({
     default: '',
     type: String
   },
-  headline: {
-    default: '',
-    type: String
-  },
-  headlineLogo: {
+  companyName: {
     default: '',
     type: String
   },
@@ -194,7 +183,7 @@ defineProps({
     type: String
   },
   description: {
-    type: Object as PropType<StructuredTextDocument>,
+    type: String,
     default: null
   },
   linkHref: {
