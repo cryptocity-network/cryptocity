@@ -5,7 +5,7 @@
     :title="socialMediaData.name"
     target="_blank"
     rel="noreferrer"
-    class="social-link size-24"
+    class="social-link flex size-24 items-center"
     @focus="onFocus"
     @click="onClick"
   >
@@ -185,7 +185,7 @@ if (props.socialMediaKey) {
 
 <style scoped>
 .social-link {
-  @apply block transition-opacity opacity-40 hover:opacity-60;
+  @apply transition-opacity opacity-40 hover:opacity-60;
 
   svg {
     @apply shrink-0;

@@ -6,34 +6,33 @@
     :overlaps-next-section="false"
   >
     <ul
-      v-if="data"
+      v-if="partners"
       class="mx-auto grid max-w-screen-2xl grid-cols-1 place-items-center items-stretch justify-items-stretch md:grid-cols-2"
       :class="[
         {
-          'justify-center': data.grid.length === 1,
-          'divide-x-2 divide-blue-dark/10': data.grid.length <= 2,
+          'justify-center': partners.length === 1,
+          'divide-x-2 divide-blue-dark/10': partners.length <= 2,
         },
       ]"
     >
       <Partner
-        v-for="(item, i) in data.grid"
+        v-for="(item, i) in partners"
         :key="i"
         :description="item.description"
         :logo="item.logo.url"
-        :headline-logo="item.url"
-        :headline="item.headline"
+        :company-name="item.companyName"
         :label="item.label"
         :link-label="item.linkLabel"
         :link-href="item.linkUrl"
-        :twitter="item.twitter"
-        :facebook="item.facebook"
-        :instagram="item.instagram"
-        :linkedin="item.linkedIn"
-        :telegram="item.telegram"
-        :email="item.email"
-        :youtube="item.youtube"
-        :discord="item.discord"
-        :whatsapp="item.whatsapp"
+        :twitter="item.socials.twitter"
+        :facebook="item.socials.facebook"
+        :instagram="item.socials.instagram"
+        :linkedin="item.socials.linkedIn"
+        :telegram="item.socials.telegram"
+        :email="item.socials.email"
+        :youtube="item.socials.youtube"
+        :discord="item.socials.discord"
+        :whatsapp="item.socials.whatsapp"
         :badge="item.badge"
         :center="data.grid.length === 1"
         :class="{
@@ -47,6 +46,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useWebsiteStore } from '../../store/store'
 defineProps({
   data: {
     type: Object,
@@ -56,5 +56,10 @@ defineProps({
     type: Number,
     required: true
   }
+})
+
+const store = useWebsiteStore()
+const partners = computed(() => {
+  return store.country ? store.country.partners : null
 })
 </script>

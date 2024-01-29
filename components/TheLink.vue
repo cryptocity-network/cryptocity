@@ -7,7 +7,7 @@
       {
         '!px-0': secondary,
         'px-16 py-4 text-14': compact,
-        'px-24 py-6 text-16': !compact,
+        'px-24 py-6 text-16 lg:text-18': !compact,
       },
       colorClasses
     ]

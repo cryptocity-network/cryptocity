@@ -1,4 +1,6 @@
 import HeroSection from './blocks/HeroSection'
+import CityGrid from './blocks/CityGrid'
+import PartnerLogos from './blocks/PartnerLogos'
 
 export default (cityName, locale) => {
   return `query {
@@ -8,6 +10,15 @@ export default (cityName, locale) => {
       }
       partnersHero {
         ${HeroSection()}
+      }
+      partnerLogos {
+        ${PartnerLogos()}
+      }
+      missionHero {
+        ${HeroSection()}
+      }
+      cityGrid {
+        ${CityGrid()}
       }
     }
   }`
