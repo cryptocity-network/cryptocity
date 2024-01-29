@@ -1,12 +1,15 @@
 export default (locale) => {
   return `query {
-    allCities(locale: ${locale}) {
+    allCities(locale: ${locale}, fallbackLocales:[en]) {
+      id
       name
+      state
       mainImage {
         url
-        alt
       }
-      id
+      country {
+        url
+      }
     }
   }`
 }

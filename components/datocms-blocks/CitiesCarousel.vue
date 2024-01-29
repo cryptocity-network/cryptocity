@@ -9,7 +9,7 @@
       <div v-if="response" class="relative">
         <ul
           ref="scroller"
-          class="no-scrollbar flex w-full gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-255px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*232px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*245px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*295px-2*32px)/2)]"
+          class="no-scrollbar flex w-full gap-16 overflow-x-auto scroll-smooth !px-[calc((100vw-2*185px-16px)/2)] py-12 xl:gap-32 xl:!px-[calc((100vw-3*245px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*295px-2*32px)/2)]"
         >
           <li
             v-for="(city) in response.allCities"
@@ -41,43 +41,46 @@
             </nuxt-link>
           </li>
         </ul>
-        <button
-          v-if="activeIndex > 0"
-          class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 flex size-48 -translate-y-1/2 cursor-pointer items-center justify-center rounded bg-blue-dark text-white transition-[background-color] active:bg-blue-dark/40"
-          @click="goToPrevious"
-        >
-          <svg
-            class="cursor-pointer"
-            width="20"
-            height="24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        <transition mode="out-in" name="fade">
+          <button
+            v-if="activeIndex > 0"
+            class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 hidden size-48 -translate-y-1/2 cursor-pointer items-center justify-center rounded bg-blue-dark text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
+            @click="goToPrevious"
           >
-            <path
-              d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
-              fill="currentColor"
-            />
-          </svg>
-        </button>
-
-        <button
-          v-if="activeIndex < response.allCities.length - 1"
-          class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 flex size-48 -translate-y-1/2 cursor-pointer items-center justify-center rounded bg-blue-dark text-white transition-[background-color] active:bg-blue-dark/40"
-          @click="goToNext"
-        >
-          <svg
-            width="16"
-            height="24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="-mr-4 rotate-180 cursor-pointer"
+            <svg
+              class="cursor-pointer"
+              width="20"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </transition>
+        <transition mode="out-in" name="fade">
+          <button
+            v-if="activeIndex < response.allCities.length - 1"
+            class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 hidden size-48 -translate-y-1/2 cursor-pointer items-center justify-center rounded bg-blue-dark text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
+            @click="goToNext"
           >
-            <path
-              d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
-              fill="currentColor"
-            />
-          </svg>
-        </button>
+            <svg
+              width="16"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="-mr-4 rotate-180 cursor-pointer"
+            >
+              <path
+                d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </transition>
       </div>
       <div class="flex flex-col">
         <div class="relative mx-auto mt-48 flex">
@@ -234,3 +237,15 @@ onMounted(() => {
   onWindowResize()
 })
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

@@ -57,7 +57,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       `
       const QUERY = `
           query {
-            country(filter: {url: {eq: "kryptostadt.de"}}, locale: ${this.getCurrentLocale}) {
+            country(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${this.getCurrentLocale}) {
               id
               _locales
               pages {

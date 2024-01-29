@@ -3,7 +3,7 @@
     :block-background-color="data.settings.backgroundColor"
     :padding-top="96"
     :no-padding-bottom="false"
-    :overlaps-next-section="false"
+    :overlaps-next-section="true"
   >
     <div
       class="mx-auto w-full max-w-[1440px] px-64"

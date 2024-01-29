@@ -3,7 +3,7 @@
     class="headline-section flex max-w-[480px] flex-col justify-center  xl:max-w-[824px] 2xl:max-w-[900px]"
     :class="{
       'text-left': textAlign === 'left',
-      'items-center text-center sm:mx-auto': textAlign === 'center'
+      'sm:mx-auto sm:items-center sm:text-center': textAlign === 'center'
     }"
   >
     <div

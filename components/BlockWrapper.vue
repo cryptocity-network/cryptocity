@@ -1,10 +1,9 @@
 <template>
-  <!-- Default background-color to white in case backgroundColor is undefined, which happens when a new slice is added and the background color select field isn't interacted with -->
   <section
     :class="[
       `section-p-${paddingTop}`,
       `bg-${blockBackgroundColor || 'white'}`,
-      `${(noPaddingBottom || overlapsNextSection) ? 'pb-0' : 'pb-160'}`,
+      `${(noPaddingBottom || overlapsNextSection) ? '!pb-0' : 'pb-160'}`,
       overlapsNextSection && 'overlaps-next-section',
     ]"
   >
