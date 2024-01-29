@@ -5,11 +5,11 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <div v-if="response" class="widest relative">
+    <div class="widest relative">
       <ul
         ref="scroller"
         role="list"
-        class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-335px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*312px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*325px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*375px-2*32px)/2)]"
+        class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-370px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*375px-2*32px)/2)]"
         @scroll.passive="calculateStep"
       >
         <li
@@ -34,7 +34,7 @@
 
       <button
         v-if="activeIndex > 0"
-        class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 xl:flex"
+        class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
         @click="goToPrevious"
       >
         <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,8 +46,8 @@
       </button>
 
       <button
-        v-if="activeIndex < response.allEvents?.length - visibleCards"
-        class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 xl:flex"
+        v-if="activeIndex < response.allEvents.length - visibleCards"
+        class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
         @click="goToNext"
       >
         <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-mr-4 rotate-180">
@@ -83,8 +83,10 @@
 </template>
 
 <script lang="ts" setup>
-import eventsQuery from '../../graphql/Events'
+import eventsByCityQuery from '../../graphql/EventsByCity'
+import eventsByCountryQuery from '../../graphql/EventsByCountry'
 // import { useBreakpoints } from '~/composables/useBreakpoints'
+import { useWebsiteStore } from '~/store/store'
 
 const props = defineProps({
   data: {
@@ -100,14 +102,19 @@ const props = defineProps({
     required: true
   }
 })
-
-const populatedventsQuery = eventsQuery(props.cityId)
-const { data: response } = await useGraphqlQuery({ query: populatedventsQuery })
+const store = useWebsiteStore()
+let populatedEventsQuery
+if (useRoute().path.includes('cities')) {
+  populatedEventsQuery = eventsByCityQuery(props.cityId)
+} else {
+  populatedEventsQuery = eventsByCountryQuery(store.country!.id)
+}
+// let response: Array<AllEvents> | null= null
+const { data: response } = await useGraphqlQuery({ query: populatedEventsQuery })
 
 // BELOW IS OLD
-
 const amountOfItems = computed(() => {
-  return response.value.events.length + 0
+  return response.value.allEvents.length + 0
 })
 
 const activeIndex = ref(0)
