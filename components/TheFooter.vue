@@ -1,8 +1,8 @@
 <template>
   <footer
-    class="relative  bg-gray px-32 pb-40 text-14 !text-blue-dark "
+    class="relative bg-gray px-32 text-14 !text-blue-dark "
   >
-    <div class="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-40 md:px-64 md:pb-80 xl:grid-cols-[min-content_1fr] xl:gap-80 xl:px-72 xl:pb-104 2xl:px-136 2xl:pb-136">
+    <div class="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-40 pb-40 md:px-64 md:pb-80 xl:grid-cols-[min-content_1fr] xl:gap-80 xl:px-72 xl:pb-104 2xl:px-136 2xl:pb-136">
       <!-- LINKS -->
       <ul
         class="flex gap-12 xl:flex-col"

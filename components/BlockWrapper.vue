@@ -84,6 +84,11 @@ section > .widest {
 }
 
 /* Section paddings, each slice should be a section with one of these classes + one of the bg- classes used below */
+
+section:first-of-type {
+  @apply pt-160 xl:pt-240
+}
+
 .section-p-360 {
   @apply pt-300 xl:pt-360;
 }
