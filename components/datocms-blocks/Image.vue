@@ -6,7 +6,9 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <img v-if="data.image?.url" class="size-full rounded-6" :src="data.image.url" :alt="data.image.alt">
+    <div class="size-full">
+      <img v-if="data.image?.url" class="size-full rounded-6 shadow" :src="data.image.url" :alt="data.image.alt">
+    </div>
   </BlockWrapper>
 </template>
 

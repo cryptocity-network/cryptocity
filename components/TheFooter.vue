@@ -1,33 +1,80 @@
 <template>
   <footer
-    class="relative inline-flex w-full flex-col gap-16 bg-gray px-32 pb-40 text-14 !text-blue-dark md:px-64 md:pb-80 xl:px-72 xl:pb-104 2xl:pb-136"
+    class="relative  bg-gray px-32 pb-40 text-14 !text-blue-dark "
   >
-    <nuxt-link
-      to="/"
-      class="my-32 transition-opacity hover:opacity-70 focus:opacity-70"
-    >
-      <img
-        src="/horizontal-mono.svg"
-        alt="logo"
+    <div class="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-40 md:px-64 md:pb-80 xl:grid-cols-[min-content_1fr] xl:gap-80 xl:px-72 xl:pb-104 2xl:px-136 2xl:pb-136">
+      <!-- LINKS -->
+      <ul
+        class="flex gap-12 xl:flex-col"
       >
-    </nuxt-link>
-    <div class="flex flex-col gap-8 text-blue-dark opacity-60">
-      <h5 class="font-bold uppercase">
-        ⚠ {{ data.footer.title }} ⚠
-      </h5>
-      <a href="">Detailed Disclaimer</a>
-      <div v-html="marked.parse(data.footer.legal)" />
+        <LocalizationDropdown no-padding />
+        <li
+          v-for="item in pages"
+          :key="String(item._modelApiKey)"
+        >
+          <NavigationLink
+            v-if="item._modelApiKey !== 'home_page'"
+            :text="item.navigationLabel"
+            :link="'/' + item.slug"
+            :page-model="item._modelApiKey.replace(/_.*/, '')"
+            compact
+            hide-arrow
+          />
+        </li>
+        <!-- <li>
+          <TheLink
+            text="Contact"
+            link="/contact"
+            compact
+            variant="info"
+            hide-arrow
+          />
+        </li> -->
+      </ul>
+      <!-- Logos and Text -->
+      <div class="flex flex-col gap-40 xl:row-span-2">
+        <nuxt-link
+          to="/"
+          class="transition-opacity hover:opacity-70 focus:opacity-70"
+        >
+          <img
+            src="/horizontal-mono.svg"
+            alt="logo"
+          >
+        </nuxt-link>
+        <div class="flex flex-col gap-8 text-blue-dark opacity-60 ">
+          <h5 class="font-bold uppercase">
+            ⚠ {{ data.footer.title }} ⚠
+          </h5>
+          <a href="">Detailed Disclaimer</a>
+          <div v-html="marked.parse(data.footer.legal)" />
 
-      <nuxt-link to="/data-protection">
-        Data Protection
-      </nuxt-link>
-      <nuxt-link to="/cookies">
-        Cookies
-      </nuxt-link>
-      <nuxt-link to="/impressum">
-        Impressum
-      </nuxt-link>
-      <p>{{ data.footer.copyrightText }}</p>
+          <div class="mb-4 flex gap-12 font-bold">
+            <nuxt-link to="/data-protection">
+              Data Protection
+            </nuxt-link>
+            <span class="text-blue-dark/30">|</span>
+            <nuxt-link to="/cookies">
+              Cookies
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+      <!-- Impring and copyright -->
+      <div class="text-blue-dark/60 xl:self-end">
+        <div class="mb-4 flex gap-12 font-bold">
+          <nuxt-link to="/impressum">
+            Imprint
+          </nuxt-link>
+          <span>|</span>
+          <nuxt-link to="/privacy">
+            Privacy
+          </nuxt-link>
+        </div>
+        <p class="text-blue-dark/30">
+          {{ data.footer.copyrightText }}
+        </p>
+      </div>
     </div>
   </footer>
 </template>
@@ -40,6 +87,10 @@ import footer from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
 
 const store = useWebsiteStore()
+const pages = computed(() => store.pages?.filter((item) => {
+  return item._modelApiKey !== 'home_page'
+}))
+
 const footerQuery = footer(store.getCurrentLocale)
 const { data } = await useGraphqlQuery({ query: footerQuery })
 </script>

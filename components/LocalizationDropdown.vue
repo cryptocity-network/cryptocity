@@ -1,7 +1,8 @@
 <template>
   <div class="text-lg relative text-16">
     <button
-      class="flex w-fit items-center justify-between gap-8 rounded-8 px-0 py-4 lg:px-16"
+      class="flex w-fit items-center justify-between gap-8 rounded-8 px-0 py-4"
+      :class="{'lg:px-16': !noPadding}"
       @click="isDropdownExpanded = !isDropdownExpanded"
       @blur="isDropdownExpanded = false"
     >
@@ -63,6 +64,13 @@ import { useWebsiteStore } from '../store/store'
 const store = useWebsiteStore()
 const route = useRoute()
 const locales = store.localization.siteLocales
+
+defineProps({
+  noPadding: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const localeIcons = computed(() => {
   const iconArray = [] as Array<string>
