@@ -2,6 +2,7 @@ import HeroSection from './blocks/HeroSection'
 import CityGrid from './blocks/CityGrid'
 import PartnerLogos from './blocks/PartnerLogos'
 import EventsCarousel from './blocks/EventsCarousel'
+import Iframe from './blocks/Iframe'
 
 export default (cityName, locale) => {
   return `query {
@@ -21,6 +22,12 @@ export default (cityName, locale) => {
       }
       cityGrid {
         ${CityGrid()}
+      }
+      cryptoMapHero {
+        ${HeroSection()}
+      }
+      iframe {
+        ${Iframe()}
       }
       eventsHero {
         ${HeroSection()}
