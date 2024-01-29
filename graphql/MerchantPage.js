@@ -1,3 +1,4 @@
+import EventsCarousel from './blocks/EventsCarousel'
 import Grid from './blocks/Grid'
 import HeroSection from './blocks/HeroSection'
 import TiltedVideo from './blocks/TiltedVideo'
@@ -23,6 +24,15 @@ export default (countryId, locale) => {
       }
       grid {
         ${Grid()}
+      }
+      whyCrypto {
+        ${HeroSection()}
+      }
+      eventsHero {
+        ${HeroSection()}
+      }
+      events {
+        ${EventsCarousel()}
       }
     }
   }`

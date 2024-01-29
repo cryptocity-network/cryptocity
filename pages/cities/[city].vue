@@ -1,12 +1,12 @@
 <template>
-  <main v-if="!error && data">
+  <main v-if="!error && data" class="min-h-screen">
     <template
       v-for="(component, index, k) in data.city"
-      :key="component.id"
+      :key="typeof component === 'string' ? 'id' : component?.id"
     >
       <component
         :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-        v-if="component._modelApiKey"
+        v-if="component && component._modelApiKey"
         :component-name="component._modelApiKey"
         :data="component"
         :index="k"

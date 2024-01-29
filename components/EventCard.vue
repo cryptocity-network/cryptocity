@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group relative flex w-[clamp(320px,370px,80vw)] cursor-pointer flex-col rounded-6 border-1 border-gray bg-white shadow transition-all will-change-transform"
+    class="group relative flex h-full w-[clamp(320px,370px,80vw)] cursor-pointer flex-col rounded-6 border-1 border-gray bg-white shadow transition-all will-change-transform"
   >
     <div v-if="image" class="relative h-240 rounded-4 p-6 pb-0">
       <img :src="image.url" class="size-full rounded-4 object-cover">
@@ -32,7 +32,7 @@
 
       <TheLink
         v-if="link"
-        :class="{'absolute bottom-28 right-16 -mb-4 translate-y-12 opacity-0 transition-transform-opacity group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100 lg:bottom-28 lg:right-32 lg:translate-y-16': location}"
+        :class="{'absolute bottom-28 right-16 group-hover:opacity-100 group-focus:opacity-100 md:-mb-4 md:translate-y-12 md:opacity-0 md:transition-transform-opacity group-hover:md:translate-y-0 group-focus:md:translate-y-0 lg:bottom-28 lg:right-32 lg:translate-y-16': location}"
         variant="info"
         :link="link"
         :text="linkLabel"

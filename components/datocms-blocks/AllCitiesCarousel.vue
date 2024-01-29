@@ -9,7 +9,7 @@
       <ul
         ref="scroller"
         role="list"
-        class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-335px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*312px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*325px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*375px-2*32px)/2)]"
+        class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-370px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*370px-2*32px)/2)]"
         @scroll.passive="calculateStep"
       >
         <li
@@ -30,7 +30,7 @@
 
       <button
         v-if="activeIndex > 0"
-        class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 xl:flex"
+        class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
         @click="goToPrevious"
       >
         <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@
 
       <button
         v-if="activeIndex < response.allCities.length - visibleCards"
-        class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 xl:flex"
+        class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
         @click="goToNext"
       >
         <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-mr-4 rotate-180">
