@@ -34,10 +34,10 @@
         :discord="item.socials.discord"
         :whatsapp="item.socials.whatsapp"
         :badge="item.badge"
-        :center="data.grid.length === 1"
+        :center="partners.length === 1"
         :class="{
-          'md:border-r-2 md:border-blue-dark/10': data.grid.length > 1 && i % 2 === 0,
-          'md:!border-b-2 md:border-blue-dark/10': i < data.grid.length - 2,
+          'md:border-r-2 md:border-blue-dark/10': partners.length > 1 && i % 2 === 0,
+          'md:!border-b-2 md:border-blue-dark/10': i < partners.length - 2,
           'border-t-2 border-blue-dark/10 md:border-t-0': i > 0,
         }"
       />
