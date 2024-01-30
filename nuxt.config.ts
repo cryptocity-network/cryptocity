@@ -4,10 +4,6 @@ export default defineNuxtConfig({
   // app: {
   //   pageTransition: { name: 'page', mode: 'out-in' }
   // },
-  routeRules: {
-    // prerender index route by default
-    '/': { prerender: true }
-  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
@@ -18,7 +14,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      GRAPHQL_TOKEN: process.env.GRAPHQL_TOKEN, // can be overridden by NUXT_PUBLIC_API_BASE environment variable
+      GRAPHQL_TOKEN: process.env.GRAPHQL_TOKEN,
       DATO_DOMAIN: process.env.DATO_DOMAIN,
       DATO_DEFAULT_LOCALE: process.env.DATO_DEFAULT_LOCALE,
       IS_HOME: process.env.IS_HOME
