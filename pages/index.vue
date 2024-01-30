@@ -1,7 +1,7 @@
 <template>
   <template v-if="currentPageType !== 'global'">
     <template
-      v-for="(component, index, k) in response[`${currentPageType}Page`]"
+      v-for="(component, index, k) in data[`${currentPageType}Page`]"
       :key="typeof component === 'string' ? 'id' : component?.id"
     >
       <component
@@ -36,16 +36,19 @@ const currentPageType = computed(() => {
   }
 })
 const query = usePageQueryGetter(currentPageType.value, countryId, locale)
-// const { data, error } = await useGraphqlQuery({ query })
-const { data: response }: any = await $fetch('https://graphql.datocms.com', {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${useRuntimeConfig().public.GRAPHQL_TOKEN}`
-  },
-  body: {
-    query
-  }
+const { data, error } = await useGraphqlQuery(query)
+onUnmounted(() => {
+  delete useNuxtApp().payload.data[JSON.stringify(query)]
 })
+// const { data: response }: any = await $fetch('https://graphql.datocms.com', {
+//   method: 'POST',
+//   headers: {
+//     Authorization: `Bearer ${useRuntimeConfig().public.GRAPHQL_TOKEN}`
+//   },
+//   body: {
+//     query
+//   }
+// })
 </script>
 
 <style>
