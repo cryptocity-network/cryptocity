@@ -15,7 +15,7 @@ import { useWebsiteStore } from '../store/store'
 
 const store = useWebsiteStore()
 const cookiesQuery = cookies(store.getCurrentLocale)
-const { data } = await useGraphqlQuery({ query: cookiesQuery })
+const { data } = await useGraphqlQuery(cookiesQuery)
 </script>
 
 <style></style>

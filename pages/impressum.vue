@@ -20,7 +20,7 @@ import { useWebsiteStore } from '../store/store'
 
 const store = useWebsiteStore()
 const impressumQuery = impressum(store.getCurrentLocale)
-const { data } = await useGraphqlQuery({ query: impressumQuery })
+const { data } = await useGraphqlQuery(impressumQuery)
 </script>
 
 <style></style>

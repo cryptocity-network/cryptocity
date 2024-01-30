@@ -26,5 +26,5 @@ const route = useRoute()
 const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.getCurrentLocale)
-const { data, error } = await useGraphqlQuery({ query: cityQuery })
+const { data, error } = await useGraphqlQuery(cityQuery)
 </script>
