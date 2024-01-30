@@ -17,16 +17,6 @@
         :logo="country.socialLinks.logo"
       />
     </nuxt-link>
-    <!-- <div
-      class="group relative aspect-[4/12] h-full min-w-[328px] overflow-hidden rounded-8 xl:aspect-[3/4]"
-    >
-      <div class="absolute left-0 top-0 size-full bg-gray" />
-      <div
-        class="absolute left-1/2 top-1/2 w-4/5 -translate-x-1/2 -translate-y-1/2 text-center text-20 font-bold text-blue-darker/50"
-      >
-        Coming Soon
-      </div>
-    </div> -->
   </div>
   <div v-if="!gridSmallerThanWindow">
     <button
