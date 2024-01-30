@@ -14,12 +14,8 @@
 
 <script lang="ts" setup>
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
-import homePage from '@/graphql/HomePage.js'
-import merchantPage from '@/graphql/MerchantPage.js'
-import beginnerPage from '@/graphql/BeginnerPage.js'
-import aboutPage from '@/graphql/AboutPage.js'
-import networkPage from '@/graphql/NetworkPage.js'
 import { useWebsiteStore } from '~/store/store'
+import { usePageQueryGetter } from '#imports'
 
 const store = useWebsiteStore()
 const countryId = store?.country?.id
@@ -42,28 +38,8 @@ const currentPageType = computed(() => {
     return pageType?._modelApiKey.replace(/_.*/, '')
   }
 })
-let query = null
-switch (currentPageType.value) {
-  case 'home':
-    query = homePage(countryId, locale)
-    break
-  case 'merchant':
-    query = merchantPage(countryId, locale)
-    break
-  case 'beginner':
-    query = beginnerPage(countryId, locale)
-    break
-  case 'about':
-    query = aboutPage(countryId, locale)
-    break
-  case 'network':
-    query = networkPage(countryId, locale)
-    break
-  default:
-    break
-}
+const query = usePageQueryGetter(currentPageType.value, countryId, locale)
 const { data } = await useGraphqlQuery({ query })
-// error available
 </script>
 
 <style>

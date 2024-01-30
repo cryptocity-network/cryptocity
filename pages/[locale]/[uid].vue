@@ -16,10 +16,7 @@
 
 <script lang="ts" setup>
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
-import merchantPage from '@/graphql/MerchantPage.js'
-import beginnerPage from '@/graphql/BeginnerPage.js'
-import aboutPage from '@/graphql/AboutPage.js'
-import networkPage from '@/graphql/NetworkPage.js'
+import { usePageQueryGetter } from '#imports'
 import { useWebsiteStore } from '~/store/store'
 
 const store = useWebsiteStore()
@@ -37,24 +34,7 @@ const currentPageType = computed(() => {
   })
   return pageType?._modelApiKey.replace(/_.*/, '')
 })
-let query = null
-
-switch (currentPageType.value) {
-  case 'merchant':
-    query = merchantPage(countryId, locale)
-    break
-  case 'beginner':
-    query = beginnerPage(countryId, locale)
-    break
-  case 'about':
-    query = aboutPage(countryId, locale)
-    break
-  case 'network':
-    query = networkPage(countryId, locale)
-    break
-  default:
-    break
-}
+const query = usePageQueryGetter(currentPageType.value, countryId, locale)
 const { data } = await useGraphqlQuery({ query })
 
 </script>

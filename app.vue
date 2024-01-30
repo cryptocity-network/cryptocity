@@ -1,13 +1,17 @@
 <template>
   <div
-    v-if="fetchedData"
+    v-if="pageData || globalData"
     class="max-w-screeen flex min-h-screen flex-col"
   >
     <TheNavigation
       :key="String(store.localization.userSelectedLocale)"
+      :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_HOME)"
+      :tag-line="globalData?.tagLine"
     />
-    <NuxtPage />
+    <NuxtPage v-if="!onGlobalPage" />
+    <GlobalCarousel v-else />
     <TheFooter
+      v-if="!onGlobalPage"
       :key="String(store.localization.userSelectedLocale)"
     />
   </div>
@@ -17,12 +21,32 @@
 </template>
 
 <script lang="ts" setup>
-
 import { computed } from 'vue'
 import { useWebsiteStore } from './store/store'
 const store = useWebsiteStore()
-store.setNavigation()
-const fetchedData = computed(() => { return store.getCurrentCountry })
+
+const onGlobalPage = useRuntimeConfig().public.IS_HOME
+
+function convertToBoolean (input: string | boolean): boolean | undefined {
+  if (typeof input === 'boolean') {
+    return input
+  }
+  return input === 'true'
+}
+store.setNavigation(convertToBoolean(onGlobalPage))
+
+const pageData = computed(() => {
+  if (!onGlobalPage) {
+    return store.getCurrentCountry
+  }
+  return null
+})
+const globalData = computed(() => {
+  if (onGlobalPage) {
+    return store.getGlobalData
+  }
+  return null
+})
 </script>
 <style>
 .page-enter-active,
