@@ -32,6 +32,7 @@ interface SocialLinks {
   telegram: string,
   linkedin: string,
   image: Object,
+  logo: Object
 }
 interface Page {
   id?: string;
