@@ -3,15 +3,19 @@
     <p v-if="error">
       Something bad happened!
     </p>
-    <component
-      :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+
+    <template
       v-for="(component, index, k) in data[`${currentPageType}Page`]"
       v-else
-      :key="component.id"
-      :component-name="component._modelApiKey"
-      :data="component"
-      :index="k"
-    />
+      :key="typeof component === 'string' ? 'id' : component?.id"
+    >
+      <component
+        :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+        :component-name="component._modelApiKey"
+        :data="component"
+        :index="k"
+      />
+    </template>
     <ContactForm :key="($route.params.path as string)" show-header />
   </main>
 </template>
