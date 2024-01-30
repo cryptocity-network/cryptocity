@@ -8,8 +8,6 @@
     <div class="absolute left-0 top-0 size-full bg-blue-darker/5 opacity-0 transition-opacity group-hover:opacity-100" />
     <svg
       class="absolute left-1/2 top-1/2 w-4/5 -translate-x-1/2 -translate-y-1/2"
-      width="299"
-      height="61"
       viewBox="0 0 299 61"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
