@@ -15,7 +15,7 @@ import { useWebsiteStore } from '../store/store'
 
 const store = useWebsiteStore()
 const dataProtectionQuery = dataProtection(store.getCurrentLocale)
-const { data } = await useGraphqlQuery({ query: dataProtectionQuery })
+const { data } = await useGraphqlQuery(dataProtectionQuery)
 </script>
 
 <style></style>

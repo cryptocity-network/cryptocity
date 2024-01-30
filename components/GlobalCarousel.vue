@@ -58,7 +58,7 @@
 <script lang="ts" setup>
 import globalPage from '@/graphql/Global.js'
 const query = globalPage()
-const { data, error } = await useGraphqlQuery({ query })
+const { data, error } = await useGraphqlQuery(query)
 const scroller = ref()
 
 function slide (direction: string) {

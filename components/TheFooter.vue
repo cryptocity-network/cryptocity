@@ -92,7 +92,7 @@ const pages = computed(() => store.pages?.filter((item) => {
 }))
 
 const footerQuery = footer(store.getCurrentLocale)
-const { data } = await useGraphqlQuery({ query: footerQuery })
+const { data } = await useGraphqlQuery(footerQuery)
 </script>
 
 <style></style>

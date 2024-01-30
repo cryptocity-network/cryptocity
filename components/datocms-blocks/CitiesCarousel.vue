@@ -157,7 +157,7 @@ defineProps({
 
 const store = useWebsiteStore()
 const citiesQuery = citiesByCountry(store?.country?.id, store.getCurrentLocale)
-const { data: response } = await useGraphqlQuery({ query: citiesQuery })
+const { data: response } = await useGraphqlQuery(citiesQuery)
 
 const addLocale = computed(() => {
   return store.getCurrentLocale !== useRuntimeConfig().public.DATO_DEFAULT_LOCALE ? store.getCurrentLocale + '/' : ''

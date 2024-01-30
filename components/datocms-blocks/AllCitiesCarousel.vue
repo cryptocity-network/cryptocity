@@ -96,7 +96,7 @@ defineProps({
 
 const store = useWebsiteStore()
 const citiesQuery = allCities(store.getCurrentLocale)
-const { data: response } = await useGraphqlQuery({ query: citiesQuery })
+const { data: response } = await useGraphqlQuery(citiesQuery)
 
 // BELOW IS OLD
 

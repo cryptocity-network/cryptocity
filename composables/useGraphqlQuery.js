@@ -1,7 +1,6 @@
-export default (options) => {
-  const { query, variables = {} } = options
+export default (query) => {
   const runtimeConfig = useRuntimeConfig()
-  const key = JSON.stringify(options)
+  const key = JSON.stringify(query)
   return useFetch('https://graphql.datocms.com', {
     key,
     method: 'POST',
@@ -9,8 +8,7 @@ export default (options) => {
       Authorization: `Bearer ${runtimeConfig.public.GRAPHQL_TOKEN}`
     },
     body: {
-      query,
-      variables
+      query
     },
     transform: ({ data, errors }) => {
       if (errors) { throw errors }

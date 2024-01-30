@@ -35,7 +35,7 @@ const currentPageType = computed(() => {
   return pageType?._modelApiKey.replace(/_.*/, '')
 })
 const query = usePageQueryGetter(currentPageType.value, countryId, locale)
-const { data } = await useGraphqlQuery({ query })
+const { data } = await useGraphqlQuery(query)
 
 </script>
 

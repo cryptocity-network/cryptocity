@@ -110,7 +110,7 @@ if (useRoute().path.includes('cities')) {
   populatedEventsQuery = eventsByCountryQuery(store.country!.id)
 }
 // let response: Array<AllEvents> | null= null
-const { data: response } = await useGraphqlQuery({ query: populatedEventsQuery })
+const { data: response } = await useGraphqlQuery(populatedEventsQuery)
 
 // BELOW IS OLD
 const amountOfItems = computed(() => {

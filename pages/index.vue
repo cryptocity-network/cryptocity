@@ -42,7 +42,7 @@ const currentPageType = computed(() => {
   }
 })
 const query = usePageQueryGetter(currentPageType.value, countryId, locale)
-const { data, error } = await useGraphqlQuery({ query })
+const { data, error } = await useGraphqlQuery(query)
 </script>
 
 <style>
