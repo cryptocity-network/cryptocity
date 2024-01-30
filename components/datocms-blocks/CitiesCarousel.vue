@@ -82,7 +82,6 @@ function slide (direction: string) {
 }
 const gridSmallerThanWindow: Ref<boolean> = ref(false)
 const checkGridSize = () => {
-  console.log(gridSmallerThanWindow.value)
   gridSmallerThanWindow.value = scroller.value?.scrollWidth <= window?.innerWidth
 }
 
