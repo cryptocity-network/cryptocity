@@ -1,21 +1,19 @@
 <template>
-  <main>
-    <template v-if="currentPageType !== 'global'">
-      <template
-        v-for="(component, index, k) in response.data[`${currentPageType}Page`]"
-        :key="typeof component === 'string' ? 'id' : component?.id"
-      >
-        <component
-          :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-          :component-name="component._modelApiKey"
-          :data="component"
-          :index="k"
-        />
-      </template>
-      <ContactForm :key="($route.params.path as string)" show-header />
+  <template v-if="currentPageType !== 'global'">
+    <template
+      v-for="(component, index, k) in response[`${currentPageType}Page`]"
+      :key="typeof component === 'string' ? 'id' : component?.id"
+    >
+      <component
+        :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+        :component-name="component._modelApiKey"
+        :data="component"
+        :index="k"
+      />
     </template>
-    <GlobalCarousel v-else />
-  </main>
+    <ContactForm :key="($route.params.path as string)" show-header />
+  </template>
+  <GlobalCarousel v-else />
 </template>
 
 <script lang="ts" setup>
@@ -39,7 +37,7 @@ const currentPageType = computed(() => {
 })
 const query = usePageQueryGetter(currentPageType.value, countryId, locale)
 // const { data, error } = await useGraphqlQuery({ query })
-const { data: response }: any = await useAsyncData('response', () => $fetch('https://graphql.datocms.com', {
+const { data: response }: any = await $fetch('https://graphql.datocms.com', {
   method: 'POST',
   headers: {
     Authorization: `Bearer ${useRuntimeConfig().public.GRAPHQL_TOKEN}`
@@ -47,7 +45,7 @@ const { data: response }: any = await useAsyncData('response', () => $fetch('htt
   body: {
     query
   }
-}))
+})
 </script>
 
 <style>
