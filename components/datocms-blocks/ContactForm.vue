@@ -8,7 +8,7 @@
         :email="socialLinks.email"
         :telegram="socialLinks.telegram"
         :linkedin="socialLinks.linkedin"
-        :picture="socialLinks.image"
+        :picture="socialLinks.logo"
       />
       <iframe
         class="mx-auto h-[725px] w-full rounded-b-6 px-16 py-8 lg:px-28 lg:py-16"

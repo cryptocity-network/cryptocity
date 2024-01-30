@@ -1,11 +1,8 @@
 <template>
   <main>
-    <p v-if="error">
-      Something bad happened!
-    </p>
-    <template v-else-if="currentPageType !== 'global'">
+    <template v-if="currentPageType !== 'global'">
       <template
-        v-for="(component, index, k) in data[`${currentPageType}Page`]"
+        v-for="(component, index, k) in response.data[`${currentPageType}Page`]"
         :key="typeof component === 'string' ? 'id' : component?.id"
       >
         <component
@@ -22,7 +19,6 @@
 </template>
 
 <script lang="ts" setup>
-import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import { usePageQueryGetter } from '#imports'
 import { useWebsiteStore } from '~/store/store'
 
@@ -42,7 +38,16 @@ const currentPageType = computed(() => {
   }
 })
 const query = usePageQueryGetter(currentPageType.value, countryId, locale)
-const { data, error } = await useGraphqlQuery(query)
+// const { data, error } = await useGraphqlQuery({ query })
+const { data: response }: any = await useAsyncData('response', () => $fetch('https://graphql.datocms.com', {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${useRuntimeConfig().public.GRAPHQL_TOKEN}`
+  },
+  body: {
+    query
+  }
+}))
 </script>
 
 <style>
