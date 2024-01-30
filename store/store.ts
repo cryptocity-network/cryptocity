@@ -1,6 +1,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
+import globalPage from '@/graphql/Global.js'
 interface Partner {
   badge: string,
   companyName: string,
@@ -49,10 +50,15 @@ interface Localization {
   siteLocales: Array<string> | undefined,
   userSelectedLocale: string | undefined
 }
+interface Global {
+  countries: Object | undefined,
+  tagLine: string | undefined
+}
 
 export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
     return {
+      global: null as Global | null,
       country: null as Country | null,
       pages: null as Array<Page> | null,
       localization: <Localization>{
@@ -63,6 +69,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     }
   },
   getters: {
+    getGlobalData (state): Global | null { return state.global },
     getCurrentCountry (state): Country | null { return state.country },
     getCurrentLocale (): string | null {
       return this.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
@@ -72,14 +79,14 @@ export const useWebsiteStore = defineStore('websiteStore', {
     }
   },
   actions: {
-    async setNavigation () {
+    async setNavigation (isGlobalPage: boolean | undefined) {
       const pageFields = (showSlug = true) => `
         id
         _modelApiKey
         navigationLabel
         ${showSlug ? 'slug' : ''}
       `
-      const QUERY = `
+      let QUERY = `
           query {
             country(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${this.getCurrentLocale}) {
               id
@@ -125,8 +132,10 @@ export const useWebsiteStore = defineStore('websiteStore', {
                 }
               }
               socialLinks {
-                name
                 image{
+                  url
+                }
+                logo{
                   url
                 }
                 twitter
@@ -137,15 +146,21 @@ export const useWebsiteStore = defineStore('websiteStore', {
             }
           }
         `
+      if (isGlobalPage) {
+        QUERY = globalPage()
+      }
       const { data, error } = await useGraphqlQuery({ query: QUERY })
-
-      this.pages = data.value.country.pages
-      this.country = data.value.country
-      this.localization.siteLocales = data.value.country._locales
+      if (isGlobalPage) {
+        this.global = data.value.global
+      } else {
+        this.pages = data.value.country.pages
+        this.country = data.value.country
+        this.localization.siteLocales = data.value.country._locales
+      }
     },
     setLocale (locale: string) {
       if (locale) { this.localization.userSelectedLocale = locale }
-      this.setNavigation()
+      this.setNavigation(false)
     },
     setPageType (pageType: string) {
       this.pageType = pageType

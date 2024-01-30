@@ -79,7 +79,6 @@ defineProps({
 })
 function getDate (date: string) {
   const [calendar, time] = date.split('T')
-  console.log(calendar, time)
   const [year, month, day] = calendar.split('-')
   const monthName = new Date(~~year, ~~month - 1, ~~day).toLocaleString('default', { month: 'short' })
   // return calendar
