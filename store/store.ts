@@ -81,10 +81,10 @@ export const useWebsiteStore = defineStore('websiteStore', {
   },
   actions: {
     async setNavigation (isGlobalPage: boolean | undefined) {
-      const pageFields = (showSlug = true) => `
+      const pageFields = (showSlug = true, showNavLabel = true) => `
         id
         _modelApiKey
-        navigationLabel
+        ${showNavLabel ? 'navigationLabel' : ''}
         ${showSlug ? 'slug' : ''}
       `
       let QUERY = `
@@ -100,7 +100,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
                   ${pageFields()}
                 }
                 ... on HomePageRecord {
-                  ${pageFields(false)}
+                  ${pageFields(false, false)}
                 }
                 ... on MerchantPageRecord {
                   ${pageFields()}
@@ -110,10 +110,8 @@ export const useWebsiteStore = defineStore('websiteStore', {
                 }
               }
               partners {
-                badge
                 companyName
                 description
-                label
                 linkLabel
                 linkUrl
                 logo {
@@ -150,10 +148,12 @@ export const useWebsiteStore = defineStore('websiteStore', {
       if (isGlobalPage) {
         QUERY = globalPage()
       }
+      console.log(QUERY)
       const { data, error } = await useGraphqlQuery(QUERY)
       if (isGlobalPage) {
         this.global = data.value.global
       } else {
+        console.log(error.value)
         this.pages = data.value.country.pages
         this.country = data.value.country
         this.localization.siteLocales = data.value.country._locales

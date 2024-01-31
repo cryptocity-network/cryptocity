@@ -15,13 +15,14 @@
         },
       ]"
     >
+      <!-- :label="item.label"
+    :badge="item.badge" -->
       <Partner
         v-for="(item, i) in partners"
         :key="i"
         :description="item.description"
         :logo="item.logo.url"
         :company-name="item.companyName"
-        :label="item.label"
         :link-label="item.linkLabel"
         :link-href="item.linkUrl"
         :twitter="item.socials.twitter"
@@ -33,7 +34,6 @@
         :youtube="item.socials.youtube"
         :discord="item.socials.discord"
         :whatsapp="item.socials.whatsapp"
-        :badge="item.badge"
         :center="partners.length === 1"
         :class="{
           'md:border-r-2 md:border-blue-dark/10': partners.length > 1 && i % 2 === 0,
