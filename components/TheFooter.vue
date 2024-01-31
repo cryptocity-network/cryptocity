@@ -31,7 +31,7 @@
             :to="country.url"
             class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
-            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" :custom-url="country.url" />
+            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-72" :custom-url="country.url" />
           </nuxt-link>
         </div>
         <div class="flex flex-col gap-8 text-blue-dark opacity-60 ">

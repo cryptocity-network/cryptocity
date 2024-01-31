@@ -148,12 +148,10 @@ export const useWebsiteStore = defineStore('websiteStore', {
       if (isGlobalPage) {
         QUERY = globalPage()
       }
-      console.log(QUERY)
-      const { data, error } = await useGraphqlQuery(QUERY)
+      const { data } = await useGraphqlQuery(QUERY)
       if (isGlobalPage) {
         this.global = data.value.global
       } else {
-        console.log(error.value)
         this.pages = data.value.country.pages
         this.country = data.value.country
         this.localization.siteLocales = data.value.country._locales
