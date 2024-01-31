@@ -97,7 +97,7 @@ const urlName = computed(() => {
   return baseUrl
 })
 const getCityName = computed(() => {
-  return props.cityName.toUpperCase() || useRoute().path.split('/')[2]?.toUpperCase()
+  return props.cityName?.toUpperCase() || useRoute().path.split('/')[2]?.toUpperCase()
 })
 </script>
 <style scoped>
