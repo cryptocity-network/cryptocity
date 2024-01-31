@@ -2,7 +2,7 @@
   <footer
     class="relative bg-gray px-32 text-14 !text-blue-dark "
   >
-    <div class="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-40 py-40 md:px-64 md:pb-80 xl:grid-cols-[min-content_1fr] xl:gap-80 xl:px-72 xl:pb-104 2xl:px-136 2xl:pb-136">
+    <div class="max-w-screen mx-auto grid w-full grid-cols-1 gap-40 py-40 md:px-64 md:pb-80 xl:grid-cols-[min-content_1fr] xl:gap-80 xl:px-72 xl:pb-104 2xl:px-136 2xl:pb-136">
       <!-- LINKS -->
       <ul
         class="flex gap-12 xl:flex-col"
@@ -21,15 +21,6 @@
             hide-arrow
           />
         </li>
-        <!-- <li>
-          <TheLink
-            text="Contact"
-            link="/contact"
-            compact
-            variant="info"
-            hide-arrow
-          />
-        </li> -->
       </ul>
       <!-- Logos and Text -->
       <div class="flex flex-col gap-40 xl:row-span-2">

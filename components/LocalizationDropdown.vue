@@ -1,5 +1,5 @@
 <template>
-  <div class="text-lg relative text-16">
+  <div class="text-lg relative w-fit text-16">
     <button
       class="flex w-fit items-center justify-between gap-8 rounded-8 px-0 py-4"
       :class="{'lg:px-16': !noPadding}"
@@ -13,6 +13,9 @@
         alt=""
         srcset=""
       >
+      <span class="font-bold uppercase text-blue-darker/60">
+        {{ store.getCurrentLocale }}
+      </span>
       <svg
         fill="none"
         viewBox="0 0 24 24"
@@ -38,20 +41,24 @@
     >
       <ul
         v-show="isDropdownExpanded"
-        class="absolute inset-x-0 top-full z-50 my-8 w-fit cursor-pointer divide-y divide-blue-darker/10 overflow-hidden rounded-8 border-gray bg-white shadow"
+        class="absolute inset-x-0 left-1/2 top-full z-50 my-8 w-64 -translate-x-1/2 cursor-pointer divide-y divide-blue-darker/10 overflow-hidden rounded-8 border-gray bg-white shadow"
       >
         <li
           v-for="(locale, index) in localeIcons"
           :key="index"
-          class="w-fit bg-white px-16 py-6 transition-colors duration-300 hover:bg-blue-light/20"
+          class="flex  items-center justify-between gap-8 px-8 py-4"
           @mousedown.prevent="setLocale(locale)"
         >
           <img
             :src="`https://flagcdn.com/84x63/${locale}.png`"
-            class="w-20"
+            class="block w-20"
             alt=""
             srcset=""
           >
+
+          <span class="block font-bold uppercase text-blue-darker/60">
+            {{ locale === 'gb' ? 'en' : locale }}
+          </span>
         </li>
       </ul>
     </transition>
