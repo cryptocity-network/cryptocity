@@ -5,14 +5,14 @@
     :class="{'mx-auto': gridSmallerThanWindow}"
     style="width: 100vw"
   >
-    <div v-if="data.global?.countries?.countries.length < 2" class="relative size-full">
+    <div v-if="data.allCountries.length < 2" class="relative size-full">
       <div
         ref="scroller"
         class="no-scrollbar relative grid h-full grid-rows-1 gap-16 overflow-x-auto bg-white p-16 xl:gap-24 xl:p-24"
-        :style="`grid-template-columns: repeat(${data.global?.countries?.countries.length}, min-content)`"
+        :style="`grid-template-columns: repeat(${data.allCountries.length}, min-content)`"
       >
         <nuxt-link
-          v-for="country in data.global?.countries?.countries"
+          v-for="country in data.allCountries"
           :key="country.id"
           :to="country.url"
           class="group relative aspect-[4/12] h-full min-w-[328px] overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
@@ -52,7 +52,7 @@
     </div>
     <div v-else class="grid size-full grid-flow-col grid-rows-1 gap-16  p-16 xl:gap-24 xl:p-24">
       <nuxt-link
-        v-for="country in data.global?.countries?.countries"
+        v-for="country in data.allCountries"
         :key="country.id"
         :to="country.url"
         class="group relative size-full overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
@@ -68,9 +68,20 @@
 </template>
 
 <script lang="ts" setup>
-import globalPage from '@/graphql/Global.js'
-const query = globalPage()
-const { data, error } = await useGraphqlQuery(query)
+// import globalPage from '@/graphql/Global.js'
+// const query = globalPage()
+const { data, error } = await useGraphqlQuery(`query  {
+  allCountries(filter: {_status: {eq: published}}, orderBy: _createdAt_ASC) {
+    url
+    name
+    id
+    socialLinks {
+      image {
+        url
+      }
+    }
+  }
+}`)
 const scroller = ref()
 
 function slide (direction: string) {
