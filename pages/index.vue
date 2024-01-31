@@ -11,7 +11,7 @@
         :index="k"
       />
     </template>
-    <ContactForm :key="($route.params.path as string)" show-header />
+    <ContactForm v-if="currentPageType !== 'home'" :key="($route.params.path as string)" show-header />
   </template>
   <GlobalCarousel v-else />
 </template>
@@ -37,18 +37,6 @@ const currentPageType = computed(() => {
 })
 const query = usePageQueryGetter(currentPageType.value, countryId, locale)
 const { data, error } = await useGraphqlQuery(query)
-onUnmounted(() => {
-  delete useNuxtApp().payload.data[JSON.stringify(query)]
-})
-// const { data: response }: any = await $fetch('https://graphql.datocms.com', {
-//   method: 'POST',
-//   headers: {
-//     Authorization: `Bearer ${useRuntimeConfig().public.GRAPHQL_TOKEN}`
-//   },
-//   body: {
-//     query
-//   }
-// })
 </script>
 
 <style>

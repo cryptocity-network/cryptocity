@@ -1,4 +1,4 @@
-import CitiesCarousel from './blocks/CitiesCarousel'
+import CitiesGrid from './blocks/CitiesGrid'
 import HeroSection from './blocks/HeroSection'
 
 export default (countryId, locale) => {
@@ -7,8 +7,8 @@ export default (countryId, locale) => {
       herosection {
         ${HeroSection()}
       }
-      citiesCarousel {
-        ${CitiesCarousel()}
+      citiesGrid {
+        ${CitiesGrid()}
       }
       contactsection {
         ${HeroSection()}
