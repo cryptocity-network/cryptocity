@@ -71,6 +71,10 @@ const props = defineProps({
   cityName: {
     type: String,
     default: null
+  },
+  customUrl: {
+    type: String,
+    default: null
   }
 })
 
@@ -81,7 +85,12 @@ const countryTextWidth = computed(() => {
 })
 
 const urlName = computed(() => {
-  const baseUrl = window?.location.host.split(':')[0].toUpperCase()
+  let baseUrl
+  if (props.customUrl) {
+    baseUrl = new URL(props.customUrl).host.split(':')[0].toUpperCase()
+  } else {
+    baseUrl = window?.location.host.split(':')[0].toUpperCase()
+  }
   if (baseUrl && baseUrl.includes('.')) {
     return baseUrl.split('.')[0].toUpperCase()
   }
