@@ -16,8 +16,7 @@
       :class="[{
         'shadow': localState.isScrolled,
         'mb-32': pages.length > 0
-      }, `bg-${backgroundColor}`]"
-      :style="`background-color: ${firstSectionColor};`"
+      }]"
     >
       <div
         class="cursor-pointer opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
@@ -78,8 +77,7 @@
       class="flex w-full items-center justify-between gap-x-16 rounded-8 bg-white p-16 text-left transition-[border-radius,opacity,box-shadow]"
       :class="[{
         'shadow': localState.isScrolled,
-      }, `bg-${backgroundColor}`]"
-      :style="`background-color: ${firstSectionColor};`"
+      }]"
     >
       <div
         class="cursor-pointer opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
@@ -125,10 +123,6 @@ import { onMounted, onUnmounted } from 'vue'
 import { useWebsiteStore } from '../store/store'
 
 defineProps({
-  backgroundColor: {
-    type: String,
-    default: 'white'
-  },
   onGlobalPage: {
     type: Boolean,
     default: false
@@ -141,10 +135,6 @@ defineProps({
 
 const store = useWebsiteStore()
 const pages = computed(() => store.pages)
-let firstSectionColor = undefined as string | undefined
-onMounted(() => {
-  firstSectionColor = document?.querySelector('section')?.style.backgroundColor
-})
 
 const goHome = () => {
   store.setPageType('home')

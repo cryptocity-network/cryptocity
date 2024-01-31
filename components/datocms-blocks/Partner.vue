@@ -16,7 +16,7 @@
         :src="logo"
         class="mr-auto h-28 max-w-[75%] lg:h-32"
       >
-      <div
+      <!-- <div
         v-if="badge"
         class="flex h-32 w-max items-center gap-8 rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D]"
       >
@@ -34,18 +34,18 @@
           />
         </svg>
         <span class="whitespace-nowrap text-16 font-bold"> {{ badge }}</span>
-      </div>
+      </div> -->
     </div>
     <img
       v-if="image && Object.keys(image).length > 0"
       :src="image"
       class="mx-auto w-full max-w-lg md:w-unset"
     >
-    <span
+    <!-- <span
       v-if="label"
       class="nq_small-label"
       :class="{ 'text-white/70': backgroundColor !== 'transparent' }"
-    >{{ label }}</span>
+    >{{ label }}</span> -->
     <div
       v-if="companyName"
       class="flex items-center gap-x-16"
@@ -178,10 +178,10 @@ defineProps({
     default: '',
     type: String
   },
-  label: {
-    default: '',
-    type: String
-  },
+  // label: {
+  //   default: '',
+  //   type: String
+  // },
   description: {
     type: String,
     default: null
@@ -234,10 +234,10 @@ defineProps({
     default: false,
     type: Boolean
   },
-  badge: {
-    type: String,
-    default: null
-  },
+  // badge: {
+  //   type: String,
+  //   default: null
+  // },
   backgroundColor: {
     default: 'transparent',
     type: String
