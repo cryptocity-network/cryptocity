@@ -6,7 +6,7 @@
     :overlaps-next-section="false"
   >
     <div v-if="partners" class="flex flex-wrap items-center gap-x-40 gap-y-24 sm:justify-center">
-      <img v-for="(partner, i) in partners" :key="i" :src="partner.logo.url" :alt="partner.logo.alt" class="max-w-[calc(50%-20px)] opacity-40 md:max-w-[170px]">
+      <img v-for="(partner, i) in partners" :key="i" :src="partner.logo.url" :alt="partner.logo.alt" class="max-w-[calc(50%-20px)] opacity-75 grayscale md:max-w-[170px]">
     </div>
   </BlockWrapper>
 </template>

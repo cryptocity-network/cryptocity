@@ -24,15 +24,16 @@
       </ul>
       <!-- Logos and Text -->
       <div class="flex flex-col gap-40 xl:row-span-2">
-        <nuxt-link
-          to="/"
-          class="transition-opacity hover:opacity-70 focus:opacity-70"
-        >
-          <img
-            src="/horizontal-mono.svg"
-            alt="logo"
+        <div class="flex gap-16">
+          <nuxt-link
+            v-for="country in allCountryResponse.allCountries"
+            :key="country.id"
+            :to="country.url"
+            class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
-        </nuxt-link>
+            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" :custom-url="country.url" />
+          </nuxt-link>
+        </div>
         <div class="flex flex-col gap-8 text-blue-dark opacity-60 ">
           <h5 class="font-bold uppercase">
             ⚠ {{ data.footer.title }} ⚠
@@ -76,6 +77,7 @@ import { marked } from 'marked'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import footer from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
+import type { DynamicLogo } from '#build/components'
 
 const store = useWebsiteStore()
 const pages = computed(() => store.pages?.filter((item) => {
@@ -84,6 +86,12 @@ const pages = computed(() => store.pages?.filter((item) => {
 
 const footerQuery = footer(store.getCurrentLocale)
 const { data } = await useGraphqlQuery(footerQuery)
+const { data: allCountryResponse } = await useGraphqlQuery(`query {
+  allCountries {
+    id
+    url
+  }
+}`)
 </script>
 
 <style></style>
