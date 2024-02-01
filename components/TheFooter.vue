@@ -1,8 +1,8 @@
 <template>
   <footer
-    class="relative bg-gray px-32 text-14 !text-blue-dark "
+    class="bg-gray p-16 text-14 !text-blue-dark sm:p-72"
   >
-    <div class="max-w-screen mx-auto grid w-full grid-cols-1 gap-40 py-40 md:px-64 md:pb-80 xl:grid-cols-[min-content_1fr] xl:gap-80 xl:px-72 xl:pb-104 2xl:px-136 2xl:pb-136">
+    <div class="max-w-screen mx-auto grid w-full max-w-screen-2xl grid-cols-1 xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64">
       <!-- LINKS -->
       <ul
         class="flex flex-wrap items-center gap-16 xl:flex-col xl:items-start"
@@ -26,29 +26,28 @@
         </li>
       </ul>
       <!-- Logos and Text -->
-      <div class="flex flex-col gap-40 xl:row-span-2">
-        <div class="flex gap-16">
+      <div class="mt-72 flex flex-col gap-32 xl:row-span-2 xl:mt-0">
+        <div class="flex flex-col gap-24 sm:flex-row">
           <nuxt-link
             v-for="region in allRegionResponse.allRegions"
             :key="region.id"
             :to="region.url"
             class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
-            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-72" :custom-url="region.url" />
+            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :custom-url="region.url" />
           </nuxt-link>
         </div>
         <div class="flex flex-col gap-8 text-blue-dark opacity-60 ">
           <h5 class="font-bold uppercase">
             ⚠ {{ data.footer.title }} ⚠
           </h5>
-          <a href="">Detailed Disclaimer</a>
           <div v-html="marked.parse(data.footer.legal)" />
 
-          <div class="mb-4 flex gap-12 font-bold">
+          <div class="mt-12 flex flex-col gap-12 font-bold sm:flex-row">
             <nuxt-link to="/data-protection">
               Data Protection
             </nuxt-link>
-            <span class="text-blue-dark/30">|</span>
+            <span class="hidden text-blue-dark/30 sm:block">|</span>
             <nuxt-link to="/cookies">
               Cookies
             </nuxt-link>
@@ -56,8 +55,8 @@
         </div>
       </div>
       <!-- Impring and copyright -->
-      <div class="text-blue-dark/60 xl:self-end">
-        <div class="mb-4 flex gap-12 font-bold">
+      <div class="mt-72 text-blue-dark/60 xl:mt-0 xl:self-end">
+        <div class="flex gap-12 font-bold">
           <nuxt-link to="/impressum">
             Imprint
           </nuxt-link>
@@ -66,7 +65,7 @@
             Privacy
           </nuxt-link>
         </div>
-        <p class="text-blue-dark/30">
+        <p class="mt-24 text-blue-dark/30 sm:mt-16">
           {{ data.footer.copyrightText }}
         </p>
       </div>

@@ -17,7 +17,11 @@ export default () => {
         alt
       }
       headline
-      description
+      description {
+        value
+        links
+        blocks
+      }
       buttonLink
       buttonLabel
       badge
