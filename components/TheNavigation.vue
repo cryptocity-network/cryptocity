@@ -51,7 +51,7 @@
             hide-arrow
           />
         </li>
-        <LocalizationDropdown />
+        <!-- <LocalizationDropdown /> -->
       </ul>
       <MobileMenu
         class="lg:hidden"
