@@ -7,7 +7,11 @@ export default () => {
       title
       linkText
       link
-      description
+      description {
+        value
+        links
+        blocks
+      }
       image {
         url
       }

@@ -15,7 +15,7 @@
           {{ item.title }}
         </h3>
         <img v-if="item.image" :src="item.image.url" class=" rounded-8 border border-blue-dark/20">
-        <div class="flex-1" v-html="marked.parse(item.description)" />
+        <StructuredText class="flex-1" :data="item.description" />
         <TheLink
           :text="item.linkText"
           :link="item.link"
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts" setup>
-import { marked } from 'marked'
+import { StructuredText } from 'vue-datocms'
 defineProps({
   data: {
     type: Object,

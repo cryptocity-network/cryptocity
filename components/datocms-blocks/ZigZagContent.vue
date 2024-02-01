@@ -5,42 +5,24 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <ul class="wide mx-auto px-24 2xl:!max-w-[1440px]">
+    <ul class="wide mx-auto md:px-24 2xl:!max-w-[1440px]">
       <li
         v-for="(item, i) in data.blocks"
         :key="i"
-        class="flex flex-col items-stretch gap-x-64"
+        class="flex flex-col items-stretch gap-x-64 px-24"
         :class="{
-          'border-b border-blue-dark/10 pb-64 lg:pb-72':
+          'border-b border-blue-dark/10 pb-64 xl:pb-72':
             i === 0 && data.blocks.length > 1,
-          'border-b border-blue-dark/10 py-64 lg:py-72':
+          'border-b border-blue-dark/10 py-64 xl:py-72':
             i > 0 && i < data.blocks.length - 1,
-          'pt-64 lg:pt-72': i === data.blocks.length - 1,
-          'lg:flex-row-reverse': i % 2 === 0,
-          'lg:flex-row': i % 2 !== 0,
+          'pt-64 xl:pt-72': i === data.blocks.length - 1,
+          'xl:flex-row-reverse': i % 2 === 0,
+          'xl:flex-row': i % 2 !== 0,
         }"
       >
-        <!-- <NimiqVideo
-          v-if="item.youtube"
-          class="aspect-video lg:flex-1"
-          :high-res="item.video.url"
-          :medium-res="item.video.url"
-          :low-res="item.video.url"
-        /> -->
-        <!-- :poster="item.videoPoster" -->
-
-        <!-- <div
-          v-if="item.embedded"
-          class="relative flex h-[550px] w-full justify-center child:mx-auto child:rounded-6 child:max-md:w-full max-lg:h-360 md:px-32 child:md:max-lg:w-[calc(100vw-64px*2)] lg:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
-        >
-          <iframe
-            :src="item.embedded"
-            class="size-full rounded-8 border border-blue-dark/20 shadow"
-          />
-        </div> -->
         <div
           v-if="item.youtubeLink"
-          class="relative flex items-center justify-center child:max-md:w-full md:px-32 child:md:max-lg:w-[calc(100vw-64px*2)] lg:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
+          class="child:md:max-xl:w-[calc(100vw-64px*2)] relative flex items-center justify-center child:max-md:w-full xl:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
         >
           <HorizontalVideo
             :youtube-url="item.youtubeLink"
@@ -50,17 +32,17 @@
         </div>
         <div
           v-else
-          class="relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full max-lg:h-360 md:px-32 child:md:max-lg:w-[calc(100vw-64px*2)] lg:w-[calc(50vw-32px*2)] lg:items-center 2xl:w-[calc(1440px/2-32px*2)]"
+          class="max-xl:h-360 child:md:max-xl:w-[calc(100vw-64px*2)]  relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full xl:w-[calc(50vw-32px*2)] xl:items-center 2xl:w-[calc(1440px/2-32px*2)]"
         >
           <img
             v-if="item.image"
-            class="rounded-8 border border-blue-dark/20 object-cover shadow lg:max-h-[80vh] lg:w-[calc(50vw-32px*2)]"
+            class="aspect-[4/3] h-full rounded-8 border border-blue-dark/20 object-cover shadow"
             :src="item.image.url"
           >
         </div>
         <div
           v-if="item.badge"
-          class="mx-24 mt-16 flex h-32 w-max items-center gap-8 self-start overflow-hidden rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] md:self-center lg:hidden lg:h-0"
+          class="mx-24 mt-16 flex h-32 w-max items-center gap-8 self-start overflow-hidden rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] md:self-center xl:hidden xl:h-0"
         >
           <svg
             viewBox="0 0 18 18"
@@ -80,24 +62,24 @@
         </div>
 
         <div
-          class="content px-24 pt-64 md:items-center md:py-80 lg:flex-1 lg:px-0 lg:py-96"
+          class="content px-24 pt-64 md:items-center md:py-80 xl:flex-1 xl:px-0 xl:py-96"
         >
           <div
-            class="mb-24 flex w-max md:mx-auto md:items-center lg:mx-unset lg:w-full"
+            class="mb-24 flex w-max md:mx-auto md:items-center xl:mx-unset xl:w-full"
             :class="{
-              'flex flex-col-reverse flex-wrap justify-between gap-16 sm:flex-row lg:justify-between':
+              'flex flex-col-reverse flex-wrap justify-between gap-16 sm:flex-row xl:justify-between':
                 item.badge,
             }"
           >
             <img
               v-if="item.logo"
               :src="item.logo.url"
-              class="flex max-h-40 w-max flex-col-reverse flex-wrap justify-between gap-16 sm:flex-row md:mx-auto md:items-center lg:mx-unset lg:justify-between"
+              class="flex max-h-40 w-max flex-col-reverse flex-wrap justify-between gap-16 sm:flex-row md:mx-auto md:items-center xl:mx-unset xl:justify-between"
               alt=""
             >
             <div
               v-if="item.badge"
-              class="hidden h-32 w-max items-center gap-8 rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] lg:flex"
+              class="hidden h-32 w-max items-center gap-8 rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] xl:flex"
             >
               <svg
                 viewBox="0 0 18 18"
@@ -117,21 +99,17 @@
             </div>
           </div>
 
-          <h4
-            class="max-w-screen-2xl md:mx-auto md:text-center lg:mx-unset lg:text-left"
+          <h3
+            class="max-w-screen-2xl font-semibold md:mx-auto md:text-center xl:mx-unset xl:text-left"
           >
             {{ item.headline }}
-          </h4>
-          <div class="nq_small-label mt-12 md:text-center lg:text-left">
+          </h3>
+          <div class="mt-8 text-12 font-bold tracking-wide text-blue-dark/60 md:text-center xl:text-left">
             {{ item.label }}
           </div>
-          <p
-            class="mt-32 max-w-screen-2xl text-blue/60 md:mx-auto md:text-center lg:mx-unset lg:text-left"
-          >
-            {{ item.description }}
-          </p>
+          <StructuredText class="prose mt-32 max-w-screen-2xl text-blue/60 md:mx-auto md:text-center xl:mx-unset xl:text-left" :data="item.description" />
           <div
-            class="mt-24 flex flex-wrap items-center justify-start gap-24 sm:justify-center md:flex-col lg:flex-row lg:justify-start"
+            class="mt-24 flex flex-wrap items-center justify-start gap-24 md:flex-col md:justify-center xl:flex-row xl:justify-start"
           >
             <TheLink
               v-if="item.buttonLink && item.buttonLabel"
@@ -154,6 +132,8 @@
 </template>
 
 <script lang="ts" setup>
+import { StructuredText } from 'vue-datocms'
+
 defineProps({
   data: {
     type: Object,
