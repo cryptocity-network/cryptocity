@@ -41,15 +41,7 @@ defineProps({
 })
 
 const scroller = ref()
-function slide (direction: string) {
-  // Clamp new index
-  const offset = scroller.value?.scrollLeft
-      scroller.value!.scrollTo({
-        top: 0,
-        left: direction === 'forward' ? offset + 328 : offset - 328,
-        behavior: 'smooth'
-      })
-}
+
 const gridSmallerThanWindow: Ref<boolean> = ref(false)
 const checkGridSize = () => {
   gridSmallerThanWindow.value = scroller.value?.scrollWidth <= window?.innerWidth
