@@ -1,12 +1,13 @@
 <template>
   <section
+    class="py-160"
     :class="[
-      `section-p-${paddingTop}`,
       `bg-${blockBackgroundColor || 'white'}`,
       `${(noPaddingBottom || overlapsNextSection) ? '!pb-0' : 'pb-160'}`,
       overlapsNextSection && 'overlaps-next-section',
     ]"
   >
+    <!-- `section-p-${paddingTop}`, -->
     <slot />
   </section>
 </template>
@@ -108,13 +109,8 @@ section.bg-green {
   }
 }
 
-section.bg-white:not(.respect-size) + section.bg-white,
-section.bg-gray:not(.respect-size) + section.bg-gray,
-section.bg-blue-light:not(.respect-size) + section.bg-blue-light,
-section.bg-blue-dark:not(.respect-size) + section.bg-blue-dark,
-section.bg-blue-dark-dimmed:not(.respect-size)
-  + section.bg-blue-dark-dimmed,
-section.bg-green:not(.respect-size) + section.bg-green {
+section.bg-white + section.bg-white,
+section.bg-gray + section.bg-gray {
   @apply -mt-160 xl:-mt-200;
 }
 

@@ -8,7 +8,7 @@
       :data="component"
       :index="k"
     />
-    <ContactForm v-if="data[`${currentPageType}Page`]" show-header />
+    <ContactForm v-if="data[`${currentPageType}Page`] && currentPageType !== 'home'" show-header />
   </main>
 </template>
 
@@ -43,7 +43,4 @@ const { data } = await useGraphqlQuery(query)
 </script>
 
 <style>
-  section + section {
-    @apply -mt-160
-  }
 </style>

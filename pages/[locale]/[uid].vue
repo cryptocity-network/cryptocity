@@ -40,7 +40,4 @@ const { data } = await useGraphqlQuery(query)
 </script>
 
 <style>
-  section + section {
-    @apply -mt-160
-  }
 </style>
