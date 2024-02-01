@@ -1,9 +1,9 @@
 import HeroSection from './blocks/HeroSection'
 import PartnerGrid from './blocks/PartnerGrid'
 
-export default (countryId, locale) => {
+export default (regionId, locale) => {
   return `query {
-    networkPage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
+    networkPage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
       herosection {
         ${HeroSection()}
       }

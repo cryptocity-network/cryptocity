@@ -4,9 +4,9 @@ import HeroSection from './blocks/HeroSection'
 import MediaCarousel from './blocks/MediaCarousel'
 import ZigZagContent from './blocks/ZigZagContent'
 
-export default (countryId, locale) => {
+export default (regionId, locale) => {
   return `query {
-    beginnerPage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
+    beginnerPage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
       halfImageHero {
         ${HalfImageHero()}
       }

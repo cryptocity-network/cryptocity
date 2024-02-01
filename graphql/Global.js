@@ -2,12 +2,12 @@ export default () => {
   return `query {
     global {
       tagLine
-      countries {
+      regions {
         _modelApiKey
         settings {
           backgroundColor
         }
-        countries {
+        regions {
           id
           url
           name

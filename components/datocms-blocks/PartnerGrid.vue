@@ -60,6 +60,6 @@ defineProps({
 
 const store = useWebsiteStore()
 const partners = computed(() => {
-  return store.country ? store.country.partners : null
+  return store.region ? store.region.partners : null
 })
 </script>

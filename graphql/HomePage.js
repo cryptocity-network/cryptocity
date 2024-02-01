@@ -1,9 +1,9 @@
 import CitiesGrid from './blocks/CitiesGrid'
 import HeroSection from './blocks/HeroSection'
 
-export default (countryId, locale) => {
+export default (regionId, locale) => {
   return `query {
-    homePage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
+    homePage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
       herosection {
         ${HeroSection()}
       }

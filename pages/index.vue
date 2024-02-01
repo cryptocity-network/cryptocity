@@ -21,7 +21,7 @@ import { usePageQueryGetter } from '#imports'
 import { useWebsiteStore } from '~/store/store'
 
 const store = useWebsiteStore()
-const countryId = store?.country?.id
+const regionId = store?.region?.id
 const locale = store.getCurrentLocale
 const route = useRoute()
 
@@ -29,13 +29,13 @@ const currentPageType = computed(() => {
   if (route.path === '/') {
     return useRuntimeConfig().public.IS_HOME ? 'global' : 'home'
   } else {
-    const pageType = store.getCurrentCountry?.pages.find((x) => {
+    const pageType = store.getCurrentRegion?.pages.find((x) => {
       return x.slug === route.params.uid
     })
     return pageType?._modelApiKey.replace(/_.*/, '')
   }
 })
-const query = usePageQueryGetter(currentPageType.value, countryId, locale)
+const query = usePageQueryGetter(currentPageType.value, regionId, locale)
 const { data, error } = await useGraphqlQuery(query)
 </script>
 
