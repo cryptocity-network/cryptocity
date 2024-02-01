@@ -48,11 +48,6 @@ const props = defineProps({
     required: true,
     default: null
   },
-  pageModel: {
-    type: String,
-    required: true,
-    default: null
-  },
   compact: {
     type: Boolean,
     required: false,
@@ -96,7 +91,6 @@ const isExternalLink = computed(() => {
 })
 
 const goToLink = () => {
-  // store.setPageType(props.pageModel)
   const link = store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE ? props.link : '/' + store.getCurrentLocale + props.link
   router.push(link)
 }

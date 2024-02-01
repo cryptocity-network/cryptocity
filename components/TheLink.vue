@@ -1,21 +1,20 @@
 <template>
   <nuxt-link
-    :to="link"
+    :to="getLink"
     :target="isExternalLink ? '_blank' : '_self'"
     class="group flex w-fit max-w-full cursor-pointer items-center justify-center gap-8 rounded-full font-bold transition-all"
     :class="[
       {
-        '!px-0': secondary,
+        'secondary !px-0': secondary,
         'px-16 py-4 text-14': compact,
         'px-24 py-6 text-16 lg:text-18': !compact,
       },
-      colorClasses
+      colorClasses,
+      variant
     ]
     "
   >
-    <div v-if="text" class="leading-none capitalize">
-      {{ text }}
-    </div>
+    {{ text }}
     <Arrow
       v-if="!hideArrow"
       class="h-auto w-12 shrink-0 transition-transform group-hover:translate-x-2"
@@ -29,11 +28,13 @@
 
 <script lang="ts" setup>
 import Arrow from '@/static/icons/arrow.svg'
+import { useWebsiteStore } from '~/store/store'
+const store = useWebsiteStore()
 const props = defineProps({
   variant: {
     type: String,
     required: false,
-    default: 'primary'
+    default: 'default'
   },
   text: {
     type: String,
@@ -84,8 +85,20 @@ const isExternalLink = computed(() => {
   return props.link[0] !== '/'
 })
 
-// const triggerClick = (e) => {
-//   if (props.noPropagation) { e.stopPropagation() }
-//   props.$emit('click', e)
-// }
+const getLink = computed(() => {
+  if (props.link.includes('http')) {
+    return props.link
+  } else {
+    return store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE ? props.link : '/' + store.getCurrentLocale + props.link
+  }
+})
 </script>
+
+<style scoped>
+.router-link-active {
+  @apply text-blue-light-darkened
+}
+.router-link-active.info {
+  @apply text-white bg-radial-blue-light-darkened drop-shadow-sm
+}
+</style>
