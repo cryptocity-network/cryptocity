@@ -5,18 +5,21 @@
     <div class="max-w-screen mx-auto grid w-full grid-cols-1 gap-40 py-40 md:px-64 md:pb-80 xl:grid-cols-[min-content_1fr] xl:gap-80 xl:px-72 xl:pb-104 2xl:px-136 2xl:pb-136">
       <!-- LINKS -->
       <ul
-        class="flex gap-12 xl:flex-col"
+        class="flex flex-wrap items-center gap-12 xl:flex-col xl:items-start"
       >
-        <LocalizationDropdown no-padding />
+        <LocalizationDropdown class="w-full" no-padding />
         <li
-          v-for="item in pages"
+          v-for="(item, index) in pages"
           :key="String(item._modelApiKey)"
+          class="last:border-r-0 child:rounded-0 child:border-r-1 child:border-r-black/10 child:!pr-12 child:xl:border-r-0"
+          :class="{
+            'child:!border-r-0 ': pages && index === pages.length -1
+          }"
         >
-          <NavigationLink
+          <TheLink
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
             :link="'/' + item.slug"
-            :page-model="item._modelApiKey.replace(/_.*/, '')"
             compact
             hide-arrow
           />

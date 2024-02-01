@@ -34,14 +34,21 @@
           v-for="item in pages"
           :key="String(item._modelApiKey)"
         >
-          <NavigationLink
+          <TheLink
+            v-if="item._modelApiKey !== 'home_page'"
+            :text="item.navigationLabel"
+            :link="'/' + item.slug"
+            compact
+            hide-arrow
+          />
+          <!-- <NavigationLink
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
             :link="'/' + item.slug"
             :page-model="item._modelApiKey.replace(/_.*/, '')"
             compact
             hide-arrow
-          />
+          /> -->
         </li>
         <li>
           <TheLink
@@ -54,8 +61,6 @@
         </li>
         <LocalizationDropdown />
       </ul>
-
-      <!-- :is-inverted="usableBackgroundColor.needsColorInversion && !localState.isScrolled" -->
       <MobileMenu
         class="lg:hidden"
         :is-scrolled="localState.isScrolled"
@@ -101,7 +106,7 @@
           ><tspan x="74.1992" y="40.4475">CRYPTOCITY</tspan></text>
         </svg>
       </div>
-      <!-- <span v-if="tagLine" class="hidden text-blue-dark/60 md:block">{{ tagLine }}</span> -->
+      <span v-if="tagLine" class="hidden text-blue-dark/60 md:block">{{ tagLine }}</span>
       <TheLink
         text="Contact"
         link="/contact"
@@ -109,11 +114,6 @@
         variant="info"
         hide-arrow
       />
-      <!-- <MobileMenu
-        class="lg:hidden"
-        :is-scrolled="localState.isScrolled"
-        :is-sticky="localState.isSticky"
-      /> -->
     </div>
   </header>
 </template>
