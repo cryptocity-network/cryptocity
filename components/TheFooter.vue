@@ -37,10 +37,19 @@
             <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :custom-url="region.url" />
           </nuxt-link>
         </div>
-        <div class="flex flex-col gap-8 text-blue-dark opacity-60 ">
+        <div class="flex flex-col gap-8 text-blue-dark/60 ">
           <h5 class="font-bold uppercase">
             ⚠ {{ data.footer.title }} ⚠
           </h5>
+          <TheLink
+            v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
+            text="Zum ausführlichen Haftungsauschluss"
+            link="/haftungsausschluss"
+            variant="info"
+            hide-arrow
+            secondary
+            compact
+          />
           <div v-html="marked.parse(data.footer.legal)" />
 
           <div class="mt-12 flex flex-col gap-12 font-bold sm:flex-row">
@@ -95,5 +104,3 @@ const { data: allRegionResponse } = await useGraphqlQuery(`query {
   }
 }`)
 </script>
-
-<style></style>
