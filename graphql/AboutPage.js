@@ -2,9 +2,9 @@ import AllCitiesCarousel from './blocks/AllCitiesCarousel'
 import HeroSection from './blocks/HeroSection'
 import Image from './blocks/Image'
 import ZigZagContent from './blocks/ZigZagContent'
-export default (countryId, locale) => {
+export default (regionId, locale) => {
   return `query {
-    aboutPage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
+    aboutPage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
       herosection {
         ${HeroSection()}
       }

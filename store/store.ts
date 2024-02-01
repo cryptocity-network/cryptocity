@@ -40,7 +40,7 @@ interface Page {
   navigationLabel: string;
   slug: string;
 }
-interface Country {
+interface Region {
   pages: Array<Page>;
   id?: string;
   _locale?: string;
@@ -52,7 +52,7 @@ interface Localization {
   userSelectedLocale: string | undefined
 }
 interface Global {
-  countries: Object | undefined,
+  regions: Object | undefined,
   tagLine: string | undefined
 }
 
@@ -60,7 +60,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
     return {
       global: null as Global | null,
-      country: null as Country | null,
+      region: null as Region | null,
       pages: null as Array<Page> | null,
       localization: <Localization>{
         siteLocales: undefined as Array<string> | undefined,
@@ -71,7 +71,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
   },
   getters: {
     getGlobalData (state): Global | null { return state.global },
-    getCurrentCountry (state): Country | null { return state.country },
+    getCurrentRegion (state): Region | null { return state.region },
     getCurrentLocale (): string | null {
       return this.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
     },
@@ -89,7 +89,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       `
       let QUERY = `
           query {
-            country(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${this.getCurrentLocale}) {
+            region(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${this.getCurrentLocale}) {
               id
               _locales
               pages {
@@ -152,9 +152,9 @@ export const useWebsiteStore = defineStore('websiteStore', {
       if (isGlobalPage) {
         this.global = data.value.global
       } else {
-        this.pages = data.value.country.pages
-        this.country = data.value.country
-        this.localization.siteLocales = data.value.country._locales
+        this.pages = data.value.region.pages
+        this.region = data.value.region
+        this.localization.siteLocales = data.value.region._locales
       }
     },
     setLocale (locale: string) {

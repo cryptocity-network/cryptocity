@@ -37,7 +37,7 @@ store.setNavigation(convertToBoolean(onGlobalPage))
 
 const pageData = computed(() => {
   if (!onGlobalPage) {
-    return store.getCurrentCountry
+    return store.getCurrentRegion
   }
   return null
 })

@@ -21,7 +21,7 @@ defineProps({
     default: null
   }
 })
-const urlName = window?.location.host.split(':')[0].split('.')[0].toUpperCase()
+// const urlName = window?.location.host.split(':')[0].split('.')[0].toUpperCase()
 </script>
 
 <style scoped>

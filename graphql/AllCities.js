@@ -7,7 +7,7 @@ export default (locale) => {
       mainImage {
         url
       }
-      country {
+      region {
         url
       }
     }

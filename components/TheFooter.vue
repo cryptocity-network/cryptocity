@@ -5,9 +5,9 @@
     <div class="max-w-screen mx-auto grid w-full grid-cols-1 gap-40 py-40 md:px-64 md:pb-80 xl:grid-cols-[min-content_1fr] xl:gap-80 xl:px-72 xl:pb-104 2xl:px-136 2xl:pb-136">
       <!-- LINKS -->
       <ul
-        class="flex flex-wrap items-center gap-12 xl:flex-col xl:items-start"
+        class="flex flex-wrap items-center gap-16 xl:flex-col xl:items-start"
       >
-        <LocalizationDropdown class="w-full" no-padding />
+        <LocalizationDropdown class="w-full" />
         <li
           v-for="(item, index) in pages"
           :key="String(item._modelApiKey)"
@@ -29,12 +29,12 @@
       <div class="flex flex-col gap-40 xl:row-span-2">
         <div class="flex gap-16">
           <nuxt-link
-            v-for="country in allCountryResponse.allCountries"
-            :key="country.id"
-            :to="country.url"
+            v-for="region in allRegionResponse.allRegions"
+            :key="region.id"
+            :to="region.url"
             class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
-            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-72" :custom-url="country.url" />
+            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-72" :custom-url="region.url" />
           </nuxt-link>
         </div>
         <div class="flex flex-col gap-8 text-blue-dark opacity-60 ">
@@ -89,8 +89,8 @@ const pages = computed(() => store.pages?.filter((item) => {
 
 const footerQuery = footer(store.getCurrentLocale)
 const { data } = await useGraphqlQuery(footerQuery)
-const { data: allCountryResponse } = await useGraphqlQuery(`query {
-  allCountries {
+const { data: allRegionResponse } = await useGraphqlQuery(`query {
+  allRegions {
     id
     url
   }

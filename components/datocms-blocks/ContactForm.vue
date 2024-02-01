@@ -30,5 +30,5 @@ defineProps({
   }
 })
 
-const socialLinks = store.country?.socialLinks
+const socialLinks = store.region?.socialLinks
 </script>

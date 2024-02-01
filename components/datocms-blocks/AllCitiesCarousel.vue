@@ -21,7 +21,7 @@
         >
           <DetailedCityCard
             :name="city.name"
-            :url="city.country.url"
+            :url="city.region.url"
             :image="city.mainImage"
             :state="city.state"
           />

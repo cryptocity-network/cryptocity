@@ -23,7 +23,7 @@
         @click="goHome"
       >
         <!-- <transition mode="out-in" name="slide-fade"> -->
-        <DynamicLogo class="h-32" :type="useRoute().path.includes('cities') ? 'cities' : 'country'" />
+        <DynamicLogo class="h-32" :type="useRoute().path.includes('cities') ? 'cities' : 'region'" />
         <!-- </transition> -->
       </div>
 

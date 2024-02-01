@@ -84,7 +84,7 @@
 
 <script lang="ts" setup>
 import eventsByCityQuery from '../../graphql/EventsByCity'
-import eventsByCountryQuery from '../../graphql/EventsByCountry'
+import eventsByRegionQuery from '../../graphql/EventsByRegion'
 // import { useBreakpoints } from '~/composables/useBreakpoints'
 import { useWebsiteStore } from '~/store/store'
 
@@ -107,7 +107,7 @@ let populatedEventsQuery
 if (useRoute().path.includes('cities')) {
   populatedEventsQuery = eventsByCityQuery(props.cityId)
 } else {
-  populatedEventsQuery = eventsByCountryQuery(store.country!.id)
+  populatedEventsQuery = eventsByRegionQuery(store.region!.id)
 }
 // let response: Array<AllEvents> | null= null
 const { data: response } = await useGraphqlQuery(populatedEventsQuery)

@@ -1,6 +1,6 @@
-export default (countryId) => {
+export default (regionId) => {
   return `query {
-  allEvents(filter: {locationCountry: {eq: "${countryId}"}}, fallbackLocales:[en]) {
+  allEvents(filter: {locationRegion: {eq: "${regionId}"}}, fallbackLocales:[en]) {
     id
     title
     start

@@ -4,9 +4,9 @@ import HeroSection from './blocks/HeroSection'
 import TiltedVideo from './blocks/TiltedVideo'
 import ZigZagContent from './blocks/ZigZagContent'
 
-export default (countryId, locale) => {
+export default (regionId, locale) => {
   return `query {
-    merchantPage(filter: {site: {eq: "${countryId}"}}, locale: ${locale}) {
+    merchantPage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
       herosection {
         ${HeroSection()}
       }

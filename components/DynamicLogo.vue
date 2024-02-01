@@ -2,10 +2,10 @@
   <div>
     <transition mode="out-in" name="slide-fade">
       <svg
-        v-if="type === 'country'"
+        v-if="type === 'region'"
         height="100%"
         width="100%"
-        :viewBox="`0 0 ${90+countryTextWidth} 59`"
+        :viewBox="`0 0 ${90+regionTextWidth} 59`"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -27,11 +27,11 @@
             letter-spacing="0.9px"
           >
 
-            <tspan ref="countryText" x="74.1992" y="40.4475">{{ urlName }}</tspan>
+            <tspan ref="regionText" x="74.1992" y="40.4475">{{ urlName }}</tspan>
           </text>
         </transition>
       </svg>
-      <svg v-else class="size-full" :viewBox="`0 0 ${90+countryTextWidth} 63`" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg v-else class="size-full" :viewBox="`0 0 ${90+regionTextWidth} 63`" fill="none" xmlns="http://www.w3.org/2000/svg">
         <text
           :fill="textColor"
           xml:space="preserve"
@@ -49,7 +49,7 @@
           font-size="29"
           font-weight="bold"
           letter-spacing="0.9px"
-        ><tspan ref="countryText" x="74.5" y="29.9475">{{ urlName }}</tspan></text>
+        ><tspan ref="regionText" x="74.5" y="29.9475">{{ urlName }}</tspan></text>
         <path d="M42.5383 14.1628C42.5383 14.1628 42.4418 14.1586 42.3454 14.1543C42.3454 14.1543 42.3454 14.1543 42.249 14.15L41.092 14.0988L38.5809 14.0842L25.0612 13.9684L25.0655 13.872C25.2047 8.56725 29.2628 4.20853 34.5078 3.57171C34.5078 3.57171 34.6042 3.57598 34.7007 3.58025C34.7971 3.58452 34.8935 3.58879 34.8935 3.58879L34.9899 3.59305L36.1469 3.64428L38.373 3.54973L51.8927 3.66554L51.8885 3.76191C51.8413 9.16729 47.6826 13.6181 42.5383 14.1628Z" :fill="logoColor ? logoColor : '#FC8702'" />
         <path d="M22.7912 16.1952C22.7912 16.1952 22.7912 16.2917 22.6947 16.2917V16.5811L22.1156 17.3528L20.861 19.5716L14.0087 31.2441C14.0087 31.2441 14.0087 31.2441 13.9122 31.2441C9.27966 28.543 7.44595 22.755 9.56919 17.9316C9.56919 17.9316 9.56919 17.8352 9.6657 17.8352C9.6657 17.7387 9.76221 17.6422 9.76221 17.6422L9.85873 17.5458L10.4378 16.5811L11.5959 14.6518L18.3517 2.88281C18.3517 2.88281 18.3517 2.88281 18.4482 2.88281C23.0807 5.68035 24.9145 11.3719 22.7912 16.1952Z" :fill="logoColor ? logoColor : '#E9B213'" />
         <path d="M22.8906 49.2864C18.1615 51.9875 12.3709 50.637 9.186 46.4889L9.08949 46.3924L8.99298 46.1995L8.89647 46.103L8.3174 45.1384L7.15927 43.209L0.5 31.4401C0.5 31.4401 0.5 31.4401 0.596511 31.4401C5.32556 28.739 11.1162 30.0895 14.3011 34.2376L14.3976 34.3341L14.9767 35.2987L16.2313 37.5175L22.8906 49.2864Z" :fill="logoColor ? logoColor : '#21BCA5'" />
@@ -73,7 +73,7 @@ const props = defineProps({
   },
   type: {
     type: String,
-    default: 'country'
+    default: 'region'
   },
   cityName: {
     type: String,
@@ -85,10 +85,10 @@ const props = defineProps({
   }
 })
 
-const countryText = ref()
+const regionText = ref()
 
-const countryTextWidth = computed(() => {
-  return countryText.value?.getBBox().width || 400
+const regionTextWidth = computed(() => {
+  return regionText.value?.getBBox().width || 400
 })
 
 const urlName = computed(() => {
