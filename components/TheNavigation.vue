@@ -41,14 +41,6 @@
             compact
             hide-arrow
           />
-          <!-- <NavigationLink
-            v-if="item._modelApiKey !== 'home_page'"
-            :text="item.navigationLabel"
-            :link="'/' + item.slug"
-            :page-model="item._modelApiKey.replace(/_.*/, '')"
-            compact
-            hide-arrow
-          /> -->
         </li>
         <li>
           <TheLink

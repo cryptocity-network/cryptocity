@@ -12,40 +12,15 @@
 </template>
 
 <script lang="ts" setup>
-// enum Color {
-//   WHITE = 'white',
-//   gray = 'gray',
-//   BLUE = 'blue',
-//   DARK_BLUE = 'blue-dark',
-//   DARK_BLUE_DIMMED = 'blue-dark-dimmed',
-//   GREEN = 'green',
-//   GOLD = 'gold',
-//   BLUE_S3 = 'blue-s3',
-// }
-
-// enum PaddingSection {
-//   NONE = 0,
-//   XS = 72,
-//   XSSM = 80,
-//   SM = 96,
-//   MD = 136,
-//   MDLG = 200,
-//   LG = 240,
-//   XL = 360,
-// }
-
 defineProps({
   blockBackgroundColor: {
     required: true,
     type: String
   },
-  // validator: (value: any) =>
-  //   value === null || Object.values(Color).includes(value)
   paddingTop: {
     default: 240,
     type: Number
   },
-  // validator: (value: any) => Object.values(PaddingSection).includes(value)
   noPaddingBottom: {
     default: false,
     type: Boolean
