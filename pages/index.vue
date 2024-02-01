@@ -1,19 +1,16 @@
 <template>
-  <template v-if="currentPageType !== 'global'">
-    <template
-      v-for="(component, index, k) in data[`${currentPageType}Page`]"
-      :key="typeof component === 'string' ? 'id' : component?.id"
-    >
-      <component
-        :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-        :component-name="component._modelApiKey"
-        :data="component"
-        :index="k"
-      />
-    </template>
-    <ContactForm v-if="currentPageType !== 'home'" :key="($route.params.path as string)" show-header />
+  <template
+    v-for="(component, index, k) in data[`${currentPageType}Page`]"
+    :key="typeof component === 'string' ? 'id' : component?.id"
+  >
+    <component
+      :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+      :component-name="component._modelApiKey"
+      :data="component"
+      :index="k"
+    />
   </template>
-  <GlobalCarousel v-else />
+  <ContactForm v-if="currentPageType !== 'home'" :key="($route.params.path as string)" show-header />
 </template>
 
 <script lang="ts" setup>
@@ -27,7 +24,7 @@ const route = useRoute()
 
 const currentPageType = computed(() => {
   if (route.path === '/') {
-    return useRuntimeConfig().public.IS_HOME ? 'global' : 'home'
+    return 'home'
   } else {
     const pageType = store.getCurrentRegion?.pages.find((x) => {
       return x.slug === route.params.uid

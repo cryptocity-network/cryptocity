@@ -68,8 +68,6 @@
 </template>
 
 <script lang="ts" setup>
-// import globalPage from '@/graphql/Global.js'
-// const query = globalPage()
 const { data, error } = await useGraphqlQuery(`query  {
   allRegions(filter: {_status: {eq: published}}, orderBy: _createdAt_ASC) {
     url

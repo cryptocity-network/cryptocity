@@ -9,7 +9,7 @@
       :tag-line="globalData?.tagLine"
     />
     <NuxtPage v-if="!onGlobalPage" />
-    <GlobalCarousel v-else />
+    <RegionsCarousel v-else />
     <TheFooter
       v-if="!onGlobalPage"
       :key="String(store.localization.userSelectedLocale)"
