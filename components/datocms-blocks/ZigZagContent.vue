@@ -1,7 +1,7 @@
 <template>
   <BlockWrapper
     :block-background-color="data.settings.backgroundColor"
-    :padding-top="96"
+    :padding-top="160"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >

@@ -1,6 +1,11 @@
 <template>
-  <div class="wide bg-gray px-20 pb-160 pt-96">
-    <div class="relative z-1 mx-auto flex !max-w-lg flex-col divide-y-1 divide-blue/10 rounded-8 bg-white shadow ">
+  <BlockWrapper
+    block-background-color="gray"
+    :padding-top="160"
+    :no-padding-bottom="false"
+    :overlaps-next-section="false"
+  >
+    <div class="relative z-1 flex !max-w-lg flex-col divide-y-1 divide-blue/10 rounded-8 bg-white !px-0 shadow ">
       <ContactCard
         v-if="showHeader && socialLinks"
         :name="socialLinks.name"
@@ -11,12 +16,12 @@
         :picture="socialLinks.logo"
       />
       <iframe
-        class="mx-auto h-[725px] w-full rounded-b-6 px-16 py-8 lg:px-28 lg:py-16"
+        class=" h-[725px] w-full rounded-b-6 px-16 py-8 lg:px-28 lg:py-16"
         src="https://notionforms.io/forms/criptociudad-san-jose-contact-form-2"
         frameborder="0"
       />
     </div>
-  </div>
+  </BlockWrapper>
 </template>
 
 <script lang="ts" setup>
