@@ -100,6 +100,7 @@
     ul,
     ol {
       @apply pl-32 xl:pl-48;
+      list-style: auto;
 
       li {
         @apply relative;
