@@ -9,7 +9,7 @@
       <ul
         ref="scroller"
         role="list"
-        class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-370px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*375px-2*32px)/2)]"
+        class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-370px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-16 "
         @scroll.passive="calculateStep"
       >
         <li
@@ -59,7 +59,7 @@
       </button>
     </div>
 
-    <div class="flex flex-col">
+    <div v-if="visibleCards !== response.allEvents.length" class="flex flex-col">
       <div class="relative mx-auto mt-48 flex">
         <button
           v-for="(_, i) in response.allEvents"

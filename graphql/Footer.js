@@ -4,6 +4,15 @@ export default (locale) => {
       title
       legal
       copyrightText
+      wpig {
+        value
+        blocks
+        links
+      }
+      cookies
+      dataProtection
+      privacy
+      imprint
     }
   }`
 }
