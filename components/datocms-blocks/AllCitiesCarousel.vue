@@ -55,7 +55,7 @@
       </button>
     </div>
 
-    <div class="flex flex-col">
+    <div v-if="visibleCards !== response.allCities.length" class="flex flex-col">
       <div class="relative mx-auto mt-48 flex">
         <button
           v-for="(_, i) in response.allCities"

@@ -1,6 +1,7 @@
 <template>
   <footer
-    class="bg-gray p-16 text-14 !text-blue-dark sm:p-72"
+    class="p-16 text-14 !text-blue-dark sm:p-72"
+    :class="`bg-${backgroundColor}`"
   >
     <div class="max-w-screen mx-auto grid w-full max-w-screen-2xl grid-cols-1 xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64">
       <!-- LINKS -->
@@ -38,41 +39,58 @@
           </nuxt-link>
         </div>
         <div class="flex flex-col gap-8 text-blue-dark/60 ">
-          <h5 class="font-bold uppercase">
-            ⚠ {{ data.footer.title }} ⚠
-          </h5>
-          <TheLink
+          <StructuredText
             v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
-            text="Zum ausführlichen Haftungsauschluss"
-            link="/haftungsausschluss"
-            variant="info"
-            hide-arrow
-            secondary
-            compact
+            class="footer-prose"
+            :data="data.footer.wpig"
           />
           <div v-html="marked.parse(data.footer.legal)" />
-
           <div class="mt-12 flex flex-col gap-12 font-bold sm:flex-row">
-            <nuxt-link to="/data-protection">
-              Data Protection
-            </nuxt-link>
+            <TheLink
+              v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
+              text="Zum ausführlichen Haftungsauschluss"
+              link="/haftungsausschluss"
+              hide-arrow
+              secondary
+              compact
+            />
+            <span v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'" class="hidden text-blue-dark/30 sm:block">|</span>
+            <TheLink
+              :text="data.footer.dataProtection"
+              link="/data-protection"
+              hide-arrow
+              secondary
+              compact
+            />
             <span class="hidden text-blue-dark/30 sm:block">|</span>
-            <nuxt-link to="/cookies">
-              Cookies
-            </nuxt-link>
+            <TheLink
+              :text="data.footer.cookies"
+              link="/cookies"
+              hide-arrow
+              secondary
+              compact
+            />
           </div>
         </div>
       </div>
       <!-- Impring and copyright -->
-      <div class="mt-72 text-blue-dark/60 xl:mt-0 xl:self-end">
+      <div class="mt-72 text-blue-dark/20 xl:mt-0 xl:self-end">
         <div class="flex gap-12 font-bold">
-          <nuxt-link to="/impressum">
-            Imprint
-          </nuxt-link>
+          <TheLink
+            :text="data.footer.imprint"
+            link="/Imprint"
+            hide-arrow
+            secondary
+            compact
+          />
           <span>|</span>
-          <nuxt-link to="/privacy">
-            Privacy
-          </nuxt-link>
+          <TheLink
+            :text="data.footer.privacy"
+            link="/privacy"
+            hide-arrow
+            secondary
+            compact
+          />
         </div>
         <p class="mt-24 text-blue-dark/30 sm:mt-16">
           {{ data.footer.copyrightText }}
@@ -85,10 +103,18 @@
 <script lang="ts" setup>
 
 import { marked } from 'marked'
+import { StructuredText } from 'vue-datocms'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import footer from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
 import type { DynamicLogo } from '#build/components'
+
+defineProps({
+  backgroundColor: {
+    type: String,
+    default: 'gray'
+  }
+})
 
 const store = useWebsiteStore()
 const pages = computed(() => store.pages?.filter((item) => {
@@ -104,3 +130,9 @@ const { data: allRegionResponse } = await useGraphqlQuery(`query {
   }
 }`)
 </script>
+
+<style>
+.footer-prose a {
+  @apply text-blue-light underline font-semibold hover:text-blue-darker
+}
+</style>

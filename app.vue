@@ -18,8 +18,8 @@
         </transition>
       </main>
       <TheFooter
-        v-if="!onGlobalPage"
         :key="String(store.localization.userSelectedLocale)"
+        :background-color="onGlobalPage ? 'white' : 'gray'"
       />
     </div>
     <LoadingState v-else />
