@@ -3,9 +3,8 @@
     v-if="!error && data"
     class="relative h-screen  !px-0 pt-72"
     :class="{'mx-auto': gridSmallerThanWindow}"
-    style="width: 100vw"
   >
-    <div v-if="data.allRegions.length < 2" class="relative size-full">
+    <div v-if="data.allRegions.length > 2" class="relative size-full">
       <div
         ref="scroller"
         class="no-scrollbar relative grid h-full grid-rows-1 gap-16 overflow-x-auto bg-white p-16 xl:gap-24 xl:p-24"
@@ -50,19 +49,21 @@
         </svg>
       </button>
     </div>
-    <div v-else class="grid size-full grid-flow-col grid-rows-1 gap-16  p-16 xl:gap-24 xl:p-24">
-      <nuxt-link
-        v-for="region in data.allRegions"
-        :key="region.id"
-        :to="region.url"
-        class="group relative size-full overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
-      >
-        <RegionCard
-          v-if="region.mainImage"
-          :image="region.mainImage"
-          :url="region.url"
-        />
-      </nuxt-link>
+    <div v-else class="flex size-full">
+      <div class="grid grow grid-flow-col grid-rows-1 gap-16  p-16 xl:gap-24 xl:p-24">
+        <nuxt-link
+          v-for="region in data.allRegions"
+          :key="region.id"
+          :to="region.url"
+          class="group relative size-full overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
+        >
+          <RegionCard
+            v-if="region.mainImage"
+            :image="region.mainImage"
+            :url="region.url"
+          />
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>

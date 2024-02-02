@@ -8,16 +8,30 @@
   >
     <div class="aspect-video w-full">
       <div class="relative size-full">
+        <div class="absolute left-0 top-0 flex size-full flex-col items-center justify-center rounded-6 border-2 border-blue-dark/60">
+          <h3 class="mb-4">
+            Looks like something went wrong
+          </h3>
+          <p class="mb-20">
+            Click here to see the map
+          </p>
+          <TheLink
+            :link="data.iframe"
+            variant="info"
+            text="View Map"
+          />
+        </div>
         <iframe
           v-if="data.iframe"
-          class="size-full rounded-6 shadow"
+          class="left-0 top-0 z-50 size-full rounded-6 shadow"
           :src="data.iframe"
           :class="{
-            'size-screen fixed left-0 top-0': fullscreen
+            'size-screen fixed': fullscreen,
+            'absolute': !fullscreen
           }"
         />
         <button
-          class="grid-row-2 grid size-48 cursor-pointer grid-cols-2 rounded-full bg-white p-4 shadow"
+          class="grid-row-2 z-50 grid size-48 cursor-pointer grid-cols-2 rounded-full bg-white p-4 shadow"
           :class="{
             'absolute right-24 top-24': !fullscreen,
             'fixed right-24 top-24 z-[999]': fullscreen
