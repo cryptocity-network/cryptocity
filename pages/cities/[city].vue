@@ -27,13 +27,4 @@ const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.getCurrentLocale)
 const { data, error } = await useGraphqlQuery(cityQuery)
-
-const pageTitle = computed(() => {
-  const cityName = route.path.split('/').pop()?.replace(/%20/g, ' ')
-  return cityName!.charAt(0).toUpperCase() + cityName!.slice(1)
-})
-useHead({
-  // ... or as a function
-  title: pageTitle
-})
 </script>

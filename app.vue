@@ -96,6 +96,19 @@ const globalData = computed(() => {
   }
   return null
 })
+
+const pageTitle = computed(() => {
+  const cityName = route.path.split('/').pop()?.replace(/%20/g, ' ')
+  if (cityName && cityName !== '' && cityName !== store.localization.userSelectedLocale) {
+    return cityName.charAt(0).toUpperCase() + cityName.slice(1)
+  } else {
+    const baseUrl = window?.location.host.split(':')[0]
+    return baseUrl ? baseUrl!.charAt(0).toUpperCase() + baseUrl!.slice(1) : window?.location.host
+  }
+})
+useHead({
+  title: pageTitle
+})
 </script>
 <style>
 .page-enter-active,
