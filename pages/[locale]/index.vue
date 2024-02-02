@@ -32,7 +32,7 @@ const currentPageType = computed(() => {
   if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
     return 'home'
   } else {
-    const pageType = store.getCurrentRegion?.pages.find((x) => {
+    const pageType = store.getPages?.find((x) => {
       return x.slug === route.params.locale
     })
     return pageType?._modelApiKey.replace(/_.*/, '')
