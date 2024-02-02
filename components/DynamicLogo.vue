@@ -65,7 +65,7 @@
 const props = defineProps({
   textColor: {
     type: String,
-    default: 'black'
+    default: 'rgb(21,24,51)'
   },
   logoColor: {
     type: String,

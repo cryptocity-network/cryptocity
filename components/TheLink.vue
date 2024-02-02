@@ -96,7 +96,7 @@ const getLink = computed(() => {
 
 <style scoped>
 .router-link-active {
-  @apply text-blue-light-darkened
+  @apply text-blue-dark
 }
 .router-link-active.info {
   @apply text-white bg-radial-blue-light-darkened drop-shadow-sm
