@@ -1,6 +1,6 @@
 <template>
   <section
-    class="py-160"
+    class="py-192"
     :class="[
       `bg-${blockBackgroundColor || 'white'}`,
       `${(noPaddingBottom || overlapsNextSection) ? '!pb-0' : 'pb-160'}`,
@@ -58,38 +58,8 @@ section > .widest {
   @apply max-w-[unset] px-0 mx-0;
 }
 
-/* Section paddings, each slice should be a section with one of these classes + one of the bg- classes used below */
-
 section:first-of-type {
   @apply pt-160 xl:pt-240
-}
-
-.section-p-360 {
-  @apply pt-300 xl:pt-360;
-}
-
-.section-p-240 {
-  @apply pt-200 xl:pt-240;
-}
-
-.section-p-200 {
-  @apply pt-160 xl:pt-200;
-}
-
-.section-p-136 {
-  @apply pt-104 xl:pt-120 2xl:pt-136;
-}
-
-.section-p-96 {
-  @apply pt-80 xl:pt-96;
-}
-
-.section-p-80 {
-  @apply pt-72 xl:pt-80;
-}
-
-.section-p-72 {
-  @apply pt-64 xl:pt-72;
 }
 
 .overlaps-next-section {
@@ -117,6 +87,10 @@ section.bg-gray + section.bg-gray {
 section.bg-white + section:not(.bg-white),
 section.bg-gray + section:not(.bg-gray) {
   margin-top: 0 !important;
+}
+
+section.title {
+  @apply !pb-120
 }
 
 .bg-white.i p, .bg-white p {
