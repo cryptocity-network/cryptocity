@@ -61,7 +61,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     return {
       global: null as Global | null,
       region: null as Region | null,
-      pages: null as Array<Page> | null,
+      pages: [] as Array<Page>,
       localization: <Localization>{
         siteLocales: undefined as Array<string> | undefined,
         userSelectedLocale: undefined as string | undefined
@@ -72,6 +72,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
   getters: {
     getGlobalData (state): Global | null { return state.global },
     getCurrentRegion (state): Region | null { return state.region },
+    getPages (state): Array<Page> | null { return state.pages },
     getCurrentLocale (): string | null {
       return this.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
     },
@@ -87,27 +88,41 @@ export const useWebsiteStore = defineStore('websiteStore', {
         ${showNavLabel ? 'navigationLabel' : ''}
         ${showSlug ? 'slug' : ''}
       `
+      // pages {
+      //   ... on AboutPageRecord {
+      //   }
+      //   ... on BeginnerPageRecord {
+      //     ${pageFields()}
+      //   }
+      //   ... on HomePageRecord {
+      //     ${pageFields(false, false)}
+      //   }
+      //   ... on MerchantPageRecord {
+      //     ${pageFields()}
+      //   }
+      //   ... on NetworkPageRecord {
+      //     ${pageFields()}
+      //   }
+      // }
       let QUERY = `
           query {
             region(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${this.getCurrentLocale}) {
               id
               _locales
-              pages {
-                ... on AboutPageRecord {
-                  ${pageFields()}
-                }
-                ... on BeginnerPageRecord {
-                  ${pageFields()}
-                }
-                ... on HomePageRecord {
-                  ${pageFields(false, false)}
-                }
-                ... on MerchantPageRecord {
-                  ${pageFields()}
-                }
-                ... on NetworkPageRecord {
-                  ${pageFields()}
-                }
+              _allReferencingHomePages (filter: {_status: {eq: published}}) {
+                ${pageFields(false, false)}
+              }
+              _allReferencingMerchantPages (filter: {_status: {eq: published}}) {
+                ${pageFields()}
+              }
+              _allReferencingBeginnerPages (filter: {_status: {eq: published}}) {
+                ${pageFields()}
+              }
+              _allReferencingNetworkPages (filter: {_status: {eq: published}}) {
+                ${pageFields()}
+              }
+              _allReferencingAboutPages (filter: {_status: {eq: published}}) {
+                ${pageFields()}
               }
               partners {
                 companyName
@@ -152,7 +167,14 @@ export const useWebsiteStore = defineStore('websiteStore', {
       if (isGlobalPage) {
         this.global = data.value.global
       } else {
-        this.pages = data.value.region.pages
+        this.pages = []
+        for (const property in data.value.region) {
+          if (property.includes('_allReferencing')) {
+            if (data.value.region[property][0] !== undefined) {
+              this.pages?.push(data.value.region[property][0])
+            }
+          }
+        }
         this.region = data.value.region
         this.localization.siteLocales = data.value.region._locales
       }
