@@ -20,6 +20,7 @@
 import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
 import city from '@/graphql/City.js'
 import { useWebsiteStore } from '@/store/store'
+
 const store = useWebsiteStore()
 const route = useRoute()
 if (route.params.locale !== store.getCurrentLocale) {
@@ -29,4 +30,13 @@ const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.getCurrentLocale)
 const { data, error } = await useGraphqlQuery(cityQuery)
+
+const pageTitle = computed(() => {
+  const cityName = route.path.split('/').pop()?.replace(/%20/g, ' ')
+  return cityName!.charAt(0).toUpperCase() + cityName!.slice(1)
+})
+
+useHead({
+  title: pageTitle
+})
 </script>
