@@ -5,7 +5,7 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <ul class="mobile-wide grid grid-cols-1 gap-32 lg:grid-cols-2">
+    <ul class=" grid grid-cols-1 gap-32 lg:grid-cols-2">
       <li
         v-for="(item, i) in data.items"
         :key="`item-${i}`"

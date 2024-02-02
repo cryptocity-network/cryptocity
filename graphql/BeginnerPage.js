@@ -1,8 +1,8 @@
 import Grid from './blocks/Grid'
 import HalfImageHero from './blocks/HalfImageHero'
-import HeroSection from './blocks/HeroSection'
 import MediaCarousel from './blocks/MediaCarousel'
 import ZigZagContent from './blocks/ZigZagContent'
+import Headline from './blocks/Headline'
 
 export default (regionId, locale) => {
   return `query {
@@ -10,8 +10,8 @@ export default (regionId, locale) => {
       halfImageHero {
         ${HalfImageHero()}
       }
-      carouselHero {
-        ${HeroSection()}
+      carouselHeadline {
+        ${Headline()}
       }
       mediaCarousel {
         ${MediaCarousel()}
@@ -20,7 +20,7 @@ export default (regionId, locale) => {
         ${ZigZagContent()}
       }
       knowledge {
-        ${HeroSection()}
+        ${Headline()}
       }
       grid {
         ${Grid()}

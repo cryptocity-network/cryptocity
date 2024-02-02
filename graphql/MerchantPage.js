@@ -3,6 +3,7 @@ import Grid from './blocks/Grid'
 import HeroSection from './blocks/HeroSection'
 import TiltedVideo from './blocks/TiltedVideo'
 import ZigZagContent from './blocks/ZigZagContent'
+import Headline from './blocks/Headline'
 
 export default (regionId, locale) => {
   return `query {
@@ -13,23 +14,23 @@ export default (regionId, locale) => {
       tiltVideo {
         ${TiltedVideo()}
       }
-      consultationHero {
-        ${HeroSection()}
+      consultationHeadline {
+        ${Headline()}
       }
       zigZagContent {
         ${ZigZagContent()}
       }
       whyCrypto {
-        ${HeroSection()}
+        ${Headline()}
       }
       grid {
         ${Grid()}
       }
       whyCrypto {
-        ${HeroSection()}
+        ${Headline()}
       }
-      eventsHero {
-        ${HeroSection()}
+      eventsHeadline {
+        ${Headline()}
       }
       events {
         ${EventsCarousel()}
