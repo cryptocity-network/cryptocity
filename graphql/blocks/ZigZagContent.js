@@ -15,6 +15,9 @@ export default () => {
       image {
         url
         alt
+        video {
+          mp4Url
+        }
       }
       headline
       description {

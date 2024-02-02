@@ -109,6 +109,9 @@ export const useWebsiteStore = defineStore('websiteStore', {
             region(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${this.getCurrentLocale}) {
               id
               _locales
+              mainImage {
+                url
+              }
               _allReferencingHomePages (filter: {_status: {eq: published}}) {
                 ${pageFields(false, false)}
               }
@@ -146,12 +149,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
                 }
               }
               socialLinks {
-                image{
-                  url
-                }
-                logo{
-                  url
-                }
                 twitter
                 telegram
                 email
@@ -163,6 +160,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       if (isGlobalPage) {
         QUERY = globalPage()
       }
+      console.log(QUERY)
       const { data } = await useGraphqlQuery(QUERY)
       if (isGlobalPage) {
         this.global = data.value.global

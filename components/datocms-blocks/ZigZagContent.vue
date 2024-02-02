@@ -20,8 +20,15 @@
           'xl:flex-row': i % 2 !== 0,
         }"
       >
+        <div v-if="item.image.video !== null" class="max-xl:h-360 child:md:max-xl:w-[calc(100vw-64px*2)]  relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full xl:w-[calc(50vw-32px*2)] xl:items-center 2xl:w-[calc(1440px/2-32px*2)]">
+          <video
+            controls
+            :src="item.image.video.mp4Url"
+            class="aspect-video h-full rounded-8 border border-blue-dark/20 object-cover shadow"
+          />
+        </div>
         <div
-          v-if="item.youtubeLink"
+          v-else-if="item.youtubeLink"
           class="child:md:max-xl:w-[calc(100vw-64px*2)] relative flex items-center justify-center child:max-md:w-full xl:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
         >
           <HorizontalVideo
@@ -31,7 +38,7 @@
           />
         </div>
         <div
-          v-else
+          v-else-if="item.youtubeLink || item.image.video === null"
           class="max-xl:h-360 child:md:max-xl:w-[calc(100vw-64px*2)]  relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full xl:w-[calc(50vw-32px*2)] xl:items-center 2xl:w-[calc(1440px/2-32px*2)]"
         >
           <img
