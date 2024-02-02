@@ -18,8 +18,8 @@
           class="group relative aspect-[4/12] h-full min-w-[328px] overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
         >
           <RegionCard
-            v-if="region.socialLinks"
-            :image="region.socialLinks.image"
+            v-if="region.mainImage"
+            :image="region.mainImage"
             :url="region.url"
           />
         </nuxt-link>
@@ -58,8 +58,8 @@
         class="group relative size-full overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
       >
         <RegionCard
-          v-if="region.socialLinks"
-          :image="region.socialLinks.image"
+          v-if="region.mainImage"
+          :image="region.mainImage"
           :url="region.url"
         />
       </nuxt-link>
@@ -73,10 +73,8 @@ const { data, error } = await useGraphqlQuery(`query  {
     url
     name
     id
-    socialLinks {
-      image {
-        url
-      }
+    mainImage {
+      url
     }
   }
 }`)

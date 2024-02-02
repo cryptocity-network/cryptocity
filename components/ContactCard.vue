@@ -92,10 +92,6 @@ defineProps({
     required: false,
     default: '',
     type: String
-  },
-  picture: {
-    required: true,
-    type: Object
   }
 })
 </script>
