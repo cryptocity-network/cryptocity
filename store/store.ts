@@ -81,7 +81,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
   },
   actions: {
     async setNavigation (isGlobalPage: boolean | undefined) {
-      console.log('setnav', this.getCurrentLocale)
       const pageFields = (showSlug = true, showNavLabel = true) => `
         id
         _modelApiKey

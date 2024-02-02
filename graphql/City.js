@@ -3,6 +3,7 @@ import CityGrid from './blocks/CityGrid'
 import PartnerLogos from './blocks/PartnerLogos'
 import EventsCarousel from './blocks/EventsCarousel'
 import Iframe from './blocks/Iframe'
+import Headline from './blocks/Headline'
 
 export default (cityName, locale) => {
   return `query {
@@ -11,26 +12,26 @@ export default (cityName, locale) => {
       heroSection {
         ${HeroSection()}
       }
-      partnersHero {
-        ${HeroSection()}
+      partnersHeadline {
+        ${Headline()}
       }
       partnerLogos {
         ${PartnerLogos()}
       }
-      missionHero {
-        ${HeroSection()}
+      missionHeadline {
+        ${Headline()}
       }
       cityGrid {
         ${CityGrid()}
       }
-      cryptoMapHero {
-        ${HeroSection()}
+      cryptoMapHeadline {
+        ${Headline()}
       }
       iframe {
         ${Iframe()}
       }
-      eventsHero {
-        ${HeroSection()}
+      eventsHeadline {
+        ${Headline()}
       }
       eventsCarousel {
         ${EventsCarousel()}

@@ -39,8 +39,21 @@ const currentPageType = computed(() => {
   }
 })
 const query = usePageQueryGetter(currentPageType.value, regionId, locale)
-console.log(query)
 const { data } = await useGraphqlQuery(query)
+
+const pageTitle = computed(() => {
+  const cityName = route.path.split('/').pop()?.replace(/%20/g, ' ')
+  if (cityName !== '') {
+    return cityName!.charAt(0).toUpperCase() + cityName!.slice(1)
+  } else {
+    const baseUrl = window?.location.host.split(':')[0]
+    return baseUrl!.charAt(0).toUpperCase() + baseUrl!.slice(1)
+  }
+})
+useHead({
+  // ... or as a function
+  title: pageTitle
+})
 </script>
 
 <style>

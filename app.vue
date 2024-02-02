@@ -30,19 +30,21 @@
 import { computed } from 'vue'
 import type { AsyncData } from 'nuxt/app'
 import { useWebsiteStore } from './store/store'
-const store = useWebsiteStore()
 
+const store = useWebsiteStore()
 const onGlobalPage = useRuntimeConfig().public.IS_HOME
 const route = useRoute()
 interface RegionData {
   region: {
     id: string
+    name: string
     _locales: Array<string>
   }
 }
 const { data } = await useGraphqlQuery(`query {
   region(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}) {
     id
+    name
     _locales
   }
 }`) as AsyncData<RegionData, RTCError>
@@ -50,29 +52,27 @@ const { data } = await useGraphqlQuery(`query {
 const region = computed(() => {
   return data.value as RegionData
 })
-
 onMounted(() => {
   // If User has system language set
-  // if (navigator.language && !onGlobalPage) {
-  //   const userSystemLocale = navigator.language.split('-')[0]
-  //   console.log(userSystemLocale)
-  //   if (route.path.includes('/' + userSystemLocale + '/')) {
-  //     // If it equals locale in url
-  //     store.setLocale(userSystemLocale, false)
-  //   } else if (userSystemLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
-  //     // Not same local as url but is base locale on the site -> go home /
-  //     store.setLocale(userSystemLocale, false)
-  //     useRouter().push('/')
-  //   } else if (region.value.region._locales.includes(userSystemLocale)) {
-  //     // Not same local as url but is a locale on the site -> update local and go to the home of that page
-  //     store.setLocale(userSystemLocale)
-  //     useRouter().push(`/${userSystemLocale}`)
-  //   } else {
-  //     // Local not present in cms so set default and go home
-  //     store.setLocale(useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
-  //     useRouter().push('/')
-  //   }
-  // }
+  if (navigator.language && !onGlobalPage) {
+    const userSystemLocale = navigator.language.split('-')[0]
+    if (route.path.includes('/' + userSystemLocale + '/')) {
+      // If it equals locale in url
+      store.setLocale(userSystemLocale, false)
+    } else if (userSystemLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
+      // Not same local as url but is base locale on the site -> go home /
+      store.setLocale(userSystemLocale, false)
+      useRouter().push('/')
+    } else if (region.value.region._locales.includes(userSystemLocale)) {
+      // Not same local as url but is a locale on the site -> update local and go to the home of that page
+      store.setLocale(userSystemLocale)
+      useRouter().push(`/${userSystemLocale}`)
+    } else {
+      // Local not present in cms so set default and go home
+      store.setLocale(useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
+      useRouter().push('/')
+    }
+  }
   // Then get region data
   store.setNavigation(convertToBoolean(onGlobalPage))
 })
