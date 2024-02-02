@@ -98,7 +98,7 @@
           ><tspan x="74.1992" y="40.4475">CRYPTOCITY</tspan></text>
         </svg>
       </div>
-      <span v-if="tagLine" class="hidden text-blue-dark/60 md:block">{{ tagLine }}</span>
+      <span v-if="tagLine" class="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-blue-dark/60 md:block">{{ tagLine }}</span>
       <TheLink
         text="Contact"
         link="/contact"
