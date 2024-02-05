@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div
+    class="logo "
+  >
     <transition mode="out-in" name="slide-fade">
       <svg
         v-if="type === 'region'"
@@ -108,6 +110,9 @@ const getCityName = computed(() => {
 })
 </script>
 <style scoped>
+.logo * {
+  @apply transform-gpu;
+}
 .slide-fade-enter-active {
   transition: all 0.2s ease;
 }

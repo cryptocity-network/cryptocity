@@ -3,7 +3,7 @@
     class="headline-section flex max-w-[480px] flex-col justify-center xl:max-w-[824px] 2xl:max-w-[900px]"
     :class="{
       'text-left': textAlign === 'left',
-      'sm:mx-auto sm:items-center sm:text-center': textAlign === 'center'
+      'md:mx-auto md:items-center md:text-center': textAlign === 'center'
     }"
   >
     <div
@@ -30,7 +30,7 @@
     </div>
     <div
       v-if="link"
-      class="mt-48"
+      class="mt-32 sm:mt-48"
     >
       <TheLink
         :text="linkLabel"

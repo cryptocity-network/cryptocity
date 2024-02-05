@@ -1,36 +1,33 @@
 <template>
-  <ClientOnly>
+  <nuxt-link
+
+    :to="`cities/` + city.name.toLowerCase()"
+    class="custom-ease group relative aspect-square w-full transform-gpu overflow-hidden  rounded-8 transition-transform hover:-translate-y-12 sm:aspect-[6/9]  lg:aspect-square "
+  >
     <FadeInImage
-      :image-url="image.url"
-      class="size-full object-cover"
+      :image-url="city.mainImage.url"
+      class="size-full object-cover opacity-75"
     />
-    <div class="absolute left-0 top-0 size-full bg-gradient-to-t from-blue-darker to-transparent transition-opacity group-hover:opacity-0" />
-    <div class="absolute left-0 top-0 size-full bg-blue-darker/5 opacity-0 transition-opacity group-hover:opacity-100" />
-    <DynamicLogo type="cities" logo-color="white" text-color="white" :city-name="name" class="absolute left-1/2 top-1/2 w-3/5 max-w-[291px] -translate-x-1/2 -translate-y-1/2" />
-  </ClientOnly>
+    <div class="absolute left-0 top-0 size-full bg-blue opacity-20 mix-blend-hard-light" />
+    <div class="absolute left-0 top-0 size-full bg-gradient-to-t from-blue to-transparent opacity-60 transition-opacity group-hover:opacity-0" />
+    <DynamicLogo type="cities" logo-color="#1F2348" text-color="#1F2348" :city-name="city.name" class="absolute left-1/2 top-1/2 w-[215px] -translate-x-1/2 -translate-y-1/2 blur-lg xl:w-[291px]" />
+    <DynamicLogo type="cities" logo-color="white" text-color="white" :city-name="city.name" class="absolute left-1/2 top-1/2 w-[215px] -translate-x-1/2 -translate-y-1/2 xl:w-[291px]" />
+  </nuxt-link>
 </template>
 
 <script lang="ts" setup>
 defineProps({
-  image: {
+  city: {
     type: Object,
-    default: null
-  },
-  name: {
-    type: String,
     default: null
   }
 })
-// const urlName = window?.location.host.split(':')[0].split('.')[0].toUpperCase()
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.4s;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.custom-ease, .custom-ease * {
+  @apply transform-gpu;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 600ms;
 }
 </style>

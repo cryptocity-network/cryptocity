@@ -9,7 +9,7 @@
       <li
         v-for="(item, i) in data.blocks"
         :key="i"
-        class="flex flex-col items-stretch gap-x-64 px-24"
+        class="flex flex-col items-stretch gap-x-64 px-16 sm:px-24"
         :class="{
           'border-b border-blue-dark/10 pb-64 xl:pb-72':
             i === 0 && data.blocks.length > 1,
@@ -69,7 +69,7 @@
         </div>
 
         <div
-          class="content px-24 pt-64 md:items-center md:py-80 xl:flex-1 xl:px-0 xl:py-96"
+          class="content px-16 pt-64 md:items-center md:py-80 xl:flex-1 xl:px-0 xl:py-96"
         >
           <div
             class="mb-24 flex w-max md:mx-auto md:items-center xl:mx-unset xl:w-full"
