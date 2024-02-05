@@ -67,12 +67,8 @@ section:first-of-type {
 }
 
 section.bg-white,
-section.bg-gray,
-section.bg-blue-light,
-section.bg-blue-dark,
-section.bg-blue-dark-dimmed,
-section.bg-green {
-  @apply pb-96 md:pb-160 xl:pb-200;
+section.bg-gray {
+  @apply pb-160 xl:pb-200;
 
   &.no-pb {
     @apply pb-0;
