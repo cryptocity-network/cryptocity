@@ -7,9 +7,6 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
-  // app: {
-  //   pageTransition: { name: 'page', mode: 'out-in' }
-  // },
   app: {
     head: {
       link: [
@@ -49,5 +46,8 @@ export default defineNuxtConfig({
   },
   typescript: {
     typeCheck: true
+  },
+  imports: {
+    dirs: ['types/*.d.ts']
   }
 })

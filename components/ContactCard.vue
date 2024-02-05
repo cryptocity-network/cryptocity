@@ -1,17 +1,5 @@
 <template>
   <div class="flex flex-col gap-32 px-32 py-40 lg:px-56 lg:pb-32 lg:pt-48 ">
-    <span
-      v-if="name"
-      class="text-16 text-blue-dark"
-    >
-      {{ name }}
-    </span>
-    <span
-      v-if="role"
-      class="text-12 text-blue-dark/50"
-    >
-      {{ role }}
-    </span>
     <div class="flex h-[21px] items-center gap-x-16 pl-4">
       <SocialLink
         v-if="email"
@@ -59,15 +47,6 @@
 
 <script lang="ts" setup>
 defineProps({
-  name: {
-    required: true,
-    type: String
-  },
-  role: {
-    required: false,
-    default: '',
-    type: String
-  },
   email: {
     required: false,
     default: '',

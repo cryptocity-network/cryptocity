@@ -1,6 +1,6 @@
 <template>
   <BlockWrapper
-    :block-background-color="data.settings.backgroundColor"
+    :block-background-color="backgroundColor"
     :padding-top="0"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
@@ -38,6 +38,11 @@ defineProps({
   index: {
     type: Number,
     required: true
+  },
+  backgroundColor: {
+    type: String,
+    required: true,
+    default: 'white'
   }
 })
 

@@ -9,8 +9,6 @@
     <div class="relative z-1 flex !max-w-lg flex-col divide-y-1 divide-blue/10 rounded-8 bg-white !px-0 shadow ">
       <ContactCard
         v-if="showHeader && socialLinks"
-        :name="socialLinks.name"
-        :role="socialLinks.role"
         :email="socialLinks.email"
         :telegram="socialLinks.telegram"
         :linkedin="socialLinks.linkedin"

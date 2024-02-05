@@ -1,6 +1,6 @@
 <template>
   <BlockWrapper
-    :block-background-color="data.settings.backgroundColor"
+    :block-background-color="backgroundColor"
     :padding-top="0"
     :no-padding-bottom="false"
     :overlaps-next-section="true"
@@ -18,27 +18,7 @@
           :link-label="data.linkLabel"
           :text-align="'left'"
         />
-      <!-- <div
-        v-if="contactName && contactPicture && contactTitleLabel"
-        class="nq_small-label nq_r-mt-72"
-      >
-        {{ contactTitleLabel }}
       </div>
-      <div
-        v-if="contactName && contactPicture"
-        class="shadow-contact-card nq_r-mt-16 w-[min(100vw-32px,362px)] rounded-6 bg-white p-16"
-      >
-        <ContactCard
-          :name="contactName"
-          :role="contactRole"
-          :email="contactEmail.url"
-          :telegram="contactTelegram.url"
-          :linkedin="contactLinkedin.url"
-          :picture="contactPicture"
-        />
-      </div> -->
-      </div>
-
       <img
         v-if="data.image"
         :src="data.image.url"
@@ -58,6 +38,11 @@ defineProps({
   index: {
     type: Number,
     required: true
+  },
+  backgroundColor: {
+    type: String,
+    required: true,
+    default: 'white'
   }
 })
 </script>
