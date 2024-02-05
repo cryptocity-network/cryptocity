@@ -73,7 +73,7 @@ defineProps({
     required: true
   },
   location: {
-    type: Object,
+    type: String,
     required: true
   }
 })

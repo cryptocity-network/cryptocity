@@ -1,7 +1,6 @@
 <template>
   <nuxt-link
-
-    :to="`cities/` + city.name.toLowerCase()"
+    :to="cityLink"
     class="custom-ease group relative aspect-square w-full transform-gpu overflow-hidden  rounded-8 transition-transform hover:-translate-y-12 sm:aspect-[6/9]  lg:aspect-square "
   >
     <FadeInImage
@@ -16,11 +15,18 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
+import { useWebsiteStore } from '~/store/store'
+const store = useWebsiteStore()
+const props = defineProps({
   city: {
     type: Object,
     default: null
   }
+})
+const cityLink = computed(() => {
+  return store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+    ? `/cities/${props.city.name.toLowerCase()}`
+    : `/${store.getCurrentLocale}/cities/${props.city.name.toLowerCase()}`
 })
 </script>
 

@@ -89,7 +89,7 @@ const getLink = computed(() => {
   if (props.link.includes('http')) {
     return props.link
   } else {
-    return store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE ? props.link : '/' + store.getCurrentLocale + props.link
+    return store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE ? '/' + props.link : '/' + store.getCurrentLocale + props.link
   }
 })
 </script>

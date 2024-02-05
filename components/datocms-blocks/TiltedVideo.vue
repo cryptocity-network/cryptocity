@@ -1,6 +1,6 @@
 <template>
   <BlockWrapper
-    :block-background-color="data.settings.backgroundColor"
+    :block-background-color="backgroundColor"
     :padding-top="96"
     :no-padding-bottom="false"
     :overlaps-next-section="true"
@@ -30,6 +30,11 @@ defineProps({
   data: {
     type: Object,
     required: true
+  },
+  backgroundColor: {
+    type: String,
+    required: true,
+    default: 'white'
   }
 })
 const media$ = ref < HTMLImageElement | null >(null)

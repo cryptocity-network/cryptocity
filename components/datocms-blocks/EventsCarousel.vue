@@ -1,6 +1,6 @@
 <template>
   <BlockWrapper
-    :block-background-color="data.settings.backgroundColor"
+    :block-background-color="backgroundColor"
     :padding-top="96"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
@@ -100,7 +100,13 @@ const props = defineProps({
   },
   cityId: {
     type: String,
-    required: true
+    required: false,
+    default: null
+  },
+  backgroundColor: {
+    type: String,
+    required: true,
+    default: 'white'
   }
 })
 const store = useWebsiteStore()
