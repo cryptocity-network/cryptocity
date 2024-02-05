@@ -1,6 +1,6 @@
 <template>
   <div
-    class="logo "
+    class="logo"
   >
     <transition mode="out-in" name="slide-fade">
       <svg

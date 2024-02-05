@@ -106,6 +106,7 @@
         compact
         variant="info"
         hide-arrow
+        :class="{ 'absolute right-32 top-1/2 -translate-y-1/2': onGlobalPage}"
       />
     </div>
   </header>

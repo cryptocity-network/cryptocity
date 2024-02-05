@@ -18,8 +18,8 @@
         >
           <RegionCard
             v-if="region.mainImage"
-            :image="region.mainImage"
-            :url="region.url"
+            :key="region.id"
+            :region="region"
           />
         </nuxt-link>
       </div>
