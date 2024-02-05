@@ -4,6 +4,7 @@
     :padding-top="160"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
+    class="px-16 sm:px-0"
   >
     <div class="relative z-1 flex !max-w-lg flex-col divide-y-1 divide-blue/10 rounded-8 bg-white !px-0 shadow ">
       <ContactCard

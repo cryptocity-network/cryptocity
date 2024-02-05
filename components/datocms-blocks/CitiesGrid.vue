@@ -8,20 +8,18 @@
   >
     <div
       class="relative grid !w-full min-w-full grid-flow-row gap-16 !px-16 pb-16 pt-72 xl:gap-24 xl:!px-24 xl:pb-24"
-      :class="`grid-cols-${Math.min(response.allCities.length, 2)} xl:grid-cols-${Math.min(response.allCities.length, 3)}`"
+      :class="{
+        'grid-cols-1': response.allCities.length === 1,
+        'grid-cols-1 sm:grid-cols-2': response.allCities.length === 2,
+        'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3': response.allCities.length > 2,
+        'last:col-span-2 last:aspect-video last:2xl:col-span-1 last:2xl:aspect-square': response.allCities.length % 2 !== 0
+      }"
     >
-      <nuxt-link
+      <CityCard
         v-for="city in response.allCities"
         :key="city.id"
-        :to="`cities/` + city.name.toLowerCase()"
-        class="group relative aspect-[6/9] w-full  overflow-hidden rounded-8 transition-transform hover:-translate-y-12  xl:aspect-square "
-        :class="{ 'last:col-span-2 last:aspect-video last:2xl:col-span-1 last:2xl:aspect-square': response.allCities.length % 2 !== 0}"
-      >
-        <CityCard
-          :image="city.mainImage"
-          :name="city.name"
-        />
-      </nuxt-link>
+        :city="city"
+      />
     </div>
   </BlockWrapper>
 </template>

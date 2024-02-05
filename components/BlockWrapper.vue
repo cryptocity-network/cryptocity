@@ -72,7 +72,7 @@ section.bg-blue-light,
 section.bg-blue-dark,
 section.bg-blue-dark-dimmed,
 section.bg-green {
-  @apply pb-160 xl:pb-200;
+  @apply pb-96 md:pb-160 xl:pb-200;
 
   &.no-pb {
     @apply pb-0;
@@ -89,8 +89,12 @@ section.bg-gray + section:not(.bg-gray) {
   margin-top: 0 !important;
 }
 
-section.title {
+/* section.title {
   @apply !pb-120
+} */
+section.title.bg-white + section.bg-white,
+section.title.bg-gray + section.bg-gray {
+  @apply pt-136 xl:pt-136;
 }
 
 .bg-white.i p, .bg-white p {

@@ -51,18 +51,11 @@
     </div>
     <div v-else class="flex size-full">
       <div class="grid grow grid-flow-col grid-rows-1 gap-16  p-16 xl:gap-24 xl:p-24">
-        <nuxt-link
+        <RegionCard
           v-for="region in data.allRegions"
           :key="region.id"
-          :to="region.url"
-          class="group relative size-full overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
-        >
-          <RegionCard
-            v-if="region.mainImage"
-            :image="region.mainImage"
-            :url="region.url"
-          />
-        </nuxt-link>
+          :region="region"
+        />
       </div>
     </div>
   </div>
