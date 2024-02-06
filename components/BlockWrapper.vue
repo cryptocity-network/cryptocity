@@ -58,17 +58,13 @@ section > .widest {
   @apply max-w-[unset] px-0 mx-0;
 }
 
-section:first-of-type {
-  @apply pt-160 xl:pt-240
-}
-
 .overlaps-next-section {
   @apply -mb-24 xl:-mb-32;
 }
 
 section.bg-white,
 section.bg-gray {
-  @apply pb-160 xl:pb-200;
+  @apply py-160 xl:py-200;
 
   &.no-pb {
     @apply pb-0;
@@ -85,13 +81,18 @@ section.bg-gray + section:not(.bg-gray) {
   margin-top: 0 !important;
 }
 
-/* section.title {
-  @apply !pb-120
-} */
-section.title.bg-white + section.bg-white,
+section.hero {
+  @apply !pt-192;
+}
+
+section.title {
+  @apply pb-80 lg:pb-96
+}
+
+/* section.title.bg-white + section.bg-white,
 section.title.bg-gray + section.bg-gray {
   @apply pt-136 xl:pt-136;
-}
+} */
 
 .bg-white.i p, .bg-white p {
     color: rgba(31,35,72,.6);

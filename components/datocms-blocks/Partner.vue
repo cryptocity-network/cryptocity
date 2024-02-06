@@ -46,7 +46,7 @@
       class="nq_small-label"
       :class="{ 'text-white/70': backgroundColor !== 'transparent' }"
     >{{ label }}</span> -->
-    <div
+    <!-- <div
       v-if="companyName"
       class="flex items-center gap-x-16"
       :class="{
@@ -62,7 +62,7 @@
       >
         {{ companyName }}
       </h3>
-    </div>
+    </div> -->
 
     <div
       class="prose no-margin text-blue/60"

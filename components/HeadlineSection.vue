@@ -2,14 +2,14 @@
   <div
     class="headline-section flex max-w-[480px] flex-col justify-center xl:max-w-[824px] 2xl:max-w-[900px]"
     :class="{
-      'text-left': textAlign === 'left',
-      'md:mx-auto md:items-center md:text-center': textAlign === 'center'
+      'items-start text-left sm:mx-auto sm:items-center sm:text-center lg:items-start lg:text-left': textAlign === 'left',
+      'sm:mx-auto sm:items-center sm:text-center': textAlign === 'center'
     }"
   >
     <div
       v-if="label"
-      class="mb-32 w-fit py-10 text-16 font-bold uppercase text-blue/30 max-md:pl-0 xl:text-18"
-      :class="{ 'px-20': textAlign === 'center' }"
+      class="mb-12 w-fit text-16 font-bold uppercase text-blue/30 sm:pl-0 xl:text-18"
+      :class="{ 'sm:px-20': textAlign === 'center' }"
       style="letter-spacing: .17em;"
     >
       {{ label }}
