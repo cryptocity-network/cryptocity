@@ -4,7 +4,7 @@
     :padding-top="index === 0 ? 136 : 240"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
-    :class="{'title': index !== 0}"
+    class="hero"
   >
     <img
       v-if="data.image"

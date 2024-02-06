@@ -49,7 +49,7 @@
         </div>
         <div
           v-if="item.badge"
-          class="mx-24 mt-16 flex h-32 w-max items-center gap-8 self-start overflow-hidden rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] md:self-center xl:hidden xl:h-0"
+          class="mx-16 mt-16 flex h-32 w-max items-center gap-8 self-start overflow-hidden rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] md:self-center xl:hidden xl:h-0"
         >
           <svg
             viewBox="0 0 18 18"
@@ -69,7 +69,7 @@
         </div>
 
         <div
-          class="content px-16 pt-64 md:items-center md:py-80 xl:flex-1 xl:px-0 xl:py-96"
+          class="content !px-16 pt-64 md:items-center md:py-80 xl:flex-1 xl:!px-0 xl:py-96"
         >
           <div
             class="mb-24 flex w-max md:mx-auto md:items-center xl:mx-unset xl:w-full"
@@ -116,7 +116,7 @@
           </div>
           <StructuredText class="prose mt-32 max-w-screen-2xl text-blue/60 md:mx-auto md:text-center xl:mx-unset xl:text-left" :data="item.description" />
           <div
-            class="mt-24 flex flex-wrap items-center justify-start gap-24 md:flex-col md:justify-center xl:flex-row xl:justify-start"
+            class="mt-24 flex flex-col flex-wrap items-start justify-start gap-24 xs:flex-row xs:items-center md:justify-center xl:justify-start"
           >
             <TheLink
               v-if="item.buttonLink && item.buttonLabel"

@@ -34,7 +34,7 @@
           >
         </div>
         <div
-          class="mx-auto mt-48 flex max-w-xl flex-col gap-y-16 child:z-50 child:text-center"
+          class="mx-auto mt-40 flex max-w-xl flex-col gap-y-16 child:z-50 child:text-center sm:mt-48"
         >
           <h3
             class="leading-none whitespace-nowrap pl-16 text-12 font-bold uppercase tracking-[0.095em] !text-blue-dark/60"
@@ -46,7 +46,7 @@
       </li>
     </ul>
 
-    <div class="relative mx-auto mt-48 flex w-max justify-center !p-0">
+    <div class="relative mx-auto mt-40 flex w-max justify-center !p-0 sm:mt-48">
       <button
         v-for="(_, i) in data.carousel"
         :key="i"
