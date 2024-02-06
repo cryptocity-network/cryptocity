@@ -42,6 +42,7 @@ interface Page {
 }
 interface Region {
   pages: Array<Page>;
+  brandName: string;
   id?: string;
   _locale?: string;
   partners?: Array<Partner>;
@@ -88,27 +89,12 @@ export const useWebsiteStore = defineStore('websiteStore', {
         ${showNavLabel ? 'navigationLabel' : ''}
         ${showSlug ? 'slug' : ''}
       `
-      // pages {
-      //   ... on AboutPageRecord {
-      //   }
-      //   ... on BeginnerPageRecord {
-      //     ${pageFields()}
-      //   }
-      //   ... on HomePageRecord {
-      //     ${pageFields(false, false)}
-      //   }
-      //   ... on MerchantPageRecord {
-      //     ${pageFields()}
-      //   }
-      //   ... on NetworkPageRecord {
-      //     ${pageFields()}
-      //   }
-      // }
       let QUERY = `
           query {
             region(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${this.getCurrentLocale}) {
               id
               _locales
+              brandName
               mainImage {
                 url
               }

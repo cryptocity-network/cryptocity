@@ -1,3 +1,4 @@
+import SimpleLink from '../SimpleLink'
 import baseBlockValues from './blockValues'
 
 export default () => {
@@ -5,8 +6,6 @@ export default () => {
     ${baseBlockValues()}
     items {
       title
-      linkText
-      link
       description {
         value
         links
@@ -15,6 +14,8 @@ export default () => {
       image {
         url
       }
+      hasLink
+      ${SimpleLink()}
     }
   `
 }
