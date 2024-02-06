@@ -1,5 +1,5 @@
 <template>
-  <section v-if="data" class="bg-gray py-80">
+  <section v-if="data" class="min-h-screen bg-gray py-80">
     <div class="prose">
       <h2>{{ data.dataProtection.title }}</h2>
       <div v-html="marked.parse(data.dataProtection.text)" />

@@ -4,9 +4,8 @@ export default () => {
   return `
     ${baseBlockValues()}
     blocks {
-      secondaryButtonLink
-      secondaryButtonLabel
       youtubeLink
+      badge
       logo {
         alt
         url
@@ -25,9 +24,12 @@ export default () => {
         links
         blocks
       }
+      hasButton
       buttonLink
       buttonLabel
-      badge
+      hasSecondaryButton
+      secondaryButtonLink
+      secondaryButtonLabel
     }
   `
 }

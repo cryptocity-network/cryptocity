@@ -29,12 +29,14 @@
       </p>
     </div>
     <div
-      v-if="link"
+      v-if="hasLink"
       class="mt-32 sm:mt-48"
     >
       <TheLink
-        :text="linkLabel"
-        :link="link"
+        :text="link.label"
+        :link="link.internalLink"
+        :url="link.url"
+        :is-external="link.isExternalLink"
         variant="info"
       />
     </div>
@@ -59,12 +61,7 @@ defineProps({
     default: null
   },
   link: {
-    type: String,
-    required: false,
-    default: null
-  },
-  linkLabel: {
-    type: String,
+    type: Object,
     required: false,
     default: null
   },
@@ -72,6 +69,16 @@ defineProps({
     type: String,
     required: false,
     default: 'center'
+  },
+  linkRel: {
+    type: String,
+    required: false,
+    default: 'center'
+  },
+  hasLink: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 
 })

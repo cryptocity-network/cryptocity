@@ -119,14 +119,16 @@
             class="mt-24 flex flex-col flex-wrap items-start justify-start gap-24 xs:flex-row xs:items-center md:justify-center xl:justify-start"
           >
             <TheLink
-              v-if="item.buttonLink && item.buttonLabel"
-              :link="item.buttonLink"
+              v-if="item.hasButton"
+              :url="item.buttonLink"
+              :is-external="true"
               :text="item.buttonLabel"
               variant="info"
             />
             <TheLink
-              v-if="item.secondaryButtonLink && item.secondaryButtonLabel"
-              :link="item.secondaryButtonLink"
+              v-if="item.hasSecondaryButton"
+              :url="item.secondaryButtonLink"
+              :is-external="true"
               :text="item.secondaryButtonLabel"
               variant="info"
               secondary

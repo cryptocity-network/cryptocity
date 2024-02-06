@@ -1,8 +1,8 @@
-import AllCitiesCarousel from './blocks/AllCitiesCarousel'
-import HeroSection from './blocks/HeroSection'
-import Image from './blocks/Image'
-import ZigZagContent from './blocks/ZigZagContent'
-import Headline from './blocks/Headline'
+import AllCitiesCarousel from '../blocks/AllCitiesCarousel'
+import HeroSection from '../blocks/HeroSection'
+import Image from '../blocks/Image'
+import ZigZagContent from '../blocks/ZigZagContent'
+import Headline from '../blocks/Headline'
 
 export default (regionId, locale) => {
   return `query {

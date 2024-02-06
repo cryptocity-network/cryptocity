@@ -11,8 +11,8 @@
         :label="data.label"
         :headline="data.headline"
         :subline="data.subline"
-        :link="data.link"
-        :link-label="data.linkLabel"
+        :link="data.simpleLink"
+        :has-link="data.hasLink"
       />
     </div>
   </BlockWrapper>

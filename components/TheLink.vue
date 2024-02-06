@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     :to="getLink"
-    :target="isExternalLink ? '_blank' : '_self'"
+    :target="isExternal ? '_blank' : '_self'"
     class="group flex w-fit max-w-full cursor-pointer items-center justify-center gap-8 rounded-full font-bold transition-all"
     :class="[
       {
@@ -19,8 +19,8 @@
       v-if="!hideArrow"
       class="h-auto w-12 shrink-0 transition-transform group-hover:translate-x-2"
       :class="{
-        '-rotate-45 group-hover:-translate-y-2 group-hover:translate-x-2': isExternalLink,
-        'group-hover:translate-x-2': !isExternalLink
+        '-rotate-45 group-hover:-translate-y-2 group-hover:translate-x-2': isExternal,
+        'group-hover:translate-x-2': !isExternal
       }"
     />
   </nuxt-link>
@@ -42,9 +42,19 @@ const props = defineProps({
     default: null
   },
   link: {
+    type: Object,
+    required: false,
+    default: null
+  },
+  url: {
     type: String,
     required: true,
     default: null
+  },
+  isExternal: {
+    type: Boolean,
+    required: false,
+    default: false
   },
   compact: {
     type: Boolean,
@@ -65,6 +75,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false
+  },
+  noLocale: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 defineEmits(['click'])
@@ -81,16 +96,29 @@ const colorClasses = computed(() => {
   }
 })
 
-const isExternalLink = computed(() => {
-  return props.link[0] !== '/'
-})
-
 const getLink = computed(() => {
-  if (props.link.includes('http')) {
-    return props.link
-  } else {
-    return store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE ? '/' + props.link : '/' + store.getCurrentLocale + props.link
+  const defaultLocale = useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+  const storeLocale = store.getCurrentLocale
+  if (!props.link) {
+    if (props.url?.includes('http')) {
+      return props.url
+    } else {
+      return storeLocale === defaultLocale || props.noLocale ? props.url : '/' + storeLocale + props.url
+    }
+  } else if ('slug' in props.link) {
+    return storeLocale === defaultLocale
+      ? `/${props.link.slug}`
+      : `/${storeLocale}/${props.link.slug}`
+  } else if ('name' in props.link) {
+    return storeLocale === defaultLocale
+      ? `/${props.link.name}`
+      : `/${storeLocale}/${props.link.name}`
+  } else if ('id' in props.link) {
+    return storeLocale === defaultLocale
+      ? '/'
+      : `/${storeLocale}`
   }
+  return '/'
 })
 </script>
 

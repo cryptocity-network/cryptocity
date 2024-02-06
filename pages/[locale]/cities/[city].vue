@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
-import city from '@/graphql/City.js'
+import city from '@/graphql/pages/City.js'
 import type { CityData, Component } from '@/types/index'
 import { useWebsiteStore } from '@/store/store'
 

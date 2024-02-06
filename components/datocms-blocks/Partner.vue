@@ -74,7 +74,8 @@
       variant="info"
       secondary
       :text="linkLabel"
-      :link="linkHref"
+      :url="linkHref"
+      :is-external="true"
     />
 
     <ul
@@ -190,7 +191,7 @@ defineProps({
     default: null
   },
   linkHref: {
-    default: '',
+    default: null,
     type: String
   },
   linkLabel: {

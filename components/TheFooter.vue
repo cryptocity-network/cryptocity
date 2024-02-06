@@ -20,7 +20,8 @@
           <TheLink
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
-            :link="'/' + item.slug"
+            :url="'/' + item.slug"
+            :is-external="true"
             compact
             hide-arrow
           />
@@ -49,7 +50,7 @@
             <TheLink
               v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
               text="Zum ausführlichen Haftungsauschluss"
-              link="/haftungsausschluss"
+              url="/haftungsausschluss"
               hide-arrow
               secondary
               compact
@@ -57,7 +58,7 @@
             <span v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'" class="hidden text-blue-dark/30 sm:block">|</span>
             <TheLink
               :text="data.footer.dataProtection"
-              link="/data-protection"
+              url="/data-protection"
               hide-arrow
               secondary
               compact
@@ -65,7 +66,7 @@
             <span class="hidden text-blue-dark/30 sm:block">|</span>
             <TheLink
               :text="data.footer.cookies"
-              link="/cookies"
+              url="/cookies"
               hide-arrow
               secondary
               compact
@@ -78,15 +79,18 @@
         <div class="flex gap-12 font-bold">
           <TheLink
             :text="data.footer.imprint"
-            link="/Imprint"
+            url="/impressum"
+            :is-external="true"
             hide-arrow
             secondary
             compact
           />
-          <span>|</span>
+          <span class="opacity-0">|</span>
           <TheLink
+            class="pointer-events-none !opacity-0"
             :text="data.footer.privacy"
-            link="/privacy"
+            url="/privacy"
+            :is-external="true"
             hide-arrow
             secondary
             compact

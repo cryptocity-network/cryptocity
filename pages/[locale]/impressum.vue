@@ -1,7 +1,7 @@
 pages/cookies.vue<template>
-  <section v-if="data" class="bg-gray py-80">
+  <section v-if="data" class="min-h-screen bg-gray py-80">
     <div class="prose">
-      <h2>{{ data.impressum.title }}</h2>
+      <h1>{{ data.impressum.title }}</h1>
       <div class="grid grid-flow-row grid-cols-2 gap-16">
         <div v-for="asset in data.impressum.assets" :key="asset.id" class="size-full">
           <img class="size-full object-contain object-center" :src="asset.url" :alt="asset.alt">
