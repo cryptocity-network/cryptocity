@@ -17,8 +17,11 @@
         <img v-if="item.image" :src="item.image.url" class=" rounded-8 border border-blue-dark/20">
         <StructuredText class="flex-1" :data="item.description" />
         <TheLink
-          :text="item.linkText"
-          :link="item.link"
+          v-if="item.hasLink"
+          :text="item.simpleLink.label"
+          :link="item.simpleLink.internalLink"
+          :url="item.simpleLink.url"
+          :is-external="item.simpleLink.isExternalLink"
           variant="info"
         />
       </li>

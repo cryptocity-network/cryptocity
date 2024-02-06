@@ -36,7 +36,7 @@
             :to="region.url"
             class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
-            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :custom-url="region.url" />
+            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :brand-name="region.brandName" />
           </nuxt-link>
         </div>
         <div class="flex flex-col gap-8 text-blue-dark/60 ">
@@ -130,6 +130,7 @@ const { data } = await useGraphqlQuery(footerQuery)
 const { data: allRegionResponse } = await useGraphqlQuery(`query {
   allRegions {
     id
+    brandName
     url
   }
 }`)

@@ -18,8 +18,9 @@
         <path d="M66.7165 30.2569C62.1612 33.0078 56.3721 31.9643 53.1455 27.8854L53.0506 27.7905L52.9556 27.6008L52.8607 27.506L52.2913 26.5574L51.1525 24.6602L44.2246 13.372C44.2246 13.372 44.2246 13.372 44.3195 13.372C48.8748 10.6211 54.6639 11.6645 57.8906 15.7434L57.9855 15.8383L58.5549 16.7869L59.8835 18.8738L66.7165 30.2569C66.8114 30.2569 66.8114 30.2569 66.7165 30.2569Z" :fill="logoColor ? logoColor : '#D94432'" />
         <transition mode="out-in" name="slide-fade">
           <text
-            v-if="urlName !== undefined"
+            v-if="brandName !== undefined"
             ref="regionText"
+            class="uppercase"
             :fill="textColor"
             xml:space="preserve"
             style="white-space: pre"
@@ -29,7 +30,7 @@
             letter-spacing="0.9px"
           >
 
-            <tspan x="74.1992" y="40.4475">{{ urlName }}</tspan>
+            <tspan x="74.1992" y="40.4475">{{ getBrandName }}</tspan>
           </text>
         </transition>
       </svg>
@@ -47,12 +48,13 @@
           ref="regionText"
           :fill="textColor"
           xml:space="preserve"
+          class="uppercase"
           style="white-space: pre"
           font-family="Mulish"
           font-size="29"
           font-weight="bold"
           letter-spacing="0.9px"
-        ><tspan x="74.5" y="29.9475">{{ urlName }}</tspan></text>
+        ><tspan x="74.5" y="29.9475">{{ getBrandName }}</tspan></text>
         <path d="M42.5383 14.1628C42.5383 14.1628 42.4418 14.1586 42.3454 14.1543C42.3454 14.1543 42.3454 14.1543 42.249 14.15L41.092 14.0988L38.5809 14.0842L25.0612 13.9684L25.0655 13.872C25.2047 8.56725 29.2628 4.20853 34.5078 3.57171C34.5078 3.57171 34.6042 3.57598 34.7007 3.58025C34.7971 3.58452 34.8935 3.58879 34.8935 3.58879L34.9899 3.59305L36.1469 3.64428L38.373 3.54973L51.8927 3.66554L51.8885 3.76191C51.8413 9.16729 47.6826 13.6181 42.5383 14.1628Z" :fill="logoColor ? logoColor : '#FC8702'" />
         <path d="M22.7912 16.1952C22.7912 16.1952 22.7912 16.2917 22.6947 16.2917V16.5811L22.1156 17.3528L20.861 19.5716L14.0087 31.2441C14.0087 31.2441 14.0087 31.2441 13.9122 31.2441C9.27966 28.543 7.44595 22.755 9.56919 17.9316C9.56919 17.9316 9.56919 17.8352 9.6657 17.8352C9.6657 17.7387 9.76221 17.6422 9.76221 17.6422L9.85873 17.5458L10.4378 16.5811L11.5959 14.6518L18.3517 2.88281C18.3517 2.88281 18.3517 2.88281 18.4482 2.88281C23.0807 5.68035 24.9145 11.3719 22.7912 16.1952Z" :fill="logoColor ? logoColor : '#E9B213'" />
         <path d="M22.8906 49.2864C18.1615 51.9875 12.3709 50.637 9.186 46.4889L9.08949 46.3924L8.99298 46.1995L8.89647 46.103L8.3174 45.1384L7.15927 43.209L0.5 31.4401C0.5 31.4401 0.5 31.4401 0.596511 31.4401C5.32556 28.739 11.1162 30.0895 14.3011 34.2376L14.3976 34.3341L14.9767 35.2987L16.2313 37.5175L22.8906 49.2864Z" :fill="logoColor ? logoColor : '#21BCA5'" />
@@ -65,6 +67,8 @@
 </template>
 
 <script lang="ts" setup>
+
+import { useWebsiteStore } from '~/store/store'
 const props = defineProps({
   textColor: {
     type: String,
@@ -82,30 +86,22 @@ const props = defineProps({
     type: String,
     default: null
   },
-  customUrl: {
+  brandName: {
     type: String,
     default: null
   }
 })
 
 const regionText = ref()
-
+const store = useWebsiteStore()
 const regionTextWidth = computed(() => {
   return regionText.value?.getBBox().width || 400
 })
 
-const urlName = computed(() => {
-  let baseUrl
-  if (props.customUrl) {
-    baseUrl = new URL(props.customUrl).host.split(':')[0].toUpperCase()
-  } else {
-    baseUrl = window?.location.host.split(':')[0].toUpperCase()
-  }
-  if (baseUrl && baseUrl.includes('.')) {
-    return baseUrl.split('.')[0].toUpperCase()
-  }
-  return baseUrl
+const getBrandName = computed(() => {
+  return props.brandName || store.region?.brandName
 })
+
 const getCityName = computed(() => {
   return props.cityName?.toUpperCase() || useRoute().path.split('/').pop()?.replace(/%20/g, ' ').toUpperCase()
 })

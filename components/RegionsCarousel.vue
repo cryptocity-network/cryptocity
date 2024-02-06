@@ -58,6 +58,7 @@ const { data, error } = await useGraphqlQuery(`query  {
   allRegions(filter: {_status: {eq: published}}, orderBy: _createdAt_ASC) {
     url
     name
+    brandName
     id
     mainImage {
       url
