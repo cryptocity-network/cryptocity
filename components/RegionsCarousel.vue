@@ -1,27 +1,19 @@
 <template>
   <div
     v-if="!error && data"
-    class="relative h-screen  !px-0 pt-72"
+    class="relative h-screen !px-0 pt-72"
     :class="{'mx-auto': gridSmallerThanWindow}"
   >
-    <div v-if="data.allRegions.length > 2" class="relative size-full">
+    <div v-if="data.allRegions.length > 2" class="relative h-full">
       <div
         ref="scroller"
-        class="no-scrollbar relative grid h-full grid-rows-1 gap-16 overflow-x-auto bg-white p-16 xl:gap-24 xl:p-24"
-        :style="`grid-template-columns: repeat(${data.allRegions.length}, min-content)`"
+        class="no-scrollbar scroller relative grid h-full grid-flow-col grid-rows-1 gap-16 overflow-x-auto bg-white p-16 xl:gap-24 xl:p-24"
       >
-        <nuxt-link
+        <RegionCard
           v-for="region in data.allRegions"
           :key="region.id"
-          :to="region.url"
-          class="group relative aspect-[4/12] h-full min-w-[328px] overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
-        >
-          <RegionCard
-            v-if="region.mainImage"
-            :key="region.id"
-            :region="region"
-          />
-        </nuxt-link>
+          :region="region"
+        />
       </div>
       <button
         v-if="!gridSmallerThanWindow"
@@ -35,7 +27,6 @@
           />
         </svg>
       </button>
-
       <button
         v-if="!gridSmallerThanWindow"
         class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 hidden size-48 -translate-y-1/2 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
@@ -55,6 +46,7 @@
           v-for="region in data.allRegions"
           :key="region.id"
           :region="region"
+          class="w-full"
         />
       </div>
     </div>
@@ -95,3 +87,15 @@ onMounted(() => {
 })
 
 </script>
+
+<style scoped>
+.scroller {
+  grid-auto-columns: calc((100vh - 72px - 32px)/1.333);
+}
+
+@media (min-width: 1152px) {
+  .scroller {
+  grid-auto-columns: calc((100vh - 72px - 44px)/1.333);
+}
+}
+</style>
