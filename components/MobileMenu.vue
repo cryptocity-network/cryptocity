@@ -21,7 +21,7 @@
           <TheLink
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
-            :link="'/' + item.slug"
+            :url="'/' + item.slug"
             compact
             hide-arrow
           />
@@ -29,7 +29,7 @@
         <li>
           <TheLink
             text="Contact"
-            link="/contact"
+            url="/contact"
             compact
             hide-arrow
           />

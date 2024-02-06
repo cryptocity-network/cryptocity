@@ -16,7 +16,8 @@
             Click here to see the map
           </p>
           <TheLink
-            :link="data.iframe"
+            :url="data.iframe"
+            :is-external="true"
             variant="info"
             text="View Map"
           />

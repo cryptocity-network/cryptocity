@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import { usePageQueryGetter } from '#imports'
-import { useWebsiteStore } from '~/store/store'
+import { useWebsiteStore } from '@/store/store'
 import type { Component } from '@/types/index'
 
 const store = useWebsiteStore()

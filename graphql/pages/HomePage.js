@@ -1,6 +1,6 @@
-import CitiesGrid from './blocks/CitiesGrid'
-import HeroSection from './blocks/HeroSection'
-import Headline from './blocks/Headline'
+import CitiesGrid from '../blocks/CitiesGrid'
+import HeroSection from '../blocks/HeroSection'
+import Headline from '../blocks/Headline'
 
 export default (regionId, locale) => {
   return `query {

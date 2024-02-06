@@ -34,7 +34,8 @@
         v-if="link"
         :class="{'absolute bottom-28 right-16 group-hover:opacity-100 group-focus:opacity-100 md:-mb-4 md:translate-y-12 md:opacity-0 md:transition-transform-opacity group-hover:md:translate-y-0 group-focus:md:translate-y-0 lg:bottom-28 lg:right-32 lg:translate-y-16': location}"
         variant="info"
-        :link="link"
+        :url="link"
+        :is-external="true"
         :text="linkLabel"
       />
     </div>

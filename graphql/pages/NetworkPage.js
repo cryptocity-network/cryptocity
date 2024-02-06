@@ -1,5 +1,5 @@
-import HeroSection from './blocks/HeroSection'
-import PartnerGrid from './blocks/PartnerGrid'
+import HeroSection from '../blocks/HeroSection'
+import PartnerGrid from '../blocks/PartnerGrid'
 
 export default (regionId, locale) => {
   return `query {

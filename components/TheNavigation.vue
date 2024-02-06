@@ -38,7 +38,7 @@
           <TheLink
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
-            :link="'/' + item.slug"
+            :url="'/' + item.slug"
             compact
             hide-arrow
           />
@@ -46,7 +46,7 @@
         <li>
           <TheLink
             text="Contact"
-            link="/contact"
+            url="/contact"
             compact
             variant="info"
             hide-arrow
@@ -102,7 +102,8 @@
       <span v-if="tagLine" class="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-blue-dark/60 md:block">{{ tagLine }}</span>
       <TheLink
         text="Contact"
-        link="/contact"
+        url="/contact"
+        :is-external="true"
         compact
         variant="info"
         hide-arrow

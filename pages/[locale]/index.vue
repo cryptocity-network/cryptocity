@@ -41,6 +41,7 @@ const currentPageType = computed(() => {
   }
 })
 const query = usePageQueryGetter(currentPageType.value, regionId, locale)
+console.log(query)
 const { data } = await useGraphqlQuery(query)
 
 const backgroundColorArray = computed(() => {
