@@ -24,6 +24,9 @@ export default () => {
             ... on AboutPageRecord {
                 slug
             }
+            ... on ContactPageRecord {
+                slug
+            }
         }
     }
 `

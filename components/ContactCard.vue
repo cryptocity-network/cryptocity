@@ -1,5 +1,19 @@
 <template>
   <div class="flex flex-col gap-32 px-32 py-40 lg:px-56 lg:pb-32 lg:pt-48 ">
+    <div class="flex flex-col">
+      <h3
+        v-if="header"
+        class="text-blue-dark"
+      >
+        {{ header }}
+      </h3>
+      <p
+        v-if="subline"
+        class="text-blue-dark/50"
+      >
+        {{ subline }}
+      </p>
+    </div>
     <div class="flex h-[21px] items-center gap-x-16 pl-4">
       <SocialLink
         v-if="email"
@@ -47,6 +61,16 @@
 
 <script lang="ts" setup>
 defineProps({
+  header: {
+    required: false,
+    default: null,
+    type: String
+  },
+  subline: {
+    required: false,
+    default: null,
+    type: String
+  },
   email: {
     required: false,
     default: '',
