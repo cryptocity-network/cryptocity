@@ -47,6 +47,13 @@ interface Region {
   _locale?: string;
   partners?: Array<Partner>;
   socialLinks?: SocialLinks;
+  _allReferencingContactPages: [
+    {
+      header: string;
+      subline: string;
+      formUrl: string;
+    }
+  ]
 }
 interface Localization {
   siteLocales: Array<string> | undefined,
@@ -112,6 +119,12 @@ export const useWebsiteStore = defineStore('websiteStore', {
               }
               _allReferencingAboutPages (filter: {_status: {eq: published}}) {
                 ${pageFields()}
+              }
+              _allReferencingContactPages (filter: {_status: {eq: published}}) {
+                ${pageFields()}
+                header
+                subline
+                formUrl
               }
               partners {
                 companyName

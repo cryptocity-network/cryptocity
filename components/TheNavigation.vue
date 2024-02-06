@@ -40,15 +40,7 @@
             :text="item.navigationLabel"
             :url="'/' + item.slug"
             compact
-            hide-arrow
-          />
-        </li>
-        <li>
-          <TheLink
-            text="Contact"
-            url="/contact"
-            compact
-            variant="info"
+            :variant="item._modelApiKey == 'contact_page' ? 'info' : 'default'"
             hide-arrow
           />
         </li>

@@ -1,17 +1,20 @@
 <template>
-  <main class="min-h-screen">
-    <template v-if="data">
-      <component
-        :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-        v-for="(component, index) in components"
-        :key="component.id"
-        :component-name="component._modelApiKey"
-        :data="component"
-        :index="index"
-        :background-color="backgroundColorArray?.[index]"
-      />
-      <ContactForm v-if="components" show-header />
-    </template>
+  <main v-if="data && currentPageType !== 'contact'" class="min-h-screen">
+    <component
+      :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
+      v-for="(component, index) in components"
+      :key="component.id"
+      :component-name="component._modelApiKey"
+      :data="component"
+      :index="index"
+      :background-color="backgroundColorArray?.[index]"
+    />
+    <ContactForm v-if="data[`${currentPageType}Page`] && currentPageType !== 'home'" show-header />
+  </main>
+  <main v-else-if="data && currentPageType === 'contact'">
+    <section class="min-h-screen bg-gray !py-0">
+      <ContactForm :data="data.contactPage" class="!pt-144" />
+    </section>
   </main>
 </template>
 
