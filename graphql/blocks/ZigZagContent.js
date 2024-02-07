@@ -1,3 +1,4 @@
+import SimpleLink from '../SimpleLink'
 import baseBlockValues from './blockValues'
 
 export default () => {
@@ -25,11 +26,13 @@ export default () => {
         blocks
       }
       hasButton
-      buttonLink
-      buttonLabel
       hasSecondaryButton
-      secondaryButtonLink
-      secondaryButtonLabel
+      simpleLink {
+        ${SimpleLink()}
+      }
+      simpleLinkSecondary {
+        ${SimpleLink()}
+      }
     }
   `
 }

@@ -5,7 +5,7 @@
     :title="socialMediaData.name"
     target="_blank"
     rel="noreferrer"
-    class="social-link flex size-24 items-center"
+    class="social-link flex size-24 items-center opacity-20"
     @focus="onFocus"
     @click="onClick"
   >

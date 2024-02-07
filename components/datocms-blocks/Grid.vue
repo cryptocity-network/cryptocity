@@ -20,7 +20,7 @@
         <h3 class="flex items-center">
           {{ item.headline }}
         </h3>
-        <p class="secondary col-span-2">
+        <p class="secondary col-span-2 text-blue/60">
           {{ item.subline }}
         </p>
       </li>

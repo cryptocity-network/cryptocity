@@ -11,6 +11,8 @@ export default () => {
     url
     }
     hasLink
-    ${SimpleLink()}
+    simpleLink {
+      ${SimpleLink()}
+    }
 `
 }

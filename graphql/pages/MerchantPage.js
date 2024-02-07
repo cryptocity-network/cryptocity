@@ -36,6 +36,9 @@ export default (regionId, locale) => {
       events {
         ${EventsCarousel()}
       }
+      contactHeadline {
+        ${Headline()}
+      }
     }
   }`
 }
