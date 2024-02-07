@@ -8,7 +8,7 @@
       <div class="absolute left-0 top-0 size-full bg-blue/20 transition-opacity group-hover:opacity-50" />
       <div
         v-if="label"
-        class="absolute right-18 top-8 mt-12 w-max rounded-4 bg-white px-12 py-4 text-14 font-bold uppercase ring-1 "
+        class="absolute right-14 top-2 mt-12 w-max rounded-4 bg-white px-12 py-4 text-14 font-bold uppercase ring-1 "
 
         :class="{
           '!text-[#21BCA5] !ring-[#21BCA5]': label === 'Live',
