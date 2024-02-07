@@ -8,6 +8,8 @@ export default () => {
     headline
     subline
     hasLink
-    ${SimpleLink()}
+    simpleLink {
+      ${SimpleLink()}
+    }
 `
 }

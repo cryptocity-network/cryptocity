@@ -121,16 +121,18 @@
           >
             <TheLink
               v-if="item.hasButton"
-              :url="item.buttonLink"
-              :is-external="true"
-              :text="item.buttonLabel"
+              :url="item.simpleLink.url"
+              :link="item.simpleLink.internalLink"
+              :is-external="item.simpleLink.isExternalLink"
+              :text="item.simpleLink.label"
               variant="info"
             />
             <TheLink
               v-if="item.hasSecondaryButton"
-              :url="item.secondaryButtonLink"
-              :is-external="true"
-              :text="item.secondaryButtonLabel"
+              :url="item.simpleLinkSecondary.url"
+              :link="item.simpleLinkSecondary.internalLink"
+              :is-external="item.simpleLinkSecondary.isExternalLink"
+              :text="item.simpleLinkSecondary.label"
               variant="info"
               secondary
             />

@@ -14,12 +14,12 @@
     >
       {{ label }}
     </div>
-    <h1
+    <h2
       v-if="headline"
-      class="xl:text-48"
+      class="text-32 xl:text-40"
     >
       {{ headline }}
-    </h1>
+    </h2>
     <div
       v-if="subline"
       class="mt-16 max-w-[918px] text-20 font-semibold text-blue/60 lg:mt-20 xl:text-24 "
