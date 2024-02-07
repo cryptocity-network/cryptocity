@@ -63,6 +63,10 @@ const { data, error } = await useGraphqlQuery(`query  {
     mainImage {
       url
     }
+    _allReferencingCities {
+      id
+      name
+    }
   }
 }`)
 const scroller = ref()

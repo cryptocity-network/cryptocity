@@ -9,13 +9,27 @@
     />
     <div class="absolute left-0 top-0 size-full bg-blue opacity-20 mix-blend-hard-light" />
     <div class="absolute left-0 top-0 size-full bg-gradient-to-t from-blue to-transparent opacity-60 transition-opacity group-hover:opacity-0" />
-
+    <DynamicLogo
+      logo-color="#1F2348"
+      text-color="#1F2348"
+      :brand-name="region.brandName"
+      class="absolute left-1/2 top-1/2 h-56 -translate-x-1/2 -translate-y-1/2 blur-lg xl:h-72"
+    />
     <DynamicLogo
       :brand-name="region.brandName"
       text-color="white"
       logo-color="white"
       class="absolute left-1/2 top-1/2 h-56 -translate-x-1/2 -translate-y-1/2 xl:h-72"
     />
+    <!-- CODE FOR CITY NAMES ON REGION CARD -->
+    <!-- <div
+      v-if="region._allReferencingCities.length > 0"
+      class="absolute bottom-32 left-1/2 flex -translate-x-1/2 items-center text-20 text-white"
+    >
+      <span v-for="city in region._allReferencingCities" :key="city.id">
+        {{ city.name }}
+      </span>
+    </div> -->
   </nuxt-link>
 </template>
 
@@ -31,7 +45,7 @@ defineProps({
 <style scoped>
 .custom-ease, .custom-ease * {
   @apply transform-gpu;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.25, 0, 0, 1);
   transition-duration: 600ms;
 }
 </style>

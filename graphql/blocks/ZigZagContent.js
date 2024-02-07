@@ -5,13 +5,20 @@ export default () => {
   return `
     ${baseBlockValues()}
     blocks {
-      youtubeLink
-      badge
       logo {
         alt
         url
       }
       label
+      headline
+      badge
+      description {
+        value
+        links
+        blocks
+      }
+      mediaType
+      youtubeLink
       image {
         url
         alt
@@ -19,17 +26,12 @@ export default () => {
           mp4Url
         }
       }
-      headline
-      description {
-        value
-        links
-        blocks
-      }
+      iframe
       hasButton
-      hasSecondaryButton
       simpleLink {
         ${SimpleLink()}
       }
+      hasSecondaryButton
       simpleLinkSecondary {
         ${SimpleLink()}
       }

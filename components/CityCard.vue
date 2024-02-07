@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     :to="cityLink"
-    class="custom-ease group relative aspect-square w-full transform-gpu overflow-hidden  rounded-8 transition-transform hover:-translate-y-12 sm:aspect-[6/9]  lg:aspect-square "
+    class="custom-ease group relative size-full transform-gpu overflow-hidden rounded-8  transition-transform hover:-translate-y-12 "
   >
     <FadeInImage
       :image-url="city.mainImage.url"
@@ -33,7 +33,7 @@ const cityLink = computed(() => {
 <style scoped>
 .custom-ease, .custom-ease * {
   @apply transform-gpu;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.25, 0, 0, 1);
   transition-duration: 600ms;
 }
 </style>

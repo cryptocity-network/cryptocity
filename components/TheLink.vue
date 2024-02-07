@@ -2,7 +2,7 @@
   <nuxt-link
     :to="getLink"
     :target="isExternal ? '_blank' : '_self'"
-    class="group flex w-fit max-w-full cursor-pointer items-center justify-center gap-8 rounded-full font-bold transition-all"
+    class="group flex w-fit max-w-full cursor-pointer items-center justify-center gap-6 rounded-full font-bold transition-all"
     :class="[
       {
         'secondary !px-0': secondary,
