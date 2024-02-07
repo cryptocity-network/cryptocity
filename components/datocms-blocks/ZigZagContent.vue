@@ -20,10 +20,10 @@
           'lg:flex-row': i % 2 !== 0,
         }"
       >
-        <div v-if="item.image.video !== null" class="max-xl:h-360 child:md:max-xl:w-[calc(100vw-64px*2)]  relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full xl:w-[calc(50vw-32px*2)] xl:items-center 2xl:w-[calc(1440px/2-32px*2)]">
+        <div v-if="item.image && item.image.video !== null" class="max-xl:h-360 child:md:max-xl:w-[calc(100vw-64px*2)]  relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full xl:w-[calc(50vw-32px*2)] xl:items-center 2xl:w-[calc(1440px/2-32px*2)]">
           <video
             controls
-            :src="item.image.video.mp4Url"
+            :src="item.image?.video.mp4Url"
             class="aspect-video h-full rounded-8 border border-blue-dark/20 object-cover shadow"
           />
         </div>
@@ -38,7 +38,7 @@
           />
         </div>
         <div
-          v-else-if="item.youtubeLink || item.image.video === null"
+          v-else-if="item.youtubeLink || item.image?.video === null"
           class="relative flex h-[432px] justify-center lg:max-w-[50%]  xl:h-[519px] xl:items-center"
         >
           <img
@@ -47,6 +47,7 @@
             :src="item.image.url"
           >
         </div>
+        <div v-else class="w-full max-w-[50%]" />
         <div
           v-if="item.badge"
           class="mx-16 mt-16 flex h-32 w-max items-center gap-8 self-start overflow-hidden rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] sm:self-center lg:hidden lg:h-0"
@@ -69,7 +70,7 @@
         </div>
 
         <div
-          class="content mt-64 flex flex-col justify-center !px-16 lg:mt-0 lg:flex-1 lg:!px-0"
+          class="content mt-64 flex flex-col justify-center !px-16 lg:mt-0 lg:max-w-[50%] lg:flex-1 lg:!px-0"
         >
           <div
             class="mb-24 flex w-max sm:mx-auto sm:items-center lg:mx-unset lg:w-full"
@@ -114,7 +115,7 @@
           <div class="mt-8 text-12 font-bold tracking-wide text-blue-dark/60 sm:text-center lg:text-left">
             {{ item.label }}
           </div>
-          <StructuredText class="prose mt-32 max-w-screen-2xl text-blue/60 sm:mx-auto sm:text-center lg:mx-unset lg:text-left" :data="item.description" />
+          <StructuredText class="prose no-margin mt-32 max-w-screen-2xl text-blue/60 sm:mx-auto sm:text-center lg:mx-unset lg:text-left" :data="item.description" />
           <div
             v-if="item.hasButton || item.hasSecondaryButton"
             class="mt-24 flex flex-col flex-wrap items-start justify-start gap-24 xs:flex-row xs:items-center sm:justify-center lg:justify-start"

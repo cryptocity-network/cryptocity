@@ -5,7 +5,7 @@
     :title="socialMediaData.name"
     target="_blank"
     rel="noreferrer"
-    class="social-link flex size-24 items-center opacity-20"
+    class="social-link block"
     @focus="onFocus"
     @click="onClick"
   >
@@ -192,12 +192,14 @@ if (props.socialMediaKey) {
   }
 }
 
+.email,
 .reddit {
   @apply h-20;
 }
 
 .youtube,
 .facebook,
+.linkedin,
 .instagram,
 .telegram {
   @apply h-22;
