@@ -9,7 +9,7 @@
       <ul
         ref="scroller"
         role="list"
-        class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-370px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-16 "
+        class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-32 pb-40 pt-12 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-16 "
         :class="{'justify-center': visibleCards > response.allEvents.length }"
         @scroll.passive="calculateStep"
       >
