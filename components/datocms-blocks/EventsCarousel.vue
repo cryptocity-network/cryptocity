@@ -20,13 +20,12 @@
           class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
           data-event
         >
-          <EventCard
+          <TheCard
             :title="event.title"
             :description="event.description"
             :image="event.image"
-            :location="event.locationCity.name"
-            :start="event.start"
-            :end="event.end"
+            :footer="event.locationCity.name"
+            :label="getDate(event.start, event.end)"
             :link-label="event.linkLabel"
             :link="event.link"
           />
@@ -59,7 +58,6 @@
         </svg>
       </button>
     </div>
-
     <div v-if="visibleCards < response.allEvents.length" class="flex flex-col">
       <div class="relative mx-auto mt-48 flex">
         <button
@@ -86,7 +84,6 @@
 <script lang="ts" setup>
 import eventsByCityQuery from '../../graphql/EventsByCity'
 import eventsByRegionQuery from '../../graphql/EventsByRegion'
-// import { useBreakpoints } from '~/composables/useBreakpoints'
 import { useWebsiteStore } from '~/store/store'
 
 const props = defineProps({
@@ -119,6 +116,21 @@ if (useRoute().path.includes('cities')) {
 // let response: Array<AllEvents> | null= null
 const { data: response } = await useGraphqlQuery(populatedEventsQuery)
 
+function getDate (start: string, end: string) {
+  let [calendar] = start.split('T')
+  const [year, month, day] = calendar.split('-')
+  let monthName = new Date(~~year, ~~month - 1, ~~day).toLocaleString('default', { month: 'short' })
+  const processedStart = `${day} ${monthName.toLocaleUpperCase()}`
+  if (end) {
+    [calendar] = end.split('T')
+    const [year, month, day] = calendar.split('-')
+    monthName = new Date(~~year, ~~month - 1, ~~day).toLocaleString('default', { month: 'short' })
+    const processedEnd = `${day} ${monthName.toLocaleUpperCase()}`
+    return processedStart + ' - ' + processedEnd
+  }
+  return processedStart
+}
+
 // BELOW IS OLD
 const amountOfItems = computed(() => {
   return response.value.allEvents.length + 0
@@ -134,7 +146,7 @@ const scrollerGap = computed(() => parseFloat(scrollerStyles.value?.gap || '0'))
 const visibleCards = ref(1)
 
 function onWindowResize () {
-  visibleCards.value = window.innerWidth < 768 ? 1 : window.innerWidth < 1152 ? 2 : 3
+  visibleCards.value = window.innerWidth < 640 ? 1 : window.innerWidth < 1152 ? 2 : 3
 
   if (scroller.value) {
     scrollerStyles.value = window.getComputedStyle(scroller.value)

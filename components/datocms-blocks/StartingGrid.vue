@@ -6,35 +6,28 @@
     :overlaps-next-section="false"
   >
     <div
-      class="
-        grid
-        grid-cols-1
-        grid-rows-[224px_224px_224px] gap-8
-        md:gap-24
-        lg:grid-cols-3 lg:grid-rows-1 lg:gap-32
-      "
+      class="grid grid-cols-1 grid-rows-[224px_224px_224px] gap-8 md:gap-24 lg:grid-cols-3 lg:grid-rows-1 lg:gap-32"
     >
       <nuxt-link
         v-for="(item, i) in data.items"
         :key="item.id"
         :to="links[i]"
-        class="group relative size-full overflow-hidden rounded-8 transition-transform  hover:md:-translate-y-12 lg:aspect-[6/8] lg:odd:mt-20 lg:even:-mt-28"
+        class="custom-ease group relative block aspect-[3/4] h-full min-h-full transform-gpu overflow-hidden rounded-8 transition-transform hover:-translate-y-16 lg:odd:mt-20 lg:even:-mt-28 xl:aspect-[3/4]"
       >
-        <ClientOnly>
-          <FadeInImage
-            :image-url="item.image.url"
-            class="size-full object-cover"
-          />
-          <div class="absolute left-0 top-0 size-full bg-gradient-to-t from-blue-darker to-transparent transition-opacity group-hover:opacity-0" />
-          <div class="absolute left-0 top-0 size-full bg-blue-darker/5 opacity-0 transition-opacity group-hover:opacity-100" />
-          <div class="absolute bottom-20 left-16 text-14 text-white">
-            <div class="flex items-center  gap-4 font-bold">
-              <span>{{ item.label }}</span>
-              <Arrow class="size-10" />
-            </div>
-            <p>{{ item.description }}</p>
+        <!-- group relative size-full overflow-hidden rounded-8 transition-transform  hover:md:-translate-y-12 lg:aspect-[6/8] lg:odd:mt-20 lg:even:-mt-28 -->
+        <FadeInImage
+          :image-url="item.image.url"
+          class="size-full object-cover opacity-75"
+        />
+        <div class="absolute left-0 top-0 size-full bg-blue opacity-20 mix-blend-hard-light" />
+        <div class="absolute left-0 top-0 size-full bg-gradient-to-t from-blue to-transparent opacity-60 transition-opacity group-hover:opacity-0" />
+        <div class="absolute bottom-20 left-16 text-14 text-white">
+          <div class="flex items-center  gap-4 font-bold">
+            <span>{{ item.label }}</span>
+            <Arrow class="size-10" />
           </div>
-        </ClientOnly>
+          <p>{{ item.description }}</p>
+        </div>
       </nuxt-link>
     </div>
   </BlockWrapper>
@@ -83,8 +76,14 @@ const links = computed(() => {
 
 </script>
 
-  <style scoped>
+<style scoped>
   * ::v-deep .small.prose p {
     color: rgba(255, 255, 255, 0.8) !important;
   }
+
+.custom-ease, .custom-ease * {
+  @apply transform-gpu;
+  transition-timing-function: cubic-bezier(0.25, 0, 0, 1);
+  transition-duration: 600ms;
+}
   </style>

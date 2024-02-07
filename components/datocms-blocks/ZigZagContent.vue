@@ -20,7 +20,7 @@
           'lg:flex-row': i % 2 !== 0,
         }"
       >
-        <div v-if="item.image && item.image.video !== null" class="max-xl:h-360 child:md:max-xl:w-[calc(100vw-64px*2)]  relative flex justify-center child:mx-auto child:rounded-6 child:max-md:w-full xl:w-[calc(50vw-32px*2)] xl:items-center 2xl:w-[calc(1440px/2-32px*2)]">
+        <div v-if="item.mediaType === 'image' && item.image?.video !== null" class="child:md:max-xl:w-[calc(100vw-64px*2)] relative flex  h-[432px] justify-center child:mx-auto child:rounded-6 child:max-md:w-full xl:h-[519px] xl:w-[calc(50vw-32px*2)] xl:items-center 2xl:w-[calc(1440px/2-32px*2)]">
           <video
             controls
             :src="item.image?.video.mp4Url"
@@ -28,7 +28,7 @@
           />
         </div>
         <div
-          v-else-if="item.youtubeLink"
+          v-else-if="item.mediaType === 'youtube_link'"
           class="child:md:max-xl:w-[calc(100vw-64px*2)] relative flex items-center justify-center child:max-md:w-full lg:w-[calc(50vw-32px*2)] 2xl:w-[calc(1440px/2-32px*2)]"
         >
           <HorizontalVideo
@@ -38,15 +38,26 @@
           />
         </div>
         <div
-          v-else-if="item.youtubeLink || item.image?.video === null"
-          class="relative flex h-[432px] justify-center lg:max-w-[50%]  xl:h-[519px] xl:items-center"
+          v-else-if="item.mediaType === 'iframe'"
+          class="relative flex aspect-[3/2] size-full justify-center overflow-hidden rounded-8 border-1 border-blue/20 lg:aspect-[4/3] lg:max-w-[50%] xl:h-[519px] xl:items-center"
+        >
+          <iframe
+            v-if="item.iframe"
+            class="size-full"
+            :src="item.iframe"
+          />
+        </div>
+        <div
+          v-else-if="item.mediaType === 'image' || item.youtubeLink"
+          class="relative flex w-full justify-center lg:max-w-[50%] xl:h-[519px] xl:items-center"
         >
           <img
             v-if="item.image"
-            class=" aspect-[3/2] h-full rounded-8 border border-blue-dark/20 object-cover shadow lg:aspect-[4/3]"
+            class="aspect-[3/2] size-full rounded-8 border border-blue-dark/20 object-cover shadow lg:aspect-[4/3]"
             :src="item.image.url"
           >
         </div>
+        <!-- Placeholder to ensure text is in correct place -->
         <div v-else class="w-full max-w-[50%]" />
         <div
           v-if="item.badge"

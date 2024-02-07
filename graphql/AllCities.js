@@ -9,6 +9,7 @@ export default (locale) => {
       }
       region {
         url
+        brandName
       }
     }
   }`

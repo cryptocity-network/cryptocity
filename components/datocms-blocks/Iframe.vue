@@ -7,7 +7,7 @@
     :overlaps-next-section="false"
   >
     <div class="aspect-video w-full">
-      <div class="relative size-full">
+      <div class="iframe-container relative size-full">
         <div class="absolute left-0 top-0 flex size-full flex-col items-center justify-center rounded-6 border-2 border-blue-dark/60">
           <h3 class="mb-4">
             Looks like something went wrong
@@ -32,21 +32,21 @@
           }"
         />
         <button
-          class="grid-row-2 z-50 grid size-48 cursor-pointer grid-cols-2 rounded-full bg-white p-4 shadow"
+          class="iframe-button grid-row-2 z-50 grid size-32 cursor-pointer grid-cols-2 rounded-full bg-white p-4 shadow"
           :class="{
-            'absolute right-24 top-24': !fullscreen,
-            'fixed right-24 top-24 z-[999]': fullscreen
+            'absolute': !fullscreen,
+            'fixed bottom-120 right-24 z-[999] md:bottom-200': fullscreen
           }"
           @click="fullscreen = !fullscreen"
         >
           <ArrowExternal
-            class="col-start-2 m-2 w-12 self-end "
+            class="col-start-2 m-1 w-6 self-end "
             :class="{
               'rotate-180': fullscreen
             }"
           />
           <ArrowExternal
-            class=" m-2 w-12 self-start justify-self-end"
+            class=" m-1 w-6 self-start justify-self-end"
             :class="{
               'rotate-180': !fullscreen
             }"
@@ -78,3 +78,18 @@ defineProps({
 
 const fullscreen = ref(false)
 </script>
+
+<style scoped>
+
+.iframe-container {
+  container-type: inline-size;
+}
+.iframe-button {
+  @apply right-24 bottom-200
+}
+@container (width < 768px) {
+  .iframe-button {
+    @apply !bottom-120
+  }
+}
+</style>

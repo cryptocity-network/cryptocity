@@ -54,8 +54,7 @@ export default {
         DEFAULT: '#795548' /* rgb(121, 85, 72) */
       },
       gray: {
-        DEFAULT: '#F4F4F4',
-        light: '#FAFAFA'
+        DEFAULT: '#F4F4F4'
       },
       highlight: 'rgba(31, 35, 72, 0.06)',
       card: 'white',
