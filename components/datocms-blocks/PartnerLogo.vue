@@ -7,7 +7,8 @@
   >
     <div v-if="partners" class="relative flex flex-wrap items-center gap-x-40 gap-y-24 px-40 sm:justify-center">
       <div v-for="(partner, i) in partners" :key="i" class="inline-flex h-28 overflow-hidden md:h-32">
-        <div class="relative -top-full flex h-28 opacity-40 drop-shadow-[0_32px_0px_rgb(31,35,72)] md:h-32">
+        <!-- -top-full opacity-40 drop-shadow-[0_32px_0px_rgb(31,35,72)] -->
+        <div class="relative  flex h-28  md:h-32">
           <img :src="partner.logo.url" :alt="partner.logo.alt">
         </div>
       </div>
