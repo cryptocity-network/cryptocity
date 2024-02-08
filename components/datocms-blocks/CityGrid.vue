@@ -18,6 +18,7 @@
         <StructuredText class="flex-1" :data="item.description" />
         <TheLink
           v-if="item.hasLink"
+          class="mt-12"
           :text="item.simpleLink.label"
           :link="item.simpleLink.internalLink"
           :url="item.simpleLink.url"
