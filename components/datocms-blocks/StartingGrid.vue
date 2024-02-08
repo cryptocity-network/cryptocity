@@ -12,7 +12,7 @@
         v-for="(item, i) in data.items"
         :key="item.id"
         :to="links[i]"
-        class="custom-ease group relative block aspect-[3/4] h-full min-h-full transform-gpu overflow-hidden rounded-8 transition-transform hover:-translate-y-16 lg:odd:mt-20 lg:even:-mt-28 xl:aspect-[3/4]"
+        class="custom-ease group relative block size-full min-h-full transform-gpu overflow-hidden rounded-8 transition-transform hover:-translate-y-16 sm:aspect-[3/4] lg:odd:mt-20 lg:even:-mt-28"
       >
         <!-- group relative size-full overflow-hidden rounded-8 transition-transform  hover:md:-translate-y-12 lg:aspect-[6/8] lg:odd:mt-20 lg:even:-mt-28 -->
         <FadeInImage

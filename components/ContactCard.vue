@@ -1,7 +1,7 @@
 <template>
-  <div class="grid grid-cols-[repeat(2,minmax(0,max-content))] grid-rows-[repeat(2,min-content)] gap-x-32 gap-y-16 px-32 py-40 lg:px-56 lg:pb-32 lg:pt-48 ">
+  <div class="grid grid-cols-[repeat(2,minmax(0,max-content))] grid-rows-[repeat(2,min-content)] gap-x-24 gap-y-16 px-32 py-40 lg:px-56 lg:pb-32 lg:pt-48 ">
     <svg
-      class="row-span-2"
+      class="row-span-2 w-80 pt-4"
       xmlns="http://www.w3.org/2000/svg"
       width="80"
       height="70"
@@ -16,20 +16,20 @@
       <path fill="#1681C4" d="M32.615 57.305h19.197c0 6.605-5.193 12.693-12.578 12.693h-19.16c-.073-6.716 5.302-12.693 12.541-12.693Z" />
     </svg>
     <div class="flex flex-col">
-      <h3
+      <h4
         v-if="header"
-        class="text-blue-dark"
+        class="mb-4 text-blue-dark"
       >
         {{ header }}
-      </h3>
+      </h4>
       <p
         v-if="subline"
-        class="text-blue-dark/50"
+        class="text-16 text-blue-dark/50"
       >
         {{ subline }}
       </p>
     </div>
-    <div class="flex h-[21px] items-center gap-x-16 pl-4">
+    <div class="pl- flex h-[21px] items-center gap-x-16">
       <SocialLink
         v-if="email"
         :social-media="{

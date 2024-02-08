@@ -101,6 +101,7 @@
         </p>
       </div>
     </div>
+    <CookiesBanner v-if="store.getCurrentLocale" />
   </footer>
 </template>
 
@@ -118,6 +119,18 @@ defineProps({
     type: String,
     default: 'gray'
   }
+})
+
+onMounted(() => {
+  const iubendaScript = document.getElementById('iubenda-widgets')
+  if (iubendaScript) {
+    document.body.removeChild(iubendaScript)
+  }
+
+  const s = document.createElement('script')
+  s.src = 'https://cdn.iubenda.com/iubenda.js'
+  s.id = 'iubenda-widgets'
+  document.body.appendChild(s)
 })
 
 const store = useWebsiteStore()
