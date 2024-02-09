@@ -70,11 +70,6 @@ defineProps({
     required: false,
     default: 'center'
   },
-  linkRel: {
-    type: String,
-    required: false,
-    default: 'center'
-  },
   hasLink: {
     type: Boolean,
     required: false,

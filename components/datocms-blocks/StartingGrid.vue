@@ -5,6 +5,14 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
+    <HeadlineSection
+      class="mb-96"
+      :label="data.headline.label"
+      :headline="data.headline.headline"
+      :subline="data.headline.subline"
+      :link="data.headline.simpleLink"
+      :has-link="data.headline.hasLink"
+    />
     <div
       class="grid grid-cols-1 grid-rows-[224px_224px_224px] gap-8 md:gap-24 lg:grid-cols-3 lg:grid-rows-1 lg:gap-32"
     >
