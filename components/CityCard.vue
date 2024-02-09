@@ -1,7 +1,11 @@
 <template>
   <nuxt-link
     :to="cityLink"
-    class="custom-ease group relative size-full transform-gpu overflow-hidden rounded-8  transition-transform hover:-translate-y-6 "
+    class="custom-ease group relative size-full overflow-hidden rounded-8   "
+    :class="{
+      'transform-gpu transition-transform hover:-translate-y-6': city.state === 'Live',
+      'pointer-events-none': city.state !== 'Live'
+    }"
   >
     <FadeInImage
       :image-url="city.mainImage.url"
