@@ -1,14 +1,15 @@
-import SimpleLink from '../SimpleLink'
-import baseBlockValues from './blockValues'
 import Headline from './Headline'
+import baseBlockValues from './blockValues'
+
 export default () => {
   return `
     ${baseBlockValues()}
     headline {
       ${Headline()}
     }
-    simpleLink {
-      ${SimpleLink()}
-    }
-  `
+    joinCardTitle
+    joinCardDescription
+    joinLinkLabel
+    joinLink
+`
 }
