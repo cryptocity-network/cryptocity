@@ -4,6 +4,7 @@
     :padding-top="96"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
+    class="!pt-96"
   >
     <ul
       v-if="partners"
@@ -11,7 +12,7 @@
       :class="[
         {
           'justify-center': partners.length === 1,
-          'divide-x-2 divide-blue-dark/10': partners.length <= 2,
+          'divide-x-1 divide-blue-dark/10': partners.length <= 2,
         },
       ]"
     >
@@ -36,9 +37,9 @@
         :whatsapp="item.socials.whatsapp"
         :center="partners.length === 1"
         :class="{
-          'lg:border-r-2 lg:border-blue-dark/10': partners.length > 1 && i % 2 === 0,
-          'lg:!border-b-2 lg:border-blue-dark/10': i < partners.length - 2,
-          'border-t-2 border-blue-dark/10 lg:border-t-0': i > 0,
+          'lg:border-r-1 lg:border-blue-dark/10': partners.length > 1 && i % 2 === 0,
+          'lg:!border-b-1 lg:border-blue-dark/10': i < partners.length - 2,
+          'border-t-1 border-blue-dark/10 lg:border-t-0': i > 0,
         }"
       />
     </ul>
