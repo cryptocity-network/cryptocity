@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    class="custom-ease group relative block aspect-[3/4] h-full min-h-full overflow-hidden rounded-8 transition-transform hover:-translate-y-16 xl:aspect-[3/4]"
+    class="custom-ease group relative block aspect-[3/4] h-full min-h-full overflow-hidden rounded-8 transition-transform hover:-translate-y-6 xl:aspect-[3/4]"
     :to="region.url"
   >
     <FadeInImage
