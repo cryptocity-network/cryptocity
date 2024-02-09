@@ -23,7 +23,7 @@
             v-if="isVideo(i)"
             :video="item.media.url"
             :poster="item.poster"
-            class="nimiq-video mx-auto flex aspect-[var(--aspect)] max-h-[60vh] !w-auto items-center child:w-full"
+            class="nimiq-video mx-auto flex aspect-[var(--aspect)] h-[60vh] !w-auto items-center child:w-full"
             :style="`--aspect: ${item.ratio || '9 / 19.5'};`"
             :class="{ 'pointer-events-none': step !== i }"
           />
@@ -131,11 +131,11 @@ function isVideo (i: number) {
 
 <style scoped>
 .slides {
-  @apply flex gap-16 md:gap-32 xl:gap-48;
+  @apply flex gap-16 xl:gap-48;
   @apply snap-x snap-mandatory overflow-x-auto no-scrollbar !px-[max(16px,calc((100vw-300px)/2))] md:!px-[calc((100vw-300px-16px)/2)] lg:!px-[calc((100vw-300px-32px)/2)] xl:!px-[calc((100vw-300px-2*32px)/2)] 2xl:!px-[calc((100vw-300px-2*32px)/2)];
 
   .slide {
-    @apply shrink-0 w-full max-w-[824px] flex flex-col;
+    @apply shrink-0 w-fit  flex flex-col;
     @apply snap-center snap-always;
     @apply opacity-20 transition-[opacity,filter];
 

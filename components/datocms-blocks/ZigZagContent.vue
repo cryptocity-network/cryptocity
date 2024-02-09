@@ -53,7 +53,7 @@
         >
           <img
             v-if="item.image"
-            class="aspect-[3/2] size-full rounded-8 border border-blue-dark/20 object-cover shadow lg:aspect-[4/3]"
+            class="aspect-[3/2] size-full rounded-8 border border-blue-dark/20 object-cover object-left-top shadow lg:aspect-[4/3]"
             :src="item.image.url"
           >
         </div>
@@ -93,7 +93,7 @@
             <img
               v-if="item.logo"
               :src="item.logo.url"
-              class="flex max-h-40 w-max flex-col-reverse flex-wrap justify-between gap-16 sm:mx-auto sm:flex-row lg:mx-unset lg:items-center lg:justify-between"
+              class="flex h-32 flex-col-reverse flex-wrap justify-between gap-16 sm:mx-auto sm:flex-row lg:mx-unset lg:items-center lg:justify-between"
               alt=""
             >
             <div

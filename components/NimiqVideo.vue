@@ -40,7 +40,7 @@
       >
         <!-- FIXME Now we use scale to make it responsive... -->
         <PlayButton
-          class="!lg:mb-0 w-96 "
+          class="!lg:mb-0 w-72 "
         />
       </button>
     </div>
