@@ -1,9 +1,9 @@
 <template>
   <footer
-    class="p-16 text-14 !text-blue-dark lg:p-72"
+    class="p-24 text-14 !text-blue-dark lg:p-72"
     :class="`bg-${backgroundColor}`"
   >
-    <div class="max-w-screen mx-auto grid w-full max-w-screen-2xl grid-cols-1 xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64">
+    <div class="max-w-screen mx-auto grid w-full max-w-[1392px] grid-cols-1 xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64">
       <!-- LINKS -->
       <ul
         class="flex flex-wrap items-center gap-16 xl:flex-col xl:items-start"
@@ -75,7 +75,7 @@
         </div>
       </div>
       <!-- Impring and copyright -->
-      <div class="mt-72 text-blue-dark/20 xl:mt-0 xl:self-end">
+      <div class="mt-48 text-blue-dark/20 xl:mt-0 xl:self-end">
         <div class="flex gap-12 font-bold">
           <TheLink
             :text="data.footer.imprint"
@@ -96,7 +96,7 @@
             compact
           />
         </div>
-        <p class="mt-24 text-blue-dark/30 sm:mt-16">
+        <p class="mt-16 text-blue-dark/30 sm:mt-16">
           {{ data.footer.copyrightText }}
         </p>
       </div>
