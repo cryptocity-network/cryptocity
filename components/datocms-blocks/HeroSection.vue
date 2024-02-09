@@ -1,7 +1,6 @@
 <template>
   <BlockWrapper
     :block-background-color="backgroundColor"
-    :padding-top="index === 0 ? 136 : 240"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
     class="hero"

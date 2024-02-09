@@ -4,7 +4,7 @@
     :padding-top="0"
     :no-padding-bottom="false"
     :overlaps-next-section="true"
-    class="!pt-120 xl:!pt-136"
+    class="!pt-120 xl:!pt-120"
   >
     <div
       class="mx-auto w-full max-w-[1440px] px-64 !pt-0"
