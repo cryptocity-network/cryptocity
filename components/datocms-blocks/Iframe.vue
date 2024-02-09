@@ -4,7 +4,8 @@
     :block-background-color="backgroundColor"
     :padding-top="96"
     :no-padding-bottom="false"
-    :overlaps-next-section="false"
+    :overlaps-next-section="true"
+    class="!pt-96"
   >
     <div class="aspect-video w-full">
       <div class="iframe-container relative size-full">

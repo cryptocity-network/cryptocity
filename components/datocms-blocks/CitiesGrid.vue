@@ -15,7 +15,7 @@
       }"
     >
       <CityCard
-        v-for="city in response.allCities"
+        v-for="city in allCities"
         :key="city.id"
         :city="city"
       />
@@ -26,9 +26,6 @@
 <script lang="ts" setup>
 import citiesByRegion from '@/graphql/CitiesByRegion'
 import { useWebsiteStore } from '@/store/store'
-const store = useWebsiteStore()
-const citiesQuery = citiesByRegion(store?.region?.id, store.getCurrentLocale)
-const { data: response } = await useGraphqlQuery(citiesQuery)
 defineProps({
   data: {
     type: Object,
@@ -45,18 +42,16 @@ defineProps({
   }
 })
 
-const scroller = ref()
+const store = useWebsiteStore()
+const citiesQuery = citiesByRegion(store?.region?.id, store.getCurrentLocale)
+const { data: response } = await useGraphqlQuery(citiesQuery)
 
-const gridSmallerThanWindow: Ref<boolean> = ref(false)
-const checkGridSize = () => {
-  gridSmallerThanWindow.value = scroller.value?.scrollWidth <= window?.innerWidth
-}
-
-onMounted(() => {
-  checkGridSize()
-  window.addEventListener('resize', () => {
-    checkGridSize()
-  })
+const allCities = computed(() => {
+  if (response.value) {
+  // @ts-ignore
+    return response.value.allCities.sort((a, b) => a.state === 'Live' ? -1 : 1)
+  } else {
+    return null
+  }
 })
-
 </script>

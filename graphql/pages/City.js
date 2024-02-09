@@ -5,7 +5,7 @@ import EventsCarousel from '../blocks/EventsCarousel'
 import Iframe from '../blocks/Iframe'
 import Headline from '../blocks/Headline'
 import StartingGrid from '../blocks/StartingGrid'
-
+import MapBuisness from '../blocks/MapBuisness'
 export default (cityName, locale) => {
   return `query {
     city(filter: {name: {eq: "${cityName}"}}, locale: ${locale}, fallbackLocales:[en]) {
@@ -14,26 +14,14 @@ export default (cityName, locale) => {
       heroSection {
         ${HeroSection()}
       }
-      startingGrid {
-        ${StartingGrid()}
+      iframe {
+        ${Iframe()}
       }
-      partnersHeadline {
-        ${Headline()}
+      mapBuisnesses {
+        ${MapBuisness()}
       }
       partnerLogos {
         ${PartnerLogos()}
-      }
-      missionHeadline {
-        ${Headline()}
-      }
-      cityGrid {
-        ${CityGrid()}
-      }
-      cryptoMapHeadline {
-        ${Headline()}
-      }
-      iframe {
-        ${Iframe()}
       }
       eventsHeadline {
         ${Headline()}
@@ -41,6 +29,18 @@ export default (cityName, locale) => {
       eventsCarousel {
         ${EventsCarousel()}
       }
+      startingGrid {
+        ${StartingGrid()}
+      }
+      missionHeadline {
+        ${Headline()}
+      }
+      cityGrid {
+        ${CityGrid()}
+      }
     }
   }`
 }
+// cryptoMapHeadline {
+//   ${Headline()}
+// }
