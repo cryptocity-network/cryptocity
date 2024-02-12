@@ -9,21 +9,14 @@
     >
       <template v-if="!hasPoster">
         <div
-          class="absolute size-full opacity-10"
-          style="
-            background-image: radial-gradient(
-              80.07% 80.07% at 91.83% 100%,
-              rgba(31, 35, 72, 0.4) 0%,
-              rgba(31, 35, 72, 0.1) 100%
-            );
-          "
+          class="absolute size-full bg-black/40"
         />
-        <NimiqHexagon
+        <!-- <NimiqHexagon
           class="md:w-30 absolute bottom-24 right-24 w-20 text-blue-dark/20 md:bottom-48 md:right-48 lg:bottom-72 lg:right-72 xl:w-40"
         />
         <NimiqHexagon
           class="absolute right-0 w-[175px] translate-x-[40%] translate-y-[64%] text-blue-dark/[0.03] md:w-[300px] xl:w-[450px]"
-        />
+        /> -->
       </template>
 
       <template v-else>
@@ -35,13 +28,14 @@
       </template>
 
       <button
-        class="absolute left-0 top-0 z-1 grid size-full place-items-center drop-shadow-md"
+        class="group absolute left-0 top-0 z-1 grid size-full place-items-center drop-shadow-md"
         @click="showVideo"
       >
-        <!-- FIXME Now we use scale to make it responsive... -->
-        <PlayButton
-          class="!lg:mb-0 w-72 "
-        />
+        <div class="relative size-[86px] rounded-full bg-black/40 p-16 transition-transform group-hover:scale-105">
+          <PlayButton
+            class="!lg:mb-0 absolute-center size-40 pl-4 transition-all group-hover:scale-110 group-hover:drop-shadow-lg"
+          />
+        </div>
       </button>
     </div>
     <video

@@ -26,14 +26,6 @@
             hide-arrow
           />
         </li>
-        <li>
-          <TheLink
-            text="Contact"
-            url="/contact"
-            compact
-            hide-arrow
-          />
-        </li>
         <LocalizationDropdown />
       </ul>
 
