@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="p-24 text-14 !text-blue-dark lg:p-72"
+    class="px-24 pb-24 text-14 !text-blue-dark lg:px-72 lg:pb-72"
     :class="`bg-${backgroundColor}`"
   >
     <div class="max-w-screen mx-auto grid w-full max-w-[1392px] grid-cols-1 xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64">
