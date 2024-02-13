@@ -5,7 +5,7 @@
     <transition mode="out-in" name="slide-fade">
       <svg
         v-if="type === 'region'"
-        class="size-full"
+        class="h-full"
         :viewBox="`0 0 ${90+regionTextWidth} 59`"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
