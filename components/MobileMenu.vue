@@ -17,7 +17,12 @@
 
     <nav :class="{ visible: menuVisible }" class="menu-wrapper">
       <ul class="flex flex-col gap-12 transition-opacity duration-75">
-        <li v-for="(item, i) in pages || []" :key="i" class="flex">
+        <li
+          v-for="(item, i) in pages || []"
+          :key="i"
+          class="flex"
+          @click="menuVisible = false"
+        >
           <TheLink
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
