@@ -89,6 +89,10 @@ section.title {
   @apply pb-80 lg:pb-96
 }
 
+section.half-image-hero + section {
+  @apply pt-192 xl:pt-240
+}
+
 /* section.title.bg-white + section.bg-white,
 section.title.bg-gray + section.bg-gray {
   @apply pt-136 xl:pt-136;

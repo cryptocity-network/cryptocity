@@ -17,17 +17,20 @@
           v-for="(city) in response.allCities"
           :key="`card-${city.id}`"
           ref="slides"
-          class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
+          class="aspect-square w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
           data-city
         >
-          <TheCard
+          <CityCard
+            :city="city"
+          />
+          <!-- <TheCard
             :title="city.name"
             :image="city.mainImage"
             :label="city.state"
             :footer="city.region.brandName"
             :link-label="city.region.url.split('://')[1].toUpperCase()"
             :link="city.region.url"
-          />
+          /> -->
         </li>
       </ul>
 
