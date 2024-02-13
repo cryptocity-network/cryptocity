@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     :to="cityLink"
-    class="custom-ease group relative size-full overflow-hidden rounded-8   "
+    class="custom-ease group relative size-full overflow-hidden rounded-8"
     :class="{
       'transform-gpu transition-transform hover:-translate-y-6': city.state === 'Live',
       'pointer-events-none': city.state !== 'Live'
@@ -9,20 +9,20 @@
   >
     <FadeInImage
       :image-url="city.mainImage.url"
-      class="size-full object-cover"
+      class="size-full rounded-8 object-cover"
       :class="{
         'opacity-75': city.state === 'Live',
         'opacity-50 grayscale': city.state !== 'Live'
       }"
     />
     <div
-      class="absolute left-0 top-0 size-full  mix-blend-hard-light"
+      class="absolute left-0 top-0 size-full rounded-8 mix-blend-hard-light"
       :class="{
         'bg-blue opacity-20': city.state === 'Live',
         'bg-black opacity-30': city.state !== 'Live'
       }"
     />
-    <div v-if="city.state === 'Live'" class="absolute left-0 top-0 size-full bg-gradient-to-t from-blue to-transparent opacity-60 transition-opacity group-hover:opacity-0" />
+    <div v-if="city.state === 'Live'" class="absolute left-0 top-0 size-full rounded-8 bg-gradient-to-t from-blue to-transparent opacity-60 transition-opacity group-hover:opacity-0" />
     <DynamicLogo type="cities" logo-color="#1F2348" text-color="#1F2348" :city-name="city.name" class="absolute left-1/2 top-1/2 w-[215px] -translate-x-1/2 -translate-y-1/2 blur-lg xl:w-[291px]" />
     <DynamicLogo type="cities" logo-color="white" text-color="white" :city-name="city.name" class="absolute left-1/2 top-1/2 w-[215px] -translate-x-1/2 -translate-y-1/2 xl:w-[291px]" />
     <div

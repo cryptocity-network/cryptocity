@@ -4,7 +4,7 @@
     :padding-top="0"
     :no-padding-bottom="false"
     :overlaps-next-section="true"
-    class="!pt-96"
+    class="half-image-hero !pt-96"
   >
     <div class="!px-16 sm:!px-24 xl:grid xl:grid-cols-2">
       <div
