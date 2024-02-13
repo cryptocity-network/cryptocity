@@ -1,6 +1,6 @@
 #!/bin/bash
  
-source .env
+# source .env
 if [[ $VERCEL_GIT_COMMIT_REF == "main"  ]] ; then 
   echo "This is our main branch"
   yarn build
