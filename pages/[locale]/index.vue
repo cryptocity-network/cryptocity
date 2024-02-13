@@ -55,8 +55,6 @@ const backgroundColorArray = computed(() => {
   return null
 })
 
-console.log('teest')
-
 const components = computed(() => {
   if (data && currentPageType) {
     return filterPageResponseForComponents(data.value[`${currentPageType.value}Page`] as Array<Component>) as Array<Component>

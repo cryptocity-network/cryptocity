@@ -32,7 +32,8 @@ export default defineNuxtConfig({
       GRAPHQL_TOKEN: process.env.GRAPHQL_TOKEN,
       DATO_DOMAIN: process.env.DATO_DOMAIN,
       DATO_DEFAULT_LOCALE: process.env.DATO_DEFAULT_LOCALE,
-      IS_HOME: process.env.IS_HOME
+      IS_HOME: process.env.IS_HOME,
+      DATO_ENVIRONMENT: process.env.DATO_ENVIRONMENT
     }
   },
   components: {

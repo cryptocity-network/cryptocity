@@ -5,7 +5,8 @@ export default (query) => {
     key,
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${runtimeConfig.public.GRAPHQL_TOKEN}`
+      Authorization: `Bearer ${runtimeConfig.public.GRAPHQL_TOKEN}`,
+      'X-Environment': runtimeConfig.public.DATO_ENVIRONMENT || 'main'
     },
     body: {
       query
