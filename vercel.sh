@@ -20,7 +20,7 @@ else
     destination_env="preview-$VERCEL_GIT_PULL_REQUEST_ID"
     echo $FULL_ACCESS
 
-    if echo "$json_output"; then
+    if echo "$json_output" | jq -r '.[] | .id' | grep -q "^$destination_env$"; then
         echo "Environment: $destination_env already exists"
         yarn datocms migrations:run --source=$destination_env --in-place --api-token=$FULL_ACCESS
         export DATO_ENVIRONMENT="preview-$VERCEL_GIT_PULL_REQUEST_ID"
