@@ -30,7 +30,7 @@
       class="absolute bottom-32 left-1/2 -translate-x-1/2"
     >
       <div
-        class="hidden h-32 w-max items-center gap-8 rounded bg-black/20 px-16 py-8 text-white lg:flex"
+        class=" flex h-32 w-max items-center gap-8 rounded bg-black/20 px-16 py-8 text-white"
       >
         <svg
           viewBox="0 0 18 18"
