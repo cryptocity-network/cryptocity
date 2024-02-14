@@ -19,7 +19,7 @@
       class="absolute left-0 top-0 size-full rounded-8 mix-blend-hard-light"
       :class="{
         'bg-blue opacity-20': city.state === 'Live',
-        'bg-black opacity-30': city.state !== 'Live'
+        'bg-blue opacity-30': city.state !== 'Live'
       }"
     />
     <div v-if="city.state === 'Live'" class="absolute left-0 top-0 size-full rounded-8 bg-gradient-to-t from-blue to-transparent opacity-60 transition-opacity group-hover:opacity-0" />
@@ -30,7 +30,7 @@
       class="absolute bottom-32 left-1/2 -translate-x-1/2"
     >
       <div
-        class=" flex h-32 w-max items-center gap-8 rounded bg-black/20 px-16 py-8 text-white"
+        class=" flex h-32 w-max items-center gap-8 rounded bg-blue/20 px-16 py-8 text-white"
       >
         <svg
           viewBox="0 0 18 18"

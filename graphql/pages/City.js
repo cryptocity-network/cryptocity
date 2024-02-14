@@ -5,7 +5,7 @@ import EventsCarousel from '../blocks/EventsCarousel'
 import Iframe from '../blocks/Iframe'
 import Headline from '../blocks/Headline'
 import StartingGrid from '../blocks/StartingGrid'
-import MapBuisness from '../blocks/MapBuisness'
+import MapBusiness from '../blocks/MapBusiness'
 export default (cityName, locale) => {
   return `query {
     city(filter: {name: {eq: "${cityName}"}}, locale: ${locale}, fallbackLocales:[en]) {
@@ -17,8 +17,8 @@ export default (cityName, locale) => {
       iframe {
         ${Iframe()}
       }
-      mapBuisnesses {
-        ${MapBuisness()}
+      mapBusinesses {
+        ${MapBusiness()}
       }
       partnerLogos {
         ${PartnerLogos()}
