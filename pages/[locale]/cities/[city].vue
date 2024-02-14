@@ -32,7 +32,7 @@ if (route.params.locale !== store.getCurrentLocale) {
 const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.getCurrentLocale)
-console.log(cityQuery)
+
 const { data, error } = await useGraphqlQuery(cityQuery) as AsyncData<CityData, RTCError>
 
 const backgroundColorArray = computed(() => {
@@ -45,4 +45,5 @@ const backgroundColorArray = computed(() => {
 const components = computed(() => {
   return filterCityResponseForComponents(data.value) as Array<Component>
 })
+
 </script>

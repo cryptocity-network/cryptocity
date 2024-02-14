@@ -96,18 +96,30 @@ const globalData = computed(() => {
   }
   return null
 })
-
 const pageTitle = computed(() => {
-  const cityName = route.path.split('/').pop()?.replace(/%20/g, ' ')
-  if (cityName && cityName !== '' && cityName !== store.localization.userSelectedLocale) {
-    return cityName.charAt(0).toUpperCase() + cityName.slice(1)
+  const pageTitle = route.path.split('/').pop()?.replace(/%20/g, ' ').replace(/-/g, ' ')
+  if (pageTitle && pageTitle.length > 2) {
+    return pageTitle
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
   } else {
-    const baseUrl = window?.location.host.split(':')[0]
-    return baseUrl ? baseUrl!.charAt(0).toUpperCase() + baseUrl!.slice(1) : window?.location.host
+    return null
   }
 })
+const regionName = computed(() => {
+  if (store.region) {
+    return store.region.brandName
+  } else {
+    return ''
+  }
+})
+const makeName = computed(() => {
+  return `${pageTitle.value ? pageTitle.value + ' - ' : ''}${regionName.value}`
+})
 useHead({
-  title: pageTitle
+  title: makeName
 })
 </script>
 <style>

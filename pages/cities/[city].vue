@@ -42,4 +42,5 @@ const backgroundColorArray = computed(() => {
 const components = computed(() => {
   return filterCityResponseForComponents(data.value) as Array<Component>
 })
+
 </script>
