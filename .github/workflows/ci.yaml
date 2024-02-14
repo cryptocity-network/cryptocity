@@ -13,15 +13,11 @@ jobs:
       FULL_ACCESS: ${{ secrets.FULL_ACCESS }}
       GIT_PR_REF: ${{ github.event.pull_request.number }}
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set Node.js 18.x
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-
-      - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install # will run `yarn install` command
+          node-version: '18.x'
+      - name: Install dependencies
+        run: yarn
       - run: ./build-script/vercel.sh
