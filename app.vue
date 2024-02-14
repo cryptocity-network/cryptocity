@@ -10,12 +10,10 @@
         :tag-line="globalData?.tagLine"
       />
       <main class="min-h-screen">
-        <transition name="page" mode="out-in">
-          <NuxtPage
-            v-if="!onGlobalPage"
-          />
-          <RegionsCarousel v-else />
-        </transition>
+        <NuxtPage
+          v-if="!onGlobalPage"
+        />
+        <RegionsCarousel v-else />
       </main>
       <TheFooter
         :key="String(store.localization.userSelectedLocale)"

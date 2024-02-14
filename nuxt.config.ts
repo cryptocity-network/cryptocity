@@ -17,7 +17,8 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', href: '/favicon-16x16.png', sizes: '16x16' },
         { rel: 'icon', type: 'image/png', href: '/favicon-128.png', sizes: '128x128' }
       ]
-    }
+    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
   modules: [
     '@nuxtjs/tailwindcss',
