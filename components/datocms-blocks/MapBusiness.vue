@@ -62,6 +62,8 @@
 </template>
 
 <script lang="ts" setup>
+import Arrow from '@/static/icons/arrow.svg'
+
 defineProps({
   data: {
     type: Object,

@@ -14,7 +14,7 @@
         v-for="(item, i) in data.carousel"
         :key="`slide-${i}`"
         ref="$slides"
-        class="slide group w-full duration-[0.4s] ease-[cubic-bezier(.25,0,0,1)]"
+        class="slide group w-full duration-[0.4s] ease-[cubic-bezier(.25,0,0,1)] last:pr-16"
         :class="{ active: step === i }"
         @click="() => goToStep(i)"
       >
@@ -37,7 +37,7 @@
           class="mx-auto mt-40 flex max-w-xl flex-col gap-y-16 child:z-50 child:text-center sm:mt-48"
         >
           <h3
-            class="leading-none whitespace-nowrap pl-16 text-12 font-bold uppercase tracking-[0.095em] !text-blue-dark/60"
+            class="leading-none whitespace-nowrap text-12 font-bold uppercase tracking-[0.095em] !text-blue-dark/60"
             style="text-wrap: initial"
           >
             {{ item.headline }}
@@ -50,7 +50,7 @@
       <button
         v-for="(_, i) in data.carousel"
         :key="i"
-        class="size-8 cursor-pointer rounded bg-blue-dark/10 transition-transform delay-75 after:min-h-[16px] after:min-w-[16px] first:ml-0 last:mr-4"
+        class=" size-8  cursor-pointer rounded bg-blue-dark/10 transition-transform delay-75 after:min-h-[16px] after:min-w-[16px] first:ml-0 last:mr-0"
         :class="{
           'mx-8 scale-0': i === step,
           'mx-4 scale-100': i !== step,
@@ -111,6 +111,7 @@ function calculateStep (event: Event) {
 }
 
 function goToSlide (slide: HTMLDivElement) {
+  // console.log(slide.offsetLeft)
   $scroller.value!.scrollTo({
     top: 0,
     left: slide.offsetLeft - padding.value / 2,
@@ -127,15 +128,19 @@ function goToStep (step: number) {
 function isVideo (i: number) {
   return props.data.carousel[i].media?.mimeType.includes('video')
 }
+
+// onMounted(() => {
+//   goToStep(0)
+// })
 </script>
 
 <style scoped>
 .slides {
-  @apply flex gap-16 xl:gap-48;
-  @apply snap-x snap-mandatory overflow-x-auto no-scrollbar !px-[max(16px,calc((100vw-300px)/2))] md:!px-[calc((100vw-300px-16px)/2)] lg:!px-[calc((100vw-300px-32px)/2)] xl:!px-[calc((100vw-300px-2*32px)/2)] 2xl:!px-[calc((100vw-300px-2*32px)/2)];
+  @apply flex gap-16;
+  @apply snap-x snap-mandatory overflow-x-auto no-scrollbar !px-[calc((100vw-250px-16px)/2)];
 
   .slide {
-    @apply shrink-0 w-fit  flex flex-col;
+    @apply shrink-0 w-[250px] items-center justify-center flex flex-col;
     @apply snap-center snap-always;
     @apply opacity-20 transition-[opacity,filter];
 
