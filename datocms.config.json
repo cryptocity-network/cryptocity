@@ -3,7 +3,8 @@
     "default": {
       "logLevel": "BASIC",
       "migrations": {
-        "directory": "./migrations"
+        "directory": "./migrations",
+        "modelApiKey": "schema_migration"
       }
     }
   }
