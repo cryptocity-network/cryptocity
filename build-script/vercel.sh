@@ -17,6 +17,6 @@
     else
         echo "Environment: $destination_env doesn't exist"
         primary_env=$(yarn datocms environments:primary --log-level=NONE --api-token=$FULL_ACCESS)
-        yarn datocms migrations:run --source=$primary_env --destination=$destination_env --fast-fork --api-token=$FULL_ACCESS
+        yarn datocms migrations:run --destination=$destination_env --fast-fork --api-token=$FULL_ACCESS
     fi
 fi
