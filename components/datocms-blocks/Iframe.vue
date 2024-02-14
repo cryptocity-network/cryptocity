@@ -9,7 +9,7 @@
   >
     <div class="aspect-video w-full">
       <div class="iframe-container relative size-full">
-        <div class="absolute left-0 top-0 flex size-full flex-col items-center justify-center rounded-6 border-2 border-blue-dark/60">
+        <div class="absolute left-0 top-0 flex size-full flex-col items-center justify-center rounded-6 border-2 border-gray/60 bg-white">
           <h3 class="mb-4">
             Looks like something went wrong
           </h3>
@@ -31,28 +31,32 @@
             'size-screen fixed': fullscreen,
             'absolute': !fullscreen
           }"
+          @load="triggerLoad"
         />
-        <button
-          class="iframe-button grid-row-2 z-50 grid size-32 cursor-pointer grid-cols-2 rounded-full bg-white p-4 shadow"
-          :class="{
-            'absolute': !fullscreen,
-            'fixed bottom-120 right-24 z-[999] md:bottom-200': fullscreen
-          }"
-          @click="fullscreen = !fullscreen"
-        >
-          <ArrowExternal
-            class="col-start-2 m-1 w-6 self-end "
+        <transition name="fade" mode="out-in">
+          <button
+            v-if="loaded"
+            class="iframe-button grid-row-2 z-50 grid size-32 cursor-pointer grid-cols-2 rounded-full bg-white p-4 shadow"
             :class="{
-              'rotate-180': fullscreen
+              'absolute': !fullscreen,
+              'fixed bottom-120 right-24 z-[999] md:bottom-200': fullscreen
             }"
-          />
-          <ArrowExternal
-            class=" m-1 w-6 self-start justify-self-end"
-            :class="{
-              'rotate-180': !fullscreen
-            }"
-          />
-        </button>
+            @click="fullscreen = !fullscreen"
+          >
+            <ArrowExternal
+              class="col-start-2 m-1 w-6 self-end "
+              :class="{
+                'rotate-180': fullscreen
+              }"
+            />
+            <ArrowExternal
+              class=" m-1 w-6 self-start justify-self-end"
+              :class="{
+                'rotate-180': !fullscreen
+              }"
+            />
+          </button>
+        </transition>
       </div>
     </div>
   </BlockWrapper>
@@ -76,7 +80,12 @@ defineProps({
     default: 'white'
   }
 })
-
+const loaded = ref(false)
+const triggerLoad = () => {
+  setTimeout(() => {
+    loaded.value = true
+  }, 1000)
+}
 const fullscreen = ref(false)
 </script>
 
@@ -92,5 +101,15 @@ const fullscreen = ref(false)
   .iframe-button {
     @apply !bottom-120
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

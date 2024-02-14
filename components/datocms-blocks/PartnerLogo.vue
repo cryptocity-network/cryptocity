@@ -5,16 +5,16 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <div v-if="partners" class="relative flex flex-wrap items-center gap-x-40 gap-y-24 px-40 sm:justify-center">
-      <div class="mx-auto max-w-screen-2xl px-64 pb-40">
+    <div v-if="partners" class="relative flex flex-col gap-x-40 px-40 sm:items-center sm:justify-center">
+      <div class="max-w-screen-2xl pb-40 md:mx-auto md:px-64">
         <HeadlineSection
           :label="data.headline.label"
           :headline="data.headline.headline"
           :subline="data.headline.subline"
         />
       </div>
-      <div v-for="(partner, i) in partners" :key="i" class="mb-40 inline-flex h-28 overflow-hidden md:h-32">
-        <div class="relative  flex h-28  md:h-32">
+      <div class="mb-40 inline-flex flex-wrap items-center gap-40 overflow-hidden sm:justify-center">
+        <div v-for="(partner, i) in partners" :key="i" class="relative  flex h-28  sm:h-32">
           <img :src="partner.logo.url" :alt="partner.logo.alt">
         </div>
       </div>

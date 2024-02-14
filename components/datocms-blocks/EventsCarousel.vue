@@ -9,10 +9,9 @@
       <ul
         ref="scroller"
         role="list"
-        class="no-scrollbar -mt-6 flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-32 pt-6 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-6 "
+        class="no-scrollbar -mt-6 flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-32 pb-40 pt-6 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-6 "
         :class="{
-          'justify-center': visibleCards > response.allEvents.length,
-          'pb-40': visibleCards < response.allEvents.length
+          'justify-center': visibleCards > response.allEvents.length
         }"
         @scroll.passive="calculateStep"
       >
