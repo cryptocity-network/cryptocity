@@ -4,13 +4,6 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
-env:
-  DATABASE_URL: mysql://root@localhost:3306/flightcontrol_test
-
 jobs:
   website:
     name: Website
@@ -31,4 +24,4 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: install # will run `yarn install` command
-      - run: ./vercel.sh
+      - run: ./build-script/vercel.sh
