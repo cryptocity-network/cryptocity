@@ -29,6 +29,7 @@ else
     #     primary_env=$(yarn datocms environments:primary --log-level=NONE --api-token=$FULL_ACCESS)
     #     # yarn datocms migrations:run --source=$primary_env --destination=$destination_env --fast-fork --api-token=$FULL_ACCESS
     # fi
+    yarn datocms migrations
     yarn run datocms migrations:run --destination=$destination_env --fast-fork --api-token=$FULL_ACCESS
     export DATO_ENVIRONMENT="preview-$VERCEL_GIT_PULL_REQUEST_ID"
     yarn run build
