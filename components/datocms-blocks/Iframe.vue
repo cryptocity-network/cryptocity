@@ -8,18 +8,18 @@
     class="!pt-96"
   >
     <div class="iframe-wrapper aspect-[3/3.5] w-full sm:aspect-video">
-      <Teleport :disabled="!fullscreen" to="overlay">
+      <Teleport :disabled="!fullscreen" to="#overlay">
         <div
-          class="iframe-container size-full"
+          class="iframe-container size-full bg-white"
           :class="{
             'size-screen fixed left-0 top-0': fullscreen,
             'relative': !fullscreen
           }"
         >
           <div v-if="!loaded" class="absolute left-0 top-0 flex size-full flex-col items-center justify-center rounded-6 border-2 border-gray/60 bg-white">
-            <h3 class="mb-4">
+            <h4 class="mb-4">
               Looks like something went wrong
-            </h3>
+            </h4>
             <p class="mb-20">
               Click here to see the map
             </p>
