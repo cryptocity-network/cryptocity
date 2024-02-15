@@ -21,6 +21,7 @@
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_HOME)"
         :background-color="onGlobalPage ? 'white' : 'gray'"
       />
+      <div id="overlay" />
     </div>
     <LoadingState v-else />
   </transition>
