@@ -1,5 +1,6 @@
 <template>
   <nuxt-link
+    v-if="!appStoreLinkType"
     :to="getLink"
     :target="isExternal ? '_blank' : '_self'"
     class="group flex w-fit max-w-full cursor-pointer items-center justify-center gap-6 rounded-full font-bold transition-all"
@@ -24,10 +25,16 @@
       }"
     />
   </nuxt-link>
+  <nuxt-link v-else :to="getLink">
+    <AppleStore v-if="appStoreLinkType === 'apple'" class="h-40 transition-transform hover:scale-105" />
+    <PlayStore v-else class="h-40 transition-transform hover:scale-105" />
+  </nuxt-link>
 </template>
 
 <script lang="ts" setup>
 import Arrow from '@/static/icons/arrow.svg'
+import AppleStore from '@/assets/App-store.svg'
+import PlayStore from '@/assets/Play-store.svg'
 import { useWebsiteStore } from '~/store/store'
 const store = useWebsiteStore()
 const props = defineProps({
@@ -83,6 +90,7 @@ const props = defineProps({
   }
 })
 defineEmits(['click'])
+const appStoreLinkType: Ref<null | string> = ref(null)
 const colorClasses = computed(() => {
   switch (props.variant) {
     case 'info':
@@ -99,12 +107,10 @@ const colorClasses = computed(() => {
 const getLink = computed(() => {
   const defaultLocale = useRuntimeConfig().public.DATO_DEFAULT_LOCALE
   const storeLocale = store.getCurrentLocale
+  // File is url
   if (!props.link) {
-    if (props.url?.includes('http')) {
-      return props.url
-    } else {
-      return storeLocale === defaultLocale || props.noLocale ? props.url : '/' + storeLocale + props.url
-    }
+    return setUrlLink(storeLocale as string, defaultLocale)
+  // File is a reference
   } else if ('slug' in props.link) {
     return storeLocale === defaultLocale
       ? `/${props.link.slug}`
@@ -120,6 +126,21 @@ const getLink = computed(() => {
   }
   return '/'
 })
+
+const setUrlLink = (storeLocale: string, defaultLocale: string) => {
+  // Check for app store links
+  if (props.url?.includes('https://apps.apple.com/')) {
+    appStoreLinkType.value = 'apple'
+  } else if (props.url?.includes('https://play.google.com/store')) {
+    appStoreLinkType.value = 'google'
+  }
+  // Return url with check for potential relative link usage
+  if (props.url?.includes('http')) {
+    return props.url
+  } else {
+    return storeLocale === defaultLocale || props.noLocale ? props.url : '/' + storeLocale + props.url
+  }
+}
 </script>
 
 <style scoped>
