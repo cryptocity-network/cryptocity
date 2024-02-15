@@ -7,6 +7,32 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
+  hooks: {
+    'pages:extend' (pages) {
+      pages.push(
+        {
+          name: 'cookies-locale',
+          path: '/:locale/cookies',
+          file: '~/pages/cookies.vue'
+        },
+        {
+          name: 'data-protection-locale',
+          path: '/:locale/data-protection',
+          file: '~/pages/data-protection.vue'
+        },
+        {
+          name: 'haftungsausschluss-locale',
+          path: '/:locale/haftungsausschluss',
+          file: '~/pages/haftungsausschluss.vue'
+        },
+        {
+          name: 'impressum-locale',
+          path: '/:locale/impressum',
+          file: '~/pages/impressum.vue'
+        }
+      )
+    }
+  },
   app: {
     head: {
       link: [
