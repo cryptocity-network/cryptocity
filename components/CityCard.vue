@@ -23,8 +23,22 @@
       }"
     />
     <div v-if="city.state === 'Live'" class="absolute left-0 top-0 size-full rounded-8 bg-gradient-to-t from-blue to-transparent opacity-60 transition-opacity group-hover:opacity-0" />
-    <DynamicLogo type="cities" logo-color="#1F2348" text-color="#1F2348" :city-name="city.name" class="absolute left-1/2 top-1/2 w-[215px] -translate-x-1/2 -translate-y-1/2 blur-lg xl:w-[291px]" />
-    <DynamicLogo type="cities" logo-color="white" text-color="white" :city-name="city.name" class="absolute left-1/2 top-1/2 w-[215px] -translate-x-1/2 -translate-y-1/2 xl:w-[291px]" />
+    <DynamicLogo
+      type="cities"
+      logo-color="#1F2348"
+      text-color="#1F2348"
+      :city-name="city.name"
+      class="absolute left-1/2 top-1/2  -translate-x-1/2 -translate-y-1/2"
+      :class="compact ? 'w-2/3' : 'w-[215px] xl:w-[291px]'"
+    />
+    <DynamicLogo
+      type="cities"
+      logo-color="white"
+      text-color="white"
+      :city-name="city.name"
+      class="absolute left-1/2 top-1/2  -translate-x-1/2 -translate-y-1/2"
+      :class="compact ? 'w-2/3' : 'w-[215px] xl:w-[291px]'"
+    />
     <div
       v-if="city.state !== 'Live'"
       class="absolute bottom-32 left-1/2 -translate-x-1/2"
@@ -59,6 +73,10 @@ const props = defineProps({
   city: {
     type: Object,
     default: null
+  },
+  compact: {
+    type: Boolean,
+    default: false
   }
 })
 const cityLink = computed(() => {
