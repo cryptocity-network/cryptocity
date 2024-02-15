@@ -57,21 +57,23 @@ onMounted(() => {
   // If User has system language set
   if (navigator.language && !onGlobalPage) {
     const userSystemLocale = navigator.language.split('-')[0]
-    if (route.path.includes('/' + userSystemLocale + '/')) {
-      // If it equals locale in url
+    // Set User locale if exists on site
+    if (region.value.region._locales.includes(userSystemLocale)) {
       store.setLocale(userSystemLocale, false)
-    } else if (userSystemLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
-      // Not same local as url but is base locale on the site -> go home /
-      store.setLocale(userSystemLocale, false)
-      useRouter().push('/')
-    } else if (region.value.region._locales.includes(userSystemLocale)) {
-      // Not same local as url but is a locale on the site -> update local and go to the home of that page
-      store.setLocale(userSystemLocale)
-      useRouter().push(`/${userSystemLocale}`)
     } else {
-      // Local not present in cms so set default and go home
       store.setLocale(useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
-      useRouter().push('/')
+    }
+    // Check if url is user locale otherwise change
+    if (route.params.locale && route.params.locale.length === 2) { // There is a locale in the url
+      if (userSystemLocale !== route.params.locale) { // If different to user locale
+        if (userSystemLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
+          useRouter().push('/')
+        } else {
+          useRouter().push('/' + userSystemLocale)
+        }
+      }
+    } else if (userSystemLocale !== useRuntimeConfig().public.DATO_DEFAULT_LOCALE) { // No locale in url, but user doesn't === base so redirect to user locale
+      useRouter().push('/' + userSystemLocale)
     }
   }
   // Then get region data

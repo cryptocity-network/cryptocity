@@ -9,15 +9,14 @@ const store = useWebsiteStore()
 
 // Declare configuration
 onMounted(() => {
-  console.log(store.getCurrentLocale)
-  const lanng = store.getCurrentLocale
+  const lang = store.getCurrentLocale
   // @ts-ignore
   window._iub = window._iub || []
   // @ts-ignore
   window._iub.csConfiguration = {
     askConsentAtCookiePolicyUpdate: true,
     floatingPreferencesButtonDisplay: 'anchored-bottom-right',
-    lang: 'en',
+    lang,
     perPurposeConsent: true,
     siteId: 3331742,
     whitelabel: false,
