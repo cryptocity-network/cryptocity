@@ -111,7 +111,6 @@ function calculateStep (event: Event) {
 }
 
 function goToSlide (slide: HTMLDivElement) {
-  // console.log(slide.offsetLeft)
   $scroller.value!.scrollTo({
     top: 0,
     left: slide.offsetLeft - padding.value / 2,
@@ -128,10 +127,6 @@ function goToStep (step: number) {
 function isVideo (i: number) {
   return props.data.carousel[i].media?.mimeType.includes('video')
 }
-
-// onMounted(() => {
-//   goToStep(0)
-// })
 </script>
 
 <style scoped>

@@ -68,15 +68,15 @@ const components = computed(() => {
 
 onMounted(() => {
   // If route doesn't exist then send user to home
-  if (currentPageType.value === null) {
-    const url = () => {
-      if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
-        return '/' + route.params.locale
-      } else {
-        return '/'
-      }
-    }
-    useRouter().push(url())
-  }
+  // if (currentPageType.value === null) {
+  //   const url = () => {
+  //     if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
+  //       return '/' + route.params.locale
+  //     } else {
+  //       return '/'
+  //     }
+  //   }
+  //   useRouter().push(url())
+  // }
 })
 </script>
