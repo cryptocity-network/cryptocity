@@ -92,6 +92,9 @@ section.title {
 section.half-image-hero + section {
   @apply pt-192 xl:pt-240
 }
+section.cities-grid + section {
+  @apply py-120 xl:py-120 !-mt-0
+}
 
 /* section.title.bg-white + section.bg-white,
 section.title.bg-gray + section.bg-gray {

@@ -4,7 +4,7 @@
     :padding-top="0"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
-    class="relative !mx-0 w-full !px-0 !pt-0"
+    class="cities-grid relative !mx-0 w-full !p-0"
   >
     <div
       class="relative grid !w-full min-w-full grid-flow-row gap-16 !px-16 pb-16 pt-72 xl:gap-24 xl:!px-24 xl:pb-24"
