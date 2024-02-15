@@ -7,7 +7,7 @@
   >
     <ul
       ref="$scroller"
-      class="widest slides"
+      class="widest slides no-scrollbar"
       @scroll.passive="calculateStep"
     >
       <li
@@ -137,7 +137,7 @@ function isVideo (i: number) {
 <style scoped>
 .slides {
   @apply flex gap-16;
-  @apply snap-x snap-mandatory overflow-x-auto no-scrollbar !px-[calc((100vw-300px-16px)/2)];
+  @apply snap-x snap-mandatory overflow-x-auto !px-[calc((100vw-300px-16px)/2)];
 
   .slide {
     @apply shrink-0 w-[300px] items-center justify-center flex flex-col;
