@@ -1,75 +1,34 @@
-# Nuxt 3 Minimal Starter
+## CryptoCities Master Site
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Tech stack
+- Nuxt3
+- TailwindCSS
+- DatoCMS
 
 ## Setup
 
 Make sure to install the dependencies:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
+# install
 yarn install
 
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
+# development
 yarn dev
 
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
+# production build
 yarn build
 
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
+# preview build locally
 yarn preview
 
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Deployment
+
+All CryptoCity (CC) sites are created using this repo. To setup different regions we use Environment Variables:
+
+- `NUXT_PUBLIC_GRAPHQL_TOKEN` = DatoCMS api token
+- `NUXT_PUBLIC_DATO_DOMAIN` = This is the domain the site is hosted. This should match the domain field in the Dato region being targeted.
+- `NUXT_PUBLIC_IS_HOME` = Boolean value. True triggers the site to present as the 'global' CC page. This shows all regions and acts as a filter to the various sub site urls. False allows for a region to be targeted
+- `NUXT_PUBLIC_DATO_DEFAULT_LOCALE` = Default language/locale for the deployment. This must be a locale present within the targeted regions pages.
