@@ -22,6 +22,7 @@
         >
           <CityCard
             :city="city"
+            compact
           />
           <!-- <TheCard
             :title="city.name"
@@ -61,7 +62,7 @@
       </button>
     </div>
 
-    <div v-if="visibleCards !== response.allCities.length && amountOfItems > 1" class="flex flex-col">
+    <div v-if="visibleCards <= response.allCities.length && amountOfItems > 1" class="flex flex-col">
       <div class="relative mx-auto mt-48 flex">
         <button
           v-for="(_, i) in response.allCities"
@@ -124,7 +125,7 @@ const scrollerGap = computed(() => parseFloat(scrollerStyles.value?.gap || '0'))
 const visibleCards = ref(1)
 
 function onWindowResize () {
-  visibleCards.value = window.innerWidth < 768 ? 1 : window.innerWidth < 1152 ? 2 : 3
+  visibleCards.value = window.innerWidth < 768 ? 1 : window.innerWidth < 1152 ? 3 : 4
 
   if (scroller.value) {
     scrollerStyles.value = window.getComputedStyle(scroller.value)

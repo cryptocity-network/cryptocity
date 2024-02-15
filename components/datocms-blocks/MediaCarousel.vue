@@ -137,10 +137,10 @@ function isVideo (i: number) {
 <style scoped>
 .slides {
   @apply flex gap-16;
-  @apply snap-x snap-mandatory overflow-x-auto no-scrollbar !px-[calc((100vw-250px-16px)/2)];
+  @apply snap-x snap-mandatory overflow-x-auto no-scrollbar !px-[calc((100vw-300px-16px)/2)];
 
   .slide {
-    @apply shrink-0 w-[250px] items-center justify-center flex flex-col;
+    @apply shrink-0 w-[300px] items-center justify-center flex flex-col;
     @apply snap-center snap-always;
     @apply opacity-20 transition-[opacity,filter];
 
