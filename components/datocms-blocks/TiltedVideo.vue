@@ -7,7 +7,7 @@
     class="!pt-120 xl:!pt-120"
   >
     <div
-      class="mx-auto w-full max-w-[1440px] px-64 !pt-0"
+      class="video-wrapper mx-auto w-full max-w-[1440px] px-64 !pt-0"
     >
       <div
         ref="media$"
@@ -73,6 +73,12 @@ onMounted(async () => {
 </script>
 
   <style scoped>
+@media (width < 640px) {
+  .video-wrapper {
+    @apply !px-16
+  }
+
+}
   .custom-transform {
     --rotate: 30deg;
     --scale: 1;

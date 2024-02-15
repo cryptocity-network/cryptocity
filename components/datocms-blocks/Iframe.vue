@@ -10,7 +10,7 @@
     <div class="iframe-wrapper aspect-[3/3.5] w-full sm:aspect-video">
       <Teleport :disabled="!fullscreen" to="#overlay">
         <div
-          class="iframe-container size-full bg-white"
+          class="iframe-container size-full rounded-6 bg-white"
           :class="{
             'size-screen fixed left-0 top-0': fullscreen,
             'relative': !fullscreen
