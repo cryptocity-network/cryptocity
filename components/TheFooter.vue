@@ -3,12 +3,20 @@
     class="px-24 pb-24 text-14 !text-blue-dark lg:px-72 lg:pb-72"
     :class="`bg-${backgroundColor}`"
   >
-    <div class="max-w-screen mx-auto grid w-full max-w-[1392px] grid-cols-1 xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64">
+    <div
+      class="max-w-screen mx-auto grid w-full max-w-[1392px] grid-cols-1"
+      :class="!onGlobalPage
+        ? 'xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64'
+        : ''
+      "
+    >
       <!-- LINKS -->
       <ul
-        class="flex flex-wrap items-center gap-16 xl:flex-col xl:items-start"
+        :class="!onGlobalPage
+          ? 'flex flex-wrap items-center gap-16 xl:flex-col xl:items-start'
+          : 'order-2 flex gap-16'"
       >
-        <LocalizationDropdown class="w-full" />
+        <LocalizationDropdown v-if="!onGlobalPage" class="w-full" />
         <li
           v-for="(item, index) in pages"
           :key="String(item._modelApiKey)"
@@ -75,7 +83,7 @@
         </div>
       </div>
       <!-- Impring and copyright -->
-      <div class="mt-48 text-blue-dark/20 xl:mt-0 xl:self-end">
+      <div class="mt-48 text-blue-dark/20  xl:self-end" :class="{'xl:mt-0': !onGlobalPage}">
         <div class="flex gap-12 font-bold">
           <TheLink
             :text="data.footer.imprint"
@@ -118,6 +126,10 @@ defineProps({
   backgroundColor: {
     type: String,
     default: 'gray'
+  },
+  onGlobalPage: {
+    type: Boolean,
+    default: false
   }
 })
 

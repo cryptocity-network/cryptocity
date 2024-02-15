@@ -7,9 +7,15 @@
     :overlaps-next-section="true"
     class="!pt-96"
   >
-    <div class="aspect-video w-full">
-      <div class="iframe-container relative size-full">
-        <div class="absolute left-0 top-0 flex size-full flex-col items-center justify-center rounded-6 border-2 border-gray/60 bg-white">
+    <div class="iframe-wrapper aspect-[3/3.5] w-full sm:aspect-video">
+      <div
+        class="iframe-container size-full"
+        :class="{
+          'size-screen fixed left-0 top-0': fullscreen,
+          'relative': !fullscreen
+        }"
+      >
+        <div v-if="!loaded" class="absolute left-0 top-0 flex size-full flex-col items-center justify-center rounded-6 border-2 border-gray/60 bg-white">
           <h3 class="mb-4">
             Looks like something went wrong
           </h3>
@@ -25,18 +31,14 @@
         </div>
         <iframe
           v-if="data.iframe"
-          class="left-0 top-0 z-50 size-full rounded-6 shadow"
+          class="absolute left-0 top-0 z-50 size-full rounded-6 shadow"
           :src="data.iframe"
-          :class="{
-            'size-screen fixed': fullscreen,
-            'absolute': !fullscreen
-          }"
           @load="triggerLoad"
         />
         <transition name="fade" mode="out-in">
           <button
             v-if="loaded"
-            class="iframe-button grid-row-2 z-50 grid size-32 cursor-pointer grid-cols-2 rounded-full border-1 border-gray bg-white p-4 shadow-banner"
+            class="iframe-button grid-row-2 z-[999] grid size-32 cursor-pointer grid-cols-2 rounded-full border-1 border-gray bg-white p-4 shadow-banner"
             :class="{
               'absolute': !fullscreen,
               'fixed bottom-120 right-24 z-[999] md:bottom-200': fullscreen
@@ -90,7 +92,12 @@ const fullscreen = ref(false)
 </script>
 
 <style scoped>
+@media (width < 640px) {
+  .iframe-wrapper {
+    @apply !px-16
+  }
 
+}
 .iframe-container {
   container-type: inline-size;
 }
@@ -100,6 +107,11 @@ const fullscreen = ref(false)
 @container (width < 768px) {
   .iframe-button {
     @apply !bottom-120
+  }
+}
+@container (width < 550px) {
+  .iframe-button {
+    @apply !bottom-72
   }
 }
 

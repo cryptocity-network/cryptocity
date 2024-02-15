@@ -18,6 +18,7 @@
       <TheFooter
         :key="String(store.localization.userSelectedLocale)"
         :class="{ 'pt-120': onGlobalPage }"
+        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_HOME)"
         :background-color="onGlobalPage ? 'white' : 'gray'"
       />
     </div>
