@@ -1,15 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: true,
-
-    timeline: {
-      enabled: true
-    }
+    enabled: true
   },
   hooks: {
     'pages:extend' (pages) {
+      // Add locale versions of base pages
       pages.push(
+        // Dynamic Pages
+        {
+          name: 'index-locale',
+          path: '/:locale',
+          file: '~/pages/index.vue'
+        },
+        {
+          name: 'dynamic-locale',
+          path: '/:locale/:uid',
+          file: '~/pages/index.vue'
+        },
+        {
+          name: 'city-locale',
+          path: '/:locale/cities/:city',
+          file: '~/pages/cities/[city].vue'
+        },
+        // Static Pages
         {
           name: 'cookies-locale',
           path: '/:locale/cookies',

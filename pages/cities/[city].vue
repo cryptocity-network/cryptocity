@@ -20,8 +20,8 @@
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
-import type { CityData, Component } from '@/types/index'
 import city from '@/graphql/pages/City.js'
+import type { CityData, Component } from '@/types/index'
 import { useWebsiteStore } from '@/store/store'
 
 const store = useWebsiteStore()
@@ -30,6 +30,7 @@ const route = useRoute()
 const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.getCurrentLocale)
+
 const { data, error } = await useGraphqlQuery(cityQuery) as AsyncData<CityData, RTCError>
 
 const backgroundColorArray = computed(() => {

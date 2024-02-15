@@ -1,24 +1,27 @@
 <template>
-  <div>
-    <template
+  <main v-if="data && currentPageType !== 'contact'" class="min-h-screen">
+    <component
+      :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
       v-for="(component, index) in components"
-      :key="component?.id"
-    >
-      <component
-        :is="component._modelApiKey.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
-        :component-name="component._modelApiKey"
-        :data="component"
-        :index="index"
-        :background-color="backgroundColorArray?.[index]"
-      />
-    </template>
-    <ContactForm v-if="currentPageType !== 'home'" :key="($route.params.path as string)" show-header />
-  </div>
+      :key="component.id"
+      :component-name="component._modelApiKey"
+      :data="component"
+      :index="index"
+      :background-color="backgroundColorArray?.[index]"
+    />
+    <ContactForm v-if="data[`${currentPageType}Page`] && currentPageType !== 'home'" show-header />
+  </main>
+  <main v-else-if="data && currentPageType === 'contact'">
+    <section class="min-h-screen bg-gray !py-0">
+      <ContactForm :data="data.contactPage" class="!pt-144" />
+    </section>
+  </main>
 </template>
 
 <script lang="ts" setup>
-import { usePageQueryGetter } from '#imports'
+import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import { useWebsiteStore } from '@/store/store'
+import { usePageQueryGetter } from '#imports'
 import type { Component } from '@/types/index'
 
 const store = useWebsiteStore()
@@ -26,12 +29,22 @@ const regionId = store?.region?.id
 const locale = store.getCurrentLocale
 const route = useRoute()
 
+/* ROUTE LOCALE PARAM HERE CAN BE CONFUSING
+  - Locale always refers to first route param in this instance. Whether that is a page name or a language locale
+  - currentPageType function filters for this where it compares this first param to siteLocales
+  - If not a locale then it treats as a page and moves forwards. This is a quirk of having dynamic urls which change depending on language
+*/
 const currentPageType = computed(() => {
-  if (route.path === '/') {
-    return 'home'
-  } else {
+  // If locale exists and is present on site
+  if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
     const pageType = store.getPages?.find((x) => {
       return x.slug === route.params.uid
+    })
+    // If page type exists go to it. Otherwise go home
+    return pageType ? pageType._modelApiKey.replace(/_.*/, '') : 'home'
+  } else {
+    const pageType = store.getPages?.find((x) => {
+      return x.slug === route.params.locale
     })
     return pageType?._modelApiKey.replace(/_.*/, '')
   }
@@ -53,6 +66,3 @@ const components = computed(() => {
   return null
 })
 </script>
-
-<style>
-</style>
