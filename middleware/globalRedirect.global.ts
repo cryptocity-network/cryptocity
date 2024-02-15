@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware((to) => {
-  if (useRuntimeConfig().public.IS_HOME && to.path !== '/') {
+  if (useRuntimeConfig().public.IS_GLOBAL_SITE && to.path !== '/') {
     return navigateTo('/')
   }
 })

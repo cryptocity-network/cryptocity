@@ -70,10 +70,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      GRAPHQL_TOKEN: process.env.GRAPHQL_TOKEN,
+      DATO_TOKEN: process.env.DATO_TOKEN,
       DATO_DOMAIN: process.env.DATO_DOMAIN,
       DATO_DEFAULT_LOCALE: process.env.DATO_DEFAULT_LOCALE,
-      IS_HOME: process.env.IS_HOME
+      IS_GLOBAL_SITE: process.env.IS_GLOBAL_SITE
     }
   },
   components: {

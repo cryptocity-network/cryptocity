@@ -6,7 +6,7 @@
     >
       <TheNavigation
         :key="String(store.localization.userSelectedLocale)"
-        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_HOME)"
+        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :tag-line="globalData?.tagLine"
       />
       <main class="min-h-screen">
@@ -18,7 +18,7 @@
       <TheFooter
         :key="String(store.localization.userSelectedLocale)"
         :class="{ 'pt-120': onGlobalPage }"
-        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_HOME)"
+        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :background-color="onGlobalPage ? 'white' : 'gray'"
       />
       <div id="overlay" class="z-[100]" />
@@ -33,7 +33,7 @@ import type { AsyncData } from 'nuxt/app'
 import { useWebsiteStore } from './store/store'
 
 const store = useWebsiteStore()
-const onGlobalPage = useRuntimeConfig().public.IS_HOME
+const onGlobalPage = useRuntimeConfig().public.IS_GLOBAL_SITE
 const route = useRoute()
 interface RegionData {
   region: {
