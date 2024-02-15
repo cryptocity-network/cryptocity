@@ -22,7 +22,7 @@
       class="absolute left-1/2 top-1/2 h-56 -translate-x-1/2 -translate-y-1/2 xl:h-72"
     />
     <!-- CODE FOR CITY NAMES ON REGION CARD -->
-    <div
+    <!-- <div
       v-if="region._allReferencingCities.length > 0"
       class="absolute bottom-32 left-1/2 flex -translate-x-1/2 items-center text-20 font-semibold text-white"
     >
@@ -30,7 +30,7 @@
         <span v-if="index !== 0">, </span>
         {{ city.name }}
       </span>
-    </div>
+    </div> -->
   </nuxt-link>
 </template>
 
