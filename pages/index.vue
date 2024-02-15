@@ -41,7 +41,7 @@ const currentPageType = computed(() => {
       return x.slug === route.params.uid
     })
     // If page type exists go to it. Otherwise go home
-    return pageType ? pageType._modelApiKey.replace(/_.*/, '') : 'home'
+    return pageType ? pageType._modelApiKey.replace(/_.*/, '') : null
   } else {
     const pageType = store.getPages?.find((x) => {
       return x.slug === route.params.locale
@@ -49,7 +49,7 @@ const currentPageType = computed(() => {
     return pageType?._modelApiKey.replace(/_.*/, '')
   }
 })
-const query = usePageQueryGetter(currentPageType.value, regionId, locale)
+const query = currentPageType.value && usePageQueryGetter(currentPageType.value, regionId, locale)
 const { data } = await useGraphqlQuery(query)
 
 const backgroundColorArray = computed(() => {
@@ -64,5 +64,19 @@ const components = computed(() => {
     return filterPageResponseForComponents(data.value[`${currentPageType.value}Page`] as Array<Component>) as Array<Component>
   }
   return null
+})
+
+onMounted(() => {
+  // If route doesn't exist then send user to home
+  if (currentPageType.value === null) {
+    const url = () => {
+      if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
+        return '/' + route.params.locale
+      } else {
+        return '/'
+      }
+    }
+    useRouter().push(url())
+  }
 })
 </script>
