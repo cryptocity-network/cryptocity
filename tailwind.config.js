@@ -18,12 +18,7 @@ export default {
         dark: '#151833', /* rgb(21, 24, 51) */
         light: '#0582CA', /* rgb(5, 130, 202) */
         'light-darkened': '#0071C3', /* rgb(0, 113, 195) */
-        'light-on-dark': '#0CA6FE', /* rgb(12, 166, 254) */
-        'light-on-dark-darkened': '#0E99EC',
-        s3: '#2C72C7',
-        // TODO:
-        's3-on-dark': '#2C72C7',
-        's3-on-dark-darkened': '#2C72C7'
+        'light-on-dark': '#0CA6FE' /* rgb(12, 166, 254) */
       },
       gold: {
         DEFAULT: '#E9B213', /* rgb(233, 178, 19) */

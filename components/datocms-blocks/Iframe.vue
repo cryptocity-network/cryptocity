@@ -36,7 +36,7 @@
         <transition name="fade" mode="out-in">
           <button
             v-if="loaded"
-            class="iframe-button grid-row-2 z-50 grid size-32 cursor-pointer grid-cols-2 rounded-full bg-white p-4 shadow"
+            class="iframe-button grid-row-2 z-50 grid size-32 cursor-pointer grid-cols-2 rounded-full border-1 border-gray bg-white p-4 shadow-banner"
             :class="{
               'absolute': !fullscreen,
               'fixed bottom-120 right-24 z-[999] md:bottom-200': fullscreen
