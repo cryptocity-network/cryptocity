@@ -32,7 +32,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     async setNavigation (isGlobalPage: boolean | undefined) {
       if (isGlobalPage) {
         const QUERY = globalPage()
-        const { data: { value: { body } } } = await useGraphqlQuery(QUERY) as AsyncData<{ body: DatoGlobalResponse }, RTCError>
+        const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoGlobalResponse, RTCError>
         this.global = body.global
       } else {
         const pageFields = (showSlug = true, showNavLabel = true) => `
@@ -105,7 +105,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
             }
           `
         const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoRegionResponse, RTCError>
-        console.log(body)
         this.pages = []
         for (const property in body.region) {
           if (property.includes('Pages')) {
