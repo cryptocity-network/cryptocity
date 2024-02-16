@@ -109,7 +109,16 @@ const getBrandName = computed(() => {
 })
 
 const getCityName = computed(() => {
-  return props.cityName?.toUpperCase() || useRoute().path.split('/').pop()?.replace(/%20/g, ' ').toUpperCase()
+  if (props.cityName) { return props.cityName.toUpperCase() } else if (props.type !== 'region') {
+    const prettyUrlName = useRoute().path.split('/').pop()?.replace(/%20/g, ' ')
+    if (store.region?._allReferencingCities.find((x) => {
+      return x.name.toLowerCase() === prettyUrlName?.toLowerCase()
+    }
+    )) {
+      return prettyUrlName?.toUpperCase()
+    }
+  }
+  return null
 })
 </script>
 <style scoped>

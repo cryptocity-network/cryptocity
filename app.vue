@@ -58,7 +58,7 @@ onMounted(() => {
   if (navigator.language && !onGlobalPage) {
     const userSystemLocale = navigator.language.split('-')[0]
     // Set User locale if exists on site
-    if (region.value.region._locales.includes(userSystemLocale)) {
+    if (region.value?.region._locales.includes(userSystemLocale)) {
       store.setLocale(userSystemLocale, false)
     } else {
       store.setLocale(useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
@@ -113,7 +113,7 @@ const pageTitle = computed(() => {
 })
 const regionName = computed(() => {
   if (store.region) {
-    return store.region.brandName
+    return store.region?.brandName
   } else {
     return ''
   }

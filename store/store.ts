@@ -47,6 +47,11 @@ interface Region {
   _locale?: string;
   partners?: Array<Partner>;
   socialLinks?: SocialLinks;
+  _allReferencingCities: [
+    {
+      name: string
+    }
+  ]
   _allReferencingContactPages: [
     {
       header: string;
@@ -104,6 +109,9 @@ export const useWebsiteStore = defineStore('websiteStore', {
               brandName
               mainImage {
                 url
+              }
+              _allReferencingCities {
+                name
               }
               _allReferencingHomePages (filter: {_status: {eq: published}}) {
                 ${pageFields(false, false)}
@@ -165,7 +173,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       } else {
         this.pages = []
         for (const property in data.value.region) {
-          if (property.includes('_allReferencing')) {
+          if (property.includes('Pages')) {
             if (data.value.region[property][0] !== undefined) {
               this.pages?.push(data.value.region[property][0])
             }

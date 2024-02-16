@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="px-24 pb-24 text-14 !text-blue-dark lg:px-72 lg:pb-72"
+    class="p-24 text-14 !text-blue-dark lg:p-72"
     :class="`bg-${backgroundColor}`"
   >
     <div

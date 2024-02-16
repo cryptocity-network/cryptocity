@@ -1,14 +1,9 @@
 <template>
-  <section class="bg-gray py-80">
-    <div class="prose">
-      <h1>Seems like you've found an error</h1>
-      <TheLink
-        url="/"
-        text="Return home"
-      />
-    </div>
+  <section class="h-screen bg-gray py-80">
+    <ErrorMessage />
   </section>
 </template>
 
 <script lang="ts" setup>
+// const error = useError()
 </script>

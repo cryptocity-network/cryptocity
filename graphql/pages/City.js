@@ -8,7 +8,7 @@ import StartingGrid from '../blocks/StartingGrid'
 import MapBusiness from '../blocks/MapBusiness'
 export default (cityName, locale) => {
   return `query {
-    city(filter: {name: {eq: "${cityName}"}}, locale: ${locale}, fallbackLocales:[en]) {
+    city(filter: {name: {eq: "${cityName}"}, state: {eq: "Live"}}, locale: ${locale}, fallbackLocales:[en]) {
       id
       backgroundColors
       heroSection {
