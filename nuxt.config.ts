@@ -71,7 +71,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       DATO_TOKEN: process.env.DATO_TOKEN,
-      DATO_DOMAIN: process.env.DATO_DOMAIN,
+      DATO_REGION_ID: process.env.DATO_REGION_ID,
       DATO_DEFAULT_LOCALE: process.env.DATO_DEFAULT_LOCALE,
       IS_GLOBAL_SITE: process.env.IS_GLOBAL_SITE
     }
