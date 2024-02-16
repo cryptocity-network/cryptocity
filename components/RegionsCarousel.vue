@@ -1,16 +1,16 @@
 <template>
   <div
-    v-if="!error && data"
+    v-if="!error && response"
     class="relative h-screen !px-0 pt-72"
     :class="{'mx-auto': gridSmallerThanWindow}"
   >
-    <div v-if="data.allRegions.length > 2" class="relative h-full">
+    <div v-if="response.allRegions.length > 2" class="relative h-full">
       <div
         ref="scroller"
         class="no-scrollbar scroller relative grid h-full grid-flow-col grid-rows-1 gap-16 overflow-x-auto bg-white p-16 xl:gap-24 xl:p-24"
       >
         <RegionCard
-          v-for="region in data.allRegions"
+          v-for="region in response.allRegions"
           :key="region.id"
           :region="region"
         />
@@ -43,7 +43,7 @@
     <div v-else class="flex size-full">
       <div class="grid grow grid-flow-col grid-rows-1 gap-16  p-16 xl:gap-24 xl:p-24">
         <RegionCard
-          v-for="region in data.allRegions"
+          v-for="region in response.allRegions"
           :key="region.id"
           :region="region"
           class="w-full"
@@ -54,7 +54,14 @@
 </template>
 
 <script lang="ts" setup>
-const { data, error } = await useGraphqlQuery(`query  {
+import type { AsyncData } from 'nuxt/app'
+import type { Region } from '~/types'
+
+interface AllRegionsResponse {
+  allRegions: Region[]
+}
+
+const { data: { value: response }, error } = await useGraphqlQuery(`query  {
   allRegions(filter: {_status: {eq: published}}, orderBy: _createdAt_ASC) {
     url
     name
@@ -68,7 +75,7 @@ const { data, error } = await useGraphqlQuery(`query  {
       name
     }
   }
-}`)
+}`) as AsyncData<AllRegionsResponse, RTCError>
 const scroller = ref()
 
 function slide (direction: string) {

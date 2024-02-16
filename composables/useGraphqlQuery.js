@@ -5,7 +5,8 @@ export default (query) => {
     key,
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${runtimeConfig.public.DATO_TOKEN}`
+      Authorization: `Bearer ${runtimeConfig.public.DATO_TOKEN}`,
+      'X-Include-Drafts': true
     },
     body: {
       query

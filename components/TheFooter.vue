@@ -51,9 +51,9 @@
           <StructuredText
             v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
             class="footer-prose"
-            :data="data.footer.wpig"
+            :data="response.footer.wpig"
           />
-          <div v-html="marked.parse(data.footer.legal)" />
+          <div v-html="marked.parse(response.footer.legal)" />
           <div class="mt-12 flex flex-col gap-12 font-bold sm:flex-row">
             <TheLink
               v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
@@ -65,7 +65,7 @@
             />
             <span v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'" class="hidden text-blue-dark/30 sm:block">|</span>
             <TheLink
-              :text="data.footer.dataProtection"
+              :text="response.footer.dataProtection"
               url="/data-protection"
               hide-arrow
               secondary
@@ -73,7 +73,7 @@
             />
             <span class="hidden text-blue-dark/30 sm:block">|</span>
             <TheLink
-              :text="data.footer.cookies"
+              :text="response.footer.cookies"
               url="/cookies"
               hide-arrow
               secondary
@@ -86,7 +86,7 @@
       <div class="mt-48 text-blue-dark/20  xl:self-end" :class="{'xl:mt-0': !onGlobalPage}">
         <div class="flex gap-12 font-bold">
           <TheLink
-            :text="data.footer.imprint"
+            :text="response.footer.imprint"
             url="/impressum"
             :is-external="true"
             hide-arrow
@@ -96,7 +96,7 @@
           <span class="opacity-0">|</span>
           <TheLink
             class="pointer-events-none !opacity-0"
-            :text="data.footer.privacy"
+            :text="response.footer.privacy"
             url="/privacy"
             :is-external="true"
             hide-arrow
@@ -105,7 +105,7 @@
           />
         </div>
         <p class="mt-16 text-blue-dark/30 sm:mt-16">
-          {{ data.footer.copyrightText }}
+          {{ response.footer.copyrightText }}
         </p>
       </div>
     </div>
@@ -116,11 +116,13 @@
 <script lang="ts" setup>
 
 import { marked } from 'marked'
-import { StructuredText } from 'vue-datocms'
+import { StructuredText, type StructuredTextDocument } from 'vue-datocms'
+import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import footer from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
 import type { DynamicLogo } from '#build/components'
+import type { Region } from '~/types'
 
 defineProps({
   backgroundColor: {
@@ -150,15 +152,31 @@ const pages = computed(() => store.pages?.filter((item) => {
   return item._modelApiKey !== 'home_page'
 }))
 
+interface FooterResponse {
+  footer:{
+    wpig: StructuredTextDocument,
+    legal: string,
+    dataProtection: string,
+    cookies: string,
+    imprint: string,
+    privacy: string,
+    copyrightText: string
+  }
+}
+
+interface AllRegionsResponse {
+  allRegions: Region[]
+}
+
 const footerQuery = footer(store.getCurrentLocale)
-const { data } = await useGraphqlQuery(footerQuery)
-const { data: allRegionResponse } = await useGraphqlQuery(`query {
+const { data: { value: response } } = await useGraphqlQuery(footerQuery) as AsyncData<FooterResponse, RTCError>
+const { data: { value: allRegionResponse } } = await useGraphqlQuery(`query {
   allRegions {
     id
     brandName
     url
   }
-}`)
+}`) as AsyncData<AllRegionsResponse, RTCError>
 </script>
 
 <style>

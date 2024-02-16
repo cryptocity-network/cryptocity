@@ -1,73 +1,8 @@
-import { useRuntimeConfig } from 'nuxt/app'
+import { useRuntimeConfig, type AsyncData } from 'nuxt/app'
 import { defineStore } from 'pinia'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import globalPage from '@/graphql/Global.js'
-interface Partner {
-  badge: string,
-  companyName: string,
-  description: string,
-  label: string,
-  linkLabel: string,
-  linkUrl: string,
-  logo: {
-    url: string,
-    alt: string,
-  }
-  socials: {
-    youtube: string
-    whatsapp: string
-    twitter: string
-    telegram: string
-    linkedIn: string
-    instagram: string
-    facebook: string
-    email: string
-    discord: string
-  }
-}
-interface SocialLinks {
-  role: string,
-  name: string,
-  email: string,
-  telegram: string,
-  linkedin: string,
-  image: Object,
-  logo: Object
-}
-interface Page {
-  id?: string;
-  _modelApiKey: string;
-  navigationLabel: string;
-  slug: string;
-}
-interface Region {
-  pages: Array<Page>;
-  brandName: string;
-  id?: string;
-  _locale?: string;
-  partners?: Array<Partner>;
-  socialLinks?: SocialLinks;
-  _allReferencingCities: [
-    {
-      name: string
-    }
-  ]
-  _allReferencingContactPages: [
-    {
-      header: string;
-      subline: string;
-      formUrl: string;
-    }
-  ]
-}
-interface Localization {
-  siteLocales: Array<string> | undefined,
-  userSelectedLocale: string | undefined
-}
-interface Global {
-  regions: Object | undefined,
-  tagLine: string | undefined
-}
+import type { DatoGlobalResponse, DatoRegionResponse, Localization, Page, Region, Global } from '~/types'
 
 export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
@@ -95,92 +30,93 @@ export const useWebsiteStore = defineStore('websiteStore', {
   },
   actions: {
     async setNavigation (isGlobalPage: boolean | undefined) {
-      const pageFields = (showSlug = true, showNavLabel = true) => `
-        id
-        _modelApiKey
-        ${showNavLabel ? 'navigationLabel' : ''}
-        ${showSlug ? 'slug' : ''}
-      `
-      let QUERY = `
-          query {
-            region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${this.getCurrentLocale}) {
-              id
-              _locales
-              brandName
-              mainImage {
-                url
-              }
-              _allReferencingCities {
-                name
-              }
-              _allReferencingHomePages (filter: {_status: {eq: published}}) {
-                ${pageFields(false, false)}
-              }
-              _allReferencingMerchantPages (filter: {_status: {eq: published}}) {
-                ${pageFields()}
-              }
-              _allReferencingBeginnerPages (filter: {_status: {eq: published}}) {
-                ${pageFields()}
-              }
-              _allReferencingNetworkPages (filter: {_status: {eq: published}}) {
-                ${pageFields()}
-              }
-              _allReferencingAboutPages (filter: {_status: {eq: published}}) {
-                ${pageFields()}
-              }
-              _allReferencingContactPages (filter: {_status: {eq: published}}) {
-                ${pageFields()}
-                header
-                subline
-                formUrl
-              }
-              partners {
-                companyName
-                description
-                linkLabel
-                linkUrl
-                logo {
+      if (isGlobalPage) {
+        const QUERY = globalPage()
+        const { data: { value: { body } } } = await useGraphqlQuery(QUERY) as AsyncData<{ body: DatoGlobalResponse }, RTCError>
+        this.global = body.global
+      } else {
+        const pageFields = (showSlug = true, showNavLabel = true) => `
+          id
+          _modelApiKey
+          ${showNavLabel ? 'navigationLabel' : ''}
+          ${showSlug ? 'slug' : ''}
+        `
+        const QUERY = `
+            query {
+              region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${this.getCurrentLocale}) {
+                id
+                _locales
+                brandName
+                mainImage {
                   url
-                  alt
                 }
-                socials {
-                  youtube
-                  whatsapp
+                _allReferencingCities {
+                  name
+                }
+                _allReferencingHomePages (filter: {_status: {eq: published}}) {
+                  ${pageFields(false, false)}
+                }
+                _allReferencingMerchantPages (filter: {_status: {eq: published}}) {
+                  ${pageFields()}
+                }
+                _allReferencingBeginnerPages (filter: {_status: {eq: published}}) {
+                  ${pageFields()}
+                }
+                _allReferencingNetworkPages (filter: {_status: {eq: published}}) {
+                  ${pageFields()}
+                }
+                _allReferencingAboutPages (filter: {_status: {eq: published}}) {
+                  ${pageFields()}
+                }
+                _allReferencingContactPages (filter: {_status: {eq: published}}) {
+                  ${pageFields()}
+                  header
+                  subline
+                  formUrl
+                }
+                partners {
+                  companyName
+                  description
+                  linkLabel
+                  linkUrl
+                  logo {
+                    url
+                    alt
+                  }
+                  socials {
+                    youtube
+                    whatsapp
+                    twitter
+                    telegram
+                    linkedIn
+                    instagram
+                    facebook
+                    email
+                    discord
+                  }
+                }
+                socialLinks {
                   twitter
                   telegram
-                  linkedIn
-                  instagram
-                  facebook
                   email
-                  discord
+                  linkedIn
                 }
               }
-              socialLinks {
-                twitter
-                telegram
-                email
-                linkedIn
-              }
             }
-          }
-        `
-      if (isGlobalPage) {
-        QUERY = globalPage()
-      }
-      const { data } = await useGraphqlQuery(QUERY)
-      if (isGlobalPage) {
-        this.global = data.value.global
-      } else {
+          `
+        const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoRegionResponse, RTCError>
+        console.log(body)
         this.pages = []
-        for (const property in data.value.region) {
+        for (const property in body.region) {
           if (property.includes('Pages')) {
-            if (data.value.region[property][0] !== undefined) {
-              this.pages?.push(data.value.region[property][0])
+            const value = body.region[property as keyof typeof body.region]
+            if (typeof value === 'object') {
+              this.pages?.push((value as Page[])[0])
             }
           }
         }
-        this.region = data.value.region
-        this.localization.siteLocales = data.value.region._locales
+        this.region = body.region
+        this.localization.siteLocales = body.region._locales
       }
     },
     setLocale (locale: string, reInitRegion: Boolean = true) {

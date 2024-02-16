@@ -86,8 +86,10 @@
 </template>
 
 <script lang="ts" setup>
+import type { AsyncData } from 'nuxt/app'
 import allCities from '../../graphql/AllCities'
 import { useWebsiteStore } from '../../store/store'
+import type { City } from '~/types'
 
 defineProps({
   data: {
@@ -104,15 +106,17 @@ defineProps({
     default: 'white'
   }
 })
-
+interface AllCitiesResponse {
+  allCities: City[]
+}
 const store = useWebsiteStore()
 const citiesQuery = allCities(store.getCurrentLocale)
-const { data: response } = await useGraphqlQuery(citiesQuery)
+const { data: { value: response } } = await useGraphqlQuery(citiesQuery) as AsyncData<AllCitiesResponse, RTCError>
 
 // BELOW IS OLD
 
 const amountOfItems = computed(() => {
-  return response.value.allCities.length + 0
+  return response.allCities.length + 0
 })
 
 const activeIndex = ref(0)
