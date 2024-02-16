@@ -84,6 +84,7 @@
 </template>
 
 <script lang="ts" setup>
+import type { AsyncData } from 'nuxt/app'
 import eventsByCityQuery from '../../graphql/EventsByCity'
 import eventsByRegionQuery from '../../graphql/EventsByRegion'
 import { useWebsiteStore } from '~/store/store'
@@ -108,6 +109,24 @@ const props = defineProps({
     default: 'white'
   }
 })
+interface Event {
+  id: string,
+  title: string,
+  description: string,
+  image: {
+    url: string
+  },
+  start: string,
+  end: string,
+  linkLabel: string,
+  link: string,
+  locationCity: {
+    name: string
+  }
+}
+interface EventsResponse {
+  allEvents: Event[]
+}
 const store = useWebsiteStore()
 let populatedEventsQuery
 if (useRoute().path.includes('cities')) {
@@ -116,7 +135,7 @@ if (useRoute().path.includes('cities')) {
   populatedEventsQuery = eventsByRegionQuery(store.region!.id)
 }
 // let response: Array<AllEvents> | null= null
-const { data: response } = await useGraphqlQuery(populatedEventsQuery)
+const { data: { value: response } } = await useGraphqlQuery(populatedEventsQuery) as AsyncData<EventsResponse, RTCError>
 
 function getDate (start: string, end: string) {
   let [calendar] = start.split('T')
@@ -135,7 +154,7 @@ function getDate (start: string, end: string) {
 
 // BELOW IS OLD
 const amountOfItems = computed(() => {
-  return response.value.allEvents.length + 0
+  return response.allEvents.length + 0
 })
 
 const activeIndex = ref(0)
@@ -164,8 +183,8 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', onWindowResize)
 })
 
-function calculateStep (event: Event) {
-  const target = event.target as HTMLDivElement
+function calculateStep (event: UIEvent) {
+  const target = event.currentTarget as HTMLDivElement
 
   const padding = scrollerPaddingLeft.value + scrollerPaddingRight.value
   const gap = scrollerGap.value
@@ -173,7 +192,6 @@ function calculateStep (event: Event) {
   const cardWidth = (target.offsetWidth - padding) / cards + (gap * 1) / cards
 
   activeIndex.value = Math.round(target.scrollLeft / cardWidth)
-  // emit('indexChanged', activeIndex.value)
 }
 
 function slideTo (index: number) {

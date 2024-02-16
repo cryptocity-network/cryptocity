@@ -1,4 +1,6 @@
-export default (data: Array<Component>) => {
+import type { Page } from '~/types'
+
+export default (data: Page) => {
   if (data) {
     const compArray: Array<Component> = Object.values(data)
       .filter((x): x is Component => {

@@ -1,21 +1,27 @@
 <template>
-  <section v-if="data" class="bg-gray py-80">
+  <section v-if="response" class="bg-gray py-80">
     <div class="prose">
-      <h2>{{ data.dataProtection.title }}</h2>
-      <div v-html="marked.parse(data.dataProtection.text)" />
+      <h2>{{ response.dataProtection.title }}</h2>
+      <div v-html="marked.parse(response.dataProtection.text)" />
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
 import { marked } from 'marked'
+import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import dataProtection from '@/graphql/pages/DataProtection'
 import { useWebsiteStore } from '@/store/store'
-
+interface DataProtectionResponse {
+  dataProtection:{
+    title: string,
+    text: string
+  }
+}
 const store = useWebsiteStore()
 const dataProtectionQuery = dataProtection(store.getCurrentLocale)
-const { data } = await useGraphqlQuery(dataProtectionQuery)
+const { data: { value: response } } = await useGraphqlQuery(dataProtectionQuery) as AsyncData<DataProtectionResponse, RTCError>
 </script>
 
 <style></style>

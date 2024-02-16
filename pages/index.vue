@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div v-if="data && currentPageType !== 'contact'" class="min-h-screen">
+    <div v-if="response && currentPageType !== 'contact'" class="min-h-screen">
       <component
         :is="component._modelApiKey?.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
         v-for="(component, index) in components"
@@ -10,11 +10,11 @@
         :index="index"
         :background-color="backgroundColorArray?.[index]"
       />
-      <ContactForm v-if="data[`${currentPageType}Page`] && currentPageType !== 'home'" show-header />
+      <ContactForm v-if="pageData && currentPageType !== 'home'" show-header />
     </div>
-    <div v-else-if="data && currentPageType === 'contact'">
+    <div v-else-if="response && currentPageType === 'contact'">
       <section class="min-h-screen bg-gray !py-0">
-        <ContactForm :data="data.contactPage" class="!pt-144" />
+        <ContactForm :data="response.contactPage" class="!pt-144" />
       </section>
     </div>
     <ErrorMessage v-else-if="error" />
@@ -22,22 +22,31 @@
 </template>
 
 <script lang="ts" setup>
+import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import { useWebsiteStore } from '@/store/store'
 import { usePageQueryGetter } from '#imports'
-import type { Component } from '@/types/index'
+import type { Component, Page } from '@/types/index'
 
 const store = useWebsiteStore()
-const regionId = store?.region?.id
+const regionId = store.region?.id
 const locale = store.getCurrentLocale
 const route = useRoute()
 
+interface PageQueryResponse {
+  homePage?: Page,
+  merchantPage?: Page,
+  beginnerPage?: Page,
+  networkPage?: Page,
+  aboutPage?: Page,
+  contactPage?: Page,
+}
 /* ROUTE LOCALE PARAM HERE CAN BE CONFUSING
   - Locale always refers to first route param in this instance. Whether that is a page name or a language locale
   - currentPageType function filters for this where it compares this first param to siteLocales
   - If not a locale then it treats as a page and moves forwards. This is a quirk of having dynamic urls which change depending on language
 */
-const currentPageType = computed(() => {
+const currentPageType: ComputedRef<string | null | undefined> = computed(() => {
   // If locale exists and is present on site
   if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
     const pageType = store.getPages?.find((x) => {
@@ -53,33 +62,23 @@ const currentPageType = computed(() => {
   }
 })
 const query = currentPageType.value && usePageQueryGetter(currentPageType.value, regionId, locale)
-const { data, error } = await useGraphqlQuery(query)
+const { data: { value: response }, error } = await useGraphqlQuery(query) as AsyncData<PageQueryResponse, RTCError>
 
-const backgroundColorArray = computed(() => {
-  if (data && currentPageType) {
-    return Object.values(data.value[`${currentPageType.value}Page`].backgroundColors)
+const pageData = computed(() => {
+  const pageKey = `${currentPageType.value}Page` as keyof PageQueryResponse
+  return response[pageKey as keyof typeof response]
+})
+const backgroundColorArray: ComputedRef<String[] | null> = computed(() => {
+  if (response && currentPageType) {
+    return Object.values(pageData.value?.backgroundColors)
   }
   return null
 })
 
 const components = computed(() => {
-  if (data.value && currentPageType) {
-    return filterPageResponseForComponents(data.value[`${currentPageType.value}Page`] as Array<Component>) as Array<Component>
+  if (response && currentPageType) {
+    return filterPageResponseForComponents(pageData.value!) as Array<Component>
   }
   return null
-})
-
-onMounted(() => {
-  // If route doesn't exist then send user to home
-  // if (currentPageType.value === null) {
-  //   const url = () => {
-  //     if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
-  //       return '/' + route.params.locale
-  //     } else {
-  //       return '/'
-  //     }
-  //   }
-  //   useRouter().push(url())
-  // }
 })
 </script>

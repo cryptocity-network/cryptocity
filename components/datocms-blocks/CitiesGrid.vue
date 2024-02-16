@@ -24,8 +24,10 @@
 </template>
 
 <script lang="ts" setup>
+import type { AsyncData } from 'nuxt/app'
 import citiesByRegion from '@/graphql/CitiesByRegion'
 import { useWebsiteStore } from '@/store/store'
+import type { City } from '~/types'
 defineProps({
   data: {
     type: Object,
@@ -42,14 +44,18 @@ defineProps({
   }
 })
 
+interface AllCitiesResponse {
+  allCities: City[]
+}
+
 const store = useWebsiteStore()
 const citiesQuery = citiesByRegion(store?.region?.id, store.getCurrentLocale)
-const { data: response } = await useGraphqlQuery(citiesQuery)
+const { data: { value: response } } = await useGraphqlQuery(citiesQuery) as AsyncData<AllCitiesResponse, RTCError>
 
 const allCities = computed(() => {
-  if (response.value) {
+  if (response) {
   // @ts-ignore
-    return response.value.allCities.sort(a => a.state === 'Live' ? -1 : 1)
+    return response.allCities.sort(a => a.state === 'Live' ? -1 : 1)
   } else {
     return null
   }
