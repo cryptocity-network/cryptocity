@@ -36,7 +36,7 @@
     <svg class="size-full" :viewBox="`0 0 ${90+regionTextWidth} 63`" fill="none" xmlns="http://www.w3.org/2000/svg">
       <transition mode="out-in" name="slide-fade">
         <text
-          v-if="getCityName"
+          v-if="type !== 'region' && getCityName"
           :fill="textColor"
           xml:space="preserve"
           style="white-space: pre"
@@ -48,7 +48,7 @@
       </transition>
       <g
         class="transition-transform duration-200"
-        :class="getCityName ? 'translate-y-0' : 'translate-y-[14.5px]'"
+        :class="type !== 'region' && getCityName ? 'translate-y-0' : 'translate-y-[14.5px]'"
       >
         <text
           ref="regionText"
