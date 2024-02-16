@@ -25,17 +25,16 @@
 <style>
 .rotate {
     animation: rotation 1s infinite ease-in-out;
+    animation-play-state: running;
     transform-origin: center;
 }
 
 @keyframes rotation {
     from {
-        rotate: 0deg;
-        translate: -50% -50%;
+      transform: translate(-50%, -50%) rotate(0deg);
     }
     to {
-      rotate: -360deg;
-      translate: -50% -50%;
+      transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 </style>
