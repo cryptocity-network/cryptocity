@@ -1,6 +1,6 @@
-import type { CityData, Component } from '@/types/index'
+import type { CityResponse } from '@/types/dato-api-responses/City'
 
-export default (data: CityData) => {
+export default (data: CityResponse) => {
   if (data) {
     const compArray: Array<Component> = Object.values(data.city)
       .filter((x): x is Component => {

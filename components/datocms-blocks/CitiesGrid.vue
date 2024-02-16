@@ -27,7 +27,7 @@
 import type { AsyncData } from 'nuxt/app'
 import citiesByRegion from '@/graphql/CitiesByRegion'
 import { useWebsiteStore } from '@/store/store'
-import type { City } from '~/types'
+import type { City } from '@/types/dato-models/City'
 defineProps({
   data: {
     type: Object,

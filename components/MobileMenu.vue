@@ -70,18 +70,9 @@ const pages = computed(() => store.pages)
 const menuVisible = ref(false)
 const root$ = ref<HTMLDivElement | null>(null)
 
-// watch(menuVisible, (visible) => {
-//   document.body.classList.toggle('overflow-hidden', visible)
-// })
-
 useOutsideClick(root$, () => {
   menuVisible.value = false
 })
-
-// onBeforeUnmount(() => {
-//   document.body.classList.remove('overflow-hidden')
-// })
-
 const currentYear = new Date().getFullYear() // user year
 
 </script>

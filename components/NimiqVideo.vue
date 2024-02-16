@@ -11,12 +11,6 @@
         <div
           class="absolute size-full bg-black/40"
         />
-        <!-- <NimiqHexagon
-          class="md:w-30 absolute bottom-24 right-24 w-20 text-blue-dark/20 md:bottom-48 md:right-48 lg:bottom-72 lg:right-72 xl:w-40"
-        />
-        <NimiqHexagon
-          class="absolute right-0 w-[175px] translate-x-[40%] translate-y-[64%] text-blue-dark/[0.03] md:w-[300px] xl:w-[450px]"
-        /> -->
       </template>
 
       <template v-else>
@@ -51,7 +45,6 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import PlayButton from '~/static/icons/play-button.svg'
-// import NimiqHexagon from '~/static/icons/nimiq-hexagon-filled.svg'
 
 const props = defineProps({
   video: {

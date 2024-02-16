@@ -55,7 +55,7 @@
 
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
-import type { Region } from '~/types'
+import type { Region } from '@/types/dato-models/Region'
 
 interface AllRegionsResponse {
   allRegions: Region[]

@@ -26,7 +26,7 @@ import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import { useWebsiteStore } from '@/store/store'
 import { usePageQueryGetter } from '#imports'
-import type { Component, Page } from '@/types/index'
+import type { Page } from '@/types/dato-models/Page'
 
 const store = useWebsiteStore()
 const regionId = store.region?.id
@@ -48,7 +48,7 @@ interface PageQueryResponse {
 */
 const currentPageType: ComputedRef<string | null | undefined> = computed(() => {
   // If locale exists and is present on site
-  if (store.localization.siteLocales?.some(x => x === route.params.locale)) {
+  if (store.localization.siteLocales?.some((x: string) => x === route.params.locale)) {
     const pageType = store.getPages?.find((x) => {
       return x.slug === route.params.uid
     })
@@ -66,11 +66,11 @@ const { data: { value: response }, error } = await useGraphqlQuery(query) as Asy
 
 const pageData = computed(() => {
   const pageKey = `${currentPageType.value}Page` as keyof PageQueryResponse
-  return response[pageKey as keyof typeof response]
+  return response[pageKey as keyof typeof response] as Page
 })
 const backgroundColorArray: ComputedRef<String[] | null> = computed(() => {
   if (response && currentPageType) {
-    return Object.values(pageData.value?.backgroundColors)
+    return Object.values(pageData.value.backgroundColors)
   }
   return null
 })

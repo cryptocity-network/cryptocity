@@ -22,7 +22,7 @@
 import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
 import city from '@/graphql/pages/City.js'
-import type { CityData, Component } from '@/types/index'
+import type { CityResponse } from '@/types/dato-api-responses/City'
 import { useWebsiteStore } from '@/store/store'
 
 const store = useWebsiteStore()
@@ -32,7 +32,7 @@ const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, store.getCurrentLocale)
 
-const { data, error } = await useGraphqlQuery(cityQuery) as AsyncData<CityData, RTCError>
+const { data, error } = await useGraphqlQuery(cityQuery) as AsyncData<CityResponse, RTCError>
 
 const backgroundColorArray = computed(() => {
   if (data) {

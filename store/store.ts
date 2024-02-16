@@ -2,7 +2,11 @@ import { useRuntimeConfig, type AsyncData } from 'nuxt/app'
 import { defineStore } from 'pinia'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import globalPage from '@/graphql/Global.js'
-import type { DatoGlobalResponse, DatoRegionResponse, Localization, Page, Region, Global } from '~/types'
+import type { DatoGlobalResponse } from '@/types/dato-api-responses/Global'
+import type { DatoRegionResponse } from '@/types/dato-api-responses/Region'
+import type { Page } from '@/types/dato-models/Page'
+import type { Region } from '@/types/dato-models/Region'
+import type { Global } from '@/types/dato-models/Global'
 
 export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
