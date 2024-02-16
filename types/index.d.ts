@@ -99,7 +99,6 @@ interface Partner {
     userSelectedLocale: string | undefined
   }
   interface Global {
-    regions: Object | undefined,
     tagLine: string | undefined
   }
   interface DatoGlobalResponse {
