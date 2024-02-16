@@ -62,7 +62,7 @@ interface AllRegionsResponse {
 }
 
 const { data: { value: response }, error } = await useGraphqlQuery(`query  {
-  allRegions(filter: {_status: {eq: published}}, orderBy: _createdAt_ASC) {
+  allRegions(orderBy: _createdAt_ASC) {
     url
     name
     brandName

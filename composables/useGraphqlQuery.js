@@ -1,12 +1,15 @@
 export default (query) => {
   const runtimeConfig = useRuntimeConfig()
   const key = JSON.stringify(query)
-  return useFetch('https://graphql.datocms.com', {
+  let datoApiUrl = 'https://graphql.datocms.com'
+  if (runtimeConfig.public.DATO_DRAFT_PREVIEW) {
+    datoApiUrl = datoApiUrl + '/preview'
+  }
+  return useFetch(datoApiUrl, {
     key,
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${runtimeConfig.public.DATO_TOKEN}`,
-      'X-Include-Drafts': true
+      Authorization: `Bearer ${runtimeConfig.public.DATO_TOKEN}`
     },
     body: {
       query
