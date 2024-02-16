@@ -24,14 +24,6 @@
             :city="city"
             compact
           />
-          <!-- <TheCard
-            :title="city.name"
-            :image="city.mainImage"
-            :label="city.state"
-            :footer="city.region.brandName"
-            :link-label="city.region.url.split('://')[1].toUpperCase()"
-            :link="city.region.url"
-          /> -->
         </li>
       </ul>
 
@@ -89,7 +81,7 @@
 import type { AsyncData } from 'nuxt/app'
 import allCities from '../../graphql/AllCities'
 import { useWebsiteStore } from '../../store/store'
-import type { City } from '~/types'
+import type { City } from '@/types/dato-models/City'
 
 defineProps({
   data: {
@@ -112,8 +104,6 @@ interface AllCitiesResponse {
 const store = useWebsiteStore()
 const citiesQuery = allCities(store.getCurrentLocale)
 const { data: { value: response } } = await useGraphqlQuery(citiesQuery) as AsyncData<AllCitiesResponse, RTCError>
-
-// BELOW IS OLD
 
 const amountOfItems = computed(() => {
   return response.allCities.length + 0
@@ -154,7 +144,6 @@ function calculateStep (event: Event) {
   const cardWidth = (target.offsetWidth - padding) / cards + (gap * 1) / cards
 
   activeIndex.value = Math.round(target.scrollLeft / cardWidth)
-  // emit('indexChanged', activeIndex.value)
 }
 
 function slideTo (index: number) {

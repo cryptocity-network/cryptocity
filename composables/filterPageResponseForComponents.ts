@@ -1,4 +1,4 @@
-import type { Page } from '~/types'
+import type { Page } from '@/types/dato-models/Page'
 
 export default (data: Page) => {
   if (data) {

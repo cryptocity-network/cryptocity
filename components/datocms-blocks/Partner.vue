@@ -140,10 +140,6 @@ defineProps({
     default: '',
     type: String
   },
-  // label: {
-  //   default: '',
-  //   type: String
-  // },
   description: {
     type: String,
     default: null
@@ -196,10 +192,6 @@ defineProps({
     default: false,
     type: Boolean
   },
-  // badge: {
-  //   type: String,
-  //   default: null
-  // },
   backgroundColor: {
     default: 'transparent',
     type: String

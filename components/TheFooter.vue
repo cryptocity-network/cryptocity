@@ -116,14 +116,14 @@
 <script lang="ts" setup>
 
 import { marked } from 'marked'
-import { StructuredText, type StructuredTextDocument } from 'vue-datocms'
+import { StructuredText } from 'vue-datocms'
 import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import footer from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
 import type { DynamicLogo } from '#build/components'
-import type { Region } from '~/types'
-
+import type { Region } from '@/types/dato-models/Region'
+import type { Footer } from '@/types/dato-models/Footer'
 defineProps({
   backgroundColor: {
     type: String,
@@ -153,15 +153,7 @@ const pages = computed(() => store.pages?.filter((item) => {
 }))
 
 interface FooterResponse {
-  footer:{
-    wpig: StructuredTextDocument,
-    legal: string,
-    dataProtection: string,
-    cookies: string,
-    imprint: string,
-    privacy: string,
-    copyrightText: string
-  }
+  footer: Footer
 }
 
 interface AllRegionsResponse {

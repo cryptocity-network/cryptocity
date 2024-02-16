@@ -80,9 +80,7 @@ const props = defineProps({
     type: Object
   }
 })
-// if (!props.youtubeUrl?.startsWith('https://www.youtube.com/watch?v=')) {
-// throw new Error('Invalid youtubeUrl. Make sure you use: https://www.youtube.com/watch?v={VIDEO_ID}')
-// }
+
 const videoId = props.youtubeUrl?.split('?v=')[1] || ''
 const showingYoutubeIframe = ref(false)
 const hasPoster = computed(() => props.thumbnail !== undefined)
@@ -106,9 +104,6 @@ async function showYoutubeIframe () {
   initYoutube()
 }
 
-// FIXME: This way of loading the videos have some drawbacks:
-// For example in Brave: https://github.com/mediaelement/mediaelement/issues/2722#issuecomment-596573115
-// Chrome and Firefox seems to work fine.
 function initYoutube () {
   // @ts-ignore
   // eslint-disable-next-line no-new
