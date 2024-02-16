@@ -103,7 +103,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       `
       let QUERY = `
           query {
-            region(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}, locale: ${this.getCurrentLocale}) {
+            region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${this.getCurrentLocale}) {
               id
               _locales
               brandName

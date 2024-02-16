@@ -4,7 +4,6 @@
     ref="root$"
     class="fixed left-0 top-16 z-50 mt-0 w-full px-16 transition-opacity"
     :class="[{
-      'mb-32': pages.length > 0,
       'pointer-events-none opacity-0': localState.isScrolled,
       'pointer-events-auto !opacity-100': localState.isSticky,
     }]"
@@ -15,8 +14,7 @@
       class="flex w-full items-center justify-between gap-x-16 rounded-8 p-16 text-left transition-[border-radius,opacity,background,box-shadow]"
       :class="[{
         'bg-white shadow': localState.isScrolled,
-        'bg-transparent': !localState.isScrolled,
-        'mb-32': pages.length > 0
+        'bg-transparent': !localState.isScrolled
       }]"
     >
       <div

@@ -43,7 +43,7 @@ interface RegionData {
   }
 }
 const { data } = await useGraphqlQuery(`query {
-  region(filter: {url: {eq: "${useRuntimeConfig().public.DATO_DOMAIN}"}}) {
+  region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}) {
     id
     name
     _locales
