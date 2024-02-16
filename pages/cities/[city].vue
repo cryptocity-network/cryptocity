@@ -1,5 +1,5 @@
 <template>
-  <main v-if="!error && data" class="min-h-screen">
+  <main v-if="!error && data.city" class="min-h-screen">
     <template
       v-for="(component, index) in components"
       :key="typeof component === 'string' ? 'id' : component?.id"
@@ -15,6 +15,7 @@
       />
     </template>
   </main>
+  <ErrorMessage v-else-if="data.city === null" />
 </template>
 
 <script lang="ts" setup>
@@ -41,7 +42,10 @@ const backgroundColorArray = computed(() => {
 })
 
 const components = computed(() => {
-  return filterCityResponseForComponents(data.value) as Array<Component>
+  if (data.value?.city !== null) {
+    return filterCityResponseForComponents(data.value) as Array<Component>
+  }
+  return null
 })
 
 </script>

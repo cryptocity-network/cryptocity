@@ -49,7 +49,7 @@ const { data: response } = await useGraphqlQuery(citiesQuery)
 const allCities = computed(() => {
   if (response.value) {
   // @ts-ignore
-    return response.value.allCities.sort((a, b) => a.state === 'Live' ? -1 : 1)
+    return response.value.allCities.sort(a => a.state === 'Live' ? -1 : 1)
   } else {
     return null
   }

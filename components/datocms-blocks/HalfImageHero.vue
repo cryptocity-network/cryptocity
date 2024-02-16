@@ -14,9 +14,9 @@
           :label="data.label"
           :headline="data.headline"
           :subline="data.subline"
-          :link="data.link"
-          :link-label="data.linkLabel"
+          :link="data.simpleLink"
           :text-align="'left'"
+          :has-link="data.hasLink"
         />
       </div>
       <img
