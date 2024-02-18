@@ -1,15 +1,20 @@
 export default (query) => {
   const runtimeConfig = useRuntimeConfig()
   const key = JSON.stringify(query)
-  let datoApiUrl = 'https://graphql.datocms.com'
-  if (runtimeConfig.public.DATO_DRAFT_PREVIEW) {
-    datoApiUrl = datoApiUrl + '/preview'
+  const datoApiUrl = 'https://graphql.datocms.com'
+  let isPreviewEnvironment = false
+  if (process.client) {
+    isPreviewEnvironment = localStorage?.getItem('preview')
+  } else {
+    isPreviewEnvironment = false
   }
   return useFetch(datoApiUrl, {
     key,
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${runtimeConfig.public.DATO_TOKEN}`
+      Authorization: `Bearer ${runtimeConfig.public.DATO_TOKEN}`,
+      'X-environment': 'main',
+      ...(isPreviewEnvironment && { 'X-include-drafts': true })
     },
     body: {
       query

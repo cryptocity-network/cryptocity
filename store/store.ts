@@ -1,6 +1,6 @@
 import { useRuntimeConfig, type AsyncData } from 'nuxt/app'
 import { defineStore } from 'pinia'
-import useGraphqlQuery from '../composables/useGraphqlQuery'
+import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import globalPage from '@/graphql/Global.js'
 import type { DatoGlobalResponse } from '@/types/dato-api-responses/Global'
 import type { DatoRegionResponse } from '@/types/dato-api-responses/Region'
@@ -112,8 +112,8 @@ export const useWebsiteStore = defineStore('websiteStore', {
         this.pages = []
         for (const property in body.region) {
           if (property.includes('Pages')) {
-            const value = body.region[property as keyof typeof body.region]
-            if (typeof value === 'object') {
+            const value = body.region[property as keyof typeof body.region] as Page[]
+            if (typeof value === 'object' && value[0]) {
               this.pages?.push((value as Page[])[0])
             }
           }

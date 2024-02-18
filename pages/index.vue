@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div v-if="response && currentPageType !== 'contact'" class="min-h-screen">
+    <div v-if="response && currentPageType !== 'contact'" class="">
       <component
         :is="component._modelApiKey?.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
         v-for="(component, index) in components"
