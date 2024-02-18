@@ -2,14 +2,14 @@
   <transition name="page" mode="out-in" appear>
     <div
       v-if="pageData || globalData"
-      class="max-w-screeen flex min-h-screen flex-col"
+      class="max-w-screeen flex flex-col"
     >
       <TheNavigation
         :key="String(store.localization.userSelectedLocale)"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :tag-line="globalData?.tagLine"
       />
-      <main class="min-h-screen">
+      <main class="">
         <NuxtPage
           v-if="!onGlobalPage"
         />
@@ -22,6 +22,7 @@
         :background-color="onGlobalPage ? 'white' : 'gray'"
       />
       <div id="overlay" class="z-[100]" />
+      <PreviewModeControls />
     </div>
     <LoadingState v-else />
   </transition>
