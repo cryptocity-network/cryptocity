@@ -57,22 +57,22 @@ export const useWebsiteStore = defineStore('websiteStore', {
                 _allReferencingCities {
                   name
                 }
-                _allReferencingHomePages (filter: {_status: {eq: published}}) {
+                _allReferencingHomePages {
                   ${pageFields(false, false)}
                 }
-                _allReferencingMerchantPages (filter: {_status: {eq: published}}) {
+                _allReferencingMerchantPages {
                   ${pageFields()}
                 }
-                _allReferencingBeginnerPages (filter: {_status: {eq: published}}) {
+                _allReferencingBeginnerPages {
                   ${pageFields()}
                 }
-                _allReferencingNetworkPages (filter: {_status: {eq: published}}) {
+                _allReferencingNetworkPages {
                   ${pageFields()}
                 }
-                _allReferencingAboutPages (filter: {_status: {eq: published}}) {
+                _allReferencingAboutPages {
                   ${pageFields()}
                 }
-                _allReferencingContactPages (filter: {_status: {eq: published}}) {
+                _allReferencingContactPages {
                   ${pageFields()}
                   header
                   subline
@@ -108,6 +108,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
               }
             }
           `
+        console.log(QUERY)
         const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoRegionResponse, RTCError>
         this.pages = []
         for (const property in body.region) {
