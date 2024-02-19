@@ -1,5 +1,6 @@
 <template>
   <footer
+    v-if="response"
     class="px-24 pb-24 pt-48 text-14 !text-blue-dark lg:p-72"
     :class="`bg-${backgroundColor}`"
   >
