@@ -1,32 +1,47 @@
-# CryptoCities Master Site
+# CryptoCities
+
+Welcome, this repository contains code for setting up both Region and Global CryptoCities Pages. Read below for more information.
+
+## Setting up the Global CC Page
+
+The Global Page needs no extra setup in DatoCMS. Add the below environment variables to your deployment platform
+
+- `NUXT_PUBLIC_DATO_TOKEN` DatoCMS api token - found in DatoCMS -> Project Settings
+- `NUXT_PUBLIC_IS_GLOBAL_SITE` Boolean value. True triggers the site to present as the 'global' CC page. Do not include if the site is not the global CC page.
+
+Deployment Settings: 
+
+- Build command: `nuxt build`
+- Output directory: `dist`
+- Install command: `yarn install`
+- Node version: `18.x`
 
 ## Setting up a new Region
 
-### DatoCMS
-
-#### Region
-- Navigate to to Regions in the sidebar and click the '+ New Record' button to add a region. 
+### Region
+- Navigate to Regions in the sidebar and click the '+ New Record' button to add a region. 
 - Fill in the required details:
     - The region 'status' here is important. This will control whether the site is shown on the global page. For now leave it as 'hidden' so the site does not show up.
     - In addition add the locales required for this Region.
 - Once you are happy with these values save the Region and then publish it. (The region must be published to be viewed when we setup it's website)
 
-#### HomePage
-- Navigation to the 'General Pages -> Home Pages' tab in the sidebar and create a new Homepage.
-- If you want you can duplicate an existing Homepage but clicking one to open it, click the three dots next to the title and select 'Duplicate'
+### HomePage
+- Navigate to the 'General Pages -> Home Pages' tab in the sidebar and create a new Homepage.
+- If you want you can duplicate an existing Homepage by clicking one to open it, click the three dots next to the title and select 'Duplicate'
 - Once you have created a new Homepage or made a duplicate ensure you update the 'Region' field to your recently created one.
 - Now save and publish the page
 
 Now that you have a region and homepage setup and published we have enough to setup the regions website.
 
-### Website Setup
+### Deploy Site
 
 All CryptoCity (CC) sites are created using this repo. To setup different regions we use Environment Variables:
 
-- `NUXT_PUBLIC_DATO_TOKEN` DatoCMS api token
+- `NUXT_PUBLIC_DATO_TOKEN` DatoCMS api token - found in DatoCMS -> Project Settings
 - `NUXT_PUBLIC_DATO_REGION_ID` This is the domain the site is hosted. This should match the domain field in the Dato region being targeted.
 - `NUXT_PUBLIC_DATO_DEFAULT_LOCALE` Default language/locale for the deployment. This must be a locale present within the targeted regions pages.
-- `NUXT_PUBLIC_IS_GLOBAL_SITE` Boolean value. True triggers the site to present as the 'global' CC page (there should only be one global site). This shows all regions and acts as a filter to the various sub site urls. Do not include if the site is not the global CC page.
+
+Deployment Settings: 
 
 - Build command: `nuxt build`
 - Output directory: `dist`
