@@ -1,9 +1,7 @@
 <template>
-  <transition name="fade">
+  <transition appear name="fade">
     <img
-      v-show="isLoaded"
       :src="imageUrl"
-      @load="loaded = true"
     >
   </transition>
 </template>
@@ -14,10 +12,6 @@ defineProps({
     type: String,
     default: null
   }
-})
-const loaded = ref(false)
-const isLoaded = computed(() => {
-  return loaded.value
 })
 </script>
 
