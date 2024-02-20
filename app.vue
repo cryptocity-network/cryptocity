@@ -120,7 +120,7 @@ const regionName = computed(() => {
   }
 })
 const makeName = computed(() => {
-  return `${pageTitle.value ? pageTitle.value + ' - ' : ''}${regionName.value}`
+  return `${pageTitle.value ? pageTitle.value + ' - ' : ''}${regionName.value}\u00AE`
 })
 
 useHead({
