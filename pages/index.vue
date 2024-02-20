@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div v-if="response && currentPageType !== 'contact'" class="">
+    <div v-if="response && currentPageType && currentPageType !== 'contact'" class="">
       <component
         :is="component._modelApiKey?.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
         v-for="(component, index) in components"
@@ -11,6 +11,7 @@
         :background-color="backgroundColorArray?.[index]"
       />
       <ContactForm v-if="pageData && currentPageType !== 'home'" show-header />
+      <div v-if="components?.length === 0" class="h-screen bg-gray" />
     </div>
     <div v-else-if="response && currentPageType === 'contact'">
       <section class="min-h-screen bg-gray !py-0">
@@ -18,6 +19,7 @@
       </section>
     </div>
     <ErrorMessage v-else-if="error" />
+    <div v-else class="h-screen bg-gray" />
   </main>
 </template>
 

@@ -147,6 +147,7 @@ onMounted(() => {
 })
 
 const store = useWebsiteStore()
+const route = useRoute()
 const pages = computed(() => store.pages?.filter((item) => {
   return item._modelApiKey !== 'home_page'
 }))
@@ -158,9 +159,18 @@ interface FooterResponse {
 interface AllRegionsResponse {
   allRegions: Region[]
 }
-
-const footerQuery = FooterQuery(store.getCurrentLocale)
+const locale = computed(() => {
+  if (route.params.locale && route.params.locale.length === 2) {
+    return route.params.locale
+  } else {
+    return store.getCurrentLocale
+  }
+})
+const footerQuery = FooterQuery(locale.value)
 const { data: { value: response } } = await useGraphqlQuery(footerQuery) as AsyncData<FooterResponse, RTCError>
+onMounted(() => {
+  console.log('RENDER FOOTER', footerQuery, response)
+})
 
 const footerData = computed(() => {
   if (response) {
