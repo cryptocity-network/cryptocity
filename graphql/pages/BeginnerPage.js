@@ -8,6 +8,11 @@ export default (regionId, locale) => {
   return `query {
     beginnerPage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
       backgroundColors
+      _seoMetaTags {
+        attributes
+        content
+        tag
+      }
       halfImageHero {
         ${HalfImageHero()}
       }

@@ -1,7 +1,7 @@
 pages/cookies.vue<template>
-  <section v-if="response" class="bg-gray py-80">
+  <section v-if="response" class="bg-white py-80">
     <div class="prose">
-      <h2>{{ response.impressum.title }}</h2>
+      <h3>{{ response.impressum.title }}</h3>
       <div class="grid grid-flow-row grid-cols-2 gap-16">
         <div v-for="asset in response.impressum.assets" :key="asset.id" class="size-full">
           <img class="size-full object-contain object-center" :src="asset.url" :alt="asset.alt">

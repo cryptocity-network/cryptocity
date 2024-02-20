@@ -6,6 +6,11 @@ export default (regionId, locale) => {
   return `query {
     homePage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
       backgroundColors
+      _seoMetaTags {
+        attributes
+        content
+        tag
+      }
       herosection {
         ${HeroSection()}
       }

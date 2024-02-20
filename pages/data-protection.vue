@@ -1,7 +1,7 @@
 <template>
-  <section v-if="response" class="bg-gray py-80">
+  <section v-if="response" class="bg-white py-80">
     <div class="prose">
-      <h2>{{ response.dataProtection.title }}</h2>
+      <h3>{{ response.dataProtection.title }}</h3>
       <div v-html="marked.parse(response.dataProtection.text)" />
     </div>
   </section>

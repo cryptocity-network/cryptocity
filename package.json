@@ -26,6 +26,7 @@
     "vue-tsc": "^1.8.27"
   },
   "dependencies": {
+    "@nuxtjs/robots": "^3.0.0",
     "marked": "^11.1.1",
     "vue-datocms": "^5.0.0"
   }

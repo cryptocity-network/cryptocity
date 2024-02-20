@@ -1,5 +1,6 @@
 export interface City {
     id: string,
+    _seoMetaTags: Array<SeoMetaTag>,
     backgroundColors: Object,
     heroSection: Object,
     startingGrid: Object,

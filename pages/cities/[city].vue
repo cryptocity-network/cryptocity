@@ -47,5 +47,18 @@ const components = computed(() => {
   }
   return null
 })
-
+useSeoMeta({
+  description: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
+  ogTitle: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,
+  ogDescription: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:description')?.attributes?.content,
+  ogImage: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image')?.attributes?.content,
+  ogImageHeight: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:height')?.attributes?.content,
+  ogImageWidth: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:width')?.attributes?.content,
+  ogLocale: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:locale')?.attributes?.content,
+  ogSiteName: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
+  twitterImage: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:image')?.attributes?.content,
+  twitterSite: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:site')?.attributes?.content,
+  twitterDescription: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content
+  // twitterCard: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:card')?.attributes?.content
+})
 </script>
