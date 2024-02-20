@@ -58,7 +58,7 @@ useSeoMeta({
   ogSiteName: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
   twitterImage: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:image')?.attributes?.content,
   twitterSite: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:site')?.attributes?.content,
-  twitterDescription: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content
-  // twitterCard: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:card')?.attributes?.content
+  twitterDescription: data.value.city._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content,
+  twitterCard: 'summary'
 })
 </script>

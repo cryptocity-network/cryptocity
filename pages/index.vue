@@ -97,7 +97,7 @@ useSeoMeta({
   ogDescription: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:description')?.attributes?.content,
   ogLocale: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:locale')?.attributes?.content,
   ogSiteName: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
-  twitterDescription: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content
-  // twitterCard: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:card')?.attributes?.content
+  twitterDescription: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content,
+  twitterCard: 'summary'
 })
 </script>
