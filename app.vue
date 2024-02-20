@@ -16,7 +16,7 @@
         <RegionsCarousel v-else />
       </main>
       <TheFooter
-        :key="`Navigation-${String(store.localization.userSelectedLocale)}`"
+        :key="`Footer-${String(store.localization.userSelectedLocale)}`"
         :class="{ 'pt-120': onGlobalPage }"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :background-color="onGlobalPage ? 'white' : 'gray'"
