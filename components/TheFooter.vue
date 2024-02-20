@@ -164,7 +164,7 @@ interface AllRegionsResponse {
 const footerQuery = footer(store.getCurrentLocale)
 const { data: { value: response } } = await useGraphqlQuery(footerQuery) as AsyncData<FooterResponse, RTCError>
 const { data: { value: allRegionResponse } } = await useGraphqlQuery(`query {
-  allRegions {
+  allRegions (filter: {state: {eq: "live"}}) {
     id
     brandName
     url
