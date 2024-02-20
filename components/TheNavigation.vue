@@ -21,15 +21,13 @@
         class="cursor-pointer opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
         @click="goHome"
       >
-        <!-- <transition mode="out-in" name="slide-fade"> -->
         <DynamicLogo class="h-32" :type="useRoute().path.includes('cities') ? 'cities' : 'region'" />
-        <!-- </transition> -->
       </div>
 
-      <ul
+      <div
         class="hidden items-center gap-x-24 lg:flex"
       >
-        <li
+        <div
           v-for="item in pages"
           :key="String(item._modelApiKey)"
         >
@@ -41,9 +39,8 @@
             :variant="item._modelApiKey == 'contact_page' ? 'info' : 'default'"
             hide-arrow
           />
-        </li>
-        <!-- <LocalizationDropdown /> -->
-      </ul>
+        </div>
+      </div>
       <MobileMenu
         class="lg:hidden"
         :is-scrolled="localState.isScrolled"

@@ -3,6 +3,7 @@
     <img
       v-show="isLoaded"
       :src="imageUrl"
+      :alt="alt"
       @load="loaded = true"
     >
   </transition>
@@ -11,6 +12,10 @@
 <script lang="ts" setup>
 defineProps({
   imageUrl: {
+    type: String,
+    default: null
+  },
+  alt: {
     type: String,
     default: null
   }
