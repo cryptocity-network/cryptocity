@@ -30,7 +30,6 @@
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
             :url="'/' + item.slug"
-            :is-external="true"
             compact
             hide-arrow
           />
@@ -43,6 +42,7 @@
             v-for="region in allRegionResponse.allRegions"
             :key="region.id"
             :to="region.url"
+            :aria-label="region.brandName"
             class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
             <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :brand-name="region.brandName" />
@@ -89,7 +89,6 @@
           <TheLink
             :text="response.footer.imprint"
             url="/impressum"
-            :is-external="true"
             hide-arrow
             secondary
             compact
@@ -99,7 +98,6 @@
             class="pointer-events-none !opacity-0"
             :text="response.footer.privacy"
             url="/privacy"
-            :is-external="true"
             hide-arrow
             secondary
             compact
@@ -164,7 +162,7 @@ interface AllRegionsResponse {
 const footerQuery = footer(store.getCurrentLocale)
 const { data: { value: response } } = await useGraphqlQuery(footerQuery) as AsyncData<FooterResponse, RTCError>
 const { data: { value: allRegionResponse } } = await useGraphqlQuery(`query {
-  allRegions {
+  allRegions (filter: {state: {eq: "live"}}) {
     id
     brandName
     url

@@ -2,6 +2,7 @@
   <nuxt-link
     class="custom-ease group relative block aspect-[3/4] h-full min-h-full overflow-hidden rounded-8 xl:aspect-[3/4]"
     :to="region.url"
+    :aria-label="`Go to ${region.brandName} home page`"
     :class="{
       'transform-gpu transition-transform hover:-translate-y-6': region.state === 'live',
       'pointer-events-none': region.state !== 'live'
@@ -9,6 +10,7 @@
   >
     <FadeInImage
       :image-url="region.mainImage.url"
+      :alt="region.mainImage.alt"
       class="size-full object-cover"
       :class="{
         'opacity-75': region.state === 'live',

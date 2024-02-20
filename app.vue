@@ -2,7 +2,6 @@
   <transition name="page" mode="out-in" appear>
     <div
       v-if="pageData || globalData"
-      :key="(store.getCurrentLocale as string)"
       class="max-w-screeen flex flex-col"
     >
       <TheNavigation
@@ -10,7 +9,7 @@
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :tag-line="globalData?.tagLine"
       />
-      <main class="">
+      <main class="min-h-screen">
         <NuxtPage
           v-if="!onGlobalPage"
         />
@@ -116,8 +115,9 @@ const regionName = computed(() => {
   }
 })
 const makeName = computed(() => {
-  return `${pageTitle.value ? pageTitle.value + ' - ' : ''}${regionName.value}`
+  return `${pageTitle.value ? pageTitle.value + ' - ' : ''}${regionName.value}\u00AE`
 })
+
 useHead({
   title: makeName
 })

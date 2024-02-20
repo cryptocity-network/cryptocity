@@ -19,6 +19,7 @@
           :subline="data.subline"
           :link="data.simpleLink"
           :has-link="data.hasLink"
+          tag="h1"
         />
       </div>
     </div>

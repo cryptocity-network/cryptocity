@@ -6,6 +6,7 @@ export default (locale) => {
       state
       mainImage {
         url
+        alt
       }
       region {
         url

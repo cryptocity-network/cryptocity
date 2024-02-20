@@ -1,6 +1,7 @@
 <template>
   <nuxt-link
     :to="cityLink"
+    :aria-label="`To ${city.name} page`"
     class="custom-ease group relative size-full overflow-hidden rounded-8"
     :class="{
       'transform-gpu transition-transform hover:-translate-y-6': city.state === 'Live',
@@ -9,6 +10,7 @@
   >
     <FadeInImage
       :image-url="city.mainImage.url"
+      :alt="city.mainImage.alt"
       class="size-full rounded-8 object-cover"
       :class="{
         'opacity-75': city.state === 'Live',

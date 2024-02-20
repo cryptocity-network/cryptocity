@@ -26,7 +26,7 @@
     }
 
     h3 {
-      @apply mt-80 xl:mt-96;
+      @apply mt-80 xl:mt-96 font-bold;
     }
 
     h4 {
@@ -194,6 +194,10 @@
     /* Rich text labels */
     .nq_small-label {
       @apply mt-136;
+    }
+
+    a {
+      @apply text-blue-light hover:text-blue-light-darkened
     }
 
     .highlight {
