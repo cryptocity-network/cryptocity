@@ -2,6 +2,7 @@
   <transition appear name="fade">
     <img
       :src="imageUrl"
+      :alt="alt"
     >
   </transition>
 </template>
