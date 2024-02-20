@@ -1,65 +1,53 @@
 <template>
-  <!-- <transition name="page" mode="out-in" appear> -->
-  <div
-    v-if="pageData || globalData"
-    class="max-w-screeen flex flex-col"
-  >
-    <TheNavigation
-      :key="String(store.localization.userSelectedLocale)"
-      :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
-      :tag-line="globalData?.tagLine"
-    />
-    <main class="min-h-screen">
-      <NuxtPage
-        v-if="!onGlobalPage"
+  <transition name="page" mode="out-in" appear>
+    <div
+      v-if="pageData || globalData"
+      class="max-w-screeen flex flex-col"
+    >
+      <TheNavigation
+        :key="String(store.localization.userSelectedLocale)"
+        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
+        :tag-line="globalData?.tagLine"
       />
-      <RegionsCarousel v-else />
-    </main>
-    <TheFooter
-      :key="String(store.localization.userSelectedLocale)"
-      :class="{ 'pt-120': onGlobalPage }"
-      :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
-      :background-color="onGlobalPage ? 'white' : 'gray'"
-    />
-    <div id="overlay" class="z-[100]" />
-    <PreviewModeControls />
-  </div>
-  <!-- <LoadingState v-else />
-  </transition> -->
+      <main class="min-h-screen">
+        <NuxtPage
+          v-if="!onGlobalPage"
+        />
+        <RegionsCarousel v-else />
+      </main>
+      <TheFooter
+        :key="String(store.localization.userSelectedLocale)"
+        :class="{ 'pt-120': onGlobalPage }"
+        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
+        :background-color="onGlobalPage ? 'white' : 'gray'"
+      />
+      <div id="overlay" class="z-[100]" />
+      <PreviewModeControls />
+    </div>
+    <LoadingState v-else />
+  </transition>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import type { AsyncData } from 'nuxt/app'
 import { useWebsiteStore } from './store/store'
 
 const store = useWebsiteStore()
 const onGlobalPage = useRuntimeConfig().public.IS_GLOBAL_SITE
 const route = useRoute()
-interface RegionData {
-  region: {
-    id: string
-    name: string
-    _locales: Array<string>
-  }
-}
-const { data } = await useGraphqlQuery(`query {
-  region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}) {
-    id
-    name
-    _locales
-  }
-}`) as AsyncData<RegionData, RTCError>
 
 const region = computed(() => {
-  return data.value as RegionData
+  return store.region
 })
+
+await useAsyncData('setNavigation', () => store.setNavigation(convertToBoolean(onGlobalPage)).then(() => true))
+// const localeInitialised = ref(false)
 onMounted(() => {
   // If User has system language set
   if (navigator.language && !onGlobalPage) {
     const userSystemLocale = navigator.language.split('-')[0]
     // Set User locale if exists on site
-    if (region.value?.region._locales.includes(userSystemLocale)) {
+    if (region.value?._locales.includes(userSystemLocale)) {
       store.setLocale(userSystemLocale, false)
     } else {
       store.setLocale(useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
@@ -77,8 +65,15 @@ onMounted(() => {
       useRouter().push('/' + userSystemLocale)
     }
   }
+  if (store.getCurrentLocale !== useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
+    nextTick(() => {
+      store.setNavigation(false)
+      // localeInitialised.value = true
+    })
+  } else {
+    // localeInitialised.value = true
+  }
   // Then get region data
-  store.setNavigation(convertToBoolean(onGlobalPage))
 })
 
 function convertToBoolean (input: string | boolean): boolean | undefined {
