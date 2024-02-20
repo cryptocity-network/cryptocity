@@ -42,6 +42,7 @@
             v-for="region in allRegionResponse.allRegions"
             :key="region.id"
             :to="region.url"
+            :aria-label="region.brandName"
             class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
             <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :brand-name="region.brandName" />

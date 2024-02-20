@@ -37,11 +37,11 @@
         leave-class="translate-y-0 scale-y-100 opacity-100"
         leave-to-class="-translate-y-1/2 scale-y-0 opacity-0"
       >
-        <ul
+        <div
           v-show="isDropdownExpanded"
           class="absolute inset-x-0 left-1/2 top-full z-50 my-8 w-[calc(100%+16px)] -translate-x-1/2 cursor-pointer divide-y divide-blue-darker/10 overflow-hidden rounded-8 border-gray bg-white shadow"
         >
-          <li
+          <div
             v-for="(locale, index) in localeIcons"
             :key="index"
             class="flex  items-center justify-start gap-8 px-8 py-4"
@@ -57,8 +57,8 @@
             <span class="block font-semibold uppercase text-blue-darker/60">
               {{ locale === 'gb' ? 'en' : locale }}
             </span>
-          </li>
-        </ul>
+          </div>
+        </div>
       </transition>
     </button>
   </div>

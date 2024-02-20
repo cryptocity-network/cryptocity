@@ -9,7 +9,7 @@
     class="relative"
   >
     <!-- Hamburger icon -->
-    <button class="hamburger" :class="{ active: menuVisible }" @click="menuVisible = !menuVisible">
+    <button class="hamburger" aria-label="Navigation dropdown" :class="{ active: menuVisible }" @click="menuVisible = !menuVisible">
       <span />
       <span />
       <span />

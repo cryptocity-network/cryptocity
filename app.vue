@@ -1,31 +1,31 @@
 <template>
-  <transition name="page" mode="out-in" appear>
-    <div
-      v-if="pageData || globalData"
-      class="max-w-screeen flex flex-col"
-    >
-      <TheNavigation
-        :key="String(store.localization.userSelectedLocale)"
-        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
-        :tag-line="globalData?.tagLine"
+  <!-- <transition name="page" mode="out-in" appear> -->
+  <div
+    v-if="pageData || globalData"
+    class="max-w-screeen flex flex-col"
+  >
+    <TheNavigation
+      :key="String(store.localization.userSelectedLocale)"
+      :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
+      :tag-line="globalData?.tagLine"
+    />
+    <main class="min-h-screen">
+      <NuxtPage
+        v-if="!onGlobalPage"
       />
-      <main class="">
-        <NuxtPage
-          v-if="!onGlobalPage"
-        />
-        <RegionsCarousel v-else />
-      </main>
-      <TheFooter
-        :key="String(store.localization.userSelectedLocale)"
-        :class="{ 'pt-120': onGlobalPage }"
-        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
-        :background-color="onGlobalPage ? 'white' : 'gray'"
-      />
-      <div id="overlay" class="z-[100]" />
-      <PreviewModeControls />
-    </div>
-    <LoadingState v-else />
-  </transition>
+      <RegionsCarousel v-else />
+    </main>
+    <TheFooter
+      :key="String(store.localization.userSelectedLocale)"
+      :class="{ 'pt-120': onGlobalPage }"
+      :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
+      :background-color="onGlobalPage ? 'white' : 'gray'"
+    />
+    <div id="overlay" class="z-[100]" />
+    <PreviewModeControls />
+  </div>
+  <!-- <LoadingState v-else />
+  </transition> -->
 </template>
 
 <script lang="ts" setup>
@@ -122,6 +122,7 @@ const regionName = computed(() => {
 const makeName = computed(() => {
   return `${pageTitle.value ? pageTitle.value + ' - ' : ''}${regionName.value}`
 })
+
 useHead({
   title: makeName
 })

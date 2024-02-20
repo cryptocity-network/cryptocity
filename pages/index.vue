@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="min-h-screen">
     <div v-if="response && currentPageType !== 'contact'" class="">
       <component
         :is="component._modelApiKey?.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
@@ -80,5 +80,14 @@ const components = computed(() => {
     return filterPageResponseForComponents(pageData.value!) as Array<Component>
   }
   return null
+})
+
+const currentHtmlLang = computed(() => {
+  return store.getCurrentLocale
+})
+useHead({
+  htmlAttrs: {
+    lang: currentHtmlLang.value as string || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+  }
 })
 </script>
