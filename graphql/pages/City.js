@@ -10,6 +10,11 @@ export default (cityName, locale) => {
   return `query {
     city(filter: {name: {eq: "${cityName}"}, state: {eq: "Live"}}, locale: ${locale}, fallbackLocales:[en]) {
       id
+      _seoMetaTags {
+        attributes
+        content
+        tag
+      }
       backgroundColors
       heroSection {
         ${HeroSection()}

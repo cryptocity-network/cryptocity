@@ -70,6 +70,7 @@ const { data: { value: response }, error } = await useGraphqlQuery(`query  {
     id
     mainImage {
       url
+      alt
     }
     _allReferencingCities {
       id

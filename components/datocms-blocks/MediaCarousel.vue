@@ -18,21 +18,21 @@
         :class="{ active: step === i }"
         @click="() => goToStep(i)"
       >
-        <div class="grow">
-          <NimiqVideo
-            v-if="isVideo(i)"
-            :video="item.media.url"
-            :poster="item.poster"
-            class="nimiq-video mx-auto flex aspect-[var(--aspect)] h-[60vh] !w-auto items-center child:w-full"
-            :style="`--aspect: ${item.ratio || '9 / 19.5'};`"
-            :class="{ 'pointer-events-none': step !== i }"
-          />
-          <img
-            v-else
-            :src="item.media.url"
-            class="size-full rounded-6 object-cover shadow"
-          >
-        </div>
+        <!-- <div class="flex max-h-full  max-w-full items-start"> -->
+        <NimiqVideo
+          v-if="isVideo(i)"
+          :video="item.media.url"
+          :poster="item.poster"
+          class="nimiq-video mx-auto flex aspect-[var(--aspect)] h-[60vh] max-h-[570px] !w-auto items-center child:w-full"
+          :style="`--aspect: ${item.ratio || '9 / 19.5'};`"
+          :class="{ 'pointer-events-none': step !== i }"
+        />
+        <img
+          v-else
+          :src="item.media.url"
+          class="size-full rounded-6 object-cover shadow"
+        >
+        <!-- </div> -->
         <div
           class="mx-auto mt-40 flex max-w-xl flex-col gap-y-16 child:z-50 child:text-center sm:mt-48"
         >
@@ -135,7 +135,7 @@ function isVideo (i: number) {
   @apply snap-x snap-mandatory overflow-x-auto !px-[calc((100vw-250px-16px)/2)];
 
   .slide {
-    @apply shrink-0 w-[250px] items-center justify-center flex flex-col;
+    @apply shrink-0 w-[250px] items-center justify-between flex flex-col;
     @apply snap-center snap-always;
     @apply opacity-20 transition-[opacity,filter];
 

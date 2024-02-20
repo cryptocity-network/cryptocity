@@ -11,6 +11,10 @@ defineProps({
   imageUrl: {
     type: String,
     default: null
+  },
+  alt: {
+    type: String,
+    default: null
   }
 })
 </script>

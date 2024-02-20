@@ -18,6 +18,7 @@
         :linkedin="socialLinks.linkedin"
       />
       <iframe
+        aria-label="Contact form"
         class=" h-[725px] w-full rounded-b-6 px-16 py-8 lg:px-28 lg:py-16"
         :src="data.formUrl"
         frameborder="0"
