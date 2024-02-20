@@ -103,6 +103,7 @@ const pageTitle = computed(() => {
   }
 })
 const regionName = computed(() => {
+  if (onGlobalPage) { return 'CryptoCity' }
   if (store.region) {
     return store.region?.brandName
   } else {
