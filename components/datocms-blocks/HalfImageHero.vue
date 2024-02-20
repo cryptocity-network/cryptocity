@@ -17,6 +17,7 @@
           :link="data.simpleLink"
           :text-align="'left'"
           :has-link="data.hasLink"
+          tag="h1"
         />
       </div>
       <img

@@ -14,12 +14,13 @@
     >
       {{ label }}
     </div>
-    <h2
+    <component
+      :is="tag"
       v-if="headline"
       class="text-32 xl:text-40"
     >
       {{ headline }}
-    </h2>
+    </component>
     <div
       v-if="subline"
       class="mt-16 max-w-[918px] text-20 font-semibold text-blue/60 lg:mt-20 xl:text-24 "
@@ -74,6 +75,11 @@ defineProps({
     type: Boolean,
     required: false,
     default: false
+  },
+  tag: {
+    type: String,
+    required: false,
+    default: 'h2'
   }
 
 })
