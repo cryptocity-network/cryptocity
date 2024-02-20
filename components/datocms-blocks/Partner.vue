@@ -1,7 +1,7 @@
 // eslint-disable-next-line vue/multi-word-component-names
 <template>
   <li
-    class="flex flex-col gap-y-16 px-0 py-40 lg:gap-y-20 lg:px-40 lg:py-48 xl:gap-y-24 xl:px-48 xl:py-56"
+    class="flex flex-col gap-y-16 px-0 py-40 md:gap-y-20 md:px-40 md:py-48 xl:gap-y-24 xl:px-48 xl:py-56"
     :class="{
       'children:text-center children:mx-auto max-w-lg': center,
       'bg-radial-green text-white': backgroundColor === 'green',
@@ -14,7 +14,7 @@
       <img
         v-if="logo"
         :src="logo"
-        class="mr-auto h-28 max-w-[75%] lg:h-32"
+        class="mr-auto h-28 max-w-[75%] md:h-32"
       >
     </div>
     <img

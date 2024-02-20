@@ -7,7 +7,6 @@
       overlapsNextSection && 'overlaps-next-section',
     ]"
   >
-    <!-- `section-p-${paddingTop}`, -->
     <slot />
   </section>
 </template>
@@ -17,10 +16,6 @@ defineProps({
   blockBackgroundColor: {
     required: true,
     type: String
-  },
-  paddingTop: {
-    default: 240,
-    type: Number
   },
   noPaddingBottom: {
     default: false,
@@ -86,6 +81,9 @@ section.hero {
 }
 
 section.title {
+  @apply pb-80 lg:pb-96
+}
+section.events-carousel {
   @apply pb-80 lg:pb-96
 }
 

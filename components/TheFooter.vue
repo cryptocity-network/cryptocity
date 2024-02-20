@@ -180,6 +180,7 @@ const { data: { value: allRegionResponse } } = await useGraphqlQuery(`query {
 
 <style>
 .footer-prose a {
-  @apply text-blue-light underline font-semibold hover:text-blue-darker
+  @apply text-blue-light underline font-semibold hover:text-blue-darker;
+  word-break: break-word;
 }
 </style>

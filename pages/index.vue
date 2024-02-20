@@ -1,5 +1,5 @@
 <template>
-  <main class="min-h-screen">
+  <main>
     <div v-if="response && currentPageType !== 'contact'" class="">
       <component
         :is="component._modelApiKey?.replace(/(^|_)./g, (s: string) => s.slice(-1).toUpperCase())"
@@ -101,17 +101,17 @@ useHead({
 })
 
 useSeoMeta({
-  description: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
-  ogTitle: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,
-  ogDescription: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:description')?.attributes?.content,
-  ogImage: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image')?.attributes?.content,
-  ogImageHeight: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:height')?.attributes?.content,
-  ogImageWidth: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:width')?.attributes?.content,
-  ogLocale: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:locale')?.attributes?.content,
-  ogSiteName: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
-  twitterImage: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:image')?.attributes?.content,
-  twitterSite: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:site')?.attributes?.content,
-  twitterDescription: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content,
+  description: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
+  ogTitle: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,
+  ogDescription: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:description')?.attributes?.content,
+  ogImage: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image')?.attributes?.content,
+  ogImageHeight: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:height')?.attributes?.content,
+  ogImageWidth: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:width')?.attributes?.content,
+  ogLocale: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:locale')?.attributes?.content,
+  ogSiteName: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
+  twitterImage: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:image')?.attributes?.content,
+  twitterSite: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:site')?.attributes?.content,
+  twitterDescription: pageData.value?._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content,
   twitterCard: 'summary'
 })
 </script>
