@@ -30,8 +30,8 @@ import type { Page } from '@/types/dato-models/Page'
 
 const store = useWebsiteStore()
 const regionId = store.region?.id
-const locale = store.getCurrentLocale
 const route = useRoute()
+const locale = route.params.locale || store.getCurrentLocale
 
 interface PageQueryResponse {
   homePage?: Page,
@@ -61,7 +61,7 @@ const currentPageType: ComputedRef<string | null | undefined> = computed(() => {
     return pageType?._modelApiKey.replace(/_.*/, '')
   }
 })
-const query = currentPageType.value && usePageQueryGetter(currentPageType.value, regionId, locale)
+const query = currentPageType.value && usePageQueryGetter(currentPageType.value, regionId, locale as string)
 const { data: { value: response }, error } = await useGraphqlQuery(query) as AsyncData<PageQueryResponse, RTCError>
 
 const pageData = computed(() => {
