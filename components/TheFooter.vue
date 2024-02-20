@@ -29,7 +29,6 @@
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
             :url="'/' + item.slug"
-            :is-external="true"
             compact
             hide-arrow
           />
@@ -89,7 +88,6 @@
           <TheLink
             :text="response.footer.imprint"
             url="/impressum"
-            :is-external="true"
             hide-arrow
             secondary
             compact
@@ -99,7 +97,6 @@
             class="pointer-events-none !opacity-0"
             :text="response.footer.privacy"
             url="/privacy"
-            :is-external="true"
             hide-arrow
             secondary
             compact
