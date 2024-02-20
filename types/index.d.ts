@@ -53,3 +53,13 @@ interface Localization {
   siteLocales: Array<string> | undefined,
   userSelectedLocale: string | undefined
 }
+
+interface SeoMetaTag {
+  attributes: {
+    property?: string,
+    name?: string,
+    content: string
+  } | null,
+  tag: string,
+  content: string | null
+}

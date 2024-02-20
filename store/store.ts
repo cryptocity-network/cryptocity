@@ -53,6 +53,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
                 brandName
                 mainImage {
                   url
+                  alt
                 }
                 _allReferencingCities {
                   name
