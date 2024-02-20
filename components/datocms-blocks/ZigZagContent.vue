@@ -5,11 +5,11 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <ul class="wide mx-auto md:px-24 2xl:!max-w-[1440px]">
+    <ul class="wide mx-auto !px-0 2xl:!max-w-[1440px]">
       <li
         v-for="(item, i) in data.blocks"
         :key="i"
-        class="flex flex-col items-stretch gap-x-64 px-16 sm:px-24 lg:items-center"
+        class="flex flex-col items-stretch gap-x-64 px-16 sm:px-24 md:px-48 lg:items-center"
         :class="{
           'border-b border-blue-dark/10 pb-64 lg:pb-72':
             i === 0 && data.blocks.length > 1,
