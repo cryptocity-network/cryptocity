@@ -9,7 +9,7 @@
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :tag-line="globalData?.tagLine"
       />
-      <main class="min-h-screen">
+      <main class="">
         <NuxtPage
           v-if="!onGlobalPage"
         />

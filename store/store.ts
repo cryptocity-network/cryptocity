@@ -17,8 +17,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       localization: <Localization>{
         siteLocales: undefined as Array<string> | undefined,
         userSelectedLocale: undefined as string | undefined
-      },
-      pageType: null as string | null
+      }
     }
   },
   getters: {
@@ -28,9 +27,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
     getCurrentLocale (): string | null {
       const routeLocale = useRoute().params.locale?.length === 2 && useRoute().params.locale
       return this.localization.userSelectedLocale || (routeLocale as string) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-    },
-    getCurrentPageType (): string | null {
-      return this.pageType
     }
   },
   actions: {
@@ -47,7 +43,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
           ${showSlug ? 'slug' : ''}
         `
         const locale = this.getCurrentLocale
-        console.log('SET NAVIGATION', locale)
         const QUERY = `
             query {
               region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale}) {
@@ -129,9 +124,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
     setLocale (locale: string, reInitRegion: Boolean = true) {
       if (locale) { this.localization.userSelectedLocale = locale }
       if (reInitRegion) { this.setNavigation(false) }
-    },
-    setPageType (pageType: string) {
-      this.pageType = pageType
     }
   }
 })

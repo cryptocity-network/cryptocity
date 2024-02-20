@@ -8,7 +8,7 @@
   >
     <ul
       v-if="partners"
-      class="mx-auto grid max-w-screen-2xl grid-cols-1 place-items-center items-stretch justify-items-stretch lg:grid-cols-2"
+      class="mx-auto grid max-w-screen-2xl grid-cols-1 place-items-center items-stretch justify-items-stretch md:grid-cols-2 md:!px-32 lg:!px-48"
       :class="[
         {
           'justify-center': partners.length === 1,
@@ -37,9 +37,9 @@
         :whatsapp="item.socials.whatsapp"
         :center="partners.length === 1"
         :class="{
-          'lg:border-r-1 lg:border-blue-dark/10': partners.length > 1 && i % 2 === 0,
-          'lg:!border-b-1 lg:border-blue-dark/10': i < partners.length - 2,
-          'border-t-1 border-blue-dark/10 lg:border-t-0': i > 0,
+          'md:border-r-1 md:border-blue-dark/10': partners.length > 1 && i % 2 === 0,
+          'md:!border-b-1 md:border-blue-dark/10': i < partners.length - 2,
+          'border-t-1 border-blue-dark/10 md:border-t-0': i > 0,
         }"
       />
     </ul>

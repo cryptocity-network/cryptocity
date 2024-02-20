@@ -119,7 +119,6 @@ const store = useWebsiteStore()
 const pages = computed(() => store.pages)
 
 const goHome = () => {
-  store.setPageType('home')
   let link
   if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
     link = '/'
