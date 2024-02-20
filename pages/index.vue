@@ -31,8 +31,13 @@ import type { Page } from '@/types/dato-models/Page'
 const store = useWebsiteStore()
 const regionId = store.region?.id
 const route = useRoute()
-const locale = route.params.locale || store.getCurrentLocale
-
+const locale = computed(() => {
+  if (route.params.locale && route.params.locale.length === 2) {
+    return route.params.locale
+  } else {
+    return store.getCurrentLocale
+  }
+})
 interface PageQueryResponse {
   homePage?: Page,
   merchantPage?: Page,
@@ -61,16 +66,20 @@ const currentPageType: ComputedRef<string | null | undefined> = computed(() => {
     return pageType?._modelApiKey.replace(/_.*/, '')
   }
 })
-const query = currentPageType.value && usePageQueryGetter(currentPageType.value, regionId, locale as string)
+const query = currentPageType.value && usePageQueryGetter(currentPageType.value, regionId, locale.value as string)
 const { data: { value: response }, error } = await useGraphqlQuery(query) as AsyncData<PageQueryResponse, RTCError>
 
 const pageData = computed(() => {
   const pageKey = `${currentPageType.value}Page` as keyof PageQueryResponse
-  return response[pageKey as keyof typeof response] as Page
+  if (response) {
+    return response[pageKey as keyof typeof response] as Page
+  } else {
+    return null
+  }
 })
 const backgroundColorArray: ComputedRef<String[] | null> = computed(() => {
   if (response && currentPageType) {
-    return Object.values(pageData.value.backgroundColors)
+    return Object.values(pageData.value!.backgroundColors)
   }
   return null
 })
@@ -92,17 +101,17 @@ useHead({
 })
 
 useSeoMeta({
-  description: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
-  ogTitle: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,
-  ogDescription: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:description')?.attributes?.content,
-  ogImage: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image')?.attributes?.content,
-  ogImageHeight: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:height')?.attributes?.content,
-  ogImageWidth: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:width')?.attributes?.content,
-  ogLocale: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:locale')?.attributes?.content,
-  ogSiteName: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
-  twitterImage: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:image')?.attributes?.content,
-  twitterSite: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:site')?.attributes?.content,
-  twitterDescription: pageData.value._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content,
+  description: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
+  ogTitle: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,
+  ogDescription: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:description')?.attributes?.content,
+  ogImage: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image')?.attributes?.content,
+  ogImageHeight: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:height')?.attributes?.content,
+  ogImageWidth: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:width')?.attributes?.content,
+  ogLocale: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:locale')?.attributes?.content,
+  ogSiteName: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
+  twitterImage: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:image')?.attributes?.content,
+  twitterSite: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:site')?.attributes?.content,
+  twitterDescription: pageData.value?._seoMetaTags.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content,
   twitterCard: 'summary'
 })
 </script>
