@@ -5,7 +5,7 @@
       class="max-w-screeen flex flex-col"
     >
       <TheNavigation
-        :key="String(store.localization.userSelectedLocale)"
+        :key="`Navigation-${String(store.localization.userSelectedLocale)}`"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :tag-line="globalData?.tagLine"
       />
@@ -16,7 +16,6 @@
         <RegionsCarousel v-else />
       </main>
       <TheFooter
-        :key="String(store.localization.userSelectedLocale)"
         :class="{ 'pt-120': onGlobalPage }"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :background-color="onGlobalPage ? 'white' : 'gray'"
@@ -41,7 +40,7 @@ const region = computed(() => {
 })
 
 await useAsyncData('setNavigation', () => store.setNavigation(convertToBoolean(onGlobalPage)).then(() => true))
-// const localeInitialised = ref(false)
+
 onMounted(() => {
   // If User has system language set
   if (navigator.language && !onGlobalPage) {
@@ -68,12 +67,8 @@ onMounted(() => {
   if (store.getCurrentLocale !== useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
     nextTick(() => {
       store.setNavigation(false)
-      // localeInitialised.value = true
     })
-  } else {
-    // localeInitialised.value = true
   }
-  // Then get region data
 })
 
 function convertToBoolean (input: string | boolean): boolean | undefined {
@@ -125,7 +120,7 @@ useHead({
 <style>
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.4s;
+  transition: all 0.3s;
 }
 .page-enter-from,
 .page-leave-to {

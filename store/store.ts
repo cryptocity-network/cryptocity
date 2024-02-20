@@ -26,7 +26,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     getCurrentRegion (state): Region | null { return state.region },
     getPages (state): Array<Page> | null { return state.pages },
     getCurrentLocale (): string | null {
-      return this.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+      return this.localization.userSelectedLocale || (useRoute().params.locale as string) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
     },
     getCurrentPageType (): string | null {
       return this.pageType
@@ -45,9 +45,10 @@ export const useWebsiteStore = defineStore('websiteStore', {
           ${showNavLabel ? 'navigationLabel' : ''}
           ${showSlug ? 'slug' : ''}
         `
+        const locale = this.getCurrentLocale
         const QUERY = `
             query {
-              region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${this.getCurrentLocale}) {
+              region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale}) {
                 id
                 _locales
                 brandName
