@@ -6,12 +6,18 @@
 
 <script lang="ts" setup>
 const isPreviewMode = computed(() => {
-  return localStorage.getItem('preview')
+  if (process.client) {
+    return localStorage.getItem('preview')
+  } else {
+    return null
+  }
 })
 
 const exitPreviewMode = () => {
-  localStorage.removeItem('preview')
-  window.location.href = useRoute().path
+  if (process.client) {
+    localStorage.removeItem('preview')
+    window.location.href = useRoute().path
+  }
 }
 
 </script>

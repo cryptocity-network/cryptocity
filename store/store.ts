@@ -109,7 +109,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
               }
             }
           `
-        console.log(QUERY)
         const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoRegionResponse, RTCError>
         this.pages = []
         for (const property in body.region) {
