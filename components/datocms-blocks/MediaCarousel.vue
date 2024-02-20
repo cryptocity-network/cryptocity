@@ -34,7 +34,7 @@
         >
         <!-- </div> -->
         <div
-          class="mx-auto mt-40 flex max-w-xl flex-col gap-y-16 child:z-50 child:text-center sm:mt-48"
+          class="mx-auto mt-32 flex max-w-xl grow flex-col justify-start gap-y-16 child:z-50 child:text-center "
         >
           <h3
             class="leading-none whitespace-nowrap text-12 font-bold uppercase tracking-[0.095em] !text-blue-dark/60"
