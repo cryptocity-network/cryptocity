@@ -36,6 +36,7 @@
             class="absolute left-0 top-0 z-50 size-full"
             :class="{ 'rounded-6': !fullscreen }"
             :src="data.iframe"
+            loading="lazy"
             @load="triggerLoad"
           />
           <transition name="fade" mode="out-in">
