@@ -27,11 +27,11 @@
           :style="`--aspect: ${item.ratio || '9 / 19.5'};`"
           :class="{ 'pointer-events-none': step !== i }"
         />
-        <img
+        <DatoImage
           v-else
-          :src="item.media.url"
+          :image="item.media"
           class="size-full rounded-6 object-cover shadow"
-        >
+        />
         <!-- </div> -->
         <div
           class="mx-auto mt-32 flex max-w-xl grow flex-col justify-start gap-y-16 child:z-50 child:text-center "

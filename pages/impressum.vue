@@ -4,7 +4,7 @@ pages/cookies.vue<template>
       <h3>{{ response.impressum.title }}</h3>
       <div class="grid grid-flow-row grid-cols-2 gap-16">
         <div v-for="asset in response.impressum.assets" :key="asset.id" class="size-full">
-          <img class="size-full object-contain object-center" :src="asset.url" :alt="asset.alt">
+          <DatoImage class="size-full object-contain object-center" :image="asset" />
         </div>
       </div>
       <div v-html="marked.parse(response.impressum.text)" />

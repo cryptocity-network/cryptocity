@@ -1,3 +1,4 @@
+import ResponsiveImage from '../ResponsiveImage'
 import baseBlockValues from './blockValues'
 import Headline from './Headline'
 
@@ -10,7 +11,7 @@ export default () => {
     items {
       label
       image {
-        url
+        ${ResponsiveImage()}
       }
       description
       id

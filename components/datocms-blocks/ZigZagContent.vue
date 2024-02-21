@@ -51,11 +51,11 @@
           v-else-if="item.mediaType === 'image' || item.youtubeLink"
           class="relative flex w-full justify-center lg:max-w-[50%] xl:h-[519px] xl:items-center"
         >
-          <img
+          <DatoImage
             v-if="item.image"
-            class="aspect-[3/2] size-full rounded-8 border border-blue-dark/20 object-cover object-left-top shadow lg:aspect-[4/3]"
-            :src="item.image.url"
-          >
+            class="aspect-[3/2] size-full rounded-8 border border-blue-dark/20 object-cover object-center shadow lg:aspect-[4/3]"
+            :image="item.image"
+          />
         </div>
         <!-- Placeholder to ensure text is in correct place -->
         <div v-else class="w-full max-w-[50%]" />
@@ -91,12 +91,11 @@
                 item.badge,
             }"
           >
-            <img
+            <DatoImage
               v-if="item.logo"
-              :src="item.logo.url"
+              :image="item.logo"
               class="flex h-32 flex-col-reverse flex-wrap justify-between gap-16 sm:mx-auto sm:flex-row lg:mx-unset lg:items-center lg:justify-between"
-              alt=""
-            >
+            />
             <div
               v-if="item.badge"
               class="hidden h-32 w-max items-center gap-8 rounded bg-[#21BCA5]/20 px-16 py-8 text-[#13B59D] lg:flex"

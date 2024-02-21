@@ -8,10 +8,10 @@
       'pointer-events-none': city.state !== 'Live'
     }"
   >
-    <FadeInImage
-      :image-url="city.mainImage.url"
-      :alt="city.mainImage.alt"
-      class="size-full rounded-8 object-cover"
+    <!-- :alt="city.mainIyamage.alt" -->
+    <DatoImage
+      :image="city.mainImage"
+      class="size-full overflow-hidden rounded-8 object-cover child:overflow-hidden child:rounded-8"
       :class="{
         'opacity-75': city.state === 'Live',
         'opacity-50 grayscale': city.state !== 'Live'

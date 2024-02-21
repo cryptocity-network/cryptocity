@@ -6,12 +6,11 @@
     class="hero"
   >
     <div>
-      <img
+      <DatoImage
         v-if="data.image"
-        :src="data.image.url"
+        :image="data.image"
         class="mx-auto mb-40 !max-h-[5rem] !max-w-[90vw] px-32 sm:px-64 lg:!max-h-[7rem] lg:!max-w-[272px] lg:!px-0"
-        alt=""
-      >
+      />
       <div class="mx-auto max-w-screen-2xl">
         <HeadlineSection
           :label="data.label"

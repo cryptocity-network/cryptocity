@@ -14,7 +14,7 @@
         <h3 :field="item.headline" :background-color="item.backgroundColor">
           {{ item.title }}
         </h3>
-        <img v-if="item.image" :src="item.image.url" class=" rounded-8 border border-blue-dark/20">
+        <DatoImage v-if="item.image" :image="item.image" class=" rounded-8 border border-blue-dark/20" />
         <StructuredText class="flex-1" :data="item.description" />
         <TheLink
           v-if="item.hasLink"

@@ -36,7 +36,7 @@
       </template>
       <template v-else>
         <div class="absolute z-1 size-full bg-blue-dark/[.15]" />
-        <img :src="thumbnail?.url" class="absolute size-full object-contain">
+        <DatoImage :image="thumbnail" class="absolute size-full object-contain" />
       </template>
 
       <button

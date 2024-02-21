@@ -15,7 +15,7 @@
       </div>
       <div class="mb-40 inline-flex flex-wrap items-center gap-40 overflow-hidden sm:justify-center">
         <div v-for="(partner, i) in partners" :key="i" class="relative  flex h-28  sm:h-32">
-          <img :src="partner.logo.url" :alt="partner.logo.alt">
+          <DatoImage :image="partner.logo" />
         </div>
       </div>
       <TheLink

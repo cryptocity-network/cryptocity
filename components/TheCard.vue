@@ -4,7 +4,8 @@
     class="group relative flex h-full w-[clamp(320px,370px,80vw)] cursor-pointer flex-col rounded-6 border-1 border-gray bg-[#e9e9eb] p-6 pb-0 transition-all will-change-transform hover:-translate-y-6 hover:bg-white hover:shadow"
   >
     <div v-if="image" class="relative h-240 overflow-hidden rounded-4">
-      <img :src="image.url" class="size-full rounded-4 object-cover">
+      <!-- <DatoImage v-if="image" :image="image" class="size-full rounded-4 object-cover" /> -->
+      <DatoImage :image="image" class="size-full rounded-4 object-cover" />
       <div class="absolute left-0 top-0 size-full bg-blue/20 transition-opacity group-hover:opacity-50" />
       <div
         v-if="label"

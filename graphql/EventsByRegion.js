@@ -1,3 +1,7 @@
+// import ResponsiveImage from './ResponsiveImage'
+
+import ResponsiveImage from './ResponsiveImage'
+
 export default (regionId) => {
   return `query {
   allEvents(filter: {locationRegion: {eq: "${regionId}"}}, fallbackLocales:[en]) {
@@ -8,8 +12,7 @@ export default (regionId) => {
       name
     }
     image {
-      alt
-      url
+      ${ResponsiveImage()}
     }
     end
     description

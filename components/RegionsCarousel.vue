@@ -69,8 +69,18 @@ const { data: { value: response }, error } = await useGraphqlQuery(`query  {
     brandName
     id
     mainImage {
-      url
-      alt
+      responsiveImage(imgixParams: { fit: max, h: 540, auto: format }) {
+        srcSet
+        webpSrcSet
+        sizes
+        src
+        width
+        height
+        aspectRatio
+        alt
+        title
+        base64
+      }
     }
     _allReferencingCities {
       id
