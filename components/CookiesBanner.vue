@@ -35,7 +35,7 @@ onMounted(() => {
       customizeButtonDisplay: true,
       explicitWithdrawal: true,
       listPurposes: true,
-      logo: 'https://prismic-io.s3.amazonaws.com/kryptostadt/a28845fc-8e17-41ba-b709-668f8b66a667_kryptostadt-horizontal.svg',
+      logo: 'https://www.datocms-assets.com/117771/1706866461-criptocity-signet.svg',
       position: 'float-bottom-center',
       rejectButtonCaptionColor: '#FFFFFF',
       rejectButtonColor: '#0073CE',
@@ -47,12 +47,14 @@ onMounted(() => {
   // Add scripts tag to head
   const script1 = document.createElement('script')
   script1.src = 'https://cdn.iubenda.com/cs/ccpa/stub.js'
+  script1.defer = true
   document.head.appendChild(script1)
 
   const script2 = document.createElement('script')
   script2.async = true
   script2.id = 'iubenda'
   script2.src = 'https://cdn.iubenda.com/cs/iubenda_cs.js'
+  script1.defer = true
   document.head.appendChild(script2)
 })
 </script>
