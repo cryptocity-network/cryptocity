@@ -8,7 +8,12 @@
     class="!pt-96"
   >
     <div class="size-full !px-16 md:!px-96">
-      <DatoImage v-if="data.image" class="size-full rounded-6 shadow" :image="data.image" />
+      <DatoImage
+        v-if="data.image"
+        :priority="true"
+        class="size-full rounded-6 shadow"
+        :image="data.image"
+      />
     </div>
   </BlockWrapper>
 </template>
