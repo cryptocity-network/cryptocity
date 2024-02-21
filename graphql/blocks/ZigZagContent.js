@@ -1,3 +1,4 @@
+import ResponsiveImage from '../ResponsiveImage'
 import SimpleLink from '../SimpleLink'
 import baseBlockValues from './blockValues'
 
@@ -6,8 +7,8 @@ export default () => {
     ${baseBlockValues()}
     blocks {
       logo {
-        alt
         url
+        alt
       }
       label
       headline
@@ -20,8 +21,7 @@ export default () => {
       mediaType
       youtubeLink
       image {
-        url
-        alt
+        ${ResponsiveImage()}
         video {
           mp4Url
         }

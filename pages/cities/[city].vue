@@ -1,5 +1,5 @@
 <template>
-  <main v-if="!error && data.city" class="min-h-screen">
+  <main v-if="!error && data" class="min-h-screen">
     <template
       v-for="(component, index) in components"
       :key="typeof component === 'string' ? 'id' : component?.id"

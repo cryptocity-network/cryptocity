@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true
   },
+  nitro: {
+    compressPublicAssets: {
+      brotli: true
+    }
+  },
   hooks: {
     'pages:extend' (pages) {
       // Add locale versions of base pages

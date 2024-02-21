@@ -1,3 +1,4 @@
+import ResponsiveImage from '../ResponsiveImage'
 import baseBlockValues from './blockValues'
 
 export default () => {
@@ -9,11 +10,10 @@ export default () => {
       headline
       media {
         mimeType
-        url
+        ${ResponsiveImage()}
         video {
           streamingUrl
         }
-        alt
       }
     }
 `

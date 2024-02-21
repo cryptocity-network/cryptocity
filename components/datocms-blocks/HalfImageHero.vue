@@ -20,12 +20,11 @@
           tag="h1"
         />
       </div>
-      <img
+      <DatoImage
         v-if="data.image"
-        :src="data.image.url"
-        :alt="data.image.alt"
+        :image="data.image"
         class="mx-auto aspect-video h-full rounded-8 object-cover lg:aspect-auto lg:max-h-[min(80vh,700px)] xl:w-full"
-      >
+      />
     </div>
   </BlockWrapper>
 </template>

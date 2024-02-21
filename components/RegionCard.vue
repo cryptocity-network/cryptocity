@@ -8,9 +8,8 @@
       'pointer-events-none': region.state !== 'live'
     }"
   >
-    <FadeInImage
-      :image-url="region.mainImage.url"
-      :alt="region.mainImage.alt"
+    <DatoImage
+      :image="region.mainImage"
       class="size-full object-cover"
       :class="{
         'opacity-75': region.state === 'live',

@@ -1,3 +1,5 @@
+import ResponsiveImage from './ResponsiveImage'
+
 export default (regionId, locale) => {
   return `query {
     allCities(
@@ -5,8 +7,7 @@ export default (regionId, locale) => {
       name
       state
       mainImage {
-        url
-        alt
+        ${ResponsiveImage()}
       }
       id
     }

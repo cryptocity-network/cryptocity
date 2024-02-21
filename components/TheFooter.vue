@@ -168,9 +168,6 @@ const locale = computed(() => {
 })
 const footerQuery = FooterQuery(locale.value)
 const { data: { value: response } } = await useGraphqlQuery(footerQuery) as AsyncData<FooterResponse, RTCError>
-onMounted(() => {
-  console.log('RENDER FOOTER', footerQuery, response)
-})
 
 const footerData = computed(() => {
   if (response) {

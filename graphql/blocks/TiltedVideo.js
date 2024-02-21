@@ -1,3 +1,4 @@
+import ResponsiveImage from '../ResponsiveImage'
 import baseBlockValues from './blockValues'
 
 export default () => {
@@ -6,8 +7,7 @@ export default () => {
     headline
     youtubeVideoLink
     thumbnail {
-      url
-      alt
+      ${ResponsiveImage()}
     }
 `
 }

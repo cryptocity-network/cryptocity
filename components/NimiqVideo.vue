@@ -15,14 +15,15 @@
 
       <template v-else>
         <div class="absolute z-1 size-full bg-blue-dark/[.15]" />
-        <img
-          :src="poster.url"
+        <DatoImage
+          :image="poster"
           class="absolute size-full object-contain"
-        >
+        />
       </template>
 
       <button
         class="group absolute left-0 top-0 z-1 grid size-full place-items-center drop-shadow-md"
+        aria-label="View video"
         @click="showVideo"
       >
         <div class="relative size-[86px] rounded-full bg-black/40 p-16 transition-transform group-hover:scale-105">

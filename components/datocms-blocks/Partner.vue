@@ -11,17 +11,17 @@
     <div
       class="flex flex-col-reverse flex-wrap justify-between gap-x-16 gap-y-32 sm:flex-row"
     >
-      <img
+      <DatoImage
         v-if="logo"
-        :src="logo"
+        :image="logo"
         class="mr-auto h-28 max-w-[75%] md:h-32"
-      >
+      />
     </div>
-    <img
+    <DatoImage
       v-if="image && Object.keys(image).length > 0"
-      :src="image"
+      :image="image"
       class="mx-auto w-full max-w-lg md:w-unset"
-    >
+    />
     <div
       class="prose no-margin text-blue/60"
       v-html="marked.parse(description)"
@@ -129,12 +129,12 @@
 import { marked } from 'marked'
 defineProps({
   logo: {
-    default: '',
-    type: String
+    default: null,
+    type: Object
   },
   image: {
-    default: '',
-    type: String
+    default: null,
+    type: Object
   },
   companyName: {
     default: '',

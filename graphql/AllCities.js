@@ -1,3 +1,4 @@
+import ResponsiveImage from './ResponsiveImage'
 export default (locale) => {
   return `query {
     allCities(locale: ${locale}, fallbackLocales:[en]) {
@@ -5,8 +6,7 @@ export default (locale) => {
       name
       state
       mainImage {
-        url
-        alt
+        ${ResponsiveImage()}
       }
       region {
         url

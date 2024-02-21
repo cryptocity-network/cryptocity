@@ -24,8 +24,8 @@
         class="custom-ease group relative block size-full min-h-full transform-gpu overflow-hidden rounded-8 transition-transform hover:-translate-y-6 sm:aspect-[3/4] lg:odd:mt-20 lg:even:-mt-28"
       >
         <!-- group relative size-full overflow-hidden rounded-8 transition-transform  hover:md:-translate-y-12 lg:aspect-[6/8] lg:odd:mt-20 lg:even:-mt-28 -->
-        <FadeInImage
-          :image-url="item.image.url"
+        <DatoImage
+          :image="item.image"
           class="size-full object-cover opacity-75"
         />
         <div class="absolute left-0 top-0 size-full bg-blue opacity-20 mix-blend-hard-light" />

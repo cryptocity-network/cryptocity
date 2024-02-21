@@ -22,7 +22,7 @@
         v-for="(item, i) in partners"
         :key="i"
         :description="item.description"
-        :logo="item.logo.url"
+        :logo="item.logo"
         :company-name="item.companyName"
         :link-label="item.linkLabel"
         :link-href="item.linkUrl"
