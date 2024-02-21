@@ -23,6 +23,7 @@
       <DatoImage
         v-if="data.image"
         :image="data.image"
+        :priority="true"
         class="mx-auto aspect-video h-full rounded-8 object-cover lg:aspect-auto lg:max-h-[min(80vh,700px)] xl:w-full"
       />
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <Image v-if="image.responsiveImage" :lazy-load="true" class="dato-image size-full child:object-contain" :data="(image.responsiveImage as ResponsiveImageType)" />
+  <Image v-if="image.responsiveImage" :lazy-load="true" :priority="priority" class="dato-image size-full child:object-contain" :data="(image.responsiveImage as ResponsiveImageType)" />
   <img v-else :src="image.url" :alt="image.alt">
 </template>
 
@@ -9,6 +9,10 @@ defineProps({
   image: {
     type: Object,
     default: null
+  },
+  priority: {
+    type: Boolean,
+    default: false
   }
 })
 </script>

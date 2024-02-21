@@ -11,6 +11,7 @@
     <!-- :alt="city.mainIyamage.alt" -->
     <DatoImage
       :image="city.mainImage"
+      :priority="true"
       class="size-full overflow-hidden rounded-8 object-cover child:overflow-hidden child:rounded-8"
       :class="{
         'opacity-75': city.state === 'Live',
