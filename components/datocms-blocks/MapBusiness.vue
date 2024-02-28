@@ -1,69 +1,120 @@
 <template>
   <BlockWrapper
     :block-background-color="backgroundColor"
-    :padding-top="index === 0 ? 136 : 240"
+    :padding-top="96"
     :no-padding-bottom="false"
     :overlaps-next-section="false"
-    :class="{'title': index !== 0}"
   >
-    <div class="mx-auto max-w-screen-2xl px-64">
+    <div class="relative mx-auto max-w-screen-2xl !px-0">
       <HeadlineSection
         :label="data.headline.label"
         :headline="data.headline.headline"
         :subline="data.headline.subline"
       />
-      <div class="mt-96 flex justify-center">
-        <a
-          :href="data.joinLink"
-          class="group relative flex h-full w-[clamp(320px,370px,80vw)] cursor-pointer flex-col rounded-6 border-1 border-gray bg-[#e9e9eb] p-6 pb-0 transition-all will-change-transform hover:-translate-y-6 hover:bg-white hover:shadow"
+      <div class="relative">
+        <ul
+          ref="scroller"
+          role="list"
+          class="no-scrollbar relative mt-72 flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-32 pb-40 pt-6 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-6 "
+          :class="{
+            'justify-center': visibleCards > locations.length
+          }"
+          @scroll.passive="calculateStep"
         >
-          <div class="relative h-240 overflow-hidden rounded-4 bg-blue/20">
-            <svg class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" width="51" height="51" fill="none"><g stroke="#1F2348" stroke-width="1.5" opacity=".3"><path stroke-linecap="round" d="M25.5 13.5v24M37.5 25.5h-24" /><rect width="48" height="48" x="1.5" y="1.5" rx="24" /></g></svg>
-          </div>
-
-          <div v-if="data.joinCardTitle" class="flex grow flex-col justify-between gap-24 p-24 pt-32 lg:py-32">
-            <div>
-              <h3 class="text-22">
-                {{ data.joinCardTitle }}
-              </h3>
+          <li
+            ref="slides"
+            data-location
+          >
+            <div
+              class="relative flex h-full w-[clamp(320px,370px,80vw)] flex-col items-center justify-center gap-24 rounded-6 border-1 border-gray bg-white p-40 text-center shadow hover:bg-white"
+            >
+              <Location class="h-104" />
               <div
-                v-if="data.joinCardDescription"
-                class="mt-18 text-blue-dark/60"
+                class="text-blue-dark/60"
               >
-                {{ data.joinCardDescription }}
+                Connect your business to the Crypto map to increase your sales.
               </div>
+              <TheLink
+                text="Add your business"
+                url="https://google.com"
+                variant="info"
+                :is-external="true"
+              />
             </div>
-
-            <div class="relative">
-              <p
-                v-if="data.joinLinkLabel"
-                class="text-12 font-bold uppercase !text-blue-light sm:text-13 lg:text-14"
-                :class="{'transition-[opacity,transform] group-hover:-translate-y-1/2 group-hover:opacity-0': data.joinLinkLabel}"
-              >
-                {{ data.joinLinkLabel }}
-              </p>
-              <div
-                v-if="data.joinLinkLabel"
-                class="absolute left-0 top-1/2 flex items-center gap-8 !py-0 !text-blue-light opacity-0 transition-transform-opacity group-hover:-translate-y-1/2 group-hover:opacity-100"
-              >
-                <span class="text-12 font-bold uppercase  sm:text-13 lg:text-14">
-                  {{ data.joinLinkLabel }}
-                </span>
-                <Arrow
-                  class="h-auto w-12 shrink-0 -rotate-45"
-                />
-              </div>
-            </div>
-          </div>
-        </a>
+          </li>
+          <li
+            v-for="(location) in locations"
+            :key="`card-${location.name}`"
+            ref="slides"
+            class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
+            data-location
+          >
+            <TheCard
+              :title="location.name"
+              :description="location.name"
+              :event-type="location.category.replace(/_/g, ' ')"
+              :stars="location.rating"
+              :image="{
+                url: 'https://picsum.photos/200/300'
+              }"
+              :footer="cityName"
+              :link-label="cityName"
+              :link="location.gmaps"
+            />
+          </li>
+        </ul>
+        <button
+          v-if="activeIndex > 0"
+          class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 -mt-32 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
+          @click="goToPrevious"
+        >
+          <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+        <button
+          v-if="activeIndex < locations.length - visibleCards"
+          class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
+          @click="goToNext"
+        >
+          <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-mr-4 rotate-180">
+            <path
+              d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div v-if="visibleCards < locations.length" class="flex flex-col">
+      <div class="relative mx-auto mt-8 flex">
+        <button
+          v-for="(_, i) in locations"
+          :key="i"
+          class="mx-4 size-8 cursor-pointer rounded bg-blue-dark/10 transition-transform delay-75 after:min-h-[16px] after:min-w-[16px] first:ml-0 last:mr-4"
+          :class="{
+            'scale-0': i >= activeIndex && i < activeIndex + visibleCards,
+            'scale-100': i < activeIndex || i >= activeIndex + visibleCards,
+          }"
+          @click="() => slideTo(i)"
+        />
+        <div class="pointer-events-none absolute h-8 w-full rounded">
+          <div
+            class="h-full rounded bg-radial-blue-light transition-all duration-300"
+            :style="`margin-left: ${16 * activeIndex - 2}px; width: ${visibleCards - 0.25}rem;`"
+          />
+        </div>
       </div>
     </div>
   </BlockWrapper>
 </template>
 
 <script lang="ts" setup>
-import Arrow from '@/static/icons/arrow.svg'
-
+import { useWebsiteStore } from '~/store/store'
+import Location from '@/static/icons/Location-Shadow.svg'
 defineProps({
   data: {
     type: Object,
@@ -79,4 +130,79 @@ defineProps({
     default: 'white'
   }
 })
+
+const store = useWebsiteStore()
+
+const cityName = computed(() => {
+  const name = useRoute().params.city as string
+  return name.charAt(0).toUpperCase() + name.slice(1)
+})
+
+await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(cityName.value).then(() => true))
+
+const locations = computed(() => {
+  return store.getLocations(cityName.value)
+})
+// BELOW IS OLD
+const amountOfItems = computed(() => {
+  return locations.value.length + 0
+})
+
+const activeIndex = ref(0)
+const scroller = ref<HTMLUListElement | null>(null)
+
+const scrollerStyles = ref<CSSStyleDeclaration | null>(null)
+const scrollerPaddingLeft = computed(() => parseFloat(scrollerStyles.value?.paddingLeft || '0'))
+const scrollerPaddingRight = computed(() => parseFloat(scrollerStyles.value?.paddingRight || '0'))
+const scrollerGap = computed(() => parseFloat(scrollerStyles.value?.gap || '0'))
+const visibleCards = ref(1)
+
+function onWindowResize () {
+  visibleCards.value = window.innerWidth < 640 ? 1 : window.innerWidth < 1152 ? 2 : 3
+
+  if (scroller.value) {
+    scrollerStyles.value = window.getComputedStyle(scroller.value)
+  }
+}
+
+onMounted(() => {
+  onWindowResize()
+  window.addEventListener('resize', onWindowResize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', onWindowResize)
+})
+
+function calculateStep (event: UIEvent) {
+  const target = event.currentTarget as HTMLDivElement
+
+  const padding = scrollerPaddingLeft.value + scrollerPaddingRight.value
+  const gap = scrollerGap.value
+  const cards = visibleCards.value
+  const cardWidth = (target.offsetWidth - padding) / cards + (gap * 1) / cards
+
+  activeIndex.value = Math.round(target.scrollLeft / cardWidth)
+}
+
+function slideTo (index: number) {
+  // Clamp new index
+  index = Math.min(Math.max(0, index), amountOfItems.value - visibleCards.value)
+
+  const card = scroller.value?.querySelectorAll('[data-location]')[index] as HTMLElement
+
+      scroller.value!.scrollTo({
+        top: 0,
+        left: card.offsetLeft - scrollerPaddingLeft.value,
+        behavior: 'smooth'
+      })
+}
+
+function goToPrevious () {
+  slideTo(activeIndex.value - visibleCards.value)
+}
+
+function goToNext () {
+  slideTo(activeIndex.value + visibleCards.value)
+}
 </script>
