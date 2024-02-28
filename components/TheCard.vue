@@ -1,7 +1,7 @@
 <template>
   <a
     :href="link"
-    class="group relative flex h-full w-[clamp(320px,370px,80vw)] cursor-pointer flex-col rounded-6 border-1 border-gray bg-[#e9e9eb] p-6 pb-0 transition-all will-change-transform hover:-translate-y-6 hover:bg-white hover:shadow"
+    class="group relative flex h-full w-[clamp(320px,370px,80vw)] cursor-pointer flex-col rounded-6 border-1 border-gray bg-[#e9e9eb] p-6 pb-0 text-left transition-all will-change-transform hover:-translate-y-6 hover:bg-white hover:shadow"
   >
     <div v-if="image" class="relative h-240 overflow-hidden rounded-4">
       <!-- <DatoImage v-if="image" :image="image" class="size-full rounded-4 object-cover" /> -->
@@ -21,8 +21,8 @@
       </div>
     </div>
 
-    <div v-if="title" class="flex grow flex-col justify-between gap-24 p-24 pt-32 lg:py-32">
-      <div>
+    <div v-if="title" class="flex grow flex-col justify-between gap-20 p-24 pt-32 lg:py-32">
+      <div class="flex flex-col gap-8">
         <h3 class="text-22">
           {{ title }}
         </h3>
@@ -39,9 +39,23 @@
         </div>
         <div
           v-if="description"
-          class="mt-18 text-blue-dark/60"
+          class="text-16 text-blue-dark/60"
         >
           {{ description }}
+        </div>
+        <div v-if="eventType || stars" class="flex items-center gap-6 text-16  capitalize text-blue-dark/60">
+          <span>{{ eventType }}</span>
+          <div class="flex items-center gap-2">
+            <Star
+              v-for="(star, index) in 5"
+              :key="index"
+              :percentage="(index + 1) < stars ?
+                1 :
+                (index + 1) === Math.ceil(stars) ?
+                  1 - ((index + 1) - stars) :
+                  0"
+            />
+          </div>
         </div>
       </div>
 
@@ -86,6 +100,16 @@ defineProps({
     required: false,
     default: null
   },
+  eventType: {
+    type: String,
+    required: false,
+    default: null
+  },
+  stars: {
+    type: Number,
+    required: false,
+    default: null
+  },
   link: {
     type: String,
     required: false,
@@ -112,5 +136,4 @@ defineProps({
     default: null
   }
 })
-
 </script>

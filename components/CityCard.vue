@@ -91,6 +91,9 @@ const cityLink = computed(() => {
     ? `/cities/${props.city.name.toLowerCase()}`
     : `/${store.getCurrentLocale}/cities/${props.city.name.toLowerCase()}`
 })
+
+await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(props.city.name).then(() => true))
+
 const locations = computed(() => {
   const locations = store.getLocations(props.city.name)
   if (!locations) { return null }
@@ -102,7 +105,6 @@ const locations = computed(() => {
   }
 })
 
-await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(props.city.name).then(() => true))
 </script>
 
 <style scoped>
