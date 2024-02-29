@@ -25,7 +25,7 @@
           <TheCard
             :title="event.title"
             :description="event.description"
-            :image="event.image"
+            :image-dato="event.image"
             :footer="event.locationCity.name"
             :label="getDate(event.start, event.end)"
             :link-label="event.linkLabel"
