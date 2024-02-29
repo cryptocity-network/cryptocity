@@ -5,32 +5,35 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <div class="relative mx-auto max-w-screen-2xl !px-0">
+    <div class="relative mx-auto max-w-screen-2xl">
       <HeadlineSection
         :label="data.headline.label"
         :headline="data.headline.headline"
         :subline="data.headline.subline"
       />
-      <div class="relative">
+    </div>
+    <div class="relative !mx-0 !w-screen !max-w-unset !px-0">
+      <div class="relative w-full">
         <ul
           ref="scroller"
           role="list"
           class="no-scrollbar relative mt-72 flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-32 pb-40 pt-6 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-6 "
           :class="{
-            'justify-center': visibleCards > locations.length
+            'justify-center': visibleCards > (locations?.length || 0)
           }"
           @scroll.passive="calculateStep"
         >
           <li
             ref="slides"
             data-location
+            class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
           >
             <div
               class="relative flex h-full w-[clamp(320px,370px,80vw)] flex-col items-center justify-center gap-24 rounded-6 border-1 border-gray bg-white p-40 text-center shadow hover:bg-white"
             >
               <Location class="h-104" />
               <div
-                class="text-blue-dark/60"
+                class="text-blue/60"
               >
                 Connect your business to the Crypto map to increase your sales.
               </div>
@@ -51,12 +54,10 @@
           >
             <TheCard
               :title="location.name"
-              :description="location.name"
-              :event-type="location.category.replace(/_/g, ' ')"
+              :description="location.address"
+              :event-type="location.category.replace(/_/g, ' & ')"
               :stars="location.rating"
-              :image="{
-                url: 'https://picsum.photos/200/300'
-              }"
+              :image-url="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
               :footer="cityName"
               :link-label="cityName"
               :link="location.gmaps"
@@ -76,7 +77,7 @@
           </svg>
         </button>
         <button
-          v-if="activeIndex < locations.length - visibleCards"
+          v-if="activeIndex < locations?.length - visibleCards"
           class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
           @click="goToNext"
         >
@@ -89,7 +90,7 @@
         </button>
       </div>
     </div>
-    <div v-if="visibleCards < locations.length" class="flex flex-col">
+    <div v-if="visibleCards < locations?.length" class="flex flex-col">
       <div class="relative mx-auto mt-8 flex">
         <button
           v-for="(_, i) in locations"
@@ -104,7 +105,7 @@
         <div class="pointer-events-none absolute h-8 w-full rounded">
           <div
             class="h-full rounded bg-radial-blue-light transition-all duration-300"
-            :style="`margin-left: ${16 * activeIndex - 2}px; width: ${visibleCards - 0.25}rem;`"
+            :style="`margin-left: ${16 * activeIndex - 1}px; width: ${visibleCards - 0.25}rem;`"
           />
         </div>
       </div>
@@ -130,7 +131,7 @@ defineProps({
     default: 'white'
   }
 })
-
+const mapsApiKey = useRuntimeConfig().public.GOOGLE_MAPS_API
 const store = useWebsiteStore()
 
 const cityName = computed(() => {
@@ -145,7 +146,10 @@ const locations = computed(() => {
 })
 // BELOW IS OLD
 const amountOfItems = computed(() => {
-  return locations.value.length + 0
+  if (locations.value) {
+    return locations.value?.length + 1
+  }
+  return 1
 })
 
 const activeIndex = ref(0)
@@ -158,7 +162,7 @@ const scrollerGap = computed(() => parseFloat(scrollerStyles.value?.gap || '0'))
 const visibleCards = ref(1)
 
 function onWindowResize () {
-  visibleCards.value = window.innerWidth < 640 ? 1 : window.innerWidth < 1152 ? 2 : 3
+  visibleCards.value = window.innerWidth < 640 ? 1 : window.innerWidth < 1152 ? 2 : 2
 
   if (scroller.value) {
     scrollerStyles.value = window.getComputedStyle(scroller.value)
