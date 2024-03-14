@@ -16,6 +16,7 @@
         <RegionsCarousel v-else />
       </main>
       <TheFooter
+        v-if="pageData"
         :key="`Footer-${String(store.localization.userSelectedLocale)}`"
         :class="{ 'pt-120': onGlobalPage }"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
