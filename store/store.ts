@@ -68,6 +68,9 @@ export const useWebsiteStore = defineStore('websiteStore', {
                 _allReferencingNetworkPages {
                   ${pageFields()}
                 }
+                _allReferencingNewsPages {
+                  ${pageFields()}
+                }
                 _allReferencingAboutPages {
                   ${pageFields()}
                 }
