@@ -153,7 +153,8 @@ const pages = computed(() => store.pages?.filter((item) => {
 }))
 
 interface FooterResponse {
-  footer: Footer
+  footer: Footer,
+  deFooter: Footer
 }
 
 interface AllRegionsResponse {
@@ -171,7 +172,7 @@ const { data: { value: response } } = await useGraphqlQuery(footerQuery) as Asyn
 
 const footerData = computed(() => {
   if (response) {
-    return response.footer as Footer
+    return checkGermanyOrRestOfWorld() ? response.deFooter : response.footer
   } else {
     return null
   }

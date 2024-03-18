@@ -1,5 +1,12 @@
 export default (locale) => {
-  return `query {
+  return checkGermanyOrRestOfWorld()
+    ? `query {
+    deDataProtection(locale: ${locale}) {
+      title
+      text
+    }
+  }`
+    : `query {
     dataProtection(locale: ${locale}) {
       title
       text

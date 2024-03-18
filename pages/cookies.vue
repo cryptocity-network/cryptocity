@@ -1,8 +1,8 @@
 <template>
-  <section v-if="response" class="bg-white py-80">
+  <section v-if="data" class="bg-white py-80">
     <div class="prose">
-      <h3>{{ response.cookie.title }}</h3>
-      <div v-html="marked.parse(response.cookie.text)" />
+      <h3>{{ data.title }}</h3>
+      <div v-html="marked.parse(data.text)" />
     </div>
   </section>
 </template>
@@ -17,11 +17,23 @@ interface CookiesResponse {
   cookie:{
     title: string,
     text: string
+  },
+  deCookie:{
+    title: string,
+    text: string
   }
 }
 const store = useWebsiteStore()
 const cookiesQuery = cookies(store.getCurrentLocale)
 const { data: { value: response } } = await useGraphqlQuery(cookiesQuery) as AsyncData<CookiesResponse, RTCError>
+
+const data = computed(() => {
+  if (checkGermanyOrRestOfWorld()) {
+    return response.deCookie
+  } else {
+    return response.cookie
+  }
+})
 </script>
 
 <style></style>
