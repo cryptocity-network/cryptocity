@@ -26,7 +26,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     getPages (state): Array<Page> | null { return state.pages },
     getCurrentLocale (): string | null {
       const routeLocale = useRoute().params.locale?.length === 2 && useRoute().params.locale
-      return this.localization.userSelectedLocale || (routeLocale as string) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+      return this.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
     }
   },
   actions: {

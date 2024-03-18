@@ -1,18 +1,29 @@
+import ResponsiveImage from '../ResponsiveImage'
 export default (slug, locale) => {
   return `query {
-    news(filter: {slug: {eq: "${slug}"}}, locale: ${locale}, fallbackLocales:[en]) {
+    news(filter: {slug: {eq: "${slug}"}}, locale: ${locale}) {
       id
       _seoMetaTags {
         attributes
         content
         tag
       }
+
       title
+      _createdAt
+      coverImage {
+        ${ResponsiveImage()}
+      }
+      excerpt
       content {
-        value
         blocks
+        value
         links
       }
+      embedVideo
+      externalArticleUrl
+      slug
+      linkToExternalNewsArticle
     }
   }`
 }

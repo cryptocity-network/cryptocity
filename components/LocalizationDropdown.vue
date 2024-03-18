@@ -83,7 +83,8 @@ const localeIcons = computed(() => {
 
 const isDropdownExpanded = ref(false)
 const flagUrl = computed(() => {
-  const currentLocale = store.localization.userSelectedLocale || store.localization.siteLocales?.find(x => x === route.params.locale) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+  // || store.localization.siteLocales?.find(x => x === route.params.locale)
+  const currentLocale = store.localization.userSelectedLocale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
   const treatedLocale = currentLocale !== 'en' ? currentLocale : 'gb'
   return `https://flagcdn.com/84x63/${treatedLocale}.png`
 })

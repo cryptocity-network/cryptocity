@@ -59,7 +59,7 @@ const route = useRoute()
 
 // const param = route.params.news as string
 // const newsName = param.charAt(0).toUpperCase() + route.params.news.slice(1)
-const newsQuery = news(route.params.news, store.getCurrentLocale)
+const newsQuery = news(route.params.news, route.params.locale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
 
 const { data, error } = await useGraphqlQuery(newsQuery) as AsyncData<NewsResponse, RTCError>
 
