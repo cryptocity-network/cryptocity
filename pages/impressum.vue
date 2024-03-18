@@ -1,13 +1,13 @@
 pages/cookies.vue<template>
-  <section v-if="response" class="bg-white py-80">
+  <section v-if="data" class="bg-white py-80">
     <div class="prose">
-      <h3>{{ response.impressum.title }}</h3>
+      <h3>{{ data.title }}</h3>
       <div class="grid grid-flow-row grid-cols-2 gap-16">
-        <div v-for="asset in response.impressum.assets" :key="asset.id" class="size-full">
+        <div v-for="asset in data.assets" :key="asset.id" class="size-full">
           <DatoImage class="size-full object-contain object-center" :image="asset" />
         </div>
       </div>
-      <div v-html="marked.parse(response.impressum.text)" />
+      <div v-html="marked.parse(data.text)" />
     </div>
   </section>
 </template>
@@ -31,11 +31,31 @@ interface Impressum {
       }
     ]
   }
+  deImpressum: {
+    title: string,
+    text: string,
+    assets: [
+      {
+        url: string,
+        alt?: string,
+        id: string
+      }
+    ]
+  }
 }
 
 const store = useWebsiteStore()
 const impressumQuery = impressum(store.getCurrentLocale)
+
 const { data: { value: response } } = await useGraphqlQuery(impressumQuery) as AsyncData<Impressum, RTCError>
+
+const data = computed(() => {
+  if (checkGermanyOrRestOfWorld()) {
+    return response.deImpressum
+  } else {
+    return response.impressum
+  }
+})
 </script>
 
 <style></style>

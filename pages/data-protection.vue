@@ -1,8 +1,8 @@
 <template>
-  <section v-if="response" class="bg-white py-80">
+  <section v-if="data" class="bg-white py-80">
     <div class="prose">
-      <h3>{{ response.dataProtection.title }}</h3>
-      <div v-html="marked.parse(response.dataProtection.text)" />
+      <h3>{{ data.title }}</h3>
+      <div v-html="marked.parse(data.text)" />
     </div>
   </section>
 </template>
@@ -17,11 +17,21 @@ interface DataProtectionResponse {
   dataProtection:{
     title: string,
     text: string
+  },
+  deDataProtection:{
+    title: string,
+    text: string
   }
 }
 const store = useWebsiteStore()
 const dataProtectionQuery = dataProtection(store.getCurrentLocale)
 const { data: { value: response } } = await useGraphqlQuery(dataProtectionQuery) as AsyncData<DataProtectionResponse, RTCError>
-</script>
 
-<style></style>
+const data = computed(() => {
+  if (checkGermanyOrRestOfWorld()) {
+    return response.deDataProtection
+  } else {
+    return response.dataProtection
+  }
+})
+</script>

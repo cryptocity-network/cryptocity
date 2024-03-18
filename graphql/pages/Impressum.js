@@ -1,7 +1,18 @@
 import ResponsiveImage from '../ResponsiveImage'
 
 export default (locale) => {
-  return `query {
+  return checkGermanyOrRestOfWorld()
+    ? `query {
+    deImpressum(locale: ${locale}) {
+      title
+      text
+      assets {
+        ${ResponsiveImage()}
+        id
+      }
+    }
+  }`
+    : `query {
     impressum(locale: ${locale}) {
       title
       text
