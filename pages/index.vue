@@ -87,7 +87,6 @@ const backgroundColorArray: ComputedRef<String[] | null> = computed(() => {
 })
 
 const components = computed(() => {
-  console.log(pageData.value, currentPageType.value)
   if (response && currentPageType) {
     return filterPageResponseForComponents(pageData.value!) as Array<Component>
   }

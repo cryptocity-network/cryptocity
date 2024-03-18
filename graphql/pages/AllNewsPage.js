@@ -1,5 +1,6 @@
 import HeroSection from '../blocks/HeroSection'
 import Headline from '../blocks/Headline'
+import NewsList from '../blocks/NewsList'
 
 export default (regionId, locale) => {
   return `query {
@@ -12,6 +13,9 @@ export default (regionId, locale) => {
       }
       herosection {
         ${HeroSection()}
+      }
+      newsList {
+        ${NewsList()}
       }
       contactHeadline {
         ${Headline()}
