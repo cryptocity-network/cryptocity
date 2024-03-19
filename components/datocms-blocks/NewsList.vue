@@ -11,6 +11,11 @@
       id="newsList"
       class="mx-auto grid max-w-screen-lg grid-cols-1 place-items-center items-stretch justify-items-stretch gap-16 sm:grid-cols-2 md:gap-24 md:!px-32 lg:grid-cols-3 lg:!px-48"
     >
+      <NewsCard
+        :article="(featuredArticle as NewsArticle)"
+        full-screen
+        class="col-span-1 w-full sm:col-span-2 lg:col-span-3"
+      />
       <!-- :class="[
         {
           'justify-center': response.allNews.length === 1,
@@ -20,7 +25,7 @@
       <!-- :label="item.label"
     :badge="item.badge" -->
       <NewsCard
-        v-for="(article, i) in response.allNews"
+        v-for="(article, i) in articleList"
         :key="i"
         class="w-full"
         :article="article"
@@ -36,8 +41,12 @@ import { useWebsiteStore } from '../../store/store'
 import allNewsArticles from '../../graphql/AllNewsArticles'
 import type { NewsArticle } from '~/types/dato-models/NewsArticle'
 
-defineProps({
+const props = defineProps({
   data: {
+    type: Object,
+    required: true
+  },
+  pageResponse: {
     type: Object,
     required: true
   },
@@ -59,4 +68,11 @@ const store = useWebsiteStore()
 const newsArticleQuery = allNewsArticles(store.getCurrentLocale)
 const { data: { value: response } } = await useGraphqlQuery(newsArticleQuery) as AsyncData<AllNewsArticlesResponse, RTCError>
 
+const featuredArticle = computed(() => {
+  return response.allNews.find(x => x.id === props.pageResponse.newsPage.featured.id)
+})
+
+const articleList = computed(() => {
+  return response.allNews.filter(x => x.id !== props.pageResponse.newsPage.featured.id)
+})
 </script>

@@ -5,4 +5,12 @@ export interface NewsItem {
     _seoMetaTags: Array<SeoMetaTag>,
     title: string
     content: StructuredTextDocument
+    coverImage: object
+    excerpt: string
+    embedVideo: Boolean
+    externalArticleUrl: string
+    slug: string
+    linkToExternalNewsArticle: boolean
+    _createdAt: string
+    _locales: Array<string>
 }
