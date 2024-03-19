@@ -14,6 +14,9 @@ export default (regionId, locale) => {
       herosection {
         ${HeroSection()}
       }
+      featured {
+        id
+      }
       newsList {
         ${NewsList()}
       }
