@@ -50,6 +50,7 @@ interface SocialLinks {
   logo: Object
 }
 interface Localization {
+  initialLocaleSet: boolean,
   siteLocales: Array<string> | undefined,
   userSelectedLocale: string | undefined
 }
