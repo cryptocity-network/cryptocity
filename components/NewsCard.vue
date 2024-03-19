@@ -33,7 +33,7 @@ const articleLink: Ref<string> = computed(() => {
   if (props.article._locales.includes(currentLocale)) {
     return currentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
       ? `/news/${props.article.slug}`
-      : `/${currentLocale}/poo/${props.article.slug}`
+      : `/${currentLocale}/news/${props.article.slug}`
   } else {
     return props.article._locales[0] === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
       ? `/news/${props.article.slug}`

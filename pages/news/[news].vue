@@ -1,5 +1,5 @@
 <template>
-  <main v-if="!error && data" class="min-h-screen">
+  <main v-if="!error && data" id="news" class="min-h-screen">
     <BlockWrapper
       :block-background-color="'white'"
       :padding-top="136"
@@ -52,14 +52,16 @@ import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
 import news from '@/graphql/pages/News.js'
 import type { NewsResponse } from '@/types/dato-api-responses/News'
-import { useWebsiteStore } from '@/store/store'
+// import { useWebsiteStore } from '@/store/store'
 
-const store = useWebsiteStore()
+// const store = useWebsiteStore()
 const route = useRoute()
 
-// const param = route.params.news as string
+const param = route.params.news as string
+console.log(param)
 // const newsName = param.charAt(0).toUpperCase() + route.params.news.slice(1)
-const newsQuery = news(route.params.news, route.params.locale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
+const locale = route.params.locale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
+const newsQuery = news(param, locale)
 
 const { data, error } = await useGraphqlQuery(newsQuery) as AsyncData<NewsResponse, RTCError>
 

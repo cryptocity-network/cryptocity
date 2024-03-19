@@ -8,6 +8,7 @@
   >
     <div
       v-if="response.allNews"
+      id="newsList"
       class="mx-auto grid max-w-screen-lg grid-cols-1 place-items-center items-stretch justify-items-stretch gap-16 sm:grid-cols-2 md:gap-24 md:!px-32 lg:grid-cols-3 lg:!px-48"
     >
       <!-- :class="[
@@ -56,7 +57,6 @@ interface AllNewsArticlesResponse {
 }
 const store = useWebsiteStore()
 const newsArticleQuery = allNewsArticles(store.getCurrentLocale)
-console.log(newsArticleQuery)
 const { data: { value: response } } = await useGraphqlQuery(newsArticleQuery) as AsyncData<AllNewsArticlesResponse, RTCError>
 
 </script>
