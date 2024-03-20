@@ -131,7 +131,7 @@ defineProps({
     default: 'white'
   }
 })
-const mapsApiKey = useRuntimeConfig().public.GOOGLE_MAPS_API
+const mapsApiKey = useRuntimeConfig().GOOGLE_MAPS_API
 const store = useWebsiteStore()
 
 const cityName = computed(() => {
