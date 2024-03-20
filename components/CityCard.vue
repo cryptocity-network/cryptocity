@@ -8,7 +8,6 @@
       'pointer-events-none': city.state !== 'Live'
     }"
   >
-    <!-- :alt="city.mainIyamage.alt" -->
     <DatoImage
       :image="city.mainImage"
       :priority="true"
@@ -43,10 +42,10 @@
       :class="compact ? 'w-2/3' : 'w-[215px] xl:w-[291px]'"
     />
     <div
-      v-if="city.state !== 'Live'"
       class="absolute bottom-32 left-1/2 -translate-x-1/2"
     >
       <div
+        v-if="city.state !== 'Live'"
         class=" flex h-32 w-max items-center gap-8 rounded bg-blue/20 px-16 py-8 text-white"
       >
         <svg
@@ -65,12 +64,17 @@
         <span class="whitespace-nowrap text-16 font-bold">
           Coming Soon</span>
       </div>
+      <div v-else-if="locations" class="text-lg text-center leading-[100%] text-white">
+        <Location class="mx-auto mb-12 h-32" />
+        <strong>{{ locations }}</strong> <span class="opacity-60">Locations</span>
+      </div>
     </div>
   </nuxt-link>
 </template>
 
 <script lang="ts" setup>
 import { useWebsiteStore } from '~/store/store'
+import Location from '@/static/icons/location.svg'
 const store = useWebsiteStore()
 const props = defineProps({
   city: {
@@ -87,6 +91,20 @@ const cityLink = computed(() => {
     ? `/cities/${props.city.name.toLowerCase()}`
     : `/${store.getCurrentLocale}/cities/${props.city.name.toLowerCase()}`
 })
+
+await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(props.city.name).then(() => true))
+
+const locations = computed(() => {
+  const locations = store.getLocations(props.city.name)
+  if (!locations) { return null }
+  const numOfLocations = locations.length
+  if (numOfLocations.toString().length < 4) {
+    return numOfLocations
+  } else {
+    return Math.round(numOfLocations / 1000) + 'k+'
+  }
+})
+
 </script>
 
 <style scoped>
