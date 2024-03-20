@@ -6,7 +6,7 @@ Welcome, this repository contains code for setting up both Region and Global Cry
 
 The Global Page needs no extra setup in DatoCMS. Add the below environment variables to your deployment platform
 
-- `NUXT_PUBLIC_DATO_TOKEN` DatoCMS api token - found in DatoCMS -> Project Settings
+- `NUXT_DATO_TOKEN` DatoCMS api token - found in DatoCMS -> Project Settings
 - `NUXT_PUBLIC_IS_GLOBAL_SITE` Boolean value. True triggers the site to present as the 'global' CC page. Do not include if the site is not the global CC page.
 
 Deployment Settings: 
@@ -39,7 +39,7 @@ Now that you have a region and homepage setup and published we have enough to se
 
 All CryptoCity (CC) sites are created using this repo. To setup different regions we use Environment Variables:
 
-- `NUXT_PUBLIC_DATO_TOKEN` DatoCMS api token - found in DatoCMS -> Project Settings
+- `NUXT_DATO_TOKEN` DatoCMS api token - found in DatoCMS -> Project Settings
 - `NUXT_PUBLIC_DATO_REGION_ID` This is the domain the site is hosted. This should match the domain field in the Dato region being targeted.
 - `NUXT_PUBLIC_DATO_DEFAULT_LOCALE` Default language/locale for the deployment. This must be a locale present within the targeted regions pages.
 

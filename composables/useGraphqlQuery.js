@@ -12,7 +12,7 @@ export default (query) => {
     key,
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${runtimeConfig.public.DATO_TOKEN}`,
+      Authorization: `Bearer ${runtimeConfig.DATO_TOKEN}`,
       'X-environment': 'main',
       ...(isPreviewEnvironment && { 'X-include-drafts': true })
     },
