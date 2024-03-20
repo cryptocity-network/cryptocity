@@ -12,7 +12,7 @@
         :subline="data.headline.subline"
       />
     </div>
-    <div class="relative !mx-0 !w-screen !max-w-unset !px-0">
+    <div class="relative !mx-0 !max-w-unset !px-0">
       <div class="relative w-full">
         <ul
           ref="scroller"
@@ -35,7 +35,7 @@
               <div
                 class="text-blue/60"
               >
-                Connect your business to the Crypto map to increase your sales.
+                {{ data.joinCardDescription }}
               </div>
               <TheLink
                 text="Add your business"
@@ -57,10 +57,10 @@
               :description="location.address"
               :event-type="location.category.replace(/_/g, ' & ')"
               :stars="location.rating"
-              :image-url="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
               :footer="cityName"
               :link-label="cityName"
               :link="location.gmaps"
+              :image-url="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
             />
           </li>
         </ul>
@@ -162,7 +162,7 @@ const scrollerGap = computed(() => parseFloat(scrollerStyles.value?.gap || '0'))
 const visibleCards = ref(1)
 
 function onWindowResize () {
-  visibleCards.value = window.innerWidth < 640 ? 1 : window.innerWidth < 1152 ? 2 : 2
+  visibleCards.value = window.innerWidth < 640 ? 1 : window.innerWidth < 1152 ? 2 : 3
 
   if (scroller.value) {
     scrollerStyles.value = window.getComputedStyle(scroller.value)
