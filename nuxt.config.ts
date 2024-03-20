@@ -83,7 +83,8 @@ export default defineNuxtConfig({
       DATO_TOKEN: process.env.DATO_TOKEN,
       DATO_REGION_ID: process.env.DATO_REGION_ID,
       DATO_DEFAULT_LOCALE: process.env.DATO_DEFAULT_LOCALE,
-      IS_GLOBAL_SITE: process.env.IS_GLOBAL_SITE
+      IS_GLOBAL_SITE: process.env.IS_GLOBAL_SITE,
+      GOOGLE_MAPS_API: process.env.GOOGLE_MAPS_API
     }
   },
   components: {
