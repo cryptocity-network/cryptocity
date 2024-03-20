@@ -135,7 +135,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     async getLocationsByCity (cityName: string) {
       if (this.locations.find(x => x.name === cityName)) { return }
       const { data: { value: response } } = await useFetch(
-        `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&apikey=${useRuntimeConfig().public.SUPA_KEY}`
+        `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&apikey=${useRuntimeConfig().public.GOOGLE_MAPS_API}`
       ) as AsyncData<Array<Locations>, RTCError>
       if (response) {
         this.locations.push(
