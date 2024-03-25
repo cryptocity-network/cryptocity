@@ -8,6 +8,7 @@
         :component-name="component._modelApiKey"
         :data="component"
         :index="index"
+        :page-response="response"
         :background-color="backgroundColorArray?.[index]"
       />
       <ContactForm v-if="pageData && currentPageType !== 'home'" show-header />

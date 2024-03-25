@@ -28,6 +28,11 @@ export default defineNuxtConfig({
           path: '/:locale/cities/:city',
           file: '~/pages/cities/[city].vue'
         },
+        {
+          name: 'news-locale',
+          path: '/:locale/news/:news',
+          file: '~/pages/news/[news].vue'
+        },
         // Static Pages
         {
           name: 'cookies-locale',

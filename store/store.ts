@@ -22,6 +22,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       region: null as Region | null,
       pages: [] as Array<Page>,
       localization: <Localization>{
+        initialLocaleSet: false as boolean,
         siteLocales: undefined as Array<string> | undefined,
         userSelectedLocale: undefined as string | undefined,
         translations: undefined as JSON | undefined
@@ -79,6 +80,9 @@ export const useWebsiteStore = defineStore('websiteStore', {
                   ${pageFields()}
                 }
                 _allReferencingNetworkPages {
+                  ${pageFields()}
+                }
+                _allReferencingNewsPages {
                   ${pageFields()}
                 }
                 _allReferencingAboutPages {
@@ -140,7 +144,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     async getLocationsByCity (cityName: string) {
       if (this.locations.find(x => x.name === cityName)) { return }
       const { data: { value: response } } = await useFetch(
-        `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&apikey=${useRuntimeConfig().SUPA_KEY}`
+        `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&apikey=${useRuntimeConfig().public.SUPA_KEY}`
       ) as AsyncData<Array<Locations>, RTCError>
       if (response) {
         this.locations.push(
