@@ -62,11 +62,11 @@
           />
         </svg>
         <span class="whitespace-nowrap text-16 font-bold">
-          Coming Soon</span>
+          {{ $t('Coming Soon') }}</span>
       </div>
       <div v-else-if="locations" class="text-lg text-center leading-[100%] text-white">
         <Location class="mx-auto mb-12 h-32" />
-        <strong>{{ locations }}</strong> <span class="opacity-60">Locations</span>
+        <strong>{{ locations }}</strong> <span class="opacity-60">{{ $t('Locations') }}</span>
       </div>
     </div>
   </nuxt-link>

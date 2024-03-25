@@ -57,7 +57,7 @@
           />
         </svg>
         <span class="whitespace-nowrap text-16 font-bold">
-          Coming Soon</span>
+          {{ $t('Coming Soon') }}</span>
       </div>
     </div>
     <!-- CODE FOR CITY NAMES ON REGION CARD -->

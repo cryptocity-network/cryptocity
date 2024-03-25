@@ -73,8 +73,28 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     'nuxt-svgo',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.js'
+      },
+      {
+        code: 'de',
+        file: 'de.js'
+      },
+      {
+        code: 'es',
+        file: 'es.js'
+      }
+    ],
+    lazy: true,
+    langDir: 'lang',
+    defaultLocale: 'de' // if you are using custom path, default
+  },
   svgo: {
     defaultImport: 'component'
   },

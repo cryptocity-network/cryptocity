@@ -23,7 +23,8 @@ export const useWebsiteStore = defineStore('websiteStore', {
       pages: [] as Array<Page>,
       localization: <Localization>{
         siteLocales: undefined as Array<string> | undefined,
-        userSelectedLocale: undefined as string | undefined
+        userSelectedLocale: undefined as string | undefined,
+        translations: undefined as JSON | undefined
       },
       locations: [] as Array<CityLocations>
     }
@@ -53,7 +54,8 @@ export const useWebsiteStore = defineStore('websiteStore', {
           ${showNavLabel ? 'navigationLabel' : ''}
           ${showSlug ? 'slug' : ''}
         `
-        const locale = this.getCurrentLocale
+        const locale = this.getCurrentLocale as string
+        useNuxtApp().$i18n.setLocale(locale)
         const QUERY = `
             query {
               region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale}) {
@@ -116,6 +118,9 @@ export const useWebsiteStore = defineStore('websiteStore', {
                   linkedIn
                 }
               }
+              translation(locale: ${locale}) {
+                translations
+              }
             }
           `
         const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoRegionResponse, RTCError>
@@ -146,9 +151,10 @@ export const useWebsiteStore = defineStore('websiteStore', {
         )
       }
     },
-    setLocale (locale: string, reInitRegion: Boolean = true) {
-      if (locale) { this.localization.userSelectedLocale = locale }
+    setLocale (newLocale: string, reInitRegion: Boolean = true) {
+      if (newLocale) { this.localization.userSelectedLocale = newLocale }
       if (reInitRegion) { this.setNavigation(false) }
+      useNuxtApp().$i18n.setLocale(newLocale)
     }
   }
 })
