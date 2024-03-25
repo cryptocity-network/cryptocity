@@ -3,6 +3,7 @@ import merchantPage from '~/graphql/pages/MerchantPage.js'
 import beginnerPage from '~/graphql/pages/BeginnerPage.js'
 import aboutPage from '~/graphql/pages/AboutPage.js'
 import networkPage from '~/graphql/pages/NetworkPage.js'
+import newsPage from '~/graphql/pages/AllNewsPage.js'
 import contactPage from '~/graphql/pages/ContactPage.js'
 export default (pageType: string | undefined, regionId: string | undefined, locale: string | null) => {
   let query
@@ -21,6 +22,9 @@ export default (pageType: string | undefined, regionId: string | undefined, loca
       break
     case 'network':
       query = networkPage(regionId, locale)
+      break
+    case 'news':
+      query = newsPage(regionId, locale)
       break
     case 'contact':
       query = contactPage(regionId, locale)
