@@ -104,8 +104,8 @@ export default defineNuxtConfig({
     defaultImport: 'component'
   },
   runtimeConfig: {
-    GOOGLE_MAPS_API: process.env.GOOGLE_MAPS_API,
     public: {
+      GOOGLE_MAPS_API: process.env.GOOGLE_MAPS_API,
       SUPA_KEY: process.env.SUPA_KEY,
       DATO_TOKEN: process.env.DATO_TOKEN,
       DATO_REGION_ID: process.env.DATO_REGION_ID,
