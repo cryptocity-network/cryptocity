@@ -8,6 +8,7 @@
     :link="articleLink"
     :footer="formattedDate"
     :full-screen="fullScreen"
+    @click="test"
   />
 </template>
 
@@ -27,8 +28,18 @@ const props = defineProps({
   }
 })
 
-console.log(useRoute())
-
+const articleSetLocale = computed(() => {
+  const currentLocale = store.getCurrentLocale as string
+  if (props.article._locales.includes(currentLocale)) {
+    return currentLocale
+  } else {
+    return props.article._locales[0]
+  }
+})
+const test = () => {
+  console.log('click', props.article)
+  store.newsLang = articleSetLocale.value
+}
 const formattedDate = computed(() => {
   const date = new Date(props.article._createdAt)
   const year = date.getFullYear()
@@ -41,7 +52,6 @@ const articleLink: Ref<string> = computed(() => {
     return props.article.externalArticleUrl
   }
   const currentLocale = store.getCurrentLocale as string
-  console.log(useRoute())
   if (props.article._locales.includes(currentLocale)) {
     return currentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
       ? `/news/${props.article.slug}`

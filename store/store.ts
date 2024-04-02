@@ -18,6 +18,7 @@ interface CityLocations {
 export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
     return {
+      newsLang: null as string | null,
       global: null as Global | null,
       region: null as Region | null,
       pages: [] as Array<Page>,
