@@ -1,3 +1,4 @@
+import Image from '../blocks/Image'
 import ResponsiveImage from '../ResponsiveImage'
 export default (slug, locale) => {
   return `query {
@@ -16,7 +17,11 @@ export default (slug, locale) => {
       }
       excerpt
       content {
-        blocks
+        blocks {
+          ... on ImageRecord {
+            ${Image()}
+          }
+        }
         value
         links
       }
@@ -27,6 +32,3 @@ export default (slug, locale) => {
     }
   }`
 }
-// cryptoMapHeadline {
-//   ${Headline()}
-// }

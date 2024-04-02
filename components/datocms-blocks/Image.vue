@@ -24,10 +24,6 @@ defineProps({
     type: Object,
     required: true
   },
-  index: {
-    type: Number,
-    required: true
-  },
   backgroundColor: {
     type: String,
     required: true,
