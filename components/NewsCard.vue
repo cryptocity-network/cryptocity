@@ -27,6 +27,8 @@ const props = defineProps({
   }
 })
 
+console.log(useRoute())
+
 const formattedDate = computed(() => {
   const date = new Date(props.article._createdAt)
   const year = date.getFullYear()
@@ -39,14 +41,15 @@ const articleLink: Ref<string> = computed(() => {
     return props.article.externalArticleUrl
   }
   const currentLocale = store.getCurrentLocale as string
+  console.log(useRoute())
   if (props.article._locales.includes(currentLocale)) {
     return currentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
       ? `/news/${props.article.slug}`
-      : `/${currentLocale}/news/${props.article.slug}`
+      : `/news/${props.article.slug}`
   } else {
     return props.article._locales[0] === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
       ? `/news/${props.article.slug}`
-      : `/${props.article._locales[0]}/news/${props.article.slug}`
+      : `/news/${props.article.slug}`
   }
 })
 

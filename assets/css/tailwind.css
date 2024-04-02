@@ -98,3 +98,64 @@
       @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
     }
   }
+
+  code {
+    padding: none
+  }
+  
+  pre code *::selection,
+  .hljs::selection {
+    @apply bg-blue-light;
+  }
+  
+  .hljs {
+    color: var(--text);
+  }
+  .hljs-tag {
+    @apply text-blue
+  }
+  
+  .hljs-name {
+    @apply text-blue
+  }
+  
+  .hljs-string {
+    @apply text-orange-darkened
+  }
+  
+  .hljs-attr {
+    @apply text-blue-light
+  }
+  
+  
+  .hljs-number {
+    @apply text-red-darkened
+  }
+  
+  .hljs-title {
+    @apply text-red-darkened
+  }
+  
+  .hljs-built_in {
+    @apply text-blue-light
+  }
+  
+  .hljs-keyword {
+    @apply text-green-darkened
+  }
+
+  .hljs-property {
+    @apply text-blue-light-darkened
+  }
+  
+  .hljs-function > .hljs-keyword {
+    @apply text-blue-light italic
+  }
+  
+  .hljs-params {
+    @apply text-blue-light
+  }
+  
+  .hljs-comment {
+    @apply text-blue/30
+  }
