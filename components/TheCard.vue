@@ -17,7 +17,7 @@
       :class="{' ': !fullScreen,
                'opacity-0': fullScreen}"
     >
-      <DatoImage v-if="image" :image="image" class="size-full rounded-4 object-cover" />
+      <DatoImage v-if="image" loading="lazy" :image="image" class="size-full rounded-4 object-cover" />
       <img v-else :src="imageUrl" class="size-full rounded-4 object-cover">
       <div class="absolute left-0 top-0 size-full bg-blue/20 transition-opacity group-hover:opacity-50" />
       <div
@@ -58,7 +58,7 @@
           <div class="flex items-center gap-2">
             <Star
               v-for="(star, index) in 5"
-              :key="index"
+              :key="star"
               :percentage="(index + 1) < stars ?
                 1 :
                 (index + 1) === Math.ceil(stars) ?

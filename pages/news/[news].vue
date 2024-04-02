@@ -49,12 +49,13 @@ import ImageWithCaption from '~/components/datocms-blocks/StructuredText/ImageWi
 import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
 import news from '@/graphql/pages/News.js'
 import type { NewsResponse } from '@/types/dato-api-responses/News'
-
+import { useWebsiteStore } from '~/store/store'
+const store = useWebsiteStore()
 const route = useRoute()
 const param = route.params.news as string
 
 const locale = route.params.locale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-const newsQuery = news(param, locale)
+const newsQuery = news(param, store.newsLang)
 
 const { data, error } = await useGraphqlQuery(newsQuery) as AsyncData<NewsResponse, RTCError>
 

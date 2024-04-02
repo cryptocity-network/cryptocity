@@ -43,7 +43,9 @@ defineProps({
     default: 1
   }
 })
-const starId = Math.random().toString(16).slice(2)
+const instance = getCurrentInstance()
+const starId = ref(instance!.uid)
+
 </script>
 
 <style>
