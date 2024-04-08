@@ -4,7 +4,7 @@ pages/cookies.vue<template>
       <h3>{{ data.title }}</h3>
       <div class="grid grid-flow-row grid-cols-1 gap-24 pb-32 pt-56 sm:grid-cols-2">
         <div v-for="asset in data.assets" :key="asset.id" class="size-full">
-          <DatoImage class="size-full object-contain object-center" :image="asset" />
+          <DatoImage class=" size-full h-[70px] object-contain object-left" :image="asset" />
         </div>
       </div>
       <div v-html="marked.parse(data.text)" />
