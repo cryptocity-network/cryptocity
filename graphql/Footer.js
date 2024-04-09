@@ -10,6 +10,7 @@ export default (locale) => {
         blocks
         links
       }
+      haftungsausschluss
       cookies
       dataProtection
       privacy

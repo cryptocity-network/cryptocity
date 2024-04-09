@@ -58,7 +58,7 @@
           <div class="mt-12 flex flex-col gap-12 font-bold sm:flex-row">
             <TheLink
               v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
-              text="Zum ausführlichen Haftungsauschluss"
+              :text="footerData.haftungsausschluss"
               url="/haftungsausschluss"
               hide-arrow
               secondary

@@ -2,7 +2,7 @@
   <section v-if="data" class="bg-white py-80">
     <div class="prose">
       <h3>{{ data.title }}</h3>
-      <StructuredText class="prose" :response="data.content" />
+      <StructuredText :data="data.content" />
     </div>
   </section>
 </template>
@@ -17,11 +17,11 @@ import { useWebsiteStore } from '@/store/store'
 interface Haftungsausschluss {
   haftungsausschluss:{
     title: string,
-    content: string
+    content: any
   },
   deHaftungsausschluss:{
     title: string,
-    content: string
+    content: any
   }
 }
 const store = useWebsiteStore()
