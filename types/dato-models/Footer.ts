@@ -5,6 +5,7 @@ export interface Footer {
     legal: string,
     dataProtection: string,
     cookies: string,
+    haftungsausschluss: string,
     imprint: string,
     privacy: string,
     copyrightText: string
