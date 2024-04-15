@@ -4,6 +4,10 @@
   .prose {
     @apply text-18 xl:text-[19px] 2xl:text-20;
 
+    p:empty {
+      display: flex;
+    }
+
     & > *:first-child {
       @apply !mt-0;
     }
@@ -99,10 +103,15 @@
       @apply mt-12 xl:mt-16;
     }
 
+    ul {
+      @apply list-disc;
+    }
+    ol {
+      @apply list-decimal
+    }
     ul,
     ol {
-      @apply pl-32 xl:pl-48;
-      list-style: auto;
+      @apply pl-32 xl:pl-48 text-blue/60;
 
       li {
         @apply relative;
@@ -110,6 +119,10 @@
         &:before {
           @apply absolute -left-12 xl:-left-16 transform -translate-x-full;
         }
+      }
+
+      p {
+        @apply mt-12
       }
     }
 

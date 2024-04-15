@@ -7,14 +7,17 @@ pages/cookies.vue<template>
           <DatoImage class=" size-full h-[70px] object-contain object-left" :image="asset" />
         </div>
       </div>
-      <div v-html="marked.parse(data.text)" />
+      <CustomStructuredText
+        v-if="data.content"
+        :data="data.content"
+      />
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { marked } from 'marked'
 import type { AsyncData } from 'nuxt/app'
+import CustomStructuredText from '~/components/datocms-blocks/StructuredText/CustomStructuredText.vue'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import impressum from '@/graphql/pages/Impressum'
 import { useWebsiteStore } from '@/store/store'
@@ -22,7 +25,7 @@ import { useWebsiteStore } from '@/store/store'
 interface Impressum {
   impressum: {
     title: string,
-    text: string,
+    content: any,
     assets: [
       {
         url: string,
@@ -33,7 +36,7 @@ interface Impressum {
   }
   deImpressum: {
     title: string,
-    text: string,
+    content: any,
     assets: [
       {
         url: string,
