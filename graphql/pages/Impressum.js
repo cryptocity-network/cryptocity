@@ -1,36 +1,12 @@
 import ResponsiveImage from '../ResponsiveImage'
-
+import StructuredContentWithLinks from '../blocks/StructuredContentWithLinks'
 export default (locale) => {
   return checkGermanyOrRestOfWorld()
     ? `query {
     deImpressum(locale: ${locale}) {
       title
-      text
       content {
-        value
-        links {
-          ... on CookieRecord {
-            id
-            _modelApiKey
-          }
-          ... on DeCookieRecord {
-            id
-            _modelApiKey
-          }
-          ... on DataProtectionRecord {
-            id
-            _modelApiKey
-          }
-          ... on DeDataProtectionRecord {
-            id
-            _modelApiKey
-          }
-          ... on HaftungsausschlussRecord {
-            id
-            _modelApiKey
-          }
-        }
-        blocks
+        ${StructuredContentWithLinks()}
       }
       assets {
         ${ResponsiveImage()}
@@ -42,32 +18,8 @@ export default (locale) => {
     impressum(locale: ${locale}) {
       title
       content {
-        value
-        links {
-          ... on CookieRecord {
-            id
-            _modelApiKey
-          }
-          ... on DeCookieRecord {
-            id
-            _modelApiKey
-          }
-          ... on DataProtectionRecord {
-            id
-            _modelApiKey
-          }
-          ... on DeDataProtectionRecord {
-            id
-            _modelApiKey
-          }
-          ... on HaftungsausschlussRecord {
-            id
-            _modelApiKey
-          }
-        }
-        blocks
+        ${StructuredContentWithLinks()}
       }
-      text
       assets {
         ${ResponsiveImage()}
         id
