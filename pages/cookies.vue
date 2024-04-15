@@ -19,13 +19,11 @@ import { useWebsiteStore } from '@/store/store'
 interface CookiesResponse {
   cookie:{
     title: string,
-    content: any,
-    text: string
+    content: any
   },
   deCookie:{
     title: string,
-    content: any,
-    text: string
+    content: any
   }
 }
 const store = useWebsiteStore()

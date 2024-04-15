@@ -19,13 +19,11 @@ import { useWebsiteStore } from '@/store/store'
 interface DataProtectionResponse {
   dataProtection:{
     title: string,
-    content: any,
-    text: string
+    content: any
   },
   deDataProtection:{
     title: string,
-    content: any,
-    text: string
+    content: any
   }
 }
 const store = useWebsiteStore()
