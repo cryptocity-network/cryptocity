@@ -5,26 +5,31 @@ interface Test {
   }
 
 export default ({ record, children, transformedMeta }: Test) => {
+  console.log(record._modelApiKey)
   switch (record._modelApiKey) {
     case 'haftungsausschluss':
+    case 'de_haftungsausschluss':
       return h(
         'a',
         { ...transformedMeta, href: '/haftungsausschluss' },
         children
       )
-    case 'data_protection' || 'de_data_protection':
+    case 'data_protection':
+    case 'de_data_protection':
       return h(
         'a',
         { ...transformedMeta, href: '/data-protection' },
         children
       )
-    case 'cookie' || 'de_cookie':
+    case 'cookie':
+    case 'de_cookie':
       return h(
         'a',
         { ...transformedMeta, href: '/cookies' },
         children
       )
-    case 'impressum' || 'de_impressum':
+    case 'impressum':
+    case 'de_impressum':
       return h(
         'a',
         { ...transformedMeta, href: '/impressum' },
