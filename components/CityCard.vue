@@ -61,7 +61,7 @@
             fill="currentColor"
           />
         </svg>
-        <span class="whitespace-nowrap text-16 font-bold">
+        <span class="whitespace-nowrap text-16 font-bold capitalize">
           {{ $t('Coming Soon') }}</span>
       </div>
       <div v-else-if="locations" class="text-lg text-center leading-[100%] text-white">
@@ -86,13 +86,16 @@ const props = defineProps({
     default: false
   }
 })
+
+const useLocale = useLocalePath()
 const cityLink = computed(() => {
-  return store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-    ? `/cities/${props.city.name.toLowerCase()}`
-    : `/${store.getCurrentLocale}/cities/${props.city.name.toLowerCase()}`
+  return useLocale(`/cities/${props.city.name.toLowerCase()}`)
 })
 
-await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(props.city.name).then(() => true))
+useAsyncData('getLocationsByCity', () => store.getLocationsByCity(props.city.name).then(() => true),
+  {
+    lazy: true
+  })
 
 const locations = computed(() => {
   const locations = store.getLocations(props.city.name)

@@ -26,7 +26,6 @@
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
 import citiesByRegion from '@/graphql/CitiesByRegion'
-import { useWebsiteStore } from '@/store/store'
 import type { City } from '@/types/dato-models/City'
 defineProps({
   data: {
@@ -48,8 +47,8 @@ interface AllCitiesResponse {
   allCities: City[]
 }
 
-const store = useWebsiteStore()
-const citiesQuery = citiesByRegion(store?.region?.id, store.getCurrentLocale)
+const { locale } = useI18n()
+const citiesQuery = citiesByRegion(useRuntimeConfig().public.DATO_REGION_ID, locale.value)
 const { data: { value: response } } = await useGraphqlQuery(citiesQuery) as AsyncData<AllCitiesResponse, RTCError>
 
 const allCities = computed(() => {

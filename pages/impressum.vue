@@ -17,10 +17,9 @@ pages/cookies.vue<template>
 
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
-import CustomStructuredText from '~/components/datocms-blocks/StructuredText/CustomStructuredText.vue'
+import CustomStructuredText from '~/components/block/StructuredText/CustomStructuredText.vue'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import impressum from '@/graphql/pages/Impressum'
-import { useWebsiteStore } from '@/store/store'
 
 interface Impressum {
   impressum: {
@@ -47,8 +46,7 @@ interface Impressum {
   }
 }
 
-const store = useWebsiteStore()
-const impressumQuery = impressum(store.getCurrentLocale)
+const impressumQuery = impressum(useI18n().locale.value)
 
 const { data: { value: response } } = await useGraphqlQuery(impressumQuery) as AsyncData<Impressum, RTCError>
 

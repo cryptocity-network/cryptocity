@@ -12,19 +12,19 @@ export default () => {
             name
         }
         ... on MerchantPageRecord {
-            slug
+            _modelApiKey
         }
         ... on BeginnerPageRecord {
-            slug
+            _modelApiKey
         }
         ... on NetworkPageRecord {
-            slug
+            _modelApiKey
         }
         ... on AboutPageRecord {
-            slug
+            _modelApiKey
         }
         ... on ContactPageRecord {
-            slug
+            _modelApiKey
         }
     }
 `

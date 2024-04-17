@@ -3,13 +3,10 @@
 </template>
 
 <script lang="ts" setup>
-
-import { useWebsiteStore } from '../store/store'
-const store = useWebsiteStore()
-
+const { locale } = useI18n()
 // Declare configuration
 onMounted(() => {
-  const lang = store.getCurrentLocale
+  const lang = locale.value
   // @ts-ignore
   window._iub = window._iub || []
   // @ts-ignore

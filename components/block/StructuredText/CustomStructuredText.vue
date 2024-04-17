@@ -14,7 +14,7 @@ import { StructuredText, renderNodeRule } from 'vue-datocms'
 import { isCode } from 'datocms-structured-text-utils'
 
 import type { StructuredTextDocument, RenderInlineRecordContext } from 'vue-datocms'
-import ImageWithCaption from '~/components/datocms-blocks/StructuredText/ImageWithCaption.vue'
+import ImageWithCaption from '~/components/block/StructuredText/ImageWithCaption.vue'
 import structuredTextLinkRenderer from '@/composables/structuredTextLinkRenderer'
 defineProps({
   data: {

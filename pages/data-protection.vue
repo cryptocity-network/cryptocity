@@ -12,10 +12,9 @@
 
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
-import CustomStructuredText from '~/components/datocms-blocks/StructuredText/CustomStructuredText.vue'
+import CustomStructuredText from '~/components/block/StructuredText/CustomStructuredText.vue'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import dataProtection from '@/graphql/pages/DataProtection'
-import { useWebsiteStore } from '@/store/store'
 interface DataProtectionResponse {
   dataProtection:{
     title: string,
@@ -26,8 +25,7 @@ interface DataProtectionResponse {
     content: any
   }
 }
-const store = useWebsiteStore()
-const dataProtectionQuery = dataProtection(store.getCurrentLocale)
+const dataProtectionQuery = dataProtection(useI18n().locale.value)
 const { data: { value: response } } = await useGraphqlQuery(dataProtectionQuery) as AsyncData<DataProtectionResponse, RTCError>
 
 const data = computed(() => {

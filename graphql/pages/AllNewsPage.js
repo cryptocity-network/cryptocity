@@ -2,9 +2,9 @@ import HeroSection from '../blocks/HeroSection'
 import Headline from '../blocks/Headline'
 import NewsList from '../blocks/NewsList'
 
-export default (regionId, locale) => {
+export default (locale) => {
   return `query {
-    newsPage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
+    newsPage(filter: {region: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale}) {
       backgroundColors
       _seoMetaTags {
         attributes

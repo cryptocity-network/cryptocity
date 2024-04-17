@@ -36,8 +36,6 @@
 
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
-
-import { useWebsiteStore } from '../../store/store'
 import allNewsArticles from '../../graphql/AllNewsArticles'
 import type { NewsArticle } from '~/types/dato-models/NewsArticle'
 
@@ -58,21 +56,24 @@ const props = defineProps({
     type: String,
     required: true,
     default: 'white'
+  },
+  locale: {
+    type: String,
+    required: true
   }
 })
 
 interface AllNewsArticlesResponse {
   allNews: Array<NewsArticle>
 }
-const store = useWebsiteStore()
-const newsArticleQuery = allNewsArticles(store.getCurrentLocale)
+const newsArticleQuery = allNewsArticles(props.locale)
 const { data: { value: response } } = await useGraphqlQuery(newsArticleQuery) as AsyncData<AllNewsArticlesResponse, RTCError>
 
 const featuredArticle = computed(() => {
-  return response.allNews.find(x => x.id === props.pageResponse.newsPage.featured.id)
+  return response.allNews.find(x => x.id === props.pageResponse.featured.id)
 })
 
 const articleList = computed(() => {
-  return response.allNews.filter(x => x.id !== props.pageResponse.newsPage.featured.id)
+  return response.allNews.filter(x => x.id !== props.pageResponse.featured.id)
 })
 </script>

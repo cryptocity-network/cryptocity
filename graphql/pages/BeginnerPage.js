@@ -4,9 +4,9 @@ import MediaCarousel from '../blocks/MediaCarousel'
 import ZigZagContent from '../blocks/ZigZagContent'
 import Headline from '../blocks/Headline'
 
-export default (regionId, locale) => {
+export default (locale) => {
   return `query {
-    beginnerPage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
+    beginnerPage(filter: {region: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale}) {
       backgroundColors
       _seoMetaTags {
         attributes

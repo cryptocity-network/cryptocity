@@ -21,15 +21,16 @@
         <li
           v-for="(item, index) in pages"
           :key="String(item._modelApiKey)"
-          class="last:border-r-0 child:rounded-0 child:border-r-1 child:border-r-black/10 child:!pr-12 child:xl:border-r-0"
+          class="w-fit last:border-r-0 child:rounded-0 child:border-r-1 child:border-r-black/10 child:!pr-12 child:xl:border-r-0"
           :class="{
             'child:!border-r-0 ': pages && index === pages.length -1
           }"
         >
           <TheLink
             v-if="item._modelApiKey !== 'home_page'"
+            style="text-wrap: nowrap"
             :text="item.navigationLabel"
-            :url="'/' + item.slug"
+            :url="getRouteName(item._modelApiKey)"
             compact
             hide-arrow
           />
@@ -93,7 +94,7 @@
             secondary
             compact
           />
-          <span class="opacity-0">|</span>
+          <!-- <span class="opacity-0">|</span>
           <TheLink
             class="pointer-events-none !opacity-0"
             :text="footerData.privacy"
@@ -101,14 +102,14 @@
             hide-arrow
             secondary
             compact
-          />
+          /> -->
         </div>
         <p class="mt-16 text-blue-dark/30 sm:mt-16">
           {{ footerData.copyrightText }}
         </p>
       </div>
     </div>
-    <CookiesBanner v-if="store.getCurrentLocale" />
+    <CookiesBanner v-if="locale" />
   </footer>
 </template>
 
@@ -134,6 +135,8 @@ defineProps({
   }
 })
 
+const { locale } = useI18n()
+
 onMounted(() => {
   const iubendaScript = document.getElementById('iubenda-widgets')
   if (iubendaScript) {
@@ -147,10 +150,30 @@ onMounted(() => {
 })
 
 const store = useWebsiteStore()
-const route = useRoute()
 const pages = computed(() => store.pages?.filter((item) => {
   return item._modelApiKey !== 'home_page'
 }))
+
+const getRouteName = (name: string) => {
+  switch (name) {
+    case 'home_page':
+      return '/'
+    case 'beginner_page':
+      return '/beginners'
+    case 'merchant_page':
+      return '/merchants'
+    case 'news_page':
+      return '/news'
+    case 'network_page':
+      return '/network'
+    case 'about_page':
+      return '/about'
+    case 'contact_page':
+      return '/contact'
+    default:
+      return '/'
+  }
+}
 
 interface FooterResponse {
   footer: Footer,
@@ -160,13 +183,7 @@ interface FooterResponse {
 interface AllRegionsResponse {
   allRegions: Region[]
 }
-const locale = computed(() => {
-  if (route.params.locale && route.params.locale.length === 2) {
-    return route.params.locale
-  } else {
-    return store.getCurrentLocale
-  }
-})
+
 const footerQuery = FooterQuery(locale.value)
 const { data: { value: response } } = await useGraphqlQuery(footerQuery) as AsyncData<FooterResponse, RTCError>
 

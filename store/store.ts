@@ -23,9 +23,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
       region: null as Region | null,
       pages: [] as Array<Page>,
       localization: <Localization>{
-        initialLocaleSet: false as boolean,
         siteLocales: undefined as Array<string> | undefined,
-        userSelectedLocale: undefined as string | undefined,
         translations: undefined as JSON | undefined
       },
       locations: [] as Array<CityLocations>
@@ -35,10 +33,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
     getGlobalData (state): Global | null { return state.global },
     getCurrentRegion (state): Region | null { return state.region },
     getPages (state): Array<Page> | null { return state.pages },
-    getCurrentLocale (): string | null {
-      const routeLocale = useRoute().params.locale?.length === 2 && useRoute().params.locale
-      return this.localization.userSelectedLocale || (routeLocale as string) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-    },
     getLocations (state): any {
       return (cityName: string) => state.locations.find(x => x.name === cityName)?.cityLocations || null
     }
@@ -50,50 +44,45 @@ export const useWebsiteStore = defineStore('websiteStore', {
         const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoGlobalResponse, RTCError>
         this.global = body.global
       } else {
-        const pageFields = (showSlug = true, showNavLabel = true) => `
+        const pageFields = (showNavLabel = true) => `
           id
           _modelApiKey
           ${showNavLabel ? 'navigationLabel' : ''}
-          ${showSlug ? 'slug' : ''}
         `
-        const locale = this.getCurrentLocale as string
-        useNuxtApp().$i18n.setLocale(locale)
+        const { locale } = useI18n()
         const QUERY = `
-            query {
-              region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale}) {
-                id
-                _locales
-                brandName
-                mainImage {
-                  url
-                  alt
-                }
-                _allReferencingCities {
+        query {
+          region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale.value}) {
+            id
+            _locales
+            brandName
+            mainImage {
+              url
+              alt
+            }
+            _allReferencingHomePages {
+              ${pageFields(false)}
+            }
+            _allReferencingMerchantPages {
+              ${pageFields()}
+            }
+            _allReferencingBeginnerPages {
+              ${pageFields()}
+            }
+            _allReferencingNetworkPages {
+              ${pageFields()}
+            }
+            _allReferencingNewsPages {
+              ${pageFields()}
+            }
+            _allReferencingAboutPages {
+              ${pageFields()}
+            }
+            _allReferencingContactPages {
+              ${pageFields()}
+            }
+            _allReferencingCities {
                   name
-                }
-                _allReferencingHomePages {
-                  ${pageFields(false, false)}
-                }
-                _allReferencingMerchantPages {
-                  ${pageFields()}
-                }
-                _allReferencingBeginnerPages {
-                  ${pageFields()}
-                }
-                _allReferencingNetworkPages {
-                  ${pageFields()}
-                }
-                _allReferencingNewsPages {
-                  ${pageFields()}
-                }
-                _allReferencingAboutPages {
-                  ${pageFields()}
-                }
-                _allReferencingContactPages {
-                  ${pageFields()}
-                  header
-                  subline
-                  formUrl
                 }
                 partners {
                   companyName
@@ -123,7 +112,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
                   linkedIn
                 }
               }
-              translation(locale: ${locale}) {
+              translation(locale: ${locale.value}) {
                 translations
               }
             }
@@ -145,8 +134,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
     async getLocationsByCity (cityName: string) {
       if (this.locations.find(x => x.name === cityName)) { return }
       const { data: { value: response } } = await useFetch(
-        `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&apikey=${useRuntimeConfig().public.SUPA_KEY}`
-      ) as AsyncData<Array<Locations>, RTCError>
+        `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&apikey=${useRuntimeConfig().public.SUPA_KEY}`) as AsyncData<Array<Locations>, RTCError>
       if (response) {
         this.locations.push(
           {
@@ -155,11 +143,6 @@ export const useWebsiteStore = defineStore('websiteStore', {
           }
         )
       }
-    },
-    setLocale (newLocale: string, reInitRegion: Boolean = true) {
-      if (newLocale) { this.localization.userSelectedLocale = newLocale }
-      if (reInitRegion) { this.setNavigation(false) }
-      useNuxtApp().$i18n.setLocale(newLocale)
     }
   }
 })

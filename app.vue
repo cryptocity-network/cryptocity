@@ -1,11 +1,11 @@
 <template>
   <transition name="page" mode="out-in" appear>
     <div
-      v-if="pageData || globalData"
+      v-if="region"
       class="max-w-screeen flex flex-col"
     >
       <TheNavigation
-        :key="`Navigation-${String(store.localization.userSelectedLocale)}`"
+        :key="keyTrigger"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :tag-line="globalData?.tagLine"
       />
@@ -16,14 +16,13 @@
         <RegionsCarousel v-else />
       </main>
       <TheFooter
-        v-if="pageData"
-        :key="`Footer-${String(store.localization.userSelectedLocale)}`"
+        :key="`Footer-${String(keyTrigger)}`"
         :class="{ 'pt-120': onGlobalPage }"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :background-color="onGlobalPage ? 'white' : 'gray'"
       />
       <div id="overlay" class="z-[100]" />
-      <PreviewModeControls />
+      <!-- <PreviewModeControls /> -->
     </div>
     <LoadingState v-else />
   </transition>
@@ -32,46 +31,79 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useWebsiteStore } from './store/store'
+import type { Page } from './types/dato-models/Page'
+import type { DatoRegionResponse } from './types/dato-api-responses/Region'
 const store = useWebsiteStore()
 const onGlobalPage = useRuntimeConfig().public.IS_GLOBAL_SITE
 const route = useRoute()
 
 await useAsyncData('setNavigation', () => store.setNavigation(convertToBoolean(onGlobalPage)).then(() => true))
+const keyTrigger = ref(0)
+const { locale } = useI18n()
+watch(locale, () => {
+  updateNavigation()
+})
+const pageFields = (showNavLabel = true) => `
+          id
+          _modelApiKey
+          ${showNavLabel ? 'navigationLabel' : ''}
+        `
 
-// const region = computed(() => {
-//   return store.region
-// })
-onMounted(() => {
-  // if (!store.localization.initialLocaleSet && !document.querySelector('#news')) {
-  //   // If User has system language set
-  //   if (navigator.language && !onGlobalPage) {
-  //     const userSystemLocale = navigator.language.split('-')[0]
-  //     // Set User locale if exists on site
-  //     if (region.value?._locales.includes(userSystemLocale)) {
-  //       store.setLocale(userSystemLocale, false)
-  //     } else {
-  //       store.setLocale(useRuntimeConfig().public.DATO_DEFAULT_LOCALE)
-  //     }
-  //     // Check if url is user locale otherwise change
-  //     if (route.params.locale && route.params.locale.length === 2) { // There is a locale in the url
-  //       if (userSystemLocale !== route.params.locale) { // If different to user locale
-  //         if (userSystemLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
-  //           useRouter().push('/')
-  //         } else {
-  //           useRouter().push('/' + userSystemLocale)
-  //         }
-  //       }
-  //     } else if (userSystemLocale !== useRuntimeConfig().public.DATO_DEFAULT_LOCALE) { // No locale in url, but user doesn't === base so redirect to user locale
-  //       useRouter().push('/' + userSystemLocale)
-  //     }
-  //   }
-  //   if (store.getCurrentLocale !== useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
-  //     nextTick(() => {
-  //       store.setNavigation(false)
-  //     })
-  //   }
-  //   store.localization.initialLocaleSet = true
-  // }
+        interface RegionResponse {
+          data: DatoRegionResponse
+        }
+async function updateNavigation () {
+  const QUERY = `
+    query {
+      region(filter: {id: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale.value}) {
+        _allReferencingHomePages {
+          ${pageFields(false)}
+        }
+        _allReferencingMerchantPages {
+          ${pageFields()}
+        }
+        _allReferencingBeginnerPages {
+          ${pageFields()}
+        }
+        _allReferencingNetworkPages {
+          ${pageFields()}
+        }
+        _allReferencingNewsPages {
+          ${pageFields()}
+        }
+        _allReferencingAboutPages {
+          ${pageFields()}
+        }
+        _allReferencingContactPages {
+          ${pageFields()}
+        }
+      }
+    }`
+  const body = await $fetch('https://graphql.datocms.com', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${useRuntimeConfig().public.DATO_TOKEN}`,
+      'X-environment': 'main'
+    },
+    body: {
+      query: QUERY
+    }
+  }) as RegionResponse
+
+  store.pages = []
+  for (const property in body.data.region) {
+    if (property.includes('Pages')) {
+      const value = body.data.region[property as keyof typeof body.data.region] as Page[]
+      if (typeof value === 'object' && value[0]) {
+        store.pages?.push((value as Page[])[0])
+      }
+    }
+  }
+  keyTrigger.value++
+}
+
+const region = computed(() => {
+  return store.region
 })
 
 function convertToBoolean (input: string | boolean): boolean | undefined {
@@ -81,12 +113,6 @@ function convertToBoolean (input: string | boolean): boolean | undefined {
   return input === 'true'
 }
 
-const pageData = computed(() => {
-  if (!onGlobalPage) {
-    return store.getCurrentRegion
-  }
-  return null
-})
 const globalData = computed(() => {
   if (onGlobalPage) {
     return store.getGlobalData

@@ -29,7 +29,11 @@
 </template>
 
 <script lang="ts" setup>
+import type { AsyncData } from 'nuxt/app'
+import ContactQuery from '../../graphql/pages/ContactPage'
+import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import { useWebsiteStore } from '~/store/store'
+import type { ContactPage } from '@/types/dato-api-responses/ContactPage'
 const store = useWebsiteStore()
 defineProps({
   showHeader: {
@@ -39,12 +43,16 @@ defineProps({
   }
 })
 
-const socialLinks = store.region?.socialLinks
-
+const { locale } = useI18n()
+const query = ContactQuery(useRuntimeConfig().public.DATO_REGION_ID, locale.value)
+const { data: { value: response }, error } = await useGraphqlQuery(query) as AsyncData<ContactPage, RTCError>
 const data = computed(() => {
-  if (store.region && store.region._allReferencingContactPages.length > 0) {
-    return store.region._allReferencingContactPages[0]
+  if (response) {
+    return response.contactPage
   }
   return null
 })
+
+const socialLinks = store.region?.socialLinks
+
 </script>

@@ -12,10 +12,9 @@
 
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
-import CustomStructuredText from '~/components/datocms-blocks/StructuredText/CustomStructuredText.vue'
+import CustomStructuredText from '~/components/block/StructuredText/CustomStructuredText.vue'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import haftungsausschluss from '@/graphql/pages/Haftungsausschluss'
-import { useWebsiteStore } from '@/store/store'
 
 interface Haftungsausschluss {
   haftungsausschluss:{
@@ -27,8 +26,7 @@ interface Haftungsausschluss {
     content: any
   }
 }
-const store = useWebsiteStore()
-const haftungsausschlussQuery = haftungsausschluss(store.getCurrentLocale)
+const haftungsausschlussQuery = haftungsausschluss(useI18n().locale.value)
 const { data: { value: response } } = await useGraphqlQuery(haftungsausschlussQuery) as AsyncData<Haftungsausschluss, RTCError>
 
 const data = computed(() => {

@@ -12,10 +12,9 @@
 
 <script lang="ts" setup>
 import type { AsyncData } from '#app'
-import CustomStructuredText from '~/components/datocms-blocks/StructuredText/CustomStructuredText.vue'
+import CustomStructuredText from '~/components/block/StructuredText/CustomStructuredText.vue'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import cookies from '@/graphql/pages/Cookies'
-import { useWebsiteStore } from '@/store/store'
 interface CookiesResponse {
   cookie:{
     title: string,
@@ -26,8 +25,7 @@ interface CookiesResponse {
     content: any
   }
 }
-const store = useWebsiteStore()
-const cookiesQuery = cookies(store.getCurrentLocale)
+const cookiesQuery = cookies(useI18n().locale.value)
 const { data: { value: response } } = await useGraphqlQuery(cookiesQuery) as AsyncData<CookiesResponse, RTCError>
 
 const data = computed(() => {

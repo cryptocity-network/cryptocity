@@ -26,7 +26,7 @@
           <TheLink
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
-            :url="'/' + item.slug"
+            :url="getRouteName(item._modelApiKey)"
             compact
             hide-arrow
           />
@@ -69,6 +69,27 @@ const pages = computed(() => store.pages)
 
 const menuVisible = ref(false)
 const root$ = ref<HTMLDivElement | null>(null)
+
+const getRouteName = (name: string) => {
+  switch (name) {
+    case 'home_page':
+      return '/'
+    case 'beginner_page':
+      return '/beginners'
+    case 'merchant_page':
+      return '/merchants'
+    case 'news_page':
+      return '/news'
+    case 'network_page':
+      return '/network'
+    case 'about_page':
+      return '/about'
+    case 'contact_page':
+      return '/contact'
+    default:
+      return '/'
+  }
+}
 
 useOutsideClick(root$, () => {
   menuVisible.value = false
