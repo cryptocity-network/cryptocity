@@ -18,7 +18,7 @@
     >
       <!-- :label="item.label"
     :badge="item.badge" -->
-      <Partner
+      <BlockPartner
         v-for="(item, i) in partners"
         :key="i"
         :description="item.description"

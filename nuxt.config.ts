@@ -8,55 +8,6 @@ export default defineNuxtConfig({
       brotli: true
     }
   },
-  hooks: {
-    'pages:extend' (pages) {
-      // Add locale versions of base pages
-      pages.push(
-        // Dynamic Pages
-        {
-          name: 'index-locale',
-          path: '/:locale',
-          file: '~/pages/index.vue'
-        },
-        {
-          name: 'dynamic-locale',
-          path: '/:locale/:uid',
-          file: '~/pages/index.vue'
-        },
-        {
-          name: 'city-locale',
-          path: '/:locale/cities/:city',
-          file: '~/pages/cities/[city].vue'
-        },
-        {
-          name: 'news-locale',
-          path: '/:locale/news/:news',
-          file: '~/pages/news/[news].vue'
-        },
-        // Static Pages
-        {
-          name: 'cookies-locale',
-          path: '/:locale/cookies',
-          file: '~/pages/cookies.vue'
-        },
-        {
-          name: 'data-protection-locale',
-          path: '/:locale/data-protection',
-          file: '~/pages/data-protection.vue'
-        },
-        {
-          name: 'haftungsausschluss-locale',
-          path: '/:locale/haftungsausschluss',
-          file: '~/pages/haftungsausschluss.vue'
-        },
-        {
-          name: 'impressum-locale',
-          path: '/:locale/impressum',
-          file: '~/pages/impressum.vue'
-        }
-      )
-    }
-  },
   app: {
     head: {
       link: [
@@ -96,9 +47,15 @@ export default defineNuxtConfig({
         file: 'es.js'
       }
     ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root' // recommended
+    },
+    defaultLocale: 'en',
+    strategy: 'prefix',
     lazy: true,
-    langDir: 'lang',
-    defaultLocale: 'de' // if you are using custom path, default
+    langDir: 'lang'
   },
   svgo: {
     defaultImport: 'component'
@@ -112,15 +69,6 @@ export default defineNuxtConfig({
       DATO_DEFAULT_LOCALE: process.env.DATO_DEFAULT_LOCALE,
       IS_GLOBAL_SITE: process.env.IS_GLOBAL_SITE
     }
-  },
-  components: {
-    dirs: [
-      {
-        path: '~/components/datocms-blocks',
-        global: true
-      },
-      '~/components'
-    ]
   },
   typescript: {
     typeCheck: true

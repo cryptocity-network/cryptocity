@@ -80,7 +80,6 @@
 <script lang="ts" setup>
 import type { AsyncData } from 'nuxt/app'
 import allCities from '../../graphql/AllCities'
-import { useWebsiteStore } from '../../store/store'
 import type { City } from '@/types/dato-models/City'
 
 defineProps({
@@ -101,8 +100,7 @@ defineProps({
 interface AllCitiesResponse {
   allCities: City[]
 }
-const store = useWebsiteStore()
-const citiesQuery = allCities(store.getCurrentLocale)
+const citiesQuery = allCities(useI18n().locale.value)
 const { data: { value: response } } = await useGraphqlQuery(citiesQuery) as AsyncData<AllCitiesResponse, RTCError>
 
 const amountOfItems = computed(() => {

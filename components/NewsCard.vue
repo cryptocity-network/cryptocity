@@ -8,15 +8,16 @@
     :link="articleLink"
     :footer="formattedDate"
     :full-screen="fullScreen"
-    @click="test"
   />
 </template>
 
 <script lang="ts" setup>
 import type { NewsArticle } from '~/types/dato-models/NewsArticle'
 import { useWebsiteStore } from '~/store/store'
+
 const store = useWebsiteStore()
-// const route = useRoute()
+const { locale } = useI18n()
+
 const props = defineProps({
   article: {
     type: Object as PropType<NewsArticle>,
@@ -28,18 +29,6 @@ const props = defineProps({
   }
 })
 
-const articleSetLocale = computed(() => {
-  const currentLocale = store.getCurrentLocale as string
-  if (props.article._locales.includes(currentLocale)) {
-    return currentLocale
-  } else {
-    return props.article._locales[0]
-  }
-})
-const test = () => {
-  console.log('click', props.article)
-  store.newsLang = articleSetLocale.value
-}
 const formattedDate = computed(() => {
   const date = new Date(props.article._createdAt)
   const year = date.getFullYear()
@@ -47,20 +36,12 @@ const formattedDate = computed(() => {
   const day = date.getDate()
   return `${day}-${month}-${year}`
 })
+
 const articleLink: Ref<string> = computed(() => {
   if (props.article.externalArticleUrl) {
     return props.article.externalArticleUrl
   }
-  const currentLocale = store.getCurrentLocale as string
-  if (props.article._locales.includes(currentLocale)) {
-    return currentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-      ? `/news/${props.article.slug}`
-      : `/news/${props.article.slug}`
-  } else {
-    return props.article._locales[0] === useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-      ? `/news/${props.article.slug}`
-      : `/news/${props.article.slug}`
-  }
+  return `news/${props.article.slug}`
 })
 
 const label: ComputedRef<string | null> = computed(() => {

@@ -7,6 +7,7 @@ export interface City {
     partnersHeadline: Object,
     partnerLogos: Object,
     missionHeadline: Object,
+    mapBusinesses: Object,
     cityGrid: Object,
     cryptoMapHeadline: Object,
     iframe: Object,

@@ -7,10 +7,10 @@
     :overlaps-next-section="true"
     class="!pt-96"
   >
-    <div class="iframe-wrapper aspect-[3/3.5] w-full sm:aspect-video">
+    <div class="iframe-wrapper  aspect-[3/3.5] w-full sm:aspect-video">
       <Teleport :disabled="!fullscreen" to="#overlay">
         <div
-          class="iframe-container size-full bg-white shadow"
+          class="iframe-container relative size-full overflow-hidden bg-white shadow"
           :class="{
             'size-screen fixed left-0 top-0': fullscreen,
             'relative rounded-6': !fullscreen
@@ -39,10 +39,23 @@
             loading="lazy"
             @load="triggerLoad"
           />
+          <Transition name="fade" mode="out-in">
+            <div
+              v-if="mapOverlayVisible"
+              class="group absolute left-0 top-0 z-[60] flex size-full cursor-pointer flex-col items-center justify-center bg-blue/90 text-white transition-colors hover:bg-blue/70"
+              @click="mapOverlayVisible = false"
+            >
+              <div class="size-fit transition-transform group-hover:scale-105">
+                <h3 class="text-white">
+                  Click to view Map
+                </h3>
+              </div>
+            </div>
+          </Transition>
           <transition name="fade" mode="out-in">
             <button
               v-if="loaded"
-              class="iframe-button grid-row-2 right-24 z-[999] grid size-32 cursor-pointer grid-cols-2 rounded-full border-1 border-gray bg-white p-4 shadow-banner"
+              class="iframe-button grid-row-2 right-24 z-50 grid size-32 cursor-pointer grid-cols-2 rounded-full border-1 border-gray bg-white p-4 shadow-banner"
               :class="{
                 'absolute top-24': !fullscreen,
                 'fixed !top-104 z-[999] md:!top-24': fullscreen
@@ -88,6 +101,7 @@ defineProps({
   }
 })
 const loaded = ref(false)
+const mapOverlayVisible = ref(true)
 const triggerLoad = () => {
   setTimeout(() => {
     loaded.value = true

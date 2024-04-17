@@ -45,24 +45,26 @@
               />
             </div>
           </li>
-          <li
-            v-for="(location) in locations"
-            :key="`card-${location.name}`"
-            ref="slides"
-            class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
-            data-location
-          >
-            <TheCard
-              :title="location.name"
-              :description="location.address"
-              :event-type="location.category.replace(/_/g, ' & ')"
-              :stars="location.rating"
-              :footer="cityName"
-              :link-label="cityName"
-              :link="location.gmaps"
-              :image-url="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
-            />
-          </li>
+          <transition-group name="fade" mode="out-in">
+            <li
+              v-for="(location) in locations"
+              :key="`card-${location.name}`"
+              ref="slides"
+              class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
+              data-location
+            >
+              <TheCard
+                :title="location.name"
+                :description="location.address"
+                :event-type="location.category.replace(/_/g, ' & ')"
+                :stars="location.rating"
+                :footer="cityName"
+                :link-label="cityName"
+                :link="location.gmaps"
+                :image-url="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
+              />
+            </li>
+          </transition-group>
         </ul>
         <button
           v-if="activeIndex > 0"
@@ -139,7 +141,10 @@ const cityName = computed(() => {
   return name.charAt(0).toUpperCase() + name.slice(1)
 })
 
-await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(cityName.value).then(() => true))
+await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(cityName.value).then(() => true),
+  {
+    lazy: true
+  })
 
 const locations = computed(() => {
   return store.getLocations(cityName.value)

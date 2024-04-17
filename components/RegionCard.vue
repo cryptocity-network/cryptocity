@@ -56,7 +56,7 @@
             fill="currentColor"
           />
         </svg>
-        <span class="whitespace-nowrap text-16 font-bold">
+        <span class="whitespace-nowrap text-16 font-bold capitalize">
           {{ $t('Coming Soon') }}</span>
       </div>
     </div>

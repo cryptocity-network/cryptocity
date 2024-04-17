@@ -5,9 +5,9 @@ import TiltedVideo from '../blocks/TiltedVideo'
 import ZigZagContent from '../blocks/ZigZagContent'
 import Headline from '../blocks/Headline'
 
-export default (regionId, locale) => {
+export default (locale) => {
   return `query {
-    merchantPage(filter: {region: {eq: "${regionId}"}}, locale: ${locale}) {
+    merchantPage(filter: {region: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}, locale: ${locale}) {
       backgroundColors
       _seoMetaTags {
         attributes
@@ -31,9 +31,6 @@ export default (regionId, locale) => {
       }
       grid {
         ${Grid()}
-      }
-      whyCrypto {
-        ${Headline()}
       }
       eventsHeadline {
         ${Headline()}

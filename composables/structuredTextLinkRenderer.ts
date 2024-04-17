@@ -5,7 +5,6 @@ interface Test {
   }
 
 export default ({ record, children, transformedMeta }: Test) => {
-  console.log(record._modelApiKey)
   switch (record._modelApiKey) {
     case 'haftungsausschluss':
     case 'de_haftungsausschluss':

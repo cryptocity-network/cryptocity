@@ -13,7 +13,7 @@
         srcset=""
       >
       <span class="font-semibold uppercase text-blue-darker/60">
-        {{ store.getCurrentLocale }}
+        {{ locale }}
       </span>
       <svg
         fill="none"
@@ -41,23 +41,22 @@
           v-show="isDropdownExpanded"
           class="absolute inset-x-0 left-1/2 top-full z-50 my-8 w-[calc(100%+16px)] -translate-x-1/2 cursor-pointer divide-y divide-blue-darker/10 overflow-hidden rounded-8 border-gray bg-white shadow"
         >
-          <div
-            v-for="(locale, index) in localeIcons"
-            :key="index"
+          <NuxtLink
+            v-for="item in availableLocales"
+            :key="item.code"
+            :to="switchLocalePath(item.code)"
             class="flex  items-center justify-start gap-8 px-8 py-4"
-            @mousedown.prevent="setLocale(locale)"
           >
             <img
-              :src="`https://flagcdn.com/84x63/${locale}.png`"
+              :src="`https://flagcdn.com/84x63/${item.code === 'en' ? 'gb' : item.code}.png`"
               class="block w-20"
               alt=""
               srcset=""
             >
-
             <span class="block font-semibold uppercase text-blue-darker/60">
-              {{ locale === 'gb' ? 'en' : locale }}
+              {{ item.code === 'gb' ? 'en' : item.code }}
             </span>
-          </div>
+          </NuxtLink>
         </div>
       </transition>
     </button>
@@ -66,39 +65,18 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useWebsiteStore } from '../store/store'
-const store = useWebsiteStore()
-const route = useRoute()
-const locales = store.localization.siteLocales
 
-const localeIcons = computed(() => {
-  const iconArray = [] as Array<string>
-  if (locales) {
-    locales.forEach((locale) => {
-      iconArray.push(locale !== 'en' ? locale : 'gb')
-    })
-  }
-  return iconArray
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
+
+const availableLocales = computed(() => {
+  return locales.value.filter(i => i.code !== locale.value)
 })
-
 const isDropdownExpanded = ref(false)
 const flagUrl = computed(() => {
-  // || store.localization.siteLocales?.find(x => x === route.params.locale)
-  const currentLocale = store.localization.userSelectedLocale || store.localization.siteLocales?.find(x => x === route.params.locale) || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-  const treatedLocale = currentLocale !== 'en' ? currentLocale : 'gb'
+  const treatedLocale = locale.value !== 'en' ? locale.value : 'gb'
   return `https://flagcdn.com/84x63/${treatedLocale}.png`
 })
-
-const setLocale = (option: string) => {
-  isDropdownExpanded.value = false
-  store.setLocale(option !== 'gb' ? option : 'en')
-  // Route to home as route slugs are language specific'
-  if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
-    useRouter().push('/')
-  } else {
-    useRouter().push('/' + store.getCurrentLocale + '/')
-  }
-}
 </script>
 
 <style>

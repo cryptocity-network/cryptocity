@@ -17,12 +17,12 @@
         'bg-transparent': !localState.isScrolled
       }]"
     >
-      <div
+      <NuxtLink
         class="cursor-pointer opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
-        @click="goHome"
+        :to="'/' + locale"
       >
         <DynamicLogo class="h-32" :type="useRoute().path.includes('cities') ? 'cities' : 'region'" />
-      </div>
+      </NuxtLink>
 
       <div
         class="hidden items-center gap-x-24 lg:flex"
@@ -34,7 +34,7 @@
           <TheLink
             v-if="item._modelApiKey !== 'home_page'"
             :text="item.navigationLabel"
-            :url="'/' + item.slug"
+            :url="getRouteName(item._modelApiKey)"
             compact
             :variant="item._modelApiKey == 'contact_page' ? 'info' : 'default'"
             hide-arrow
@@ -64,9 +64,9 @@
         'shadow': localState.isScrolled,
       }]"
     >
-      <div
+      <NuxtLink
         class="cursor-pointer opacity-100 transition-opacity hover:opacity-70 focus:opacity-70"
-        @click="goHome"
+        :to="'/' + locale"
       >
         <svg class="h-32" viewBox="0 0 500 59" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M41.3375 11.4684C41.3375 11.4684 41.2427 11.4642 41.1479 11.46C41.1479 11.46 41.1479 11.46 41.053 11.4559L39.9153 11.4055L37.4461 11.3911L24.1517 11.2772L24.1559 11.1824C24.2928 5.96613 28.2833 1.68005 33.4409 1.05385C33.4409 1.05385 33.5357 1.05804 33.6305 1.06224C33.7253 1.06644 33.8201 1.07064 33.8201 1.07064L33.9149 1.07484L35.0526 1.12521L37.2417 1.03223L50.5361 1.14612L50.5318 1.24088C50.4855 6.55617 46.3961 10.9328 41.3375 11.4684Z" fill="#FC8702" />
@@ -85,11 +85,11 @@
             letter-spacing="0.9px"
           ><tspan x="74.1992" y="40.4475">CRYPTOCITY</tspan></text>
         </svg>
-      </div>
+      </NuxtLink>
       <span v-if="tagLine" class="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-blue-dark/60 md:block">{{ tagLine }}</span>
       <TheLink
         text="Contact"
-        :url="onGlobalPage ? 'https://kryptostadt.vercel.app/en/contact' : '/contact'"
+        :url="'https://kryptostadt.vercel.app/en/contact'"
         :is-external="true"
         compact
         variant="info"
@@ -115,18 +115,32 @@ defineProps({
   }
 })
 
+const { locale } = useI18n()
+
+const getRouteName = (name: string) => {
+  switch (name) {
+    case 'home_page':
+      return '/'
+    case 'beginner_page':
+      return '/beginners'
+    case 'merchant_page':
+      return '/merchants'
+    case 'news_page':
+      return '/news'
+    case 'network_page':
+      return '/network'
+    case 'about_page':
+      return '/about'
+    case 'contact_page':
+      return '/contact'
+    default:
+      return '/'
+  }
+}
+
 const store = useWebsiteStore()
 const pages = computed(() => store.pages)
 
-const goHome = () => {
-  let link
-  if (store.getCurrentLocale === useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
-    link = '/'
-  } else {
-    link = '/' + store.getCurrentLocale + '/'
-  }
-  useRouter().push(link)
-}
 // Code for hide/show navbar
 const localState = reactive({
   selectedApp: 0,

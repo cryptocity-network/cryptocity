@@ -1,5 +1,5 @@
 <template>
-  <main v-if="!error && data" id="news" class="min-h-screen">
+  <main v-if="!newsError && newsData" id="news" class="min-h-screen">
     <BlockWrapper
       :block-background-color="'white'"
       :padding-top="136"
@@ -8,16 +8,16 @@
     >
       <div class="mx-auto max-w-screen-2xl px-64">
         <HeadlineSection
-          :headline="data.news.title"
+          :headline="newsData.news.title"
           :subline="'Hello'"
         />
       </div>
       <div class="size-full !px-16 pt-96 lg:!px-96">
         <DatoImage
-          v-if="data.news.coverImage"
+          v-if="newsData.news.coverImage"
           :priority="true"
           class="max-h-[554px]  rounded-6 shadow"
-          :image="data.news.coverImage"
+          :image="newsData.news.coverImage"
         />
       </div>
     </BlockWrapper>
@@ -30,34 +30,83 @@
     >
       <StructuredText
         class="prose"
-        :data="data.news.content"
+        :data="newsData.news.content"
         :render-block="renderBlock"
         :custom-node-rules="customNodeRules"
       />
     </BlockWrapper>
   </main>
-  <ErrorMessage v-else-if="data === null" />
+  <ErrorMessage v-else-if="newsData === null" />
 </template>
 
 <script lang="ts" setup>
 import { StructuredText, renderNodeRule } from 'vue-datocms'
 import { isCode } from 'datocms-structured-text-utils'
 
-import type { AsyncData } from 'nuxt/app'
 import hljs from 'highlight.js'
-import ImageWithCaption from '~/components/datocms-blocks/StructuredText/ImageWithCaption.vue'
-import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
+import ImageWithCaption from '~/components/block/StructuredText/ImageWithCaption.vue'
 import news from '@/graphql/pages/News.js'
-import type { NewsResponse } from '@/types/dato-api-responses/News'
+import getNewsLocale from '@/graphql/pages/NewsLocales.js'
 import { useWebsiteStore } from '~/store/store'
-const store = useWebsiteStore()
+
 const route = useRoute()
-const param = route.params.news as string
+const slug = route.params.news as string
+const store = useWebsiteStore()
+const { locale } = useI18n()
 
-const locale = route.params.locale || useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-const newsQuery = news(param, store.newsLang)
+// News data
+let newsLocale = store.newsLang
+const newsData: any = ref(null)
+const newsError: any = null
 
-const { data, error } = await useGraphqlQuery(newsQuery) as AsyncData<NewsResponse, RTCError>
+// 1. Get locales that news article has been written in
+const newsLocaleQuery = getNewsLocale(slug)
+const { data } = await useFetch('https://graphql.datocms.com', {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${useRuntimeConfig().public.DATO_TOKEN}`,
+    'X-environment': 'main'
+  },
+  body: {
+    query: newsLocaleQuery
+  },
+  transform: ({ data, errors }) => {
+    if (errors) { throw errors }
+    return data
+  }
+}) as any
+
+watch(data, (localeData) => {
+  // 2. Check if locales includes current route language, otherwise use default
+  const newsArticleLocalesList = localeData.news._locales
+  if (newsArticleLocalesList.includes(locale.value)) {
+    newsLocale = locale.value
+  } else {
+    newsLocale = newsArticleLocalesList[0]
+    store.newsLang = newsLocale
+  }
+  // 3. Get news article with the above locale
+  const newsQuery = news(slug, newsLocale)
+  useFetch('https://graphql.datocms.com', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${useRuntimeConfig().public.DATO_TOKEN}`,
+      'X-environment': 'main'
+    },
+    body: {
+      query: newsQuery
+    },
+    transform: ({ data, errors }) => {
+      if (errors) { throw errors }
+      return data
+    }
+  }).then((response) => {
+    newsData.value = response.data.value
+  })
+}, {
+  deep: true,
+  immediate: true
+})
 
 const renderBlock = (record: any) => {
   switch (record.record._modelApiKey) {
@@ -71,7 +120,7 @@ const renderBlock = (record: any) => {
 }
 
 const customNodeRules = [
-  renderNodeRule(isCode, ({ adapter: { renderNode: h }, node, key }) => {
+  renderNodeRule(isCode, ({ adapter: { renderNode: h }, node }) => {
     return h(
       'pre',
       {},
@@ -84,19 +133,7 @@ onMounted(() => {
     hljs.highlightElement(block as HTMLElement)
   })
 })
-// const backgroundColorArray = computed(() => {
-//   if (data) {
-//     return Object.values(data.value.news.backgroundColors)
-//   }
-//   return null
-// })
 
-// const components = computed(() => {
-//   if (data.value?.news !== null) {
-//     return filterNewsResponseForComponents(data.value) as Array<Component>
-//   }
-//   return null
-// })
 // useSeoMeta({
 //   description: data.value.news._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
 //   ogTitle: data.value.news._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,

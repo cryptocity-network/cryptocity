@@ -14,8 +14,10 @@
     <div
       v-if="image || imageUrl"
       class="relative h-240 overflow-hidden rounded-4"
-      :class="{' ': !fullScreen,
-               'opacity-0': fullScreen}"
+      :class="{
+        ' ': !fullScreen,
+        'opacity-0': fullScreen
+      }"
     >
       <DatoImage v-if="image" loading="lazy" :image="image" class="size-full rounded-4 object-cover" />
       <img v-else :src="imageUrl" class="size-full rounded-4 object-cover">

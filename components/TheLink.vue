@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link
+  <NuxtLinkLocale
     v-if="!appStoreLinkType"
     :to="getLink"
     :target="isExternal ? '_blank' : '_self'"
@@ -24,8 +24,8 @@
         'group-hover:translate-x-2': !isExternal
       }"
     />
-  </nuxt-link>
-  <nuxt-link v-else :to="getLink">
+  </NuxtLinkLocale>
+  <nuxt-link v-else :to="isExternal ? getLink : localePath(getLink)">
     <AppleStore v-if="appStoreLinkType === 'apple'" class="h-40 transition-transform hover:scale-105" />
     <PlayStore v-else class="h-40 transition-transform hover:scale-105" />
   </nuxt-link>
@@ -35,8 +35,7 @@
 import Arrow from '@/static/icons/arrow.svg'
 import AppleStore from '@/assets/App-store.svg'
 import PlayStore from '@/assets/Play-store.svg'
-import { useWebsiteStore } from '~/store/store'
-const store = useWebsiteStore()
+
 const props = defineProps({
   variant: {
     type: String,
@@ -90,6 +89,8 @@ const props = defineProps({
   }
 })
 defineEmits(['click'])
+const localePath = useLocalePath()
+
 const appStoreLinkType: Ref<null | string> = ref(null)
 const colorClasses = computed(() => {
   switch (props.variant) {
@@ -105,29 +106,36 @@ const colorClasses = computed(() => {
 })
 
 const getLink = computed(() => {
-  const defaultLocale = useRuntimeConfig().public.DATO_DEFAULT_LOCALE
-  const storeLocale = store.getCurrentLocale
   // File is url
   if (!props.link) {
-    return setUrlLink(storeLocale as string, defaultLocale)
+    return setUrlLink()
   // File is a reference
-  } else if ('slug' in props.link) {
-    return storeLocale === defaultLocale
-      ? `/${props.link.slug}`
-      : `/${storeLocale}/${props.link.slug}`
   } else if ('name' in props.link) {
-    return storeLocale === defaultLocale
-      ? `/${props.link.name}`
-      : `/${storeLocale}/${props.link.name}`
-  } else if ('id' in props.link) {
-    return storeLocale === defaultLocale
-      ? '/'
-      : `/${storeLocale}`
+    return `/${props.link.name}` as string
+  } else if ('_modelApiKey' in props.link) {
+    switch (props.link._modelApiKey) {
+      case 'home_page':
+        return '/'
+      case 'beginner_page':
+        return '/beginners'
+      case 'merchant_page':
+        return '/merchants'
+      case 'news_page':
+        return '/news'
+      case 'network_page':
+        return '/network'
+      case 'about_page':
+        return '/about'
+      case 'contact_page':
+        return '/contact'
+      default:
+        return '/'
+    }
   }
   return '/'
 })
 
-const setUrlLink = (storeLocale: string, defaultLocale: string) => {
+const setUrlLink = () => {
   // Check for app store links
   if (props.url?.includes('https://apps.apple.com/')) {
     appStoreLinkType.value = 'apple'
@@ -135,11 +143,7 @@ const setUrlLink = (storeLocale: string, defaultLocale: string) => {
     appStoreLinkType.value = 'google'
   }
   // Return url with check for potential relative link usage
-  if (props.url?.includes('http')) {
-    return props.url
-  } else {
-    return storeLocale === defaultLocale || props.noLocale ? props.url : '/' + storeLocale + props.url
-  }
+  return props.url
 }
 </script>
 

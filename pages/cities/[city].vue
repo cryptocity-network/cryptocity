@@ -1,6 +1,55 @@
 <template>
-  <main v-if="!error && data" class="min-h-screen">
-    <template
+  <main v-if="pageData" class="min-h-screen">
+    <BlockHeroSection
+      :data="pageData.heroSection"
+      :index="0"
+      :city-id="pageData.id"
+      :background-color="backgroundColorArray?.[0]"
+    />
+    <BlockIframe
+      :data="pageData.iframe"
+      :index="1"
+      :background-color="backgroundColorArray?.[1]"
+    />
+    <BlockMapBusiness
+      :data="pageData.mapBusinesses"
+      :index="2"
+      :background-color="backgroundColorArray?.[2]"
+    />
+    <BlockPartnerLogo
+      :data="pageData.partnerLogos"
+      :index="3"
+      :background-color="backgroundColorArray?.[3]"
+    />
+    <BlockHeadline
+      :data="pageData.eventsHeadline"
+      :index="4"
+      :background-color="backgroundColorArray?.[4]"
+    />
+    <BlockEventsCarousel
+      :data="pageData.eventsCarousel"
+      :index="5"
+      :background-color="backgroundColorArray?.[5]"
+      :city-id="data.city.id"
+    />
+    <BlockStartingGrid
+      :data="pageData.startingGrid"
+      :index="6"
+      :background-color="backgroundColorArray?.[6]"
+    />
+    <BlockHeadline
+      :data="pageData.missionHeadline"
+      :index="7"
+      :background-color="backgroundColorArray?.[7]"
+    />
+    <BlockCityGrid
+      :data="pageData.cityGrid"
+      :index="8"
+      :background-color="backgroundColorArray?.[8]"
+      :city-id="data.city.id"
+    />
+    <!-- :background-color="backgroundColorArray?.[0]" -->
+    <!-- <template
       v-for="(component, index) in components"
       :key="typeof component === 'string' ? 'id' : component?.id"
     >
@@ -13,7 +62,7 @@
         :city-id="data.city.id"
         :background-color="backgroundColorArray?.[index]"
       />
-    </template>
+    </template> -->
   </main>
   <ErrorMessage v-else-if="data.city === null" />
 </template>
@@ -23,16 +72,23 @@ import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '@/composables/useGraphqlQuery.js'
 import city from '@/graphql/pages/City.js'
 import type { CityResponse } from '@/types/dato-api-responses/City'
-import { useWebsiteStore } from '@/store/store'
 
-const store = useWebsiteStore()
 const route = useRoute()
+
+const { locale } = useI18n()
 
 const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
-const cityQuery = city(cityName, store.getCurrentLocale)
+const cityQuery = city(cityName, locale.value)
 
 const { data, error } = await useGraphqlQuery(cityQuery) as AsyncData<CityResponse, RTCError>
+
+const pageData = computed(() => {
+  if (data) {
+    return data.value.city
+  }
+  return null
+})
 
 const backgroundColorArray = computed(() => {
   if (data) {
@@ -41,24 +97,24 @@ const backgroundColorArray = computed(() => {
   return null
 })
 
-const components = computed(() => {
-  if (data.value?.city !== null) {
-    return filterCityResponseForComponents(data.value) as Array<Component>
-  }
-  return null
-})
-useSeoMeta({
-  description: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
-  ogTitle: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,
-  ogDescription: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:description')?.attributes?.content,
-  ogImage: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image')?.attributes?.content,
-  ogImageHeight: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:height')?.attributes?.content,
-  ogImageWidth: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:width')?.attributes?.content,
-  ogLocale: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:locale')?.attributes?.content,
-  ogSiteName: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
-  twitterImage: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:image')?.attributes?.content,
-  twitterSite: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:site')?.attributes?.content,
-  twitterDescription: data.value.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content,
-  twitterCard: 'summary'
-})
+// const components = computed(() => {
+//   if (data.value?.city !== null) {
+//     return filterCityResponseForComponents(data.value) as Array<Component>
+//   }
+//   return null
+// })
+// useSeoMeta({
+//   description: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
+//   ogTitle: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,
+//   ogDescription: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:description')?.attributes?.content,
+//   ogImage: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image')?.attributes?.content,
+//   ogImageHeight: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:height')?.attributes?.content,
+//   ogImageWidth: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:image:width')?.attributes?.content,
+//   ogLocale: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:locale')?.attributes?.content,
+//   ogSiteName: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:site_name')?.attributes?.content,
+//   twitterImage: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:image')?.attributes?.content,
+//   twitterSite: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:site')?.attributes?.content,
+//   twitterDescription: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'twitter:description')?.attributes?.content,
+//   twitterCard: 'summary'
+// })
 </script>

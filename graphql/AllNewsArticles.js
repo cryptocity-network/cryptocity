@@ -4,7 +4,7 @@ export default (locale) => {
     allNews(
       filter: {OR: [
         {isItGlobalNews: {eq: "true"}}
-        {relatesTo: {eq: "fTo46Ty8To6ukIQsBTRhPQ"}}
+        {relatesTo: {eq: "${useRuntimeConfig().public.DATO_REGION_ID}"}}
       ]}
       locale: ${locale}
       fallbackLocales: [en, ${useRuntimeConfig().public.DATO_DEFAULT_LOCALE}, es, de]

@@ -61,24 +61,21 @@ defineProps({
     default: 'white'
   }
 })
+const localePath = useLocalePath()
 const store = useWebsiteStore()
 const pages = store.getPages
 const links = computed(() => {
-  let locale = ''
-  if (store.localization.userSelectedLocale !== useRuntimeConfig().public.DATO_DEFAULT_LOCALE) {
-    locale = '/' + useRoute().params.locale as string
-  }
   if (pages) {
     return [
-      locale + '/' + pages[1].slug,
-      locale + '/' + pages[2].slug,
-      locale + '/' + pages[3].slug
+      localePath('/merchants'),
+      localePath('/beginners'),
+      localePath('/network')
     ]
   } else {
     return [
-      locale + '/',
-      locale + '/',
-      locale + '/'
+      localePath('/'),
+      localePath('/'),
+      localePath('/')
     ]
   }
 })
