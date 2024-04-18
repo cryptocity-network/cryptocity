@@ -22,6 +22,7 @@
         <NimiqVideo
           v-if="isVideo(i)"
           :video="item.media.url"
+          :thumbnail="item.media.video.thumbnailUrl"
           :poster="item.poster"
           class="nimiq-video mx-auto flex aspect-[var(--aspect)] h-[60vh] max-h-[570px] !w-auto items-center child:w-full"
           :style="`--aspect: ${item.ratio || '9 / 19.5'};`"

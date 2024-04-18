@@ -1,21 +1,19 @@
 <template>
   <transition name="page" mode="out-in" appear>
     <div
-      v-if="region"
       class="max-w-screeen flex flex-col"
     >
       <TheNavigation
         :key="keyTrigger"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :tag-line="globalData?.tagLine"
+        :contact-button-label="globalData?.contactButtonLabel"
       />
       <main class="">
-        <NuxtPage
-          v-if="!onGlobalPage"
-        />
-        <RegionsCarousel v-else />
+        <NuxtPage />
       </main>
       <TheFooter
+        v-if="!onGlobalPage"
         :key="`Footer-${String(keyTrigger)}`"
         :class="{ 'pt-120': onGlobalPage }"
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
@@ -24,7 +22,6 @@
       <div id="overlay" class="z-[100]" />
       <!-- <PreviewModeControls /> -->
     </div>
-    <LoadingState v-else />
   </transition>
 </template>
 
@@ -101,10 +98,6 @@ async function updateNavigation () {
   }
   keyTrigger.value++
 }
-
-const region = computed(() => {
-  return store.region
-})
 
 function convertToBoolean (input: string | boolean): boolean | undefined {
   if (typeof input === 'boolean') {

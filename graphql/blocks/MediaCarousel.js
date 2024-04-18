@@ -13,6 +13,7 @@ export default () => {
         ${ResponsiveImage()}
         video {
           streamingUrl
+          thumbnailUrl
         }
       }
     }
