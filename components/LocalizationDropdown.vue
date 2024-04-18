@@ -43,18 +43,18 @@
         >
           <NuxtLink
             v-for="item in availableLocales"
-            :key="item.code"
-            :to="switchLocalePath(item.code)"
+            :key="item"
+            :to="switchLocalePath(item)"
             class="flex  items-center justify-start gap-8 px-8 py-4"
           >
             <img
-              :src="`https://flagcdn.com/84x63/${item.code === 'en' ? 'gb' : item.code}.png`"
+              :src="`https://flagcdn.com/84x63/${item === 'en' ? 'gb' : item}.png`"
               class="block w-20"
               alt=""
               srcset=""
             >
             <span class="block font-semibold uppercase text-blue-darker/60">
-              {{ item.code === 'gb' ? 'en' : item.code }}
+              {{ item === 'gb' ? 'en' : item }}
             </span>
           </NuxtLink>
         </div>
@@ -65,12 +65,14 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { useWebsiteStore } from '~/store/store'
 
+const store = useWebsiteStore()
 const { locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 
 const availableLocales = computed(() => {
-  return locales.value.filter(i => i.code !== locale.value)
+  return store.region?._locales
 })
 const isDropdownExpanded = ref(false)
 const flagUrl = computed(() => {

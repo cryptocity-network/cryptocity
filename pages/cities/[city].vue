@@ -81,7 +81,7 @@ const param = route.params.city as string
 const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
 const cityQuery = city(cityName, locale.value)
 
-const { data, error } = await useGraphqlQuery(cityQuery) as AsyncData<CityResponse, RTCError>
+const { data } = await useGraphqlQuery(cityQuery) as AsyncData<CityResponse, RTCError>
 
 const pageData = computed(() => {
   if (data) {
@@ -97,12 +97,6 @@ const backgroundColorArray = computed(() => {
   return null
 })
 
-// const components = computed(() => {
-//   if (data.value?.city !== null) {
-//     return filterCityResponseForComponents(data.value) as Array<Component>
-//   }
-//   return null
-// })
 // useSeoMeta({
 //   description: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.name === 'description')?.attributes?.content,
 //   ogTitle: data.value?.city._seoMetaTags?.find((x: SeoMetaTag) => x.attributes?.property === 'og:title')?.attributes?.content,

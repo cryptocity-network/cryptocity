@@ -88,8 +88,8 @@
       </NuxtLink>
       <span v-if="tagLine" class="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-blue-dark/60 md:block">{{ tagLine }}</span>
       <TheLink
-        text="Contact"
-        :url="'https://kryptostadt.vercel.app/en/contact'"
+        :text="contactButtonLabel"
+        :url="'/contact'"
         :is-external="true"
         compact
         variant="info"
@@ -110,6 +110,10 @@ defineProps({
     default: false
   },
   tagLine: {
+    type: String,
+    default: null
+  },
+  contactButtonLabel: {
     type: String,
     default: null
   }

@@ -1,7 +1,8 @@
 export default () => {
   return `query {
-    global {
+    global(locale: ${useI18n().locale.value}) {
       tagLine
+      contactButtonLabel
     }
   }`
 }
