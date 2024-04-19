@@ -30,7 +30,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-svgo',
     '@nuxtjs/robots',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    'nuxt-gtag'
   ],
   i18n: {
     locales: [
