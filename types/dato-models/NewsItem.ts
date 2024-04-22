@@ -4,6 +4,7 @@ export interface NewsItem {
     id: string,
     _seoMetaTags: Array<SeoMetaTag>,
     title: string
+    subtitle: string
     content: StructuredTextDocument
     coverImage: object
     excerpt: string
