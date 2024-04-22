@@ -9,8 +9,8 @@ export default (slug, locale) => {
         content
         tag
       }
-
       title
+      subtitle
       _createdAt
       coverImage {
         ${ResponsiveImage()}

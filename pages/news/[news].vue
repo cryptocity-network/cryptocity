@@ -9,7 +9,7 @@
       <div class="mx-auto max-w-screen-2xl px-64">
         <HeadlineSection
           :headline="newsData.news.title"
-          :subline="'Hello'"
+          :subline="newsData.news.subtitle"
         />
       </div>
       <div class="size-full !px-16 pt-96 lg:!px-96">

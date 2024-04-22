@@ -61,7 +61,7 @@
                 :footer="cityName"
                 :link-label="cityName"
                 :link="location.gmaps"
-                :image-url="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
+                :image-url="location.name.includes('ROSSMANN') ? '/rossman.png' : `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
               />
             </li>
           </transition-group>

@@ -9,8 +9,8 @@
       class="size-full rounded-6 shadow"
       :image="data.image"
     />
-    <figcaption class="mt-16 text-14 font-bold text-blue/60">
-      Our sweet-spot: The only way in, the only way out.
+    <figcaption v-if="data.image.responsiveImage.title" class="mt-16 text-14 font-bold text-blue/60">
+      {{ data.image.responsiveImage.title }}
     </figcaption>
   </div>
 </template>
