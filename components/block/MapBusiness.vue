@@ -38,8 +38,8 @@
                 {{ data.joinCardDescription }}
               </div>
               <TheLink
-                text="Add your business"
-                url="https://google.com"
+                :text="$t('Add your buisness')"
+                url="https://map.nimiq.com/location/add"
                 variant="info"
                 :is-external="true"
               />
@@ -141,10 +141,23 @@ const cityName = computed(() => {
   return name.charAt(0).toUpperCase() + name.slice(1)
 })
 
-await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(cityName.value).then(() => true),
-  {
-    lazy: true
+// await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(cityName.value).then(() => true),
+//   {
+//     lazy: true
+//   })
+interface Locations {
+  name: string
+}
+const getPosts = async () => {
+  const data = await $fetch(`https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName.value}&apikey=${useRuntimeConfig().public.SUPA_KEY}`)
+  store.locations.push({
+    name: cityName.value,
+    cityLocations: data as Array<Locations>
   })
+}
+
+// // if you want fetch when component mounts:
+onMounted(getPosts)
 
 const locations = computed(() => {
   return store.getLocations(cityName.value)

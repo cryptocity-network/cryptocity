@@ -20,7 +20,7 @@
       }"
     >
       <DatoImage v-if="image" loading="lazy" :image="image" class="size-full rounded-4 object-cover" />
-      <img v-else :src="imageUrl" class="size-full rounded-4 object-cover">
+      <img v-else :src="imageUrl" loading="lazy" class="size-full rounded-4 object-cover">
       <div class="absolute left-0 top-0 size-full bg-blue/20 transition-opacity group-hover:opacity-50" />
       <div
         v-if="label && !fullScreen"
