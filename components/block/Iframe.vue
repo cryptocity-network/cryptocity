@@ -42,13 +42,14 @@
           <Transition name="fade" mode="out-in">
             <div
               v-if="mapOverlayVisible"
-              class="group absolute left-0 top-0 z-[60] flex size-full cursor-pointer flex-col items-center justify-center bg-blue/90 text-white transition-colors hover:bg-blue/70"
+              class="group absolute left-0 top-0 z-[60] flex size-full cursor-pointer flex-col items-center justify-center bg-blue/90 text-white transition-colors hover:bg-blue/80"
               @click="mapOverlayVisible = false"
             >
               <div class="size-fit transition-transform group-hover:scale-105">
                 <h3 class="text-white">
-                  Click to view Map
+                  {{ $t('View locations in') }} <span class="capitalize">{{ useRoute().params.city }}</span>
                 </h3>
+                <TheLink variant="info" :text="$t('Open Map')" hide-arrow class="mx-auto mt-16" />
               </div>
             </div>
           </Transition>
