@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!error && response"
-    class="relative h-screen !px-0 pt-72"
+    class="relative h-svh !px-0 pt-72"
     :class="{'mx-auto': gridSmallerThanWindow}"
   >
     <div v-if="allRegions.length > 2" class="relative h-full">
