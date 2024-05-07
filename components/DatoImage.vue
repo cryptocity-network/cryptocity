@@ -1,5 +1,11 @@
 <template>
-  <Image v-if="image.responsiveImage" :lazy-load="true" :priority="priority" class="dato-image size-full child:object-contain" :data="(image.responsiveImage as ResponsiveImageType)" />
+  <Image
+    v-if="image.responsiveImage"
+    :lazy-load="true"
+    :priority="priority"
+    class="dato-image size-full child:object-contain"
+    :data="(image.responsiveImage as ResponsiveImageType)"
+  />
   <img v-else :src="image.url" :alt="image.alt">
 </template>
 

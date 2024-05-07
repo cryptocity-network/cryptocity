@@ -67,9 +67,10 @@ const { data: { value: response }, error } = await useGraphqlQuery(`query  {
     state
     name
     brandName
+    subRegion
     id
     mainImage {
-      responsiveImage(imgixParams: { fit: max, h: 540, auto: format }) {
+      responsiveImage(imgixParams: { fit: max, h: 1000, auto: format }) {
         srcSet
         webpSrcSet
         sizes

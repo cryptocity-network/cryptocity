@@ -90,7 +90,7 @@
       <TheLink
         :text="contactButtonLabel"
         :url="'/contact'"
-        :is-external="true"
+        :is-external="false"
         compact
         variant="info"
         hide-arrow

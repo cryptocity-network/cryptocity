@@ -28,14 +28,19 @@
       logo-color="#1F2348"
       text-color="#1F2348"
       :brand-name="region.brandName"
+      :city-name="region.subRegion"
+      type="global"
       class="absolute left-1/2 top-1/2 h-56 -translate-x-1/2 -translate-y-1/2 blur-lg xl:h-72"
     />
     <DynamicLogo
       :brand-name="region.brandName"
+      :city-name="region.subRegion"
+      type="global"
       text-color="white"
       logo-color="white"
       class="absolute left-1/2 top-1/2 h-56 -translate-x-1/2 -translate-y-1/2 xl:h-72"
     />
+    {{ region.subRegion }}
     <div
       v-if="region.state !== 'live'"
       class="absolute bottom-32 left-1/2 -translate-x-1/2"
