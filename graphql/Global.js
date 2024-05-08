@@ -3,6 +3,7 @@ export default () => {
     global(locale: ${useI18n().locale.value}) {
       tagLine
       contactButtonLabel
+      formUrl
     }
   }`
 }
