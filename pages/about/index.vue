@@ -31,7 +31,13 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.carouselHeadline"
       />
-      <BlockAllCitiesCarousel
+      <!-- <BlockAllCitiesCarousel
+        :data="pageData.allCitiesCarousel"
+        :index="1"
+        :page-response="pageData"
+        :background-color="pageData.backgroundColors?.allCitiesCarousel"
+      /> -->
+      <BlockAllRegionsCarousel
         :data="pageData.allCitiesCarousel"
         :index="1"
         :page-response="pageData"
