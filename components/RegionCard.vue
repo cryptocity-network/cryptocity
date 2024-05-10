@@ -65,16 +65,6 @@
           {{ $t('Coming Soon') }}</span>
       </div>
     </div>
-    <!-- CODE FOR CITY NAMES ON REGION CARD -->
-    <!-- <div
-      v-if="region._allReferencingCities.length > 0"
-      class="absolute bottom-32 left-1/2 flex -translate-x-1/2 items-center text-20 font-semibold text-white"
-    >
-      <span v-for="(city, index) in region._allReferencingCities" :key="city.id">
-        <span v-if="index !== 0">, </span>
-        {{ city.name }}
-      </span>
-    </div> -->
   </nuxt-link>
 </template>
 
