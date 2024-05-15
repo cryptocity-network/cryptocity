@@ -145,14 +145,21 @@ const cityName = computed(() => {
 //   {
 //     lazy: true
 //   })
-interface Locations {
+interface LocationItem {
+  address: string
+  category: string
+  enabled: boolean
+  gmaps: string
   name: string
+  photo: string
+  id: number
 }
 const getPosts = async () => {
-  const data = await $fetch(`https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName.value}&apikey=${useRuntimeConfig().public.SUPA_KEY}`)
+  const data: Array<LocationItem> = await $fetch(`https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName.value}&apikey=${useRuntimeConfig().public.SUPA_KEY}`)
+  const filteredData = data.filter((location: LocationItem) => location.enabled === true)
   store.locations.push({
     name: cityName.value,
-    cityLocations: data as Array<Locations>
+    cityLocations: filteredData as Array<LocationItem>
   })
 }
 
