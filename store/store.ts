@@ -8,12 +8,14 @@ import type { Page } from '@/types/dato-models/Page'
 import type { Region } from '@/types/dato-models/Region'
 import type { Global } from '@/types/dato-models/Global'
 
-interface Locations {
+interface Location {
   name: string
-}
-interface CityLocations {
-  name: string,
-  cityLocations: Array<Locations>
+  gmaps: string
+  photo: string
+  rating: number
+  address: string
+  enabled: boolean
+  category: string
 }
 export const useWebsiteStore = defineStore('websiteStore', {
   state: () => {
@@ -26,15 +28,15 @@ export const useWebsiteStore = defineStore('websiteStore', {
         siteLocales: undefined as Array<string> | undefined,
         translations: undefined as JSON | undefined
       },
-      locations: [] as Array<CityLocations>
+      locations: new Map<string, Location[]>()
     }
   },
   getters: {
     getGlobalData (state): Global | null { return state.global },
     getCurrentRegion (state): Region | null { return state.region },
     getPages (state): Array<Page> | null { return state.pages },
-    getLocations (state): any {
-      return (cityName: string) => state.locations.find(x => x.name === cityName)?.cityLocations || null
+    getLocations (state): (cityName: string) => (Location[] | null) {
+      return (cityName: string) => (state.locations.get(cityName) || null)
     }
   },
   actions: {
@@ -131,18 +133,15 @@ export const useWebsiteStore = defineStore('websiteStore', {
         this.localization.siteLocales = body.region._locales
       }
     },
-    async getLocationsByCity (cityName: string) {
-      if (this.locations.find(x => x.name === cityName)) { return }
-      const { data: { value: response } } = await useFetch(
-        `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&apikey=${useRuntimeConfig().public.SUPA_KEY}`) as AsyncData<Array<Locations>, RTCError>
-      if (response) {
-        this.locations.push(
-          {
-            name: cityName,
-            cityLocations: response as Array<Locations>
-          }
-        )
+    async loadLocationsByCity (cityName: string) {
+      if (this.locations.has(cityName)) {
+        console.debug("Already have locations for city", cityName, this.locations.get(cityName))
+        return
       }
+      console.debug("Fetching locations for city", cityName)
+      const locations = await $fetch<Array<Location>>(
+        `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&only_enabled=1&apikey=${useRuntimeConfig().public.SUPA_KEY}`)
+      this.locations.set(cityName, locations)
     }
   }
 })

@@ -92,32 +92,18 @@ const cityLink = computed(() => {
   return useLocale(`/cities/${props.city.name.toLowerCase()}`)
 })
 
-// useAsyncData('getLocationsByCity', () => store.getLocationsByCity(props.city.name).then(() => true))
+// useAsyncData('loadLocationsByCity', () => store.loadLocationsByCity(props.city.name).then(() => true))
 
-interface Locations {
-  name: string
-}
-// const data = await $fetch(`https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${props.city.name}&apikey=${useRuntimeConfig().public.SUPA_KEY}`)
-// store.locations.push({
-//   name: props.city.name,
-//   cityLocations: data as Array<Locations>
-// })
-const getPosts = async () => {
-  const data = await $fetch(`https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${props.city.name}&apikey=${useRuntimeConfig().public.SUPA_KEY}`)
-  store.locations.push({
-    name: props.city.name,
-    cityLocations: data as Array<Locations>
-  })
-}
-
-// // if you want fetch when component mounts:
-onMounted(getPosts)
+// Fetch when component mounts:
+onMounted(() => {
+  store.loadLocationsByCity(props.city.name)
+})
 
 const locations = computed(() => {
   const locations = store.getLocations(props.city.name)
   if (!locations) { return null }
   const numOfLocations = locations.length
-  if (numOfLocations.toString().length < 4) {
+  if (numOfLocations < 1000) {
     return numOfLocations
   } else {
     return Math.round(numOfLocations / 1000) + 'k+'
