@@ -47,7 +47,7 @@
           </li>
           <transition-group name="fade" mode="out-in">
             <li
-              v-for="(location) in locations"
+              v-for="location in locations"
               :key="`card-${location.name}`"
               ref="slides"
               class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
@@ -79,7 +79,7 @@
           </svg>
         </button>
         <button
-          v-if="activeIndex < locations?.length - visibleCards"
+          v-if="activeIndex < (locations?.length || 0) - visibleCards"
           class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
           @click="goToNext"
         >
@@ -92,7 +92,7 @@
         </button>
       </div>
     </div>
-    <div v-if="visibleCards < locations?.length" class="flex flex-col">
+    <div v-if="visibleCards < (locations?.length || 0)" class="flex flex-col">
       <div class="relative mx-auto mt-8 flex">
         <button
           v-for="(_, i) in locations"
@@ -141,30 +141,14 @@ const cityName = computed(() => {
   return name.charAt(0).toUpperCase() + name.slice(1)
 })
 
-// await useAsyncData('getLocationsByCity', () => store.getLocationsByCity(cityName.value).then(() => true),
-//   {
-//     lazy: true
-//   })
-interface LocationItem {
-  address: string
-  category: string
-  enabled: boolean
-  gmaps: string
-  name: string
-  photo: string
-  id: number
-}
-const getPosts = async () => {
-  const data: Array<LocationItem> = await $fetch(`https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName.value}&apikey=${useRuntimeConfig().public.SUPA_KEY}`)
-  const filteredData = data.filter((location: LocationItem) => location.enabled === true)
-  store.locations.push({
-    name: cityName.value,
-    cityLocations: filteredData as Array<LocationItem>
-  })
-}
+// await useAsyncData('loadLocationsByCity', () => store.loadLocationsByCity(cityName.value).then(() => true), {
+//   lazy: true
+// })
 
-// // if you want fetch when component mounts:
-onMounted(getPosts)
+// Fetch when component mounts:
+onMounted(() => {
+  store.loadLocationsByCity(cityName.value)
+})
 
 const locations = computed(() => {
   return store.getLocations(cityName.value)
