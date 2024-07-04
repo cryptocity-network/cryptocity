@@ -7,12 +7,13 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.hero"
       />
-      <BlockTiltedVideo
-        :data="pageData.tiltVideo"
-        :index="1"
+      <BlockPaymentTable
+        :data="pageData.paymentTable"
+        :background-color="'gray'"
+        :index="2"
         :page-response="pageData"
-        :background-color="pageData.backgroundColors?.tiltedVideo"
       />
+      <!-- :background-color="pageData.backgroundColors?.paymentTable" -->
       <BlockHeadline
         :data="pageData.consultationHeadline"
         :index="2"
@@ -36,6 +37,12 @@
         :index="5"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.grid"
+      />
+      <BlockTiltedVideo
+        :data="pageData.tiltVideo"
+        :index="1"
+        :page-response="pageData"
+        :background-color="pageData.backgroundColors?.tiltedVideo"
       />
       <BlockHeadline
         :data="pageData.eventsHeadline"
@@ -80,12 +87,14 @@ import type { SeoTags } from '~/types/dato-api-responses/ContactPage'
         eventsHeadline: string,
         events: string,
         contactHeadline: string,
+        paymentTable: string,
       },
       _seoMetaTags: Array<SeoTags>,
       herosection: Component,
       tiltVideo: Component,
       consultationHeadline: Component,
       zigZagContent: Component,
+      paymentTable: Component,
       grid: Component,
       whyCrypto: Component,
       eventsHeadline: Component,
@@ -105,6 +114,7 @@ const query = MerchantQuery(locale.value)
 const { data: { value: response }, error } = await useGraphqlQuery(query) as AsyncData<MerchantPage, RTCError>
 const pageData = computed(() => {
   if (response) {
+    console.log(response)
     return response.merchantPage
   }
   return null

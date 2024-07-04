@@ -4,6 +4,7 @@ import HeroSection from '../blocks/HeroSection'
 import TiltedVideo from '../blocks/TiltedVideo'
 import ZigZagContent from '../blocks/ZigZagContent'
 import Headline from '../blocks/Headline'
+import PaymentTable from '../blocks/PaymentTable'
 
 export default (locale) => {
   return `query {
@@ -16,6 +17,9 @@ export default (locale) => {
       }
       herosection {
         ${HeroSection()}
+      }
+      paymentTable {
+        ${PaymentTable()}
       }
       tiltVideo {
         ${TiltedVideo()}
