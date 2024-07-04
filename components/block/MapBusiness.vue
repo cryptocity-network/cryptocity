@@ -29,25 +29,32 @@
             class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
           >
             <div
-              class="relative flex h-full w-[clamp(320px,370px,80vw)] flex-col items-center justify-center gap-24 rounded-6 border-1 border-gray bg-white p-40 text-center shadow hover:bg-white"
+              class="relative flex h-full w-[clamp(320px,370px,80vw)] flex-col items-start justify-start rounded-6 border-1 border-gray bg-white p-6 text-center shadow hover:bg-white"
             >
-              <Location class="h-104" />
-              <div
-                class="text-blue/60"
-              >
-                {{ data.joinCardDescription }}
+              <!-- <Location class="h-104" /> -->
+              <div class="relative h-auto grow overflow-hidden rounded-4">
+                <img class="h-full object-fill" src="/static/map-business-background.png" alt="">
+                <PaymentSticker class="absolute left-1/2 top-1/2 h-144 -translate-x-1/2 -translate-y-1/2" />
               </div>
-              <TheLink
-                :text="$t('Add your buisness')"
-                url="https://map.nimiq.com/location/add"
-                variant="info"
-                :is-external="true"
-              />
+              <div class="flex flex-col items-center  justify-center gap-16 p-24 py-32">
+                <div
+                  class="text-blue/60"
+                >
+                  {{ data.joinCardDescription }}
+                </div>
+                <TheLink
+                  :text="$t('Add your buisness')"
+                  url="https://map.nimiq.com/location/add"
+                  variant="info"
+                  :is-external="true"
+                />
+              </div>
             </div>
           </li>
           <transition-group name="fade" mode="out-in">
             <li
               v-for="location in locations"
+              v-show="locations && locations.length > 0"
               :key="`card-${location.name}`"
               ref="slides"
               class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
@@ -64,6 +71,9 @@
                 :image-url="location.name.includes('ROSSMANN') ? '/rossman.png' : `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
               />
             </li>
+            <div v-show="!locations || locations.length === 0" class="relative flex w-320 flex-col justify-center">
+              <LoadingState class="!h-fit !w-144" />
+            </div>
           </transition-group>
         </ul>
         <button
@@ -117,7 +127,7 @@
 
 <script lang="ts" setup>
 import { useWebsiteStore } from '~/store/store'
-import Location from '@/static/icons/Location-Shadow.svg'
+import PaymentSticker from '@/static/icons/payment-stickers.svg'
 defineProps({
   data: {
     type: Object,
