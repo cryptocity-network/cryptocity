@@ -7,7 +7,7 @@
     <div
       class="max-w-screen mx-auto grid w-full max-w-[1392px] grid-cols-1"
       :class="!onGlobalPage
-        ? 'xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64'
+        ? 'xl:grid-cols-[min-content_1fr] xl:gap-x-72 xl:gap-y-64'
         : ''
       "
     >
@@ -17,6 +17,11 @@
           ? 'flex flex-wrap items-center gap-16 xl:flex-col xl:items-start'
           : 'order-2 flex gap-16'"
       >
+        <div class="mb-48 flex w-full flex-col items-center gap-12 rounded-8 border-1 border-blue-darker/20 p-20 text-center text-blue-dark/60 xl:mb-24 xl:min-w-240 xl:items-start xl:text-start">
+          <PaymentOptions class="h-26" />
+          <p>We accept these currencies at all our locations.</p>
+        </div>
+
         <LocalizationDropdown v-if="!onGlobalPage" class="w-full" />
         <li
           v-for="(item, index) in pages"
@@ -38,7 +43,7 @@
       </ul>
       <!-- Logos and Text -->
       <div class="mt-72 flex flex-col gap-32 xl:row-span-2 xl:mt-0">
-        <div class="flex flex-col gap-24 sm:flex-row">
+        <div class="flex flex-wrap gap-24 ">
           <nuxt-link
             v-for="region in allRegionResponse.allRegions"
             :key="region.id"
@@ -114,13 +119,13 @@
 </template>
 
 <script lang="ts" setup>
-
 import { marked } from 'marked'
 import { StructuredText } from 'vue-datocms'
 import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import FooterQuery from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
+import PaymentOptions from '@/static/icons/payment-options.svg'
 import type { DynamicLogo } from '#build/components'
 import type { Region } from '@/types/dato-models/Region'
 import type { Footer } from '@/types/dato-models/Footer'
