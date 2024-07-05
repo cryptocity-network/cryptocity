@@ -15,6 +15,14 @@ export default () => {
         payment
         releaseDate
       }
+      axis {
+        releaseDate
+        payment
+        nimiqPay
+        id
+        fees
+        acceptedCryptoCurrencies
+      }
     }
     
 `

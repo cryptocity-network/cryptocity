@@ -114,7 +114,6 @@ const query = MerchantQuery(locale.value)
 const { data: { value: response }, error } = await useGraphqlQuery(query) as AsyncData<MerchantPage, RTCError>
 const pageData = computed(() => {
   if (response) {
-    console.log(response)
     return response.merchantPage
   }
   return null

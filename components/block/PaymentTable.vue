@@ -22,19 +22,19 @@
         </th>
       </tr>
       <tr>
-        <td>Crypto Currencies</td>
+        <td>{{ axisData.acceptedCryptoCurrencies }}</td>
         <td v-for="item in tableData" :key="item.id">
           {{ item.acceptedCryptoCurrencies }}
         </td>
       </tr>
       <tr>
-        <td>Fees</td>
+        <td>{{ axisData.fees }}</td>
         <td v-for="item in tableData" :key="item.id">
           {{ item.fees }}
         </td>
       </tr>
       <tr>
-        <td>Nimq Pay</td>
+        <td>{{ axisData.nimiqPay }}</td>
         <td v-for="item in tableData" :key="item.id">
           <svg
             v-if="item.nimiqPay"
@@ -63,13 +63,13 @@
         </td>
       </tr>
       <tr>
-        <td>Release Date</td>
+        <td>{{ axisData.releaseDate }}</td>
         <td v-for="item in tableData" :key="item.id">
           {{ item.releaseDate }}
         </td>
       </tr>
       <tr>
-        <td>Payment</td>
+        <td>{{ axisData.payment }}</td>
         <td v-for="item in tableData" :key="item.id">
           {{ item.payment }}
         </td>
@@ -97,44 +97,10 @@ const props = defineProps({
 const tableData = computed(() => {
   return props.data.table.table
 })
-onMounted(() => {
-  console.log(props.data)
-})
 
-// const fakeData = [
-//   {
-//     logo: 'logo',
-//     cryptoCurrencies: 'NIM, BTC, USDC',
-//     fees: '1-1.5%',
-//     nimqPay: true,
-//     releaseDate: 'Q3 2024',
-//     payment: 'Euro / Krypto'
-//   },
-//   {
-//     logo: 'logo',
-//     cryptoCurrencies: 'NIM, BTC, USDC',
-//     fees: '1-1.5%',
-//     nimqPay: true,
-//     releaseDate: 'Q3 2024',
-//     payment: 'Euro / Krypto'
-//   },
-//   {
-//     logo: 'logo',
-//     cryptoCurrencies: 'NIM, BTC, USDC',
-//     fees: '1-1.5%',
-//     nimqPay: true,
-//     releaseDate: 'Q3 2024',
-//     payment: 'Euro / Krypto'
-//   },
-//   {
-//     logo: 'logo',
-//     cryptoCurrencies: 'NIM, BTC, USDC',
-//     fees: '1-1.5%',
-//     nimqPay: true,
-//     releaseDate: 'Q3 2024',
-//     payment: 'Euro / Krypto'
-//   }
-// ]
+const axisData = computed(() => {
+  return props.data.table.axis
+})
 </script>
 
 <style>
@@ -146,10 +112,10 @@ onMounted(() => {
     /* content: ''; */
     z-index: 0;
     position: absolute;
-    left: calc(160px);
-    top: calc(52px);
-    width: calc(var(--cols) * 160px);
-    height: calc(var(--rows)*56px);
+    left: calc(184px);
+    top: calc(56px);
+    width: calc(100% - 187px);
+    height: calc(var(--rows)* 53px);
 
   }
   tr {
@@ -160,8 +126,16 @@ onMounted(() => {
     @apply relative z-10 whitespace-nowrap;
     font-size: 14px;
     padding: 16px;
-    min-width: 160px;
+    width: max-content;
+    min-width: max-content;
     text-align: start;
+  }
+
+  th {
+    @apply pr-48;
+    img {
+      @apply h-24 min-h-24 max-w-fit-content;
+    }
   }
 
   td {
@@ -187,6 +161,9 @@ onMounted(() => {
       &::before {
         @apply hidden;
       }
+    }
+    &:first-of-type {
+      @apply text-blue-dark/60 w-[184px] min-w-[184px];
     }
   }
   tr:last-of-type td {
