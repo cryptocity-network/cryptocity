@@ -5,14 +5,21 @@
     :class="`bg-${backgroundColor}`"
   >
     <div
-      class="max-w-screen mx-auto grid w-full max-w-[1392px] grid-cols-1"
+      class="max-w-screen mx-auto grid w-full max-w-[1392px] grid-cols-1 grid-rows-[min-content_min-content_min-content] xl:grid-rows-[min-content_min-content]"
       :class="!onGlobalPage
-        ? 'xl:grid-cols-[min-content_1fr] xl:gap-x-80 xl:gap-y-64'
+        ? 'xl:grid-cols-[min-content_1fr] xl:gap-x-72 xl:gap-y-64 '
         : ''
       "
     >
+      <div class="col-span-2 row-span-1 mb-48 flex w-full flex-col items-center gap-12 rounded-8 border-1 border-blue-darker/20 p-20 text-center text-blue-dark/60 xl:mb-24">
+        <PaymentOptions class="h-26" />
+        <p class="text-14 xl:text-16">
+          We accept these currencies at all our locations.
+        </p>
+      </div>
       <!-- LINKS -->
       <ul
+        class="col-span-2 row-start-2 xl:col-span-1"
         :class="!onGlobalPage
           ? 'flex flex-wrap items-center gap-16 xl:flex-col xl:items-start'
           : 'order-2 flex gap-16'"
@@ -37,8 +44,8 @@
         </li>
       </ul>
       <!-- Logos and Text -->
-      <div class="mt-72 flex flex-col gap-32 xl:row-span-2 xl:mt-0">
-        <div class="flex flex-col gap-24 sm:flex-row">
+      <div class="col-span-2 row-start-3 mt-72 flex flex-col gap-32 xl:col-span-1 xl:row-span-2 xl:mt-0">
+        <div class="flex flex-wrap gap-24 ">
           <nuxt-link
             v-for="region in allRegionResponse.allRegions"
             :key="region.id"
@@ -114,13 +121,13 @@
 </template>
 
 <script lang="ts" setup>
-
 import { marked } from 'marked'
 import { StructuredText } from 'vue-datocms'
 import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import FooterQuery from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
+import PaymentOptions from '@/static/icons/payment-options.svg'
 import type { DynamicLogo } from '#build/components'
 import type { Region } from '@/types/dato-models/Region'
 import type { Footer } from '@/types/dato-models/Footer'
