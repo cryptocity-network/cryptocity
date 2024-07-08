@@ -75,6 +75,9 @@
         </td>
       </tr>
     </table>
+    <div class="mx-auto mt-12 text-center text-12 text-blue-dark/60">
+      {{ data.table.footnote }}
+    </div>
   </BlockWrapper>
 </template>
 
