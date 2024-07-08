@@ -1,8 +1,14 @@
 <template>
   <main>
     <div v-if="pageData" class="">
-      <BlockHalfImageHero
-        :data="pageData.halfImageHero"
+      <BlockHeroSection
+        :data="pageData.hero"
+        :index="0"
+        :page-response="pageData"
+        :background-color="pageData.backgroundColors?.hero"
+      />
+      <BlockCoinCards
+        :data="pageData.coinCards"
         :index="0"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.hero"
@@ -69,7 +75,8 @@ import type { SeoTags } from '~/types/dato-api-responses/ContactPage'
         contactHeadline: string,
       },
       _seoMetaTags: Array<SeoTags>,
-      halfImageHero: Component,
+      hero: Component,
+      coinCards: Component,
       carouselHeadline: Component,
       mediaCarousel: Component,
       zigZagContent: Component,

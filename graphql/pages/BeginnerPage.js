@@ -1,5 +1,6 @@
 import Grid from '../blocks/Grid'
-import HalfImageHero from '../blocks/HalfImageHero'
+import HeroSection from '../blocks/HeroSection'
+import CoinCards from '../blocks/CoinCards'
 import MediaCarousel from '../blocks/MediaCarousel'
 import ZigZagContent from '../blocks/ZigZagContent'
 import Headline from '../blocks/Headline'
@@ -13,8 +14,11 @@ export default (locale) => {
         content
         tag
       }
-      halfImageHero {
-        ${HalfImageHero()}
+      hero {
+        ${HeroSection()}
+      }
+      coinCards {
+        ${CoinCards()}
       }
       carouselHeadline {
         ${Headline()}
