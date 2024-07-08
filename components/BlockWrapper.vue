@@ -68,7 +68,7 @@ section.bg-gray {
 
 section.bg-white + section.bg-white,
 section.bg-gray + section.bg-gray {
-  @apply -mt-160 xl:-mt-200;
+  @apply -mt-120 xl:-mt-120;
 }
 
 section.bg-white + section:not(.bg-white),
@@ -78,6 +78,10 @@ section.bg-gray + section:not(.bg-gray) {
 
 section.hero {
   @apply !pt-192;
+
+  &.bg-gray {
+    @apply !pb-120;
+  }
 }
 
 section.title {
