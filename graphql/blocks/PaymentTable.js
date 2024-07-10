@@ -7,7 +7,7 @@ export default () => {
       table {
         id
         fees
-        acceptedCryptoCurrencies
+        acceptedCrypto
         logo {
           ${ResponsiveImage()}
         }
