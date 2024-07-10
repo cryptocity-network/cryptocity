@@ -24,7 +24,7 @@
           </div>
           <div class="grid w-full grid-cols-1 grid-rows-2">
             <div
-              v-for="(description, j) in [coinData.coinDescriptions[0], coinData.coinDescriptions[2]]"
+              v-for="(description, j) in coinData.coinDescriptions"
               :key="description.id"
               class="flex flex-col items-center justify-center border-gray p-24"
               :class="{
