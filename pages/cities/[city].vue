@@ -1,6 +1,6 @@
 <template>
   <main v-if="pageData" class="min-h-screen">
-    <BlockHeroSection
+    <BlockAnimatedCurrencyHero
       :data="pageData.heroSection"
       :index="0"
       :city-id="pageData.id"
