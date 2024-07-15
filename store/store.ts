@@ -58,7 +58,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
             id
             _locales
             brandName
-            brandNameRegistered
+            brandIntellectualPropertySymbols
             mainImage {
               url
               alt

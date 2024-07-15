@@ -107,7 +107,7 @@ const { data: { value: response } } = await useGraphqlQuery(`query  {
     state
     name
     brandName
-    brandNameRegistered
+    brandIntellectualPropertySymbols
     subRegion
     id
     mainImage {

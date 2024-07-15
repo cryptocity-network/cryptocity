@@ -127,7 +127,9 @@ const pageTitle = computed(() => {
 const regionName = computed(() => {
   if (onGlobalPage) { return globalData.value?.seoTitle }
   if (store.region) {
-    return store.region?.brandName + (store.region.brandNameRegistered ? '\u00AE' : '')
+    return store.region?.brandName +
+      (store.region.brandIntellectualPropertySymbols === 'registered' ? '\u00AE' : '') +
+      (store.region.brandIntellectualPropertySymbols === 'trademark' ? '\u2122' : '')
   } else {
     return ''
   }
