@@ -53,7 +53,7 @@
             :aria-label="region.brandName"
             class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
-            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :brand-name="region.brandName" />
+            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :brand-name="region.brandName" :registered="region.brandNameRegistered" />
           </nuxt-link>
         </div>
         <div class="flex flex-col gap-8 text-blue-dark/60 ">

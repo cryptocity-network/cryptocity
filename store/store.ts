@@ -58,6 +58,7 @@ export const useWebsiteStore = defineStore('websiteStore', {
             id
             _locales
             brandName
+            brandNameRegistered
             mainImage {
               url
               alt
@@ -135,10 +136,10 @@ export const useWebsiteStore = defineStore('websiteStore', {
     },
     async loadLocationsByCity (cityName: string) {
       if (this.locations.has(cityName)) {
-        console.debug("Already have locations for city", cityName, this.locations.get(cityName))
+        console.debug('Already have locations for city', cityName, this.locations.get(cityName))
         return
       }
-      console.debug("Fetching locations for city", cityName)
+      console.debug('Fetching locations for city', cityName)
       const locations = await $fetch<Array<Location>>(
         `https://mycbdmurjytbdahjljoh.supabase.co/rest/v1/rpc/get_cryptocity_locations?cryptocity_name=${cityName}&only_enabled=1&apikey=${useRuntimeConfig().public.SUPA_KEY}`)
       this.locations.set(cityName, locations)

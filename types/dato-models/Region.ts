@@ -4,6 +4,7 @@ export interface Region {
     id?: string,
     _locales: [string],
     brandName: string,
+    brandNameRegistered: boolean,
     url: string,
     state: string,
     mainImage: {

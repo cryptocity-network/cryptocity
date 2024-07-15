@@ -28,12 +28,14 @@
       logo-color="#1F2348"
       text-color="#1F2348"
       :brand-name="region.brandName"
+      :registered="region.brandNameRegistered"
       :city-name="region.subRegion"
       type="global"
       class="absolute left-1/2 top-1/2 h-56 -translate-x-1/2 -translate-y-1/2 blur-lg xl:h-72"
     />
     <DynamicLogo
       :brand-name="region.brandName"
+      :registered="region.brandNameRegistered"
       :city-name="region.subRegion"
       type="global"
       text-color="white"

@@ -125,15 +125,16 @@ const pageTitle = computed(() => {
   }
 })
 const regionName = computed(() => {
-  if (onGlobalPage) { return 'CryptoCity' }
+  if (onGlobalPage) { return globalData.value?.seoTitle }
   if (store.region) {
-    return store.region?.brandName
+    return store.region?.brandName + (store.region.brandNameRegistered ? '\u00AE' : '')
   } else {
     return ''
   }
 })
 const makeName = computed(() => {
-  return `${pageTitle.value ? pageTitle.value + ' - ' : ''}${regionName.value}\u00AE`
+  // registered trademark code \u00AE
+  return `${pageTitle.value ? pageTitle.value + ' - ' : ''}${regionName.value}`
 })
 
 useHead({

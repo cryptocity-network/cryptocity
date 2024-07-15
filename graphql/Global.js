@@ -4,6 +4,8 @@ export default () => {
       tagLine
       contactButtonLabel
       formUrl
+      seoTitle
+      seoDescription
     }
   }`
 }
