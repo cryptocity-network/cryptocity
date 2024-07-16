@@ -13,7 +13,7 @@
         <!-- eslint-disable max-len -->
 
         <svg
-          class="circle circle-nim"
+          class="circle circle-nimiq"
           width="80"
           height="80"
           viewBox="0 0 80 80"
@@ -24,7 +24,7 @@
           <path d="M62.3156 38.0812L52.6246 21.0745C51.9266 19.858 50.6483 19.1128 49.2657 19.1128H29.8836C29.1982 19.116 28.5261 19.2996 27.9368 19.6444C27.3475 19.9893 26.8624 20.483 26.5315 21.0745L16.8405 38.0812C16.5005 38.6809 16.322 39.3565 16.322 40.0435C16.322 40.7305 16.5005 41.406 16.8405 42.0058L26.5315 59.0113C26.8624 59.6028 27.3475 60.0965 27.9368 60.4414C28.5261 60.7863 29.1982 60.9699 29.8836 60.9731H49.2657C49.9511 60.9699 50.6232 60.7863 51.2126 60.4414C51.8019 60.0965 52.287 59.6028 52.6178 59.0113L62.3089 42.0058C62.6514 41.4071 62.832 40.7317 62.8332 40.0444C62.8344 39.3571 62.6561 38.681 62.3156 38.0812Z" fill="white" />
         </svg>
         <svg
-          class="circle circle-btc"
+          class="circle circle-bitcoin"
           width="99"
           height="80"
           viewBox="0 0 99 80"
@@ -38,7 +38,7 @@
         </svg>
 
         <svg
-          class="circle circle-usdc"
+          class="circle circle-tether"
           width="80"
           height="80"
           viewBox="0 0 80 80"
@@ -85,12 +85,12 @@ defineProps({
   }
 })
 const currencies = [
-  'nim',
-  'btc',
-  'usdc'
+  'nimiq',
+  'bitcoin',
+  'tether'
 ]
 let currentCurrencyIndex = 0
-const highlightedCurrency = ref('nim')
+const highlightedCurrency = ref('nimiq')
 
 onMounted(() => {
   setInterval(function () {
@@ -145,65 +145,65 @@ onMounted(() => {
             opacity: 0;
         }
 
-        &.highlight-nim {
-            .circle-nim {
+        &.highlight-nimiq {
+            .circle-nimiq {
               /* ACTIVE */
               transform: translate3d(-7px, -80px, 0) scale(1.1);
             }
 
-            .circle-btc {
+            .circle-bitcoin {
               /* BOttom left */
                 transform: translate3d(-60px, 10px, 0) scale(0.72);
             }
 
-            .circle-usdc {
+            .circle-tether {
               /* Bottom Right */
               transform: translate3d(40px, 29px, 0) scale(0.86);
             }
 
-            .attribute-nim {
+            .attribute-nimiq {
                 opacity: 1;
             }
         }
 
-        &.highlight-btc {
-            .circle-nim {
+        &.highlight-bitcoin {
+            .circle-nimiq {
               /* Bottom Right */
               transform: translate3d(40px, 29px, 0) scale(0.86);
             }
 
-            .circle-btc {
+            .circle-bitcoin {
               /* ACTIVE */
               transform: translate3d(-7px, -80px, 0) scale(1.2);
             }
 
-            .circle-usdc {
+            .circle-tether {
               /* BOttom left */
                 transform: translate3d(-60px, 10px, 0) scale(0.62);
             }
 
-            .attribute-btc {
+            .attribute-bitcoin {
                 opacity: 1;
             }
         }
 
-        &.highlight-usdc {
-            .circle-nim {
+        &.highlight-tether {
+            .circle-nimiq {
               /* BOttom left */
                 transform: translate3d(-60px, 10px, 0) scale(0.62);
             }
 
-            .circle-btc {
+            .circle-bitcoin {
               /* Bottom Right */
               transform: translate3d(40px, 29px, 0) scale(1);
             }
 
-            .circle-usdc {
+            .circle-tether {
               /* ACTIVE */
               transform: translate3d(-7px, -80px, 0) scale(1.1);
             }
 
-            .attribute-usdc {
+            .attribute-tether {
                 opacity: 1;
             }
         }
