@@ -24,7 +24,7 @@
               :thumbnail="item.thumbnail"
               class="shrink-1 rounded-8"
             />
-            <div class="mx-auto grow py-40 text-center text-21 font-bold sm:max-w-[70%]">
+            <div class="mx-auto grow pt-40 text-center text-21 font-bold sm:max-w-[70%]">
               {{ item.descriptionText }}
             </div>
           </div>
