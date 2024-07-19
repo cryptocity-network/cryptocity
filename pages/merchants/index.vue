@@ -13,7 +13,6 @@
         :index="2"
         :page-response="pageData"
       />
-      <!-- :background-color="pageData.backgroundColors?.paymentTable" -->
       <BlockHeadline
         :data="pageData.consultationHeadline"
         :index="2"
@@ -38,12 +37,6 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.grid"
       />
-      <!-- <BlockTiltedVideo
-        :data="pageData.tiltVideo"
-        :index="1"
-        :page-response="pageData"
-        :background-color="pageData.backgroundColors?.tiltedVideo"
-      /> -->
       <BlockHeadline
         :data="pageData.youtubeHeadline"
         :index="6"

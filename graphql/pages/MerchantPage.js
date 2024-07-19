@@ -1,7 +1,6 @@
 import EventsCarousel from '../blocks/EventsCarousel'
 import Grid from '../blocks/Grid'
 import HeroSection from '../blocks/HeroSection'
-import TiltedVideo from '../blocks/TiltedVideo'
 import ZigZagContent from '../blocks/ZigZagContent'
 import Headline from '../blocks/Headline'
 import PaymentTable from '../blocks/PaymentTable'
@@ -21,9 +20,6 @@ export default (locale) => {
       }
       paymentTable {
         ${PaymentTable()}
-      }
-      tiltVideo {
-        ${TiltedVideo()}
       }
       consultationHeadline {
         ${Headline()}
