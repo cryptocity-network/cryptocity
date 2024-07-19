@@ -5,6 +5,7 @@ import TiltedVideo from '../blocks/TiltedVideo'
 import ZigZagContent from '../blocks/ZigZagContent'
 import Headline from '../blocks/Headline'
 import PaymentTable from '../blocks/PaymentTable'
+import ResponsiveImage from '../ResponsiveImage'
 
 export default (locale) => {
   return `query {
@@ -35,6 +36,19 @@ export default (locale) => {
       }
       grid {
         ${Grid()}
+      }
+      youtubeHeadline {
+        ${Headline()}
+      }
+      youtubeCarousel {
+        videos {
+          id
+          url
+          descriptionText
+          thumbnail {
+            ${ResponsiveImage()}
+          }
+        }
       }
       eventsHeadline {
         ${Headline()}

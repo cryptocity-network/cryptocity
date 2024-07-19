@@ -44,10 +44,12 @@
         @click="showYoutubeIframe"
       >
         <!-- FIXME Now we use scale to make it responsive... -->
-        <PlayButton
-          filled
-          class="size-48 lg:size-104"
-        />
+        <div class="relative size-96 rounded-full bg-white/40 lg:size-144">
+          <PlayButton
+            filled
+            class="absolute left-1/2 top-1/2 size-48 -translate-y-1/2 translate-x-[calc(0.25rem-50%)] lg:size-72"
+          />
+        </div>
       </button>
     </div>
     <div v-else>

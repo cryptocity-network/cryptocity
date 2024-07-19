@@ -38,27 +38,38 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.grid"
       />
-      <BlockTiltedVideo
+      <!-- <BlockTiltedVideo
         :data="pageData.tiltVideo"
         :index="1"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.tiltedVideo"
+      /> -->
+      <BlockHeadline
+        :data="pageData.youtubeHeadline"
+        :index="6"
+        :page-response="pageData"
+        :background-color="pageData.backgroundColors?.youtubeHeadline"
+      />
+      <BlockYoutubeVideoCarousel
+        :index="7"
+        :background-color="pageData.backgroundColors?.youtubeCarousel"
+        :data="pageData.youtubeCarousel"
       />
       <BlockHeadline
         :data="pageData.eventsHeadline"
-        :index="6"
+        :index="8"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.eventsHeadline"
       />
       <BlockEventsCarousel
         :data="pageData.events"
-        :index="7"
+        :index="9"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.events"
       />
       <BlockHeadline
         :data="pageData.contactHeadline"
-        :index="8"
+        :index="10"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.contactHeadline"
       />
@@ -84,6 +95,8 @@ import type { SeoTags } from '~/types/dato-api-responses/ContactPage'
         zigZagContent: string,
         whyCrypto: string,
         grid: string,
+        youtubeHeadline: string,
+        youtubeCarousel: string,
         eventsHeadline: string,
         events: string,
         contactHeadline: string,
@@ -97,6 +110,8 @@ import type { SeoTags } from '~/types/dato-api-responses/ContactPage'
       paymentTable: Component,
       grid: Component,
       whyCrypto: Component,
+      youtubeHeadline: Component,
+      youtubeCarousel: Component,
       eventsHeadline: Component,
       events: Component,
       contactHeadline: Component,
