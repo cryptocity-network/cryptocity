@@ -19,7 +19,6 @@
         :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
         :background-color="onGlobalPage ? 'white' : 'gray'"
       />
-      <div id="overlay" class="z-[100]" />
       <!-- <PreviewModeControls /> -->
     </div>
   </transition>
