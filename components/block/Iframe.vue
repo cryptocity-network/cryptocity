@@ -47,7 +47,7 @@
             >
               <div class="size-fit transition-transform group-hover:scale-105">
                 <h3 class="text-white">
-                  {{ $t('View locations in') }} <span class="capitalize">{{ useRoute().params.city }}</span>
+                  {{ $t('View locations in') }} <span class="capitalize">{{ cityName }}</span>
                 </h3>
                 <TheLink variant="info" :text="$t('Open Map')" hide-arrow class="mx-auto mt-16" />
               </div>
@@ -93,6 +93,10 @@ defineProps({
   },
   index: {
     type: Number,
+    required: true
+  },
+  cityName: {
+    type: String,
     required: true
   },
   backgroundColor: {

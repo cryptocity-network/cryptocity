@@ -5,6 +5,7 @@ export default (regionId, locale) => {
     allCities(
       filter: {region: {eq: "${regionId}"}} locale: ${locale}) {
       name
+      slug
       state
       mainImage {
         ${ResponsiveImage()}

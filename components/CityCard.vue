@@ -89,7 +89,7 @@ const props = defineProps({
 
 const useLocale = useLocalePath()
 const cityLink = computed(() => {
-  return useLocale(`/cities/${props.city.name.toLowerCase()}`)
+  return useLocale(`/cities/${props.city.slug}`)
 })
 
 // useAsyncData('loadLocationsByCity', () => store.loadLocationsByCity(props.city.name).then(() => true))

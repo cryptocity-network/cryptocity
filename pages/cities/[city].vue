@@ -8,6 +8,7 @@
     />
     <BlockIframe
       :data="pageData.iframe"
+      :city-name="pageData.name"
       :index="1"
       :background-color="backgroundColorArray?.[1]"
     />
@@ -77,9 +78,8 @@ const route = useRoute()
 
 const { locale } = useI18n()
 
-const param = route.params.city as string
-const cityName = param.charAt(0).toUpperCase() + route.params.city.slice(1)
-const cityQuery = city(cityName, locale.value)
+const citySlug = route.params.city
+const cityQuery = city(citySlug, locale.value)
 
 const { data } = await useGraphqlQuery(cityQuery) as AsyncData<CityResponse, RTCError>
 

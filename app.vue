@@ -1,28 +1,26 @@
 <template>
-  <transition name="page" mode="out-in" appear>
-    <div
-      class="max-w-screeen flex flex-col"
-    >
-      <TheNavigation
-        :key="keyTrigger"
-        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
-        :tag-line="globalData?.tagLine"
-        :contact-button-label="globalData?.contactButtonLabel"
-      />
-      <main class="">
-        <NuxtPage />
-      </main>
-      <TheFooter
-        v-if="!onGlobalPage"
-        :key="`Footer-${String(keyTrigger)}`"
-        :class="{ 'pt-120': onGlobalPage }"
-        :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
-        :background-color="onGlobalPage ? 'white' : 'gray'"
-      />
-      <div id="overlay" class="z-[100]" />
-      <!-- <PreviewModeControls /> -->
-    </div>
-  </transition>
+  <div
+    class="max-w-screeen flex flex-col"
+  >
+    <TheNavigation
+      :key="keyTrigger"
+      :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
+      :tag-line="globalData?.tagLine"
+      :contact-button-label="globalData?.contactButtonLabel"
+    />
+    <main class="">
+      <NuxtPage />
+    </main>
+    <TheFooter
+      v-if="!onGlobalPage"
+      :key="`Footer-${String(keyTrigger)}`"
+      :class="{ 'pt-120': onGlobalPage }"
+      :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
+      :background-color="onGlobalPage ? 'white' : 'gray'"
+    />
+    <div id="overlay" class="z-[100]" />
+    <!-- <PreviewModeControls /> -->
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -34,9 +32,9 @@ const store = useWebsiteStore()
 const onGlobalPage = useRuntimeConfig().public.IS_GLOBAL_SITE
 const route = useRoute()
 
+const { locale } = useI18n()
 await useAsyncData('setNavigation', () => store.setNavigation(convertToBoolean(onGlobalPage)).then(() => true))
 const keyTrigger = ref(0)
-const { locale } = useI18n()
 watch(locale, () => {
   updateNavigation()
 })

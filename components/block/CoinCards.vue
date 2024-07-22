@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
+defineProps({
   data: {
     type: Object,
     required: true
@@ -64,9 +64,5 @@ const props = defineProps({
     required: true,
     default: 'white'
   }
-})
-
-onMounted(() => {
-  console.log(props.data)
 })
 </script>

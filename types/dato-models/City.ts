@@ -1,5 +1,7 @@
 export interface City {
     id: string,
+    name: string,
+    slug: string,
     _seoMetaTags: Array<SeoMetaTag>,
     backgroundColors: Object,
     heroSection: Object,

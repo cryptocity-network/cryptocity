@@ -10,6 +10,7 @@ import type { Global } from '@/types/dato-models/Global'
 
 interface Location {
   name: string
+  slug: string
   gmaps: string
   photo: string
   rating: number
@@ -85,41 +86,41 @@ export const useWebsiteStore = defineStore('websiteStore', {
               ${pageFields()}
             }
             _allReferencingCities {
-                  name
-                }
-                partners {
-                  companyName
-                  description
-                  linkLabel
-                  linkUrl
-                  logo {
-                    url
-                    alt
-                  }
-                  socials {
-                    youtube
-                    whatsapp
-                    twitter
-                    telegram
-                    linkedIn
-                    instagram
-                    facebook
-                    email
-                    discord
-                  }
-                }
-                socialLinks {
-                  twitter
-                  telegram
-                  email
-                  linkedIn
-                }
+              name
+            }
+            partners {
+              companyName
+              description
+              linkLabel
+              linkUrl
+              logo {
+                url
+                alt
               }
-              translation(locale: ${locale.value}) {
-                translations
+              socials {
+                youtube
+                whatsapp
+                twitter
+                telegram
+                linkedIn
+                instagram
+                facebook
+                email
+                discord
               }
             }
-          `
+            socialLinks {
+              twitter
+              telegram
+              email
+              linkedIn
+            }
+          }
+          translation(locale: ${locale.value}) {
+            translations
+          }
+        }
+        `
         const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoRegionResponse, RTCError>
         this.pages = []
         for (const property in body.region) {
