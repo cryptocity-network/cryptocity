@@ -83,7 +83,7 @@
             font-size="29"
             font-weight="bold"
             letter-spacing="0.9px"
-          ><tspan x="74.1992" y="40.4475">CRYPTOCITY</tspan></text>
+          ><tspan x="74.1992" y="40.4475">CRYPTOCITY&trade;</tspan></text>
         </svg>
       </NuxtLink>
       <span v-if="tagLine" class="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-blue-dark/60 md:block">{{ tagLine }}</span>
