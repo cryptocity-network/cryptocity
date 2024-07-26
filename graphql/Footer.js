@@ -3,6 +3,7 @@ export default (locale) => {
     ? `query {
     deFooter(locale: ${locale}) {
       title
+      acceptedCryptoText
       legal
       copyrightText
       wpig {
@@ -20,6 +21,7 @@ export default (locale) => {
     : `query {
     footer(locale: ${locale}) {
       title
+      acceptedCryptoText
       legal
       copyrightText
       wpig {

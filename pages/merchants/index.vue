@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div v-if="pageData" class="">
+    <div v-if="pageData" class="overflow-x-hidden">
       <BlockHeroSection
         :data="pageData.herosection"
         :index="0"

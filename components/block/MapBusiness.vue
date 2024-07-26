@@ -43,7 +43,7 @@
                   {{ data.joinCardDescription }}
                 </div>
                 <TheLink
-                  :text="$t('Add your buisness')"
+                  :text="data.joinLinkLabel"
                   url="https://map.nimiq.com/location/add"
                   variant="info"
                   :is-external="true"

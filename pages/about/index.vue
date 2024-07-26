@@ -31,18 +31,18 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.carouselHeadline"
       />
-      <!-- <BlockAllCitiesCarousel
-        :data="pageData.allCitiesCarousel"
-        :index="1"
-        :page-response="pageData"
-        :background-color="pageData.backgroundColors?.allCitiesCarousel"
-      /> -->
-      <BlockAllRegionsCarousel
+      <BlockAllCitiesCarousel
         :data="pageData.allCitiesCarousel"
         :index="1"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.allCitiesCarousel"
       />
+      <!-- <BlockAllRegionsCarousel
+        :data="pageData.allCitiesCarousel"
+        :index="1"
+        :page-response="pageData"
+        :background-color="pageData.backgroundColors?.allCitiesCarousel"
+      /> -->
       <BlockHeadline
         :data="pageData.contactHeadline"
         :index="8"

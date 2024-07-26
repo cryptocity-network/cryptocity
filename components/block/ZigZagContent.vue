@@ -5,7 +5,7 @@
     :no-padding-bottom="false"
     :overlaps-next-section="false"
   >
-    <ul class="wide mx-auto !px-0 2xl:!max-w-[1440px]">
+    <ul class="wide mx-auto !px-0 2xl:!max-w-screen-2xl">
       <li
         v-for="(item, i) in data.blocks"
         :key="i"
@@ -84,7 +84,6 @@
           class="content mt-64 flex flex-col justify-center !px-16 lg:mt-0 lg:max-w-[50%] lg:flex-1 lg:!px-0"
         >
           <div
-            v-if="item.badge"
             class="mb-24 flex w-max sm:mx-auto sm:items-center lg:mx-unset lg:w-full"
             :class="{
               'flex flex-col-reverse flex-wrap justify-between gap-16 sm:flex-row lg:justify-between':

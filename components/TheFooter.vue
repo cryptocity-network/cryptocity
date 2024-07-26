@@ -14,7 +14,7 @@
       <div class="col-span-2 row-span-1 mb-48 flex w-full flex-col items-center gap-12 rounded-8 border-1 border-blue-darker/20 p-20 text-center text-blue-dark/60 xl:mb-24">
         <PaymentOptions class="h-26" />
         <p class="text-14 xl:text-16">
-          We accept these currencies at all our locations.
+          {{ footerData.acceptedCryptoText }}
         </p>
       </div>
       <!-- LINKS -->
@@ -58,7 +58,6 @@
         </div>
         <div class="flex flex-col gap-8 text-blue-dark/60 ">
           <StructuredText
-            v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
             class="footer-prose"
             :data="footerData.wpig"
           />

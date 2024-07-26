@@ -27,7 +27,7 @@
   </NuxtLinkLocale>
   <nuxt-link v-else :to="isExternal ? getLink : localePath(getLink)">
     <AppleStore v-if="appStoreLinkType === 'apple'" class="h-40 transition-transform hover:scale-105" />
-    <PlayStore v-else class="h-40 transition-transform hover:scale-105" />
+    <PlayStore v-else-if="appStoreLinkType === 'google'" class="h-40 transition-transform hover:scale-105" />
   </nuxt-link>
 </template>
 
@@ -105,6 +105,10 @@ const colorClasses = computed(() => {
   }
 })
 
+onMounted(() => {
+  setUrlLink()
+})
+
 const getLink = computed(() => {
   // File is url
   if (!props.link) {
@@ -137,10 +141,12 @@ const getLink = computed(() => {
 
 const setUrlLink = () => {
   // Check for app store links
-  if (props.url?.includes('https://apps.apple.com/')) {
+  if (props.url?.includes('https://apps.apple.com')) {
     appStoreLinkType.value = 'apple'
   } else if (props.url?.includes('https://play.google.com/store')) {
     appStoreLinkType.value = 'google'
+  } else {
+    appStoreLinkType.value = null
   }
   // Return url with check for potential relative link usage
   return props.url
