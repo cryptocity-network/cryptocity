@@ -162,7 +162,7 @@ function goToStep (step: number) {
   flex: 1;
 
   &::before {
-    @apply bg-transparent absolute top-0 left-0 w-full h-full z-10;
+    @apply bg-transparent pointer-events-none absolute top-0 left-0 w-full h-full z-10;
     content: '';
     transition: background-color 0.3s ease;
   }

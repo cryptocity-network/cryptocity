@@ -54,7 +54,7 @@
     </div>
     <div v-else>
       <div
-        id="video-container"
+        :id="'video-container-' + videoId"
         class="aspect-video rounded-6 child:size-full"
       />
     </div>
@@ -108,16 +108,15 @@ async function showYoutubeIframe () {
 
 function initYoutube () {
   // @ts-ignore
-  // eslint-disable-next-line no-new
-  new window.YT.Player('video-container', {
-    videoId,
-    width: '100%',
+  player = new YT.Player('video-container-' + videoId, {
     height: '100%',
+    width: '100%',
+    videoId,
+    playerVars: {
+      playsinline: 1
+    },
     events: {
-      // See more events https://developers.google.com/youtube/iframe_api_reference#Events
-      onReady: (evt: any) => {
-        onPlayerReady(evt)
-      }
+      onReady: onPlayerReady
     }
   })
 }
