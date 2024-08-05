@@ -13,10 +13,10 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.image"
       /> -->
-      <!-- class="!pt-0" -->
       <BlockAllCitiesCarousel
         :data="pageData.allCitiesCarousel"
         :index="1"
+        class="!pt-72"
         only-current-region
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.allCitiesCarousel"
