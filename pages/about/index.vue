@@ -7,12 +7,6 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.hero"
       />
-      <!-- <BlockFullWidthImage
-        :data="pageData.image"
-        :index="1"
-        :page-response="pageData"
-        :background-color="pageData.backgroundColors?.image"
-      /> -->
       <BlockAllCitiesCarousel
         :data="pageData.allCitiesCarousel"
         :index="1"

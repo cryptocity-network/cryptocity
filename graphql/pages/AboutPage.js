@@ -1,6 +1,5 @@
 import AllCitiesCarousel from '../blocks/AllCitiesCarousel'
 import HeroSection from '../blocks/HeroSection'
-import Image from '../blocks/Image'
 import ZigZagContent from '../blocks/ZigZagContent'
 import Headline from '../blocks/Headline'
 
@@ -15,9 +14,6 @@ export default (locale) => {
       }
       herosection {
         ${HeroSection()}
-      }
-      image {
-        ${Image()}
       }
       subHeadline {
         ${Headline()}
