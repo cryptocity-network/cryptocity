@@ -68,7 +68,7 @@ section.bg-gray {
 
 section.bg-white + section.bg-white,
 section.bg-gray + section.bg-gray {
-  @apply -mt-120 xl:-mt-120;
+  @apply -mt-[9.5rem] xl:-mt-[11.5rem];
 }
 
 section.bg-white + section:not(.bg-white),

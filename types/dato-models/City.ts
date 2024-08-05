@@ -14,5 +14,8 @@ export interface City {
     cryptoMapHeadline: Object,
     iframe: Object,
     eventsHeadline: Object,
-    eventsCarousel: Object
+    eventsCarousel: Object,
+    region: {
+        id: string
+    }
 }

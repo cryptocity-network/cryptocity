@@ -10,11 +10,11 @@
         ref="scroller"
         role="list"
         class="no-scrollbar flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-[max(16px,calc((100vw-370px)/2))] pb-40 pt-12 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-16 2xl:!px-[calc((100vw-3*370px-2*32px)/2)]"
-        :class="{'justify-center': visibleCards > response.allCities.length }"
+        :class="{'justify-center': visibleCards > filteredCities.length }"
         @scroll.passive="calculateStep"
       >
         <li
-          v-for="(city) in response.allCities"
+          v-for="(city) in filteredCities"
           :key="`card-${city.id}`"
           ref="slides"
           class="aspect-square w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
@@ -41,7 +41,7 @@
       </button>
 
       <button
-        v-if="activeIndex < response.allCities.length - visibleCards"
+        v-if="activeIndex < filteredCities.length - visibleCards"
         class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
         @click="goToNext"
       >
@@ -54,10 +54,10 @@
       </button>
     </div>
 
-    <div v-if="visibleCards <= response.allCities.length && amountOfItems > 1" class="flex flex-col">
+    <div v-if="visibleCards <= filteredCities.length && amountOfItems > 1" class="flex flex-col">
       <div class="relative mx-auto mt-48 flex">
         <button
-          v-for="(_, i) in response.allCities"
+          v-for="(_, i) in filteredCities"
           :key="i"
           class="mx-4 size-8 cursor-pointer rounded bg-blue-dark/10 transition-transform delay-75 after:min-h-[16px] after:min-w-[16px] first:ml-0 last:mr-4"
           :class="{
@@ -82,7 +82,7 @@ import type { AsyncData } from 'nuxt/app'
 import allCities from '../../graphql/AllCities'
 import type { City } from '@/types/dato-models/City'
 
-defineProps({
+const props = defineProps({
   data: {
     type: Object,
     required: true
@@ -95,6 +95,11 @@ defineProps({
     type: String,
     required: true,
     default: 'white'
+  },
+  onlyCurrentRegion: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 interface AllCitiesResponse {
@@ -103,8 +108,16 @@ interface AllCitiesResponse {
 const citiesQuery = allCities(useI18n().locale.value)
 const { data: { value: response } } = await useGraphqlQuery(citiesQuery) as AsyncData<AllCitiesResponse, RTCError>
 
+const filteredCities: ComputedRef<City[]> = computed(() => {
+  if (props.onlyCurrentRegion) {
+    return response.allCities.filter(x => x.region.id === useRuntimeConfig().public.DATO_REGION_ID)
+  } else {
+    return response.allCities
+  }
+})
+
 const amountOfItems = computed(() => {
-  return response.allCities.length + 0
+  return filteredCities.value.length + 0
 })
 
 const activeIndex = ref(0)

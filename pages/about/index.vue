@@ -7,11 +7,19 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.hero"
       />
-      <BlockFullWidthImage
+      <!-- <BlockFullWidthImage
         :data="pageData.image"
         :index="1"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.image"
+      /> -->
+      <!-- class="!pt-0" -->
+      <BlockAllCitiesCarousel
+        :data="pageData.allCitiesCarousel"
+        :index="1"
+        only-current-region
+        :page-response="pageData"
+        :background-color="pageData.backgroundColors?.allCitiesCarousel"
       />
       <BlockHeadline
         :data="pageData.subHeadline"
@@ -31,18 +39,13 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.carouselHeadline"
       />
-      <BlockAllCitiesCarousel
+
+      <BlockAllRegionsCarousel
         :data="pageData.allCitiesCarousel"
         :index="1"
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.allCitiesCarousel"
       />
-      <!-- <BlockAllRegionsCarousel
-        :data="pageData.allCitiesCarousel"
-        :index="1"
-        :page-response="pageData"
-        :background-color="pageData.backgroundColors?.allCitiesCarousel"
-      /> -->
       <BlockHeadline
         :data="pageData.contactHeadline"
         :index="8"

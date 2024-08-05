@@ -9,6 +9,7 @@ export default (locale) => {
         ${ResponsiveImage()}
       }
       region {
+        id
         url
         brandName
       }
