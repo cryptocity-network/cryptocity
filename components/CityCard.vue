@@ -2,7 +2,7 @@
   <nuxt-link
     :to="cityLink"
     :aria-label="`To ${city.name} page`"
-    class="custom-ease group relative size-full overflow-hidden rounded-8"
+    class="custom-ease group relative block size-full min-h-full overflow-hidden rounded-8"
     :class="{
       'transform-gpu transition-transform hover:-translate-y-6': city.state === 'Live',
       'pointer-events-none': city.state !== 'Live'
@@ -11,7 +11,7 @@
     <DatoImage
       :image="city.mainImage"
       :priority="true"
-      class="size-full overflow-hidden rounded-8 object-cover child:overflow-hidden child:rounded-8"
+      class="size-full object-cover"
       :class="{
         'opacity-75': city.state === 'Live',
         'opacity-50 grayscale': city.state !== 'Live'
