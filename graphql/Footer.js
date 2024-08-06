@@ -17,6 +17,14 @@ export default (locale) => {
       privacy
       imprint
     }
+    footerLogoList {
+      footerLogos {
+        url
+        id
+        brandName
+        brandIntellectualPropertySymbols
+      }
+    }
   }`
     : `query {
     footer(locale: ${locale}) {
@@ -33,6 +41,14 @@ export default (locale) => {
       dataProtection
       privacy
       imprint
+    }
+    footerLogoList {
+      footerLogos {
+        url
+        id
+        brandName
+        brandIntellectualPropertySymbols
+      }
     }
   }`
 }

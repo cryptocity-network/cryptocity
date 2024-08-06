@@ -76,14 +76,20 @@ const props = defineProps({
   trademark: {
     type: Boolean,
     default: null
+  },
+  ignoreRegion: {
+    type: Boolean,
+    default: null
   }
 })
 
 const isRegistered = computed(() => {
-  return props.registered || (store.region?.brandName === getBrandName.value && store.region?.brandIntellectualPropertySymbols === 'registered')
+  return props.registered ||
+    (props.ignoreRegion ? null : (store.region?.brandName === getBrandName.value && store.region?.brandIntellectualPropertySymbols === 'registered'))
 })
 const isTrademark = computed(() => {
-  return props.trademark || (store.region?.brandName === getBrandName.value && store.region?.brandIntellectualPropertySymbols === 'trademark')
+  return props.trademark ||
+  (props.ignoreRegion ? null : (store.region?.brandName === getBrandName.value && store.region?.brandIntellectualPropertySymbols === 'trademark'))
 })
 
 const regionText = ref()

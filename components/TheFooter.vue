@@ -47,13 +47,21 @@
       <div class="col-span-2 row-start-3 mt-72 flex flex-col gap-32 xl:col-span-1 xl:row-span-2 xl:mt-0">
         <div class="flex flex-wrap gap-24 ">
           <nuxt-link
-            v-for="region in allRegionResponse.allRegions"
-            :key="region.id"
-            :to="region.url"
-            :aria-label="region.brandName"
+            v-for="footerLogo in footerLogos"
+            :key="footerLogo.id"
+            :to="footerLogo.url"
+            :aria-label="footerLogo.brandName"
             class="opacity-50 transition-opacity hover:opacity-100 focus:opacity-100"
           >
-            <DynamicLogo text-color="#1F2348" logo-color="#1F2348" class="h-32" :brand-name="region.brandName" :registered="region.brandIntellectualPropertySymbols === 'registered'" />
+            <DynamicLogo
+              text-color="#1F2348"
+              logo-color="#1F2348"
+              class="h-32"
+              ignore-region
+              :brand-name="footerLogo.brandName"
+              :registered="footerLogo.brandIntellectualPropertySymbols === 'registered'"
+              :trademark="footerLogo.brandIntellectualPropertySymbols === 'trademark'"
+            />
           </nuxt-link>
         </div>
         <div class="flex flex-col gap-8 text-blue-dark/60 ">
@@ -128,7 +136,7 @@ import FooterQuery from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
 import PaymentOptions from '@/static/icons/payment-options.svg'
 import type { DynamicLogo } from '#build/components'
-import type { Region } from '@/types/dato-models/Region'
+// import type { Region } from '@/types/dato-models/Region'
 import type { Footer } from '@/types/dato-models/Footer'
 defineProps({
   backgroundColor: {
@@ -183,15 +191,25 @@ const getRouteName = (name: string) => {
 
 interface FooterResponse {
   footer: Footer,
-  deFooter: Footer
-}
-
-interface AllRegionsResponse {
-  allRegions: Region[]
+  deFooter: Footer,
+  footerLogoList: {
+    footerLogos: [
+    {
+      id: string,
+      brandName: string,
+      url: string,
+      brandIntellectualPropertySymbols: string
+    }
+  ]}
 }
 
 const footerQuery = FooterQuery(locale.value)
 const { data: { value: response } } = await useGraphqlQuery(footerQuery) as AsyncData<FooterResponse, RTCError>
+
+const footerLogos = computed(() => {
+  console.log(response.footerLogoList.footerLogos)
+  return response.footerLogoList.footerLogos
+})
 
 const footerData = computed(() => {
   if (response) {
@@ -200,13 +218,6 @@ const footerData = computed(() => {
     return null
   }
 })
-const { data: { value: allRegionResponse } } = await useGraphqlQuery(`query {
-  allRegions (filter: {state: {eq: "live"}}) {
-    id
-    brandName
-    url
-  }
-}`) as AsyncData<AllRegionsResponse, RTCError>
 </script>
 
 <style>
