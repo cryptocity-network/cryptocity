@@ -165,7 +165,11 @@ const lang = computed(() => {
 })
 // Fetch when component mounts:
 onMounted(() => {
-  store.loadLocationsByCity(cityName.value)
+  const removeHyphen = cityName.value.replace(/-/g, ' ')
+  const capitaliseText = removeHyphen.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
+  const formattedForSupabase = capitaliseText.replace(/ /g, '_')
+  // Request city locations
+  store.loadLocationsByCity(formattedForSupabase)
 })
 
 const locations = computed(() => {
