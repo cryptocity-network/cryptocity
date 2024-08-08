@@ -119,9 +119,64 @@
           {{ item.fees }}
         </td>
       </tr>
-      <tr>
-        <td>{{ axisData.nimiqPay }}</td>
-        <td v-for="item in tableData" :key="item.id">
+      <tr class="">
+        <td class="relative !z-20 flex items-center gap-x-8">
+          {{ axisData.nimiqPay }}
+          <div class="group relative z-20">
+            <svg
+              class="cursor-pointer"
+              width="14"
+              height="15"
+              viewBox="0 0 14 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g opacity="0.4">
+                <rect
+                  x="8"
+                  y="10.4995"
+                  width="1.5"
+                  height="3.375"
+                  rx="0.75"
+                  transform="rotate(-180 8 10.4995)"
+                  fill="#1F2348"
+                />
+                <rect
+                  x="8"
+                  y="5.99951"
+                  width="1.5"
+                  height="1.5"
+                  rx="0.75"
+                  transform="rotate(-180 8 5.99951)"
+                  fill="#1F2348"
+                />
+                <path d="M7 1.49951C7.78793 1.49951 8.56815 1.65471 9.2961 1.95623C10.0241 2.25776 10.6855 2.69972 11.2426 3.25687C11.7998 3.81402 12.2417 4.47546 12.5433 5.20341C12.8448 5.93137 13 6.71158 13 7.49951C13 8.28744 12.8448 9.06766 12.5433 9.79561C12.2417 10.5236 11.7998 11.185 11.2426 11.7422C10.6855 12.2993 10.0241 12.7413 9.2961 13.0428C8.56815 13.3443 7.78793 13.4995 7 13.4995C6.21207 13.4995 5.43185 13.3443 4.7039 13.0428C3.97594 12.7413 3.31451 12.2993 2.75736 11.7422C2.20021 11.185 1.75825 10.5236 1.45672 9.79561C1.15519 9.06766 1 8.28744 1 7.49951C1 6.71158 1.1552 5.93136 1.45672 5.20341C1.75825 4.47545 2.20021 3.81402 2.75736 3.25687C3.31451 2.69972 3.97595 2.25776 4.7039 1.95623C5.43186 1.65471 6.21207 1.49951 7 1.49951L7 1.49951Z" stroke="#1F2348" stroke-width="1.5" stroke-linecap="round" />
+              </g>
+            </svg>
+            <div
+              class="absolute left-1/2 top-1/2 size-32 -translate-x-1/2 -translate-y-1/2"
+            />
+            <div class="pointer-events-none absolute left-32 top-1/2 z-20 -translate-y-1/2 rounded-4 bg-blue-dark p-16 text-white opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100 ">
+              <div
+                class="absolute left-0 top-1/2 size-0 -translate-x-[99%] -translate-y-1/2  border-y-[10px] border-r-[10px]
+                  border-y-transparent border-r-blue-dark
+                  "
+              />
+              <p class="mb-12 text-16 font-semibold">
+                Download the Nimiq pay app
+              </p>
+              <div class="flex justify-between gap-x-12">
+                <nuxt-link to="https://apps.apple.com/us/app/nimiq-pay/id6471844738">
+                  <AppleStore class="h-32 transition-transform hover:scale-105" />
+                </nuxt-link>
+                <nuxt-link to="https://play.google.com/store/apps/details?id=com.nimiq.pay">
+                  <PlayStore class="h-32 transition-transform hover:scale-105" />
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td v-for="item in tableData" :key="item.id" class="z-1">
           <svg
             v-if="item.nimiqPay"
             width="21"
@@ -168,6 +223,9 @@
 </template>
 
 <script lang="ts" setup>
+
+import AppleStore from '@/assets/Apple-store-square.svg'
+import PlayStore from '@/assets/Play-store-square.svg'
 const props = defineProps({
   data: {
     type: Object,
