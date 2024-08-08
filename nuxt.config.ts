@@ -46,6 +46,14 @@ export default defineNuxtConfig({
       {
         code: 'es',
         file: 'es.js'
+      },
+      {
+        code: 'fr',
+        file: 'fr.js'
+      },
+      {
+        code: 'et',
+        file: 'et.js'
       }
     ],
     detectBrowserLanguage: {

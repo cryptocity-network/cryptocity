@@ -36,6 +36,8 @@
                 <img class="h-full object-fill" src="/static/map-business-background.png" alt="">
                 <PaymentStickerDe v-if="lang === 'de'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
                 <PaymentStickerEs v-else-if="lang === 'es'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
+                <PaymentStickerFr v-else-if="lang === 'fr'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
+                <PaymentStickerEt v-else-if="lang === 'et'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
                 <PaymentStickerEn v-else class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
               </div>
               <div class="flex flex-col items-center  justify-center gap-16 p-24 py-32">
@@ -132,6 +134,8 @@ import { useWebsiteStore } from '~/store/store'
 import PaymentStickerEn from '@/static/icons/payment-sticker-en.svg'
 import PaymentStickerDe from '@/static/icons/payment-sticker-de.svg'
 import PaymentStickerEs from '@/static/icons/payment-sticker-es.svg'
+import PaymentStickerEt from '@/static/icons/payment-sticker-et.svg'
+import PaymentStickerFr from '@/static/icons/payment-sticker-Fr.svg'
 defineProps({
   data: {
     type: Object,
