@@ -34,7 +34,9 @@
               <!-- <Location class="h-104" /> -->
               <div class="relative h-auto grow overflow-hidden rounded-4">
                 <img class="h-full object-fill" src="/static/map-business-background.png" alt="">
-                <PaymentSticker class="absolute left-1/2 top-1/2 h-144 -translate-x-1/2 -translate-y-1/2" />
+                <PaymentStickerDe v-if="lang === 'de'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
+                <PaymentStickerEs v-else-if="lang === 'es'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
+                <PaymentStickerEn v-else class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
               </div>
               <div class="flex flex-col items-center  justify-center gap-16 p-24 py-32">
                 <div
@@ -127,7 +129,9 @@
 
 <script lang="ts" setup>
 import { useWebsiteStore } from '~/store/store'
-import PaymentSticker from '@/static/icons/payment-stickers.svg'
+import PaymentStickerEn from '@/static/icons/payment-sticker-en.svg'
+import PaymentStickerDe from '@/static/icons/payment-sticker-de.svg'
+import PaymentStickerEs from '@/static/icons/payment-sticker-es.svg'
 defineProps({
   data: {
     type: Object,
@@ -146,6 +150,8 @@ defineProps({
 const mapsApiKey = useRuntimeConfig().public.GOOGLE_MAPS_API
 const store = useWebsiteStore()
 
+const { locale } = useI18n()
+
 const cityName = computed(() => {
   const name = useRoute().params.city as string
   return name.charAt(0).toUpperCase() + name.slice(1)
@@ -154,7 +160,9 @@ const cityName = computed(() => {
 // await useAsyncData('loadLocationsByCity', () => store.loadLocationsByCity(cityName.value).then(() => true), {
 //   lazy: true
 // })
-
+const lang = computed(() => {
+  return locale.value
+})
 // Fetch when component mounts:
 onMounted(() => {
   store.loadLocationsByCity(cityName.value)
