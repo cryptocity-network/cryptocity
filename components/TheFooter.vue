@@ -207,7 +207,6 @@ const footerQuery = FooterQuery(locale.value)
 const { data: { value: response } } = await useGraphqlQuery(footerQuery) as AsyncData<FooterResponse, RTCError>
 
 const footerLogos = computed(() => {
-  console.log(response.footerLogoList.footerLogos)
   return response.footerLogoList.footerLogos
 })
 
