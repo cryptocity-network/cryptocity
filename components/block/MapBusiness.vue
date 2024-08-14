@@ -135,7 +135,7 @@ import PaymentStickerEn from '@/static/icons/payment-sticker-en.svg'
 import PaymentStickerDe from '@/static/icons/payment-sticker-de.svg'
 import PaymentStickerEs from '@/static/icons/payment-sticker-es.svg'
 import PaymentStickerEt from '@/static/icons/payment-sticker-et.svg'
-import PaymentStickerFr from '@/static/icons/payment-sticker-Fr.svg'
+import PaymentStickerFr from '@/static/icons/payment-sticker-fr.svg'
 defineProps({
   data: {
     type: Object,
