@@ -6,7 +6,7 @@ export default (locale) => {
     deImpressum(locale: ${locale}) {
       title
       content {
-        ${StructuredContentWithLinks()}
+        ${DeStructuredContentWithLinks()}
       }
       assets {
         ${ResponsiveImage()}

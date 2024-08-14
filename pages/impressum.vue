@@ -2,7 +2,7 @@ pages/cookies.vue<template>
   <section v-if="data" class="bg-white py-80">
     <div class="prose">
       <h3>{{ data.title }}</h3>
-      <div class="grid grid-flow-row grid-cols-1 gap-24 pb-32 pt-56 sm:grid-cols-2">
+      <div v-if="data.assets.length > 0" class="grid grid-flow-row grid-cols-1 gap-24 pb-32 pt-56 sm:grid-cols-2">
         <div v-for="asset in data.assets" :key="asset.id" class="size-full">
           <DatoImage class=" size-full h-[70px] object-contain object-left" :image="asset" />
         </div>
@@ -54,7 +54,7 @@ const data = computed(() => {
   if (checkGermanyOrRestOfWorld()) {
     return response.deImpressum
   } else {
-    return response.impressum
+    return response?.impressum
   }
 })
 </script>

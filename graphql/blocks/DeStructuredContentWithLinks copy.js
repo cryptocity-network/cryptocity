@@ -5,15 +5,19 @@ export default () => {
   value
   blocks
   links {
-    ... on CookieRecord {
+    ... on DeCookieRecord {
       ${baseBlockValues()}
       title
     }
-    ... on ImpressumRecord {
+    ... on DeImpressumRecord {
       ${baseBlockValues()}
       title
     }
-    ... on DataProtectionRecord {
+    ... on DeDataProtectionRecord {
+      ${baseBlockValues()}
+      title
+    }
+    ... on DeHaftungsausschlussRecord {
       ${baseBlockValues()}
       title
     }
