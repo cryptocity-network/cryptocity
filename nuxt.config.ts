@@ -70,6 +70,7 @@ export default defineNuxtConfig({
     defaultImport: 'component'
   },
   runtimeConfig: {
+    REDIRECT_RULES: process.env.REDIRECT_RULES,
     public: {
       GOOGLE_MAPS_API: process.env.GOOGLE_MAPS_API,
       SUPA_KEY: process.env.SUPA_KEY,
