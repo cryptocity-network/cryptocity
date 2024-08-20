@@ -36,7 +36,7 @@
       />
     </BlockWrapper>
   </main>
-  <ErrorMessage v-else-if="newsData === null" />
+  <ErrorMessage v-else-if="!newsData" />
 </template>
 
 <script lang="ts" setup>
@@ -51,11 +51,10 @@ import { useWebsiteStore } from '~/store/store'
 
 const route = useRoute()
 const slug = route.params.news as string
-const store = useWebsiteStore()
+const { newsLang } = storeToRefs(useWebsiteStore())
 const { locale } = useI18n()
 
 // News data
-let newsLocale = store.newsLang
 const newsData: any = ref(null)
 const newsError: any = null
 
@@ -79,14 +78,10 @@ const { data } = await useFetch('https://graphql.datocms.com', {
 watch(data, (localeData) => {
   // 2. Check if locales includes current route language, otherwise use default
   const newsArticleLocalesList = localeData.news._locales
-  if (newsArticleLocalesList.includes(locale.value)) {
-    newsLocale = locale.value
-  } else {
-    newsLocale = newsArticleLocalesList[0]
-    store.newsLang = newsLocale
-  }
+  newsLang.value = newsArticleLocalesList.includes(locale.value) ? locale.value : newsArticleLocalesList[0]
+
   // 3. Get news article with the above locale
-  const newsQuery = news(slug, newsLocale)
+  const newsQuery = news(slug, newsLang.value)
   useFetch('https://graphql.datocms.com', {
     method: 'POST',
     headers: {

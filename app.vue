@@ -5,8 +5,8 @@
     <TheNavigation
       :key="keyTrigger"
       :on-global-page="convertToBoolean(useRuntimeConfig().public.IS_GLOBAL_SITE)"
-      :tag-line="globalData?.tagLine"
-      :contact-button-label="globalData?.contactButtonLabel"
+      :tag-line="global?.tagLine"
+      :contact-button-label="global?.contactButtonLabel"
     />
     <main class="">
       <NuxtPage />
@@ -28,12 +28,14 @@ import { computed } from 'vue'
 import { useWebsiteStore } from './store/store'
 import type { Page } from './types/dato-models/Page'
 import type { DatoRegionResponse } from './types/dato-api-responses/Region'
-const store = useWebsiteStore()
+
+const { setNavigation } = useWebsiteStore()
+const { global, pages, regionBrandName, regionIsRegistered, regionIsTrademark } = storeToRefs(useWebsiteStore())
 const onGlobalPage = useRuntimeConfig().public.IS_GLOBAL_SITE
 const route = useRoute()
 
 const { locale } = useI18n()
-await useAsyncData('setNavigation', () => store.setNavigation(convertToBoolean(onGlobalPage)).then(() => true))
+await useAsyncData('setNavigation', () => setNavigation(convertToBoolean(onGlobalPage)).then(() => true))
 const keyTrigger = ref(0)
 watch(locale, () => {
   updateNavigation()
@@ -85,12 +87,12 @@ async function updateNavigation () {
     }
   }) as RegionResponse
 
-  store.pages = []
+  pages.value = []
   for (const property in body.data.region) {
     if (property.includes('Pages')) {
       const value = body.data.region[property as keyof typeof body.data.region] as Page[]
       if (typeof value === 'object' && value[0]) {
-        store.pages?.push((value as Page[])[0])
+        pages.value?.push((value as Page[])[0])
       }
     }
   }
@@ -104,12 +106,6 @@ function convertToBoolean (input: string | boolean): boolean | undefined {
   return input === 'true'
 }
 
-const globalData = computed(() => {
-  if (onGlobalPage) {
-    return store.getGlobalData
-  }
-  return null
-})
 const pageTitle = computed(() => {
   const pageTitle = route.path.split('/').pop()?.replace(/%20/g, ' ').replace(/-/g, ' ')
   if (pageTitle && pageTitle.length > 2) {
@@ -123,14 +119,10 @@ const pageTitle = computed(() => {
   }
 })
 const regionName = computed(() => {
-  if (onGlobalPage) { return globalData.value?.seoTitle }
-  if (store.region) {
-    return store.region?.brandName +
-      (store.region.brandIntellectualPropertySymbols === 'registered' ? '\u00AE' : '') +
-      (store.region.brandIntellectualPropertySymbols === 'trademark' ? '\u2122' : '')
-  } else {
-    return ''
-  }
+  if (onGlobalPage) { return global.value }
+  if (!regionBrandName.value) { return '' }
+  const symbol = regionIsRegistered.value ? '\u00AE' : regionIsTrademark.value ? '\u2122' : ''
+  return `${regionBrandName.value}${symbol}`
 })
 const makeName = computed(() => {
   // registered trademark code \u00AE

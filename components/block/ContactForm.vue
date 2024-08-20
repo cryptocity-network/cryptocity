@@ -34,7 +34,7 @@ import ContactQuery from '../../graphql/pages/ContactPage'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import { useWebsiteStore } from '~/store/store'
 import type { ContactPage } from '@/types/dato-api-responses/ContactPage'
-const store = useWebsiteStore()
+
 defineProps({
   showHeader: {
     type: Boolean,
@@ -42,6 +42,8 @@ defineProps({
     required: false
   }
 })
+
+const { region }= storeToRefs(useWebsiteStore())
 
 const { locale } = useI18n()
 const query = ContactQuery(useRuntimeConfig().public.DATO_REGION_ID, locale.value)
@@ -53,6 +55,6 @@ const data = computed(() => {
   return null
 })
 
-const socialLinks = store.region?.socialLinks
+const socialLinks = region.value?.socialLinks
 
 </script>

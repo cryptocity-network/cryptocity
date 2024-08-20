@@ -13,10 +13,6 @@
 
 <script lang="ts" setup>
 import type { NewsArticle } from '~/types/dato-models/NewsArticle'
-import { useWebsiteStore } from '~/store/store'
-
-const store = useWebsiteStore()
-const { locale } = useI18n()
 
 const props = defineProps({
   article: {

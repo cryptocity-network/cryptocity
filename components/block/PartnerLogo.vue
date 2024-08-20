@@ -46,8 +46,8 @@ defineProps({
     default: 'white'
   }
 })
-const store = useWebsiteStore()
+const { region } = storeToRefs(useWebsiteStore())
 const partners = computed(() => {
-  return store.region ? store.region.partners : null
+  return region.value?.partners || undefined
 })
 </script>

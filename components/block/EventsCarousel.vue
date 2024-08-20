@@ -127,12 +127,12 @@ interface Event {
 interface EventsResponse {
   allEvents: Event[]
 }
-const store = useWebsiteStore()
+const { region } = storeToRefs(useWebsiteStore())
 let populatedEventsQuery
 if (useRoute().path.includes('cities')) {
   populatedEventsQuery = eventsByCityQuery(props.cityId)
 } else {
-  populatedEventsQuery = eventsByRegionQuery(store.region!.id)
+  populatedEventsQuery = eventsByRegionQuery(region.value!.id)
 }
 // let response: Array<AllEvents> | null= null
 const { data: { value: response } } = await useGraphqlQuery(populatedEventsQuery) as AsyncData<EventsResponse, RTCError>

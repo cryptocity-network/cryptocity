@@ -62,8 +62,8 @@ defineProps({
   }
 })
 const localePath = useLocalePath()
-const store = useWebsiteStore()
-const pages = store.getPages
+const { pages } = storeToRefs(useWebsiteStore())
+
 const links = computed(() => {
   if (pages) {
     return [

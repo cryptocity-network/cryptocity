@@ -31,7 +31,8 @@ export default defineNuxtConfig({
     'nuxt-svgo',
     '@nuxtjs/robots',
     '@nuxtjs/i18n',
-    'nuxt-gtag'
+    'nuxt-gtag',
+    '@vueuse/nuxt'
   ],
   i18n: {
     locales: [
