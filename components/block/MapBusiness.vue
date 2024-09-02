@@ -13,15 +13,15 @@
       />
     </div>
     <div class="relative !mx-0 !max-w-unset !px-0">
-      <div class="relative w-full">
+      <div class="no-scrollbar relative w-full" v-bind="containerProps" @scroll.passive="calculateStep">
         <ul
+          v-bind="locationsToShow.length > 0 ? wrapperProps : {}"
           ref="scroller"
           role="list"
           class="no-scrollbar relative mt-72 flex w-full snap-x snap-mandatory gap-16 overflow-x-auto scroll-smooth !px-32 pb-40 pt-6 md:!px-[calc((100vw-2*370px-16px)/2)] xl:gap-32 xl:!px-[calc((100vw-3*370px-2*32px)/2)] xl:pt-6 "
           :class="{
             'justify-center': visibleCards > (locations?.length || 0)
           }"
-          @scroll.passive="calculateStep"
         >
           <li
             ref="slides"
@@ -32,96 +32,101 @@
               class="relative flex h-full w-[clamp(320px,370px,80vw)] flex-col items-start justify-start rounded-6 border-1 border-gray bg-white p-6 text-center shadow hover:bg-white"
             >
               <!-- <Location class="h-104" /> -->
-              <div class="relative h-auto grow overflow-hidden rounded-4">
-                <img class="h-full object-fill" src="/static/map-business-background.png" alt="">
-                <PaymentStickerDe v-if="lang === 'de'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
-                <PaymentStickerEs v-else-if="lang === 'es'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
-                <PaymentStickerFr v-else-if="lang === 'fr'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
-                <PaymentStickerEt v-else-if="lang === 'et'" class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
-                <PaymentStickerEn v-else class="absolute left-1/2 top-1/2 h-[10.5rem] -translate-x-1/2 -translate-y-1/2" />
+              <div
+                class="grid grow place-content-center rounded-4 [&>*]:self-center [&>*]:justify-self-center [&>*]:[grid-area:1/-1]"
+              >
+                <img
+                  class="h-full rounded-4 object-cover"
+                  width="356"
+                  height="305"
+                  src="/static/map-business-background.png"
+                  alt=""
+                >
+                <img width="259" height="180" :src="stickerUrl" alt="">
               </div>
               <div class="flex flex-col items-center  justify-center gap-16 p-24 py-32">
-                <div
-                  class="text-blue/60"
-                >
+                <div class="text-blue/60">
                   {{ data.joinCardDescription }}
                 </div>
                 <TheLink
                   :text="data.joinLinkLabel"
-                  url="https://map.nimiq.com/location/add"
+                  url="https://map.nimiq.com/?modal=crypto-map&nested=candidate"
                   variant="info"
-                  :is-external="true"
+                  is-external
                 />
               </div>
             </div>
           </li>
-          <transition-group name="fade" mode="out-in">
-            <li
-              v-for="location in locations"
-              v-show="locations && locations.length > 0"
-              :key="`card-${location.name}`"
-              ref="slides"
-              class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
-              data-location
-            >
-              <TheCard
-                :title="location.name"
-                :description="location.address"
-                :event-type="location.category.replace(/_/g, ' & ')"
-                :stars="location.rating"
-                :footer="cityName"
-                :link-label="cityName"
-                :link="location.gmaps"
-                :image-url="location.name.includes('ROSSMANN') ? '/rossman.png' : `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
-              />
-            </li>
-            <div v-show="!locations || locations.length === 0" class="relative flex w-320 flex-col justify-center">
-              <LoadingState class="!h-fit !w-144" />
-            </div>
-          </transition-group>
+          <li
+            v-for="{ data: location, index: i } in locationsToShow"
+            :key="`${location.name}-${i}`"
+            ref="slides"
+            class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
+            data-location
+          >
+            <TheCard
+              :title="location.name"
+              :description="location.address"
+              :event-type="location.category.replace(/_/g, ' & ')"
+              :stars="location.rating"
+              :footer="cityName"
+              :link-label="cityName"
+              :link="location.gmaps"
+              :image-url="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
+            />
+          </li>
+          <div
+            v-show="(!locations || locations.length === 0 || loadingLocations || true) && !hasCityFetchedAllLocations[cityName]"
+            class="relative flex w-320 flex-col justify-center"
+          >
+            <LoadingState class="!h-fit !w-144" />
+          </div>
         </ul>
-        <button
-          v-if="activeIndex > 0"
-          class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 -mt-32 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
-          @click="goToPrevious"
-        >
-          <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
-              fill="currentColor"
-            />
-          </svg>
-        </button>
-        <button
-          v-if="activeIndex < (locations?.length || 0) - visibleCards"
-          class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
-          @click="goToNext"
-        >
-          <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-mr-4 rotate-180">
-            <path
-              d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
-              fill="currentColor"
-            />
-          </svg>
-        </button>
       </div>
+      <button
+        v-if="activeIndex > 0"
+        class="hocus:bg-blue-dark/30 absolute left-32 top-1/2 z-10 -mt-32 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
+        @click="goToPrevious"
+      >
+        <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button
+        v-if="activeIndex < (locations?.length || 0) - visibleCards"
+        class="hocus:bg-blue-dark/30 absolute right-32 top-1/2 z-10 -mt-24 hidden size-48 cursor-pointer items-center justify-center rounded bg-blue-dark/20 text-white transition-[background-color] active:bg-blue-dark/40 sm:flex"
+        @click="goToNext"
+      >
+        <svg width="16" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-mr-4 rotate-180">
+          <path
+            d="M1 12c0-.66.27-1.3.77-1.73L12.97.43a1.85 1.85 0 0 1 2.6.23c.63.77.56 1.89-.16 2.56l-9.78 8.6a.25.25 0 0 0-.02.35l.02.02 9.77 8.6a1.85 1.85 0 0 1-2.45 2.77L1.77 13.73A2.3 2.3 0 0 1 1 12Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
     </div>
-    <div v-if="visibleCards < (locations?.length || 0)" class="flex flex-col">
-      <div class="relative mx-auto mt-8 flex">
+    <div
+      v-if="locations?.length > 0"
+      class="mx-auto flex flex-col justify-center overflow-hidden !p-0"
+      :style="`max-width: ${(indicatorsOnSide * 2 * 16) + ((visibleCards * 16) + 8)}px;`"
+    >
+      <div
+        class="relative mt-8 flex gap-8 transition-[left] duration-300"
+        :style="`left: -${cardsHiddenOnLeft * 16}px;`"
+      >
         <button
-          v-for="(_, i) in locations"
+          v-for="(_location, i) in locations"
           :key="i"
-          class="mx-4 size-8 cursor-pointer rounded bg-blue-dark/10 transition-transform delay-75 after:min-h-[16px] after:min-w-[16px] first:ml-0 last:mr-4"
-          :class="{
-            'scale-0': i >= activeIndex && i < activeIndex + visibleCards,
-            'scale-100': i < activeIndex || i >= activeIndex + visibleCards,
-          }"
-          @click="() => slideTo(i)"
+          class="size-8 shrink-0 cursor-pointer rounded bg-blue-dark/10"
+          @click="() => slideTo(i - Math.max(0, indicatorsOnSide))"
         />
         <div class="pointer-events-none absolute h-8 w-full rounded">
           <div
             class="h-full rounded bg-radial-blue-light transition-all duration-300"
-            :style="`margin-left: ${16 * activeIndex - 1}px; width: ${visibleCards - 0.25}rem;`"
+            :style="`--w: ${(visibleCards * 16) + 8}px; margin-left: min(${16 * (cardsHiddenOnLeft + Math.min(indicatorsOnSide, activeIndex))}px, calc(${locations.length * 16}px - var(--w))); width: var(--w);`"
           />
         </div>
       </div>
@@ -131,11 +136,7 @@
 
 <script lang="ts" setup>
 import { useWebsiteStore } from '~/store/store'
-import PaymentStickerEn from '@/static/icons/payment-sticker-en.svg'
-import PaymentStickerDe from '@/static/icons/payment-sticker-de.svg'
-import PaymentStickerEs from '@/static/icons/payment-sticker-es.svg'
-import PaymentStickerEt from '@/static/icons/payment-sticker-et.svg'
-import PaymentStickerFr from '@/static/icons/payment-sticker-fr.svg'
+
 defineProps({
   data: {
     type: Object,
@@ -151,90 +152,66 @@ defineProps({
     default: 'white'
   }
 })
-const mapsApiKey = useRuntimeConfig().public.GOOGLE_MAPS_API
-const store = useWebsiteStore()
 
-const { locale } = useI18n()
+const { locale: lang } = useI18n()
+const stickerUrl = computed(() => {
+  const { buildAssetsDir } = useRuntimeConfig().app
+  const stickers = ['de', 'es', 'fr', 'et']
+  return `${buildAssetsDir}icons/payment-sticker-${stickers.includes(lang.value) ? lang.value : 'en'}.svg`
+})
+
+const mapsApiKey = useRuntimeConfig().public.GOOGLE_MAPS_API
 
 const cityName = computed(() => {
   const name = useRoute().params.city as string
   return name.charAt(0).toUpperCase() + name.slice(1)
 })
 
-// await useAsyncData('loadLocationsByCity', () => store.loadLocationsByCity(cityName.value).then(() => true), {
-//   lazy: true
-// })
-const lang = computed(() => {
-  return locale.value
-})
-// Fetch when component mounts:
-onMounted(() => {
-  const removeHyphen = cityName.value.replace(/-/g, ' ')
-  const capitaliseText = removeHyphen.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
-  const formattedForSupabase = capitaliseText.replace(/ /g, '_')
-  // Request city locations
-  store.loadLocationsByCity(formattedForSupabase)
-})
-
-const locations = computed(() => {
-  return store.getLocations(cityName.value)
-})
-// BELOW IS OLD
-const amountOfItems = computed(() => {
-  if (locations.value) {
-    return locations.value?.length + 1
-  }
-  return 1
-})
+const page = ref(1)
+const { loadLocationsByCity, loadingLocations, hasCityFetchedAllLocations } = useWebsiteStore()
+const { locations: allLocations } = storeToRefs(useWebsiteStore())
+const locations = computed(() => allLocations.value?.[cityName.value] || [])
+watch(page, () => loadLocationsByCity({ cityName: cityName.value, page: page.value }), { immediate: true })
 
 const activeIndex = ref(0)
-const scroller = ref<HTMLUListElement | null>(null)
+const scroller = ref<HTMLUListElement>()
+const scrollerParent = computed(() => scroller.value?.parentElement)
 
-const scrollerStyles = ref<CSSStyleDeclaration | null>(null)
-const scrollerPaddingLeft = computed(() => parseFloat(scrollerStyles.value?.paddingLeft || '0'))
-const scrollerPaddingRight = computed(() => parseFloat(scrollerStyles.value?.paddingRight || '0'))
-const scrollerGap = computed(() => parseFloat(scrollerStyles.value?.gap || '0'))
-const visibleCards = ref(1)
+const { width: windowWidth } = useWindowSize()
+const cardWidth = computed(() => 370 + (windowWidth.value < 1152 ? 16 : 32))
+const { arrivedState, x: scrolledDistance } = useScroll(scrollerParent, { offset: { right: 3 * cardWidth.value } })
+const cardsHiddenOnLeft = computed(() => Math.floor(scrolledDistance.value / cardWidth.value))
 
-function onWindowResize () {
-  visibleCards.value = window.innerWidth < 640 ? 1 : window.innerWidth < 1152 ? 2 : 3
-
-  if (scroller.value) {
-    scrollerStyles.value = window.getComputedStyle(scroller.value)
+const indicatorsOnSide = 4
+const firstRequest = Date.now()
+watch(arrivedState, (arrived) => {
+  if (arrived.right && Date.now() - firstRequest > 4_000) {
+    page.value++
   }
-}
-
-onMounted(() => {
-  onWindowResize()
-  window.addEventListener('resize', onWindowResize)
 })
 
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', onWindowResize)
-})
+const scrollerStyles = ref<CSSStyleDeclaration>()
+const scrollerPaddingLeft = computed(() => parseFloat(scrollerStyles.value?.paddingLeft || '0'))
+const visibleCards = computed(() => Math.ceil((windowWidth.value - scrollerPaddingLeft.value) / cardWidth.value))
+
+const { list: locationsToShow, containerProps, wrapperProps } = useVirtualList(
+  locations,
+  { itemWidth: () => cardWidth.value }
+)
 
 function calculateStep (event: UIEvent) {
   const target = event.currentTarget as HTMLDivElement
-
-  const padding = scrollerPaddingLeft.value + scrollerPaddingRight.value
-  const gap = scrollerGap.value
-  const cards = visibleCards.value
-  const cardWidth = (target.offsetWidth - padding) / cards + (gap * 1) / cards
-
-  activeIndex.value = Math.round(target.scrollLeft / cardWidth)
+  activeIndex.value = Math.round(target.scrollLeft / cardWidth.value)
 }
 
 function slideTo (index: number) {
   // Clamp new index
-  index = Math.min(Math.max(0, index), amountOfItems.value - visibleCards.value)
-
-  const card = scroller.value?.querySelectorAll('[data-location]')[index] as HTMLElement
-
-      scroller.value!.scrollTo({
-        top: 0,
-        left: card.offsetLeft - scrollerPaddingLeft.value,
-        behavior: 'smooth'
-      })
+  index = Math.min(Math.max(0, index), (locations.value?.length || 0) - visibleCards.value)
+  scrollerParent.value!.scrollTo({
+    top: 0,
+    left: scrollerPaddingLeft.value + (cardWidth.value * index),
+    behavior: 'smooth'
+  })
 }
 
 function goToPrevious () {

@@ -64,8 +64,7 @@ defineProps({
   }
 })
 
-const store = useWebsiteStore()
-const pages = computed(() => store.pages)
+const { pages } = storeToRefs(useWebsiteStore())
 
 const menuVisible = ref(false)
 const root$ = ref<HTMLDivElement | null>(null)

@@ -142,8 +142,7 @@ const getRouteName = (name: string) => {
   }
 }
 
-const store = useWebsiteStore()
-const pages = computed(() => store.pages)
+const { pages } = storeToRefs(useWebsiteStore())
 
 // Code for hide/show navbar
 const localState = reactive({

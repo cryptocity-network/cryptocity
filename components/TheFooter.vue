@@ -72,14 +72,14 @@
           <div v-html="marked.parse(footerData.legal)" />
           <div class="mt-12 flex flex-col gap-12 font-bold sm:flex-row">
             <TheLink
-              v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
+              v-if="region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'"
               :text="footerData.haftungsausschluss"
               url="/haftungsausschluss"
               hide-arrow
               secondary
               compact
             />
-            <span v-if="store.region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'" class="hidden text-blue-dark/30 sm:block">|</span>
+            <span v-if="region?.id === 'fTo46Ty8To6ukIQsBTRhPQ'" class="hidden text-blue-dark/30 sm:block">|</span>
             <TheLink
               :text="footerData.dataProtection"
               url="/data-protection"
@@ -163,8 +163,8 @@ onMounted(() => {
   document.body.appendChild(s)
 })
 
-const store = useWebsiteStore()
-const pages = computed(() => store.pages?.filter((item) => {
+const { pages: _pages, region } = storeToRefs(useWebsiteStore())
+const pages = computed(() => _pages.value?.filter((item) => {
   return item._modelApiKey !== 'home_page'
 }))
 

@@ -75,7 +75,8 @@
 <script lang="ts" setup>
 import { useWebsiteStore } from '~/store/store'
 import Location from '@/static/icons/location.svg'
-const store = useWebsiteStore()
+
+const { getLocations, loadLocationsByCity } = useWebsiteStore()
 const props = defineProps({
   city: {
     type: Object,
@@ -96,11 +97,11 @@ const cityLink = computed(() => {
 
 // Fetch when component mounts:
 onMounted(() => {
-  store.loadLocationsByCity(props.city.name)
+  loadLocationsByCity({ cityName: props.city.name })
 })
 
 const locations = computed(() => {
-  const locations = store.getLocations(props.city.name)
+  const locations = getLocations(props.city.name)
   if (!locations) { return null }
   const numOfLocations = locations.length
   if (numOfLocations < 1000) {

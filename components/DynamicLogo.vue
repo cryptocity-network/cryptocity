@@ -83,29 +83,30 @@ const props = defineProps({
   }
 })
 
+const { region, regionIsRegistered, regionIsTrademark, regionBrandName } = storeToRefs(useWebsiteStore())
+
 const isRegistered = computed(() => {
   return props.registered ||
-    (props.ignoreRegion ? null : (store.region?.brandName === getBrandName.value && store.region?.brandIntellectualPropertySymbols === 'registered'))
+    (props.ignoreRegion ? null : (regionBrandName.value === getBrandName.value && regionIsRegistered.value))
 })
 const isTrademark = computed(() => {
   return props.trademark ||
-  (props.ignoreRegion ? null : (store.region?.brandName === getBrandName.value && store.region?.brandIntellectualPropertySymbols === 'trademark'))
+  (props.ignoreRegion ? null : (regionBrandName.value === getBrandName.value && regionIsTrademark.value))
 })
 
 const regionText = ref()
-const store = useWebsiteStore()
 const regionTextWidth = computed(() => {
   return regionText.value?.getBBox().width || 400
 })
 
 const getBrandName = computed(() => {
-  return props.brandName || store.region?.brandName
+  return props.brandName || regionBrandName.value
 })
 
 const getCityName = computed(() => {
   if (props.cityName) { return props.cityName.toUpperCase() } else if (props.type !== 'region') {
     const prettyUrlName = useRoute().path.split('/').pop()?.replace(/%20/g, ' ')
-    if (store.region?._allReferencingCities.find((x) => {
+    if (region.value?._allReferencingCities.find((x) => {
       return x.name.toLowerCase() === prettyUrlName?.toLowerCase()
     }
     )) {

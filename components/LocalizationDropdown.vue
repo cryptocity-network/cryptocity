@@ -67,12 +67,12 @@
 import { computed } from 'vue'
 import { useWebsiteStore } from '~/store/store'
 
-const store = useWebsiteStore()
-const { locale, locales } = useI18n()
+const { region } = storeToRefs(useWebsiteStore())
+const { locale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 
 const availableLocales = computed(() => {
-  return store.region?._locales
+  return region.value?._locales
 })
 const isDropdownExpanded = ref(false)
 const flagUrl = computed(() => {

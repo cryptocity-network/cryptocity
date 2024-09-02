@@ -65,7 +65,7 @@
       />
     </template> -->
   </main>
-  <ErrorMessage v-else-if="data.city === null" />
+  <ErrorMessage v-else-if="!data.city" />
 </template>
 
 <script lang="ts" setup>
