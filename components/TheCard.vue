@@ -19,7 +19,7 @@
         'opacity-0': fullScreen
       }"
     >
-      <DatoImage v-if="image" loading="lazy" :image :key="imageUrl" class="size-full rounded-4 object-cover" />
+      <DatoImage v-if="image" :key="imageUrl" loading="lazy" :image class="size-full rounded-4 object-cover" />
       <img v-else :src="imageUrl" loading="lazy" class="size-full rounded-4 object-cover">
       <div class="absolute left-0 top-0 size-full bg-blue/20 transition-opacity group-hover:opacity-50" />
       <div
@@ -71,10 +71,10 @@
         </div>
       </div>
 
-      <div class="relative">
+      <div class="relative flex justify-between gap-x-16">
         <p
           v-if="footer"
-          class="text-14 font-bold uppercase text-blue/50  sm:text-13 lg:text-14"
+          class="whitespace-nowrap text-14 font-bold uppercase text-blue/50  sm:text-13 lg:text-14"
           style="letter-spacing: 0.95px;"
           :class="{'transition-[opacity,transform] group-hover:-translate-y-1/2 group-hover:opacity-0': linkLabel,
                    '!text-white/90': fullScreen}"
@@ -92,6 +92,55 @@
           <Arrow
             class="h-auto w-12 shrink-0 -rotate-45"
           />
+        </div>
+        <div v-if="countries" class="flex flex-wrap justify-end gap-8">
+          <div
+            v-for="(country, i) in countries"
+            :key="i"
+          >
+            <svg
+              v-if="country === 'brazil'"
+              class="country-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <g clip-path="url(#a)">
+                <path fill="#F0F0F0" d="M13.099 10.668a3.138 3.138 0 0 1-.512 1.207 5.32 5.32 0 0 0-5.742-1.77v-.039c0-.441.09-.863.258-1.246a6.667 6.667 0 0 1 1.32-.136 6.463 6.463 0 0 1 4.676 1.984Z" />
+                <path fill="#6DA544" d="M0 .063v20h20v-20H0ZM10 15.59l-7.5-5.527L10 4.535l7.5 5.527L10 15.59Z" />
+                <path fill="#0052B4" d="M9.999 13.218Zm2.125-.824c.043-.04.086-.079.125-.121a1.77 1.77 0 0 1-.125.12Zm.46-.519a.794.794 0 0 1-.05.07c.015-.027.034-.047.05-.07Zm.512-1.208Zm.024-.125A3.158 3.158 0 0 0 10 6.905c-1.3 0-2.418.785-2.898 1.91h-.004a3.158 3.158 0 0 1 6.023 1.727Z" />
+                <path fill="#FFDA44" d="m10 4.536-7.5 5.527 7.5 5.528 7.5-5.527L10 4.535Zm0 8.684a3.157 3.157 0 0 1 0-6.313 3.157 3.157 0 0 1 0 6.313Z" />
+                <path fill="#0052B4" d="M8.42 9.862c-.55 0-1.077.082-1.577.239a3.157 3.157 0 0 0 5.742 1.77 5.333 5.333 0 0 0-4.164-2.009Zm4.677.805a3.158 3.158 0 0 0-6-1.852 6.482 6.482 0 0 1 6 1.852Z" />
+              </g>
+              <defs>
+                <clipPath id="a">
+                  <path fill="#fff" d="M0 .063h20v20H0z" />
+                </clipPath>
+              </defs>
+            </svg>
+            <svg
+              v-else-if="country === 'canada'"
+              class="country-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <g clip-path="url(#a)">
+                <path fill="#F0F0F0" d="M6.783-.343v20.687h6.897V-.343H6.783Zm5.414 12.263h-1.575v1.18h-.788v-1.18H8.258l.392-.788-1.576-.788.788-.392v-.788l1.576.788-.788-1.576h.788l.788-1.18.787 1.18h.792l-.787 1.576 1.575-.788v.788l.788.392-1.576.788.392.788Z" />
+                <path fill="#D80027" d="M6.784-.343H-.113v20.687h6.897V-.343Zm13.79 0h-6.897v20.687h6.897V-.343Zm-8.769 11.479 1.572-.788-.788-.396v-.784l-1.572.784.788-1.572h-.788L10.23 7.2l-.788 1.18h-.788l.788 1.572-1.572-.784v.784l-.788.396 1.572.787-.392.784h1.576v1.184h.783V11.92h1.576l-.392-.784Z" />
+              </g>
+              <defs>
+                <clipPath id="a">
+                  <path fill="#fff" d="M0 0h20v20H0z" />
+                </clipPath>
+              </defs>
+            </svg>
+            <div
+              v-else
+              :style="`background: url('${country}') no-repeat center`"
+              class="country-icon"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -164,8 +213,22 @@ defineProps({
     type: String,
     required: false,
     default: null
+  },
+  countries: {
+    type: Array,
+    required: false,
+    default: null
   }
 })
 
 // const showPlaceHolder = ref(false)
 </script>
+
+<style scoped>
+.country-icon {
+  @apply size-20;
+  background-color: transparent !important;
+  background-size: 115% 115% !important;
+  border-radius: 99999px;
+}
+</style>

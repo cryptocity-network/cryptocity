@@ -6,6 +6,7 @@ export interface NewsArticle {
     coverImage: object
     excerpt: string
     embedVideo: Boolean
+    countries: Array<string>,
     externalArticleUrl: string
     slug: string
     linkToExternalNewsArticle: boolean

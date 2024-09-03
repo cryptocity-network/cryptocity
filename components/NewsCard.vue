@@ -8,6 +8,7 @@
     :link="articleLink"
     :footer="formattedDate"
     :full-screen="fullScreen"
+    :countries="article.countries"
   />
 </template>
 
