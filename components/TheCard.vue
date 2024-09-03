@@ -38,7 +38,7 @@
       <div>
         <div
           v-if="label && fullScreen"
-          class="mb-24 flex w-max items-center rounded-[32px] bg-white/20 px-14 py-6 text-16 font-bold text-white "
+          class="mb-24 flex w-max items-center rounded-[32px] bg-white px-14 py-6 text-16 font-bold text-blue-dark"
           v-html="label"
         />
         <h3 class="text-22" :class="{'!text-28 !text-white': fullScreen}">
