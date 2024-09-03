@@ -24,7 +24,6 @@
           ? 'flex flex-wrap items-center gap-16 xl:flex-col xl:items-start'
           : 'order-2 flex gap-16'"
       >
-        <LocalizationDropdown v-if="!onGlobalPage" class="w-full" />
         <li
           v-for="(item, index) in pages"
           :key="String(item._modelApiKey)"

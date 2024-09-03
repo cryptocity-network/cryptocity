@@ -31,7 +31,6 @@
             hide-arrow
           />
         </li>
-        <LocalizationDropdown />
       </ul>
 
       <!-- Copyright notice -->

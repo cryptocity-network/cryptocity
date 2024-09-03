@@ -40,7 +40,9 @@
             hide-arrow
           />
         </div>
+        <LocalizationDropdown :show-name="false" />
       </div>
+      <LocalizationDropdown class="ml-auto lg:hidden" :show-name="false" />
       <MobileMenu
         class="lg:hidden"
         :is-scrolled="localState.isScrolled"

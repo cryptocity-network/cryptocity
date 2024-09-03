@@ -12,23 +12,13 @@
         alt=""
         srcset=""
       >
-      <span class="font-semibold uppercase text-blue-darker/60">
+      <span v-if="showName" class="font-semibold uppercase text-blue-darker/60">
         {{ locale }}
       </span>
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        class="size-12 transition-transform duration-200 ease-in-out"
-        :class="isDropdownExpanded ? 'rotate-180' : 'rotate-0'"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 9l-7 7-7-7"
-        />
+      <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path opacity="0.3" d="M7.06574 0C7.46509 0 7.70328 0.445073 7.48177 0.77735L4.41602 5.37596C4.21811 5.67283 3.78189 5.67283 3.58397 5.37596L0.518233 0.77735C0.296715 0.445072 0.534911 0 0.934259 0H7.06574Z" fill="#1F2348" />
       </svg>
+
       <transition
         enter-active-class="transform transition duration-500 ease-custom"
         enter-class="-translate-y-1/2 scale-y-0 opacity-0"
@@ -39,13 +29,13 @@
       >
         <div
           v-show="isDropdownExpanded"
-          class="absolute inset-x-0 left-1/2 top-full z-50 my-8 w-[calc(100%+16px)] -translate-x-1/2 cursor-pointer divide-y divide-blue-darker/10 overflow-hidden rounded-8 border-gray bg-white shadow"
+          class="absolute -left-8 top-full z-50 my-8 w-full cursor-pointer divide-y  divide-blue-darker/10 overflow-hidden rounded-8 border-gray bg-white shadow"
         >
           <NuxtLink
             v-for="item in availableLocales"
             :key="item"
             :to="switchLocalePath(item)"
-            class="flex  items-center justify-start gap-8 px-8 py-4"
+            class="flex  items-center justify-start gap-8 px-8 py-6"
           >
             <img
               :src="`https://flagcdn.com/84x63/${item === 'en' ? 'gb' : item}.png`"
@@ -53,7 +43,7 @@
               alt=""
               srcset=""
             >
-            <span class="block font-semibold uppercase text-blue-darker/60">
+            <span v-if="showName" class="block font-semibold uppercase text-blue-darker/60">
               {{ item === 'gb' ? 'en' : item }}
             </span>
           </NuxtLink>
@@ -66,6 +56,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useWebsiteStore } from '~/store/store'
+
+defineProps({
+  showName: {
+    type: Boolean,
+    default: true
+  }
+})
 
 const { region } = storeToRefs(useWebsiteStore())
 const { locale } = useI18n()
