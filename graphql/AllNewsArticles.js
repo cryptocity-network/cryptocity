@@ -12,6 +12,7 @@ export default (locale) => {
       id
       title
       excerpt
+      countries
       _createdAt
       embedVideo
       externalArticleUrl
