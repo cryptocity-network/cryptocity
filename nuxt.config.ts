@@ -12,7 +12,7 @@ const processLocales = () => {
       }
     }) as LocaleObject[]
   } else {
-    // If not region locales defined - ensure that the default region is applies
+    // If no region locales are defined - ensure that the default region is applied
     const defaultLocale = process.env.NUXT_PUBLIC_DATO_DEFAULT_LOCALE
     return [
       {
