@@ -1,4 +1,28 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import type { LocaleObject } from '@nuxtjs/i18n'
+
+const processLocales = () => {
+  const locales = process.env.NUXT_PUBLIC_DATO_REGION_LOCALES
+  if (locales) {
+    const localeArray = locales?.split(',')
+    return localeArray?.map((x) => {
+      return {
+        code: x,
+        file: x + '.js'
+      }
+    }) as LocaleObject[]
+  } else {
+    // If not region locales defined - ensure that the default region is applies
+    const defaultLocale = process.env.NUXT_PUBLIC_DATO_DEFAULT_LOCALE
+    return [
+      {
+        code: defaultLocale,
+        file: defaultLocale + '.js'
+      }
+    ] as LocaleObject[]
+  }
+}
+
 export default defineNuxtConfig({
   // devtools: {
   //   enabled: true,
@@ -35,34 +59,13 @@ export default defineNuxtConfig({
     '@vueuse/nuxt'
   ],
   i18n: {
-    locales: [
-      {
-        code: 'en',
-        file: 'en.js'
-      },
-      {
-        code: 'de',
-        file: 'de.js'
-      },
-      {
-        code: 'es',
-        file: 'es.js'
-      },
-      {
-        code: 'fr',
-        file: 'fr.js'
-      },
-      {
-        code: 'et',
-        file: 'et.js'
-      }
-    ],
+    locales: processLocales(),
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root' // recommended
     },
-    defaultLocale: 'en',
+    defaultLocale: process.env.NUXT_PUBLIC_DATO_DEFAULT_LOCALE,
     strategy: 'prefix',
     lazy: true,
     langDir: 'lang'
@@ -78,6 +81,7 @@ export default defineNuxtConfig({
       DATO_TOKEN: process.env.DATO_TOKEN,
       DATO_REGION_ID: process.env.DATO_REGION_ID,
       DATO_DEFAULT_LOCALE: process.env.DATO_DEFAULT_LOCALE,
+      DATO_REGION_LOCALES: process.env.DATO_REGION_LOCALES,
       IS_GLOBAL_SITE: process.env.IS_GLOBAL_SITE
     }
   },
