@@ -38,7 +38,7 @@
             class="flex  items-center justify-start gap-8 px-8 py-6"
           >
             <img
-              :src="`https://flagcdn.com/84x63/${item === 'en' ? 'gb' : item}.png`"
+              :src="`https://flagcdn.com/84x63/${getCountryCode(item)}.png`"
               class="block w-20"
               alt=""
               srcset=""
@@ -73,9 +73,19 @@ const availableLocales = computed(() => {
 })
 const isDropdownExpanded = ref(false)
 const flagUrl = computed(() => {
-  const treatedLocale = locale.value !== 'en' ? locale.value : 'gb'
+  const treatedLocale = getCountryCode(locale.value)
   return `https://flagcdn.com/84x63/${treatedLocale}.png`
 })
+
+const getCountryCode = (item: string) => {
+  if (item === 'en') {
+    return 'gb'
+  } else if (item === 'sl') {
+    return 'si'
+  } else {
+    return item
+  }
+}
 </script>
 
 <style>
