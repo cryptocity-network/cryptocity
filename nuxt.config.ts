@@ -4,7 +4,7 @@ import type { LocaleObject } from '@nuxtjs/i18n'
 const processLocales = () => {
   const locales = process.env.NUXT_PUBLIC_DATO_REGION_LOCALES
   if (locales) {
-    const localeArray = locales?.split(',')
+    const localeArray = locales?.split(',').map(l => l.trim())
     return localeArray?.map((x) => {
       return {
         code: x,
