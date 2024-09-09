@@ -17,6 +17,10 @@ export default () => {
       ${baseBlockValues()}
       title
     }
+    ... on HaftungsausschlussRecord {
+      ${baseBlockValues()}
+      title
+    }
   }
   `
 }
