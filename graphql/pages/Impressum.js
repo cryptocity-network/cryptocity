@@ -1,5 +1,6 @@
 import ResponsiveImage from '../ResponsiveImage'
 import DeStructuredContentWithLinks from '../blocks/DeStructuredContentWithLinks'
+import StructuredContentWithLinks from '../blocks/StructuredContentWithLinks'
 export default (locale) => {
   return checkGermanyOrRestOfWorld()
     ? `query {
