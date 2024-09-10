@@ -10,34 +10,34 @@ export default ({ record, children, transformedMeta }: Test) => {
     case 'de_haftungsausschluss':
       return h(
         'a',
-        { ...transformedMeta, href: '/haftungsausschluss' },
+        { ...transformedMeta, href: 'haftungsausschluss' },
         children
       )
     case 'data_protection':
     case 'de_data_protection':
       return h(
         'a',
-        { ...transformedMeta, href: '/data-protection' },
+        { ...transformedMeta, href: 'data-protection' },
         children
       )
     case 'cookie':
     case 'de_cookie':
       return h(
         'a',
-        { ...transformedMeta, href: '/cookies' },
+        { ...transformedMeta, href: 'cookies' },
         children
       )
     case 'impressum':
     case 'de_impressum':
       return h(
         'a',
-        { ...transformedMeta, href: '/impressum' },
+        { ...transformedMeta, href: 'impressum' },
         children
       )
     default:
       return h(
         'a',
-        { ...transformedMeta, href: '/' },
+        { ...transformedMeta, href: '' },
         children
       )
   }
