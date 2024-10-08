@@ -50,11 +50,9 @@ interface AllCitiesResponse {
 const { locale } = useI18n()
 const citiesQuery = citiesByRegion(useRuntimeConfig().public.DATO_REGION_ID, locale.value)
 const { data: { value: response } } = await useGraphqlQuery(citiesQuery) as AsyncData<AllCitiesResponse, RTCError>
-
 const allCities = computed(() => {
   if (response) {
-  // @ts-ignore
-    return response.allCities.sort(a => a.state === 'Live' ? -1 : 1)
+    return response.allCities
   } else {
     return null
   }
