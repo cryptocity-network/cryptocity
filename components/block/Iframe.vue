@@ -8,7 +8,7 @@
     class="!pt-96"
   >
     <div class="iframe-wrapper  aspect-[3/3.5] w-full sm:aspect-video">
-      <Teleport :disabled="!fullscreen" to="#overlay">
+      <Teleport v-if="mounted" :disabled="!fullscreen" to="#overlay">
         <div
           class="iframe-container relative size-full overflow-hidden bg-white shadow"
           :class="{
@@ -106,6 +106,7 @@ defineProps({
   }
 })
 const loaded = ref(false)
+const mounted = ref(false)
 const mapOverlayVisible = ref(true)
 const triggerLoad = () => {
   setTimeout(() => {
@@ -113,6 +114,9 @@ const triggerLoad = () => {
   }, 1000)
 }
 const fullscreen = ref(false)
+onMounted(() => {
+  mounted.value = true
+})
 </script>
 
 <style scoped>
