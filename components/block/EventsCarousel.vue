@@ -26,7 +26,7 @@
             :title="event.title"
             :description="event.description"
             :image="event.image"
-            :footer="event.locationCity.name"
+            :footer="event.isItGlobalNews ? 'Global' : event.locationCity.name"
             :label="getDate(event.start, event.end)"
             :link-label="event.linkLabel"
             :link="event.link"
@@ -116,6 +116,7 @@ interface Event {
   image: {
     url: string
   },
+  isItGlobalNews: boolean,
   start: string,
   end: string,
   linkLabel: string,
@@ -127,13 +128,16 @@ interface Event {
 interface EventsResponse {
   allEvents: Event[]
 }
+
+const { locale } = useI18n()
 const { region } = storeToRefs(useWebsiteStore())
 let populatedEventsQuery
 if (useRoute().path.includes('cities')) {
-  populatedEventsQuery = eventsByCityQuery(props.cityId)
+  populatedEventsQuery = eventsByCityQuery(props.cityId, locale.value)
 } else {
-  populatedEventsQuery = eventsByRegionQuery(region.value!.id)
+  populatedEventsQuery = eventsByRegionQuery(region.value!.id, locale.value)
 }
+
 // let response: Array<AllEvents> | null= null
 const { data: { value: response } } = await useGraphqlQuery(populatedEventsQuery) as AsyncData<EventsResponse, RTCError>
 

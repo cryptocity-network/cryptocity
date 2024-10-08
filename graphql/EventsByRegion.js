@@ -2,11 +2,21 @@
 
 import ResponsiveImage from './ResponsiveImage'
 
-export default (regionId) => {
+export default (regionId, locale) => {
   return `query {
-  allEvents(filter: {locationRegion: {eq: "${regionId}"}}, fallbackLocales:[en]) {
+  allEvents(
+    filter: {
+      OR: [
+        {locationRegion: {eq: "${regionId}"}},
+        {isItGlobalNews: {eq: true}}
+      ]
+    }
+    locale: ${locale}
+    fallbackLocales: [en]
+  ) {
     id
     title
+    isItGlobalNews
     start
     locationCity {
       name
