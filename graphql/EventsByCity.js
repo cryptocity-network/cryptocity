@@ -9,6 +9,7 @@ export default (cityId, locale) => {
         {isItGlobalNews: {eq: true}}
       ]
     }
+    orderBy: start_ASC
     locale: ${locale}
     fallbackLocales: [en]
   ) {

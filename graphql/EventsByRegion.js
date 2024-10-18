@@ -11,6 +11,7 @@ export default (regionId, locale) => {
         {isItGlobalNews: {eq: true}}
       ]
     }
+    orderBy: start_ASC
     locale: ${locale}
     fallbackLocales: [en]
   ) {
