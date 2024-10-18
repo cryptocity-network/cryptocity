@@ -157,7 +157,7 @@ const { locale: lang } = useI18n()
 const stickerUrl = computed(() => {
   const { buildAssetsDir } = useRuntimeConfig().app
   const stickers = ['de', 'es', 'fr', 'et']
-  return `${buildAssetsDir}icons/payment-sticker-${stickers.includes(lang.value) ? lang.value : 'en'}.svg`
+  return `${buildAssetsDir}static/icons/payment-sticker-${stickers.includes(lang.value) ? lang.value : 'en'}.svg`
 })
 
 const mapsApiKey = useRuntimeConfig().public.GOOGLE_MAPS_API
