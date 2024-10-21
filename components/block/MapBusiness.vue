@@ -72,7 +72,7 @@
               :footer="cityName"
               :link-label="cityName"
               :link="location.gmaps"
-              :image-url="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${location.photo}&key=${mapsApiKey}`"
+              :image-url="location.photo"
             />
           </li>
           <div
@@ -159,8 +159,6 @@ const stickerUrl = computed(() => {
   const stickers = ['de', 'es', 'fr', 'et']
   return `${buildAssetsDir}static/icons/payment-sticker-${stickers.includes(lang.value) ? lang.value : 'en'}.svg`
 })
-
-const mapsApiKey = useRuntimeConfig().public.GOOGLE_MAPS_API
 
 const cityName = computed(() => {
   const name = useRoute().params.city as string
