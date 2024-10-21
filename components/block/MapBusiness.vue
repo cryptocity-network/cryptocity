@@ -33,7 +33,7 @@
             >
               <!-- <Location class="h-104" /> -->
               <div
-                class="grid grow place-content-center rounded-4 [&>*]:self-center [&>*]:justify-self-center [&>*]:[grid-area:1/-1]"
+                class="grid  place-content-center rounded-4 [&>*]:self-center [&>*]:justify-self-center [&>*]:[grid-area:1/-1]"
               >
                 <img
                   class="h-full rounded-4 object-cover"
@@ -44,7 +44,7 @@
                 >
                 <img width="259" height="180" :src="stickerUrl" alt="">
               </div>
-              <div class="flex flex-col items-center  justify-center gap-16 p-24 py-32">
+              <div class="flex grow flex-col items-center  justify-center gap-16 p-24 py-32">
                 <div class="text-blue/60">
                   {{ data.joinCardDescription }}
                 </div>
