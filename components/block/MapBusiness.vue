@@ -155,9 +155,8 @@ defineProps({
 
 const { locale: lang } = useI18n()
 const stickerUrl = computed(() => {
-  const { buildAssetsDir } = useRuntimeConfig().app
   const stickers = ['de', 'es', 'fr', 'et']
-  return `${buildAssetsDir}static/icons/payment-sticker-${stickers.includes(lang.value) ? lang.value : 'en'}.svg`
+  return `/icons/payment-sticker-${stickers.includes(lang.value) ? lang.value : 'en'}.svg`
 })
 
 const cityName = computed(() => {
