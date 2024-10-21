@@ -115,6 +115,10 @@ onMounted(() => {
   })
 })
 
+useHead({
+  title: 'CRYPTOCITY™'
+})
+
 </script>
 
 <style scoped>
