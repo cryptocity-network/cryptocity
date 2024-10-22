@@ -2,6 +2,8 @@
 
 Welcome, this repository contains code for setting up both Region and Global CryptoCities Pages. Read below for more information.
 
+---
+
 ## Setting up the Global CC Page
 
 The Global Page needs no extra setup in DatoCMS. Add the below environment variables to your deployment platform
@@ -15,6 +17,8 @@ Deployment Settings:
 - Output directory: `dist`
 - Install command: `yarn install`
 - Node version: `18.x`
+
+---
 
 ## Setting up a new Region
 
@@ -40,8 +44,20 @@ Now that you have a region and homepage setup and published we have enough to se
 All CryptoCity (CC) sites are created using this repo. To setup different regions we use Environment Variables:
 
 - `NUXT_PUBLIC_DATO_TOKEN` DatoCMS api token - found in DatoCMS -> Project Settings
-- `NUXT_PUBLIC_DATO_REGION_ID` This is the domain the site is hosted. This should match the domain field in the Dato region being targeted.
-- `NUXT_PUBLIC_DATO_DEFAULT_LOCALE` Default language/locale for the deployment. This must be a locale present within the targeted regions pages.
+- `NUXT_PUBLIC_DATO_REGION_ID` The Record ID of the region page in DATO. Open the side panel on the record to find this.
+- `NUXT_PUBLIC_DATO_DEFAULT_LOCALE` Default language/locale for the deployment.
+- `NUXT_PUBLIC_DATO_REGION_LOCALES` Comma separated list of locales which a region supports, including the default.
+- `NUXT_PUBLIC_IS_GLOBAL_SITE` BOOLEAN - should always be false unless this is the global page (cryptocity.network)
+
+
+Example:
+```
+NUXT_PUBLIC_DATO_TOKEN={add token here}
+NUXT_PUBLIC_DATO_REGION_ID=OPCWcIegTgS_cqYgyxdgKw
+NUXT_PUBLIC_DATO_DEFAULT_LOCALE=en
+NUXT_PUBLIC_DATO_REGION_LOCALES=en,fr,de
+NUXT_PUBLIC_IS_GLOBAL_SITE=false
+```
 
 Deployment Settings: 
 
@@ -53,6 +69,41 @@ Deployment Settings:
 Using this setup and Environment Variables the site should run and target your specified region.
 
 From here you can continue to create more pages and cities for your region. This can be helped by utilising Preview Mode.
+
+---
+
+## Adding a new locale
+
+To add a new locale:
+
+- DatoCMS
+  - Click `configuration` in the top bar
+  - Add necessary locale in locale multiselect
+  - Save settings
+  - Go to the region record which will use the new locale and add a translation for the new locale
+  - Then add this new locale to all pages this region relates to.
+  - Navigation to `Translation` on the sidebar and fill out the generic translations for the new locale
+- Code
+  - Add a new lang file named as the lang-abbreviation.js
+  - Copy the code below swapping 'en' for your locale appreviation
+    ```
+    export default defineI18nLocale(async () => {
+      const { data } = await useGraphqlQuery(`
+        query {
+            translation(locale: en) {
+                translations
+            }
+        }`)
+      return data.value.translation.translations
+    })
+
+    ```
+  - Save and push the change
+
+Now update the env variables to allow your deployment to detect the new locale.
+Your new locale should now be functional.
+
+---
 
 ### Preview Mode
 
