@@ -30,7 +30,7 @@ import type { Page } from './types/dato-models/Page'
 import type { DatoRegionResponse } from './types/dato-api-responses/Region'
 
 const { setNavigation } = useWebsiteStore()
-const { global, pages, regionBrandName, regionIsRegistered, regionIsTrademark } = storeToRefs(useWebsiteStore())
+const { global, pages, region, regionBrandName, regionIsRegistered, regionIsTrademark } = storeToRefs(useWebsiteStore())
 const onGlobalPage = useRuntimeConfig().public.IS_GLOBAL_SITE
 const route = useRoute()
 
@@ -74,6 +74,27 @@ async function updateNavigation () {
         _allReferencingContactPages {
           ${pageFields()}
         }
+        partners {
+          companyName
+          description
+          linkLabel
+          linkUrl
+          logo {
+            url
+            alt
+          }
+          socials {
+            youtube
+            whatsapp
+            twitter
+            telegram
+            linkedIn
+            instagram
+            facebook
+            email
+            discord
+          }
+        }
       }
     }`
   const body = await $fetch('https://graphql.datocms.com', {
@@ -95,6 +116,9 @@ async function updateNavigation () {
         pages.value?.push((value as Page[])[0])
       }
     }
+  }
+  if (region.value) {
+    region.value.partners = body.data.region.partners
   }
   keyTrigger.value++
 }
