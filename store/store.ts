@@ -97,7 +97,7 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
     url.searchParams.append('only_enabled', '1')
     url.searchParams.append('apikey', useRuntimeConfig().public.SUPA_KEY)
     url.searchParams.append('page_number', page.toString())
-    const res = await $fetch<GetCryptocityLocationsResponse>(url.href)
+    const res = await $fetch(url.href) as GetCryptocityLocationsResponse
     if (!('data' in res) || !('pagination' in res)) {
       // eslint-disable-next-line no-console
       console.error('Failed to fetch locations for city', cityName, res)

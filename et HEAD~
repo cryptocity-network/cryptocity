@@ -1,0 +1,1983 @@
+[33mcommit 89e23df631dd3b74f6bf18a19d070a9f3104a86a[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Wed Oct 23 19:41:03 2024 +0200
+
+    chore: added redirecrs in netlify
+
+[33mcommit 44bfac5892cc5a226376e45c53b17cbc9d9312df[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Wed Oct 23 18:46:51 2024 +0200
+
+    chore: ad seo to home
+
+[33mcommit 59f1082a13282ecfcc231826d0fdaaf81d13347c[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Wed Oct 23 17:51:51 2024 +0200
+
+    fix: handle mismatch between cms and cryptomap db cities names
+
+[33mcommit e6a13d74e9193e12c54cfe17ef4d73e6cc68ba26[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Wed Oct 23 13:40:55 2024 +0200
+
+    chore: trigger deployments
+
+[33mcommit 1822e16a1a75c7fd15a259dc0f854444d42fa049[m
+Merge: 29d71c0 6a61390
+Author: Max <maximogarciamtnez@gmail.com>
+Date:   Wed Oct 23 13:25:36 2024 +0200
+
+    Merge pull request #14 from cryptocity-network/onmax/pt-language
+
+[33mcommit 29d71c0b0550e92c524cab5df3b845b8f79d3735[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Tue Oct 22 10:00:00 2024 +0100
+
+    Update README.md
+
+[33mcommit d549c2c0642a1560495a8eb5d3a7f41b2d9ceba8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Oct 22 09:32:53 2024 +0100
+
+    Fix network localisation bug
+
+[33mcommit 6a61390c00679c2c6fdb47ffde2e2a2de0f4e3b1[m[33m ([m[1;31morigin/onmax/pt-language[m[33m, [m[1;32monmax/pt-language[m[33m)[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Tue Oct 22 10:07:35 2024 +0200
+
+    chore: add portuguese
+
+[33mcommit e327da750f5dd8c606a6330244a3443850bf71c3[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Oct 21 17:23:13 2024 +0100
+
+    Update public icons
+
+[33mcommit 8822db5457d683164ff1cf35449fea6253e3cf6f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Oct 21 15:40:57 2024 +0100
+
+    Fix: map location card
+
+[33mcommit 6a3a258665d93b955892b08c6a8609f98049dfd4[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Mon Oct 21 13:51:52 2024 +0200
+
+    chore: remove photos from google and use url
+
+[33mcommit 51ea823069eff143760d420de7dec1ea6b4fa5ec[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Oct 21 09:19:31 2024 +0100
+
+    Update global page title
+
+[33mcommit e2c0b16eadadfe9aed872af4fedb1d09dacdc14c[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Fri Oct 18 15:20:40 2024 +0200
+
+    chore: fix sticker image path
+
+[33mcommit a08897d29939a4c48e832008ed0bdf86a5f7dc24[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Fri Oct 18 15:20:30 2024 +0200
+
+    feat: new event card design
+
+[33mcommit 3912681ef6d6dd73192a2e10bcb79e32a1e5b186[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Fri Oct 18 15:02:26 2024 +0200
+
+    lint
+
+[33mcommit 27d262fec1ec2890f12725cb180117e77cbba106[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Oct 18 13:21:59 2024 +0100
+
+    fix: order events by date
+
+[33mcommit a03eda6023becca8f027d8ca78514bee9849daa6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Oct 8 10:07:55 2024 +0100
+
+    Add global events options
+
+[33mcommit 64c74b43fb36e4615834ff5ec47bee1441274afc[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Oct 8 09:33:36 2024 +0100
+
+    Fix: mismatched city images
+
+[33mcommit 0c363aef5b8628e18b69bb61bd5713f36738ee74[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Oct 8 09:19:49 2024 +0100
+
+    Fix navigation error
+
+[33mcommit 364b6e29bacd70396f07588c3900327bcc1879c5[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Sep 10 08:50:10 2024 +0100
+
+    fix: imprint linking
+
+[33mcommit 395b6e227977a4096f84318fac8fdb896f76552f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Sep 10 08:44:29 2024 +0100
+
+    update german requests
+
+[33mcommit 16e73034a7b0bf07d77e46694682cd49fca4306e[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Sep 10 08:36:11 2024 +0100
+
+    Update Haftungsausschluss.js
+
+[33mcommit 4a55a09cb10de8eb5f1ddf2972af177ce5f14722[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Sep 9 16:12:37 2024 +0100
+
+    Update file import
+
+[33mcommit 5df601adedff2cfb53343dfd478e2a58cd8d5573[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Sep 9 15:03:11 2024 +0100
+
+    Fix: filename error
+
+[33mcommit 38622b3be8befd0b87e957eaac2e90083f046375[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Sep 9 13:54:41 2024 +0100
+
+    Update t and c link
+
+[33mcommit dfb45555aa5c1bd736f9242d495bdb75c9558594[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Sep 5 17:00:17 2024 +0100
+
+    Fix: slovenia flag code
+
+[33mcommit 741376ec6940026a4132cee38fe94b08a9deef0d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Sep 5 12:46:19 2024 +0100
+
+    hotfix: add slovenian translation query
+
+[33mcommit 6e61bd36a0b2a04531cdf500aa56843fa7138932[m
+Merge: 237635c 1c56138
+Author: Sören Schwert <hello@soerenschwert.de>
+Date:   Thu Sep 5 13:26:58 2024 +0200
+
+    Merge pull request #13 from cryptocity-network/fix/default-region-loacles-in-env
+    
+    Add processing for region locales env
+
+[33mcommit 1c56138e6d5cae0f64e6de70b405b30891f99675[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Thu Sep 5 10:47:49 2024 +0100
+
+    Update nuxt.config.ts
+    
+    Co-authored-by: Sören Schwert <hello@soerenschwert.de>
+
+[33mcommit 3a8787feefd6cc9c0e5beeaaaca25d1220a525a1[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Thu Sep 5 10:47:43 2024 +0100
+
+    Update nuxt.config.ts
+    
+    Co-authored-by: Sören Schwert <hello@soerenschwert.de>
+
+[33mcommit 5d8b221e4258787377c2975316a4584f24d1fca9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Sep 5 09:34:10 2024 +0100
+
+    Add processing for region locales env
+
+[33mcommit 237635cf5511d71849b8f372d2255af49ccd20b9[m
+Merge: 738c867 7b36eaf
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Tue Sep 3 14:33:59 2024 +0100
+
+    Merge pull request #12 from cryptocity-network/feature/flag-icons-on-news-cards
+    
+    Add flag icons on news cards
+
+[33mcommit 7b36eafb57d52e3fe1910d59d0309be9237a00c8[m[33m ([m[1;31morigin/feature/flag-icons-on-news-cards[m[33m)[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Sep 3 11:12:47 2024 +0100
+
+    Fix: label styling
+
+[33mcommit c44d0af3e7791694d54335421dba2b0e97e2e487[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Sep 3 10:39:37 2024 +0100
+
+    Add flag icons on news cards
+
+[33mcommit 738c8671f03a66198c059f0d7029890e8dae1a0c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Sep 3 09:42:43 2024 +0100
+
+    update: reposition language selectors
+
+[33mcommit 9153888fbb8d46333e00e39a2c97f3a84fdb4a22[m
+Merge: aace15d edb3887
+Author: Max <maximogarciamtnez@gmail.com>
+Date:   Mon Sep 2 15:42:35 2024 +0200
+
+    Merge pull request #11 from cryptocity-network/onmax/locations-pagination
+    
+    feat: use pagination in locations
+
+[33mcommit edb38879ca870076d3b3430ec5f9ea949dd22ff0[m[33m ([m[1;31morigin/onmax/locations-pagination[m[33m, [m[1;32monmax/locations-pagination[m[33m)[m
+Author: onmax <maximogarciamtnez@gmail.com>
+Date:   Tue Aug 20 11:23:41 2024 +0200
+
+    feat: use pagination in locations
+
+[33mcommit aace15d38e1ba2c8baa402e1c4fa8f3b5e687ceb[m
+Merge: 79a3299 d53d222
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Aug 14 18:52:43 2024 +0100
+
+    Merge branch 'main' of https://github.com/cryptocity-network/cryptocity
+
+[33mcommit 79a32991aaa4d32812bb421432e7e388d587450d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Aug 14 18:52:40 2024 +0100
+
+    fix: impressum query issue
+
+[33mcommit d52180be2109f3501b443c0e82ce0e4ee872bb39[m
+Merge: 8a1e6a6 fd70a13
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Aug 14 18:52:10 2024 +0100
+
+    Merge branch 'main' of https://github.com/cryptocity-network/cryptocity
+
+[33mcommit d53d2229b4229f635b701dc4faa7657eef84675d[m
+Author: Sören <hello@soerenschwert.de>
+Date:   Wed Aug 14 14:53:15 2024 +0200
+
+    Generate redirects from an environment variable
+    
+    Used for redirecting city domains (which point to the same Netlify deployment) to their city in the country domain instead, to not have duplicate content under multiple domains.
+    
+    [skip ci]
+
+[33mcommit fd70a13ab1b6d9113a8a3e1a53669ceaa1f923b6[m
+Author: Sören <hello@soerenschwert.de>
+Date:   Wed Aug 14 15:07:49 2024 +0200
+
+    Add _redirects file
+    
+    Used for redirecting city domains (which point to the same Netlify deployment) to their city in the country domain instead, to not have duplicate content under multiple domains.
+    
+    [skip ci]
+
+[33mcommit 8a1e6a6b42f5eb10f34baabc8accb73b0f990d88[m
+Author: Sören <hello@soerenschwert.de>
+Date:   Wed Aug 14 15:07:49 2024 +0200
+
+    Add _redirects file
+    
+    Used for redirecting city domains (which point to the same Netlify deployment) to their city in the country domain instead, to not have duplicate content under multiple domains.
+    
+    [skip ci]
+
+[33mcommit 99622cd334e7ccf39802a860500675747966e575[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Aug 14 08:18:52 2024 +0100
+
+    fix: broken icon link
+
+[33mcommit ea95f131c76cdb37d2beeb72c701111b29f7162c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Aug 8 15:29:54 2024 +0100
+
+    Add tooltip to payment table
+
+[33mcommit 63da98570ef4e8cff0fc3166409db5f7224dcbe8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Aug 8 10:43:12 2024 +0100
+
+    Add french and estonian locales
+
+[33mcommit 95e9703c0a59de1936e4107b5dfb4065e9e6866f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Aug 8 09:49:21 2024 +0100
+
+    Remove console.log
+
+[33mcommit b9fdd3780f68e8df4f579fdd7d55aaa821be9040[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Aug 8 09:48:50 2024 +0100
+
+    Clean up variable names
+
+[33mcommit d9ae395bec672a3069124c3adc678cb106dc6dac[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Aug 8 09:15:02 2024 +0100
+
+    Update map buisness stickers
+
+[33mcommit c7c11035a5b3f3bd5b26be9010583bdd6ebe7ef3[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Aug 6 10:10:41 2024 +0100
+
+    Update footer logos
+
+[33mcommit 44bf82f57919d5293b843ec82882943b483557b4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Aug 5 15:57:00 2024 +0100
+
+    Fix: homepage grid spacing
+
+[33mcommit 6483b6296dd7c112256316b6dcc0ae26f6343fa4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Aug 5 11:04:11 2024 +0100
+
+    Update firefox city card bug
+
+[33mcommit aea1b817ce72983cf0d6baee506936177f84a343[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Aug 5 10:31:05 2024 +0100
+
+    Remove image hero on about page
+
+[33mcommit 2340b66c4680cbe889f810648ec9ba9d38fe1330[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Aug 5 10:17:56 2024 +0100
+
+    spacing fix - about page
+
+[33mcommit a5b0e5a1b27e7cc9610f60585fa86cef2b6fe6e4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Aug 5 10:16:42 2024 +0100
+
+    Update city carousel on about page
+
+[33mcommit a9a0b0d777a2551364d7b597719e69154ab3c4a4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Aug 5 10:02:59 2024 +0100
+
+    Fix carousel video player issue
+
+[33mcommit f0977c5af394ed3abe588848c78275fcf194799c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jul 26 13:14:26 2024 +0100
+
+    Add tm to global logo
+
+[33mcommit d6117069c5a5ad816e35ce281ab388c00c0adc57[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jul 26 13:03:04 2024 +0100
+
+    Updates
+
+[33mcommit 6e75e9a1309127c63f543bf5024a66ef50370e40[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jul 22 13:20:27 2024 +0100
+
+    Update city slug logic
+
+[33mcommit 3c4246a62e8b6cc62a0121fe94c90194a7be0630[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jul 19 12:04:40 2024 +0100
+
+    Remove old tiltedVideo component
+
+[33mcommit a2653cf1cd1b9ff12171143c67408adc7f4f36c6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jul 19 11:59:29 2024 +0100
+
+    fix spacing error
+
+[33mcommit cf3c09a25a2c19997110ca2e423b6f28ae322f73[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jul 19 11:51:10 2024 +0100
+
+    Create youtube video component
+
+[33mcommit 76c4c257c9f567ad7a74ab97ff304b9870f378ed[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jul 16 08:29:25 2024 +0100
+
+    Update currency hero labels to coin names
+
+[33mcommit 4a5527f3a56eba78ebaf772a8432838308357ba1[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jul 15 15:33:02 2024 +0100
+
+    Add trademark option
+
+[33mcommit 9ddbf4df8739e93f9c3615a6a23cfcdd76f19cf6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jul 15 15:10:51 2024 +0100
+
+    Update registered trademark logic + global titles
+
+[33mcommit 24821006e188895a053b231e1085b2cc8081e059[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jul 12 11:56:28 2024 +0100
+
+    Update animated city hero
+
+[33mcommit 24eeefa9369b5777dd13d464922f03b0b247f7e4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jul 10 13:22:25 2024 +0100
+
+    bugfix/coin-cards-array-fix
+
+[33mcommit c220a2db8ba44d36242d6e54d89cc552acf1ac4a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jul 10 13:18:38 2024 +0100
+
+    Update option table currencies to logos
+
+[33mcommit 161883412e91faf611bc8e1cf1e5e091aeaa6942[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jul 10 12:47:26 2024 +0100
+
+    bugfix: remove one element from coin cards
+
+[33mcommit 6e76cebe86957d99f42dc90f173a4f54bbc61836[m
+Merge: 519b41b aff0530
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Mon Jul 8 11:13:16 2024 +0100
+
+    Merge pull request #9 from cryptocity-network/feature/payment-options-table
+    
+    Feature/payment options table
+
+[33mcommit aff0530c9e2f5e5d1674f1d708f23b8474f67e68[m[33m ([m[1;31morigin/feature/payment-options-table[m[33m)[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jul 8 11:10:54 2024 +0100
+
+    Add footnotes
+
+[33mcommit aa144ce2515501fd17714d8387363a68fba9243b[m
+Merge: 8938681 519b41b
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jul 8 08:32:48 2024 +0100
+
+    Merge branch 'main' into feature/payment-options-table
+
+[33mcommit 8938681891955f032480ed560683a992f3f7daa8[m
+Merge: 238b993 a113813
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jul 8 08:31:17 2024 +0100
+
+    Merge branch 'main' into feature/payment-options-table
+
+[33mcommit 519b41bf1273320a00c48d8411818d7220b86be4[m
+Merge: a113813 9dfd949
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Mon Jul 8 08:20:10 2024 +0100
+
+    Merge pull request #8 from cryptocity-network/feature/beginners-hero-cards
+    
+    Add coin cards to beginner page hero
+
+[33mcommit 9dfd949626e052690fcfa8ebf5eac57fd1f0c0a2[m[33m ([m[1;31morigin/feature/beginners-hero-cards[m[33m)[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jul 8 08:18:57 2024 +0100
+
+    Hook up to api + responsiveness
+
+[33mcommit a1138136b71c173dceb8d5d88f089ee145a15684[m
+Merge: 43b5a7a 0010f8d
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jul 5 09:52:09 2024 +0100
+
+    Merge pull request #7 from cryptocity-network/update/add-payment-providers-to-footer
+    
+    Update/add payment providers to footer
+
+[33mcommit 0010f8d2f9a66e77c394a7de1dadd9def4d0b83c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jul 5 09:41:40 2024 +0100
+
+    Update design for current state of content
+
+[33mcommit 238b993ebe485ff8786c41cd39ca37de1a42b630[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jul 5 09:27:33 2024 +0100
+
+    Add CMS implementation + fix responsiveness
+
+[33mcommit 74f39eb2ce787cb3be432dd31ef8af94c0f81396[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jul 4 14:18:36 2024 +0100
+
+    Base functionality
+    
+    New block component added
+    Tested in situ within merchants page
+    TBD: decide on best datoCMS implementation
+
+[33mcommit 5873e886b6932c0834ce9316bde8ef2f0d707bf7[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jul 4 11:47:14 2024 +0100
+
+    Add payment providers
+    
+    - Added payment providers section
+    - Improve responsive breakpoints
+
+[33mcommit 43b5a7a818a2b711f679f21ab71f3840f1981004[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jul 4 11:25:18 2024 +0100
+
+    Update map location carousel
+    
+    - Add sticker and bg image to 'add you business' card.
+    - Implement loader as there is no indication of locations loading at present
+
+[33mcommit 9a5ff9ee8a923139299409890b689b3038360afc[m
+Merge: 41200f1 372d48c
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Tue Jun 18 10:35:47 2024 +0100
+
+    Merge pull request #5 from cryptocity-network/soeren/locations
+    
+    Fetch city locations only once per website visit
+
+[33mcommit 372d48cf4eb9c8c45e345232d4fdc1b032450928[m
+Author: Sören <hello@soerenschwert.de>
+Date:   Tue Jun 18 11:03:40 2024 +0300
+
+    Fetch city locations only once per website visit
+    
+    - Centralize location fetching in the store, deduplicating API requests, both in code and in network requests
+    - Fix filtered location requests not overwriting previous non-filtered requests: When visiting the main page, the locations for Mannheim were loaded without being filtered to "enabled=true". That then set the first array entry with all locations. When then navigating to Mannheim's page, locations were fetched again, but this time filtered to "enabled=true" and added to the store's array. But when querying the locations for a city from the store, only the first array item matching the city name was returned, which was still the unfiltered list of locations.
+    - Also enable devtools in development (gives you hydration and props warnings in console)
+    - Use new `only_enabled=1` filter added to the Supabase function for getting city locations
+
+[33mcommit 41200f1b911dac1ead684a6bc9775f14dc1130bb[m
+Author: Sören <hello@soerenschwert.de>
+Date:   Thu May 23 20:38:52 2024 +0200
+
+    Add @mux/mux-player dependency, as it is needed by vue-datocms when building for netlify_edge
+
+[33mcommit e4ee784f972989cbada4104c96dd8d97a8540418[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed May 15 14:20:15 2024 +0100
+
+    Filter enabled field on map locations
+
+[33mcommit 24265fe8671f54b790237e23f32d776cffc26245[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri May 10 11:20:08 2024 +0100
+
+    Update about us carousel to show regions
+
+[33mcommit e7cd2a1f8ca7300628edafd525d0c56ce75fd1ae[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed May 8 09:03:32 2024 +0100
+
+    Update all
+
+[33mcommit ef3bb7e6e0367ddb27c9b4277613e868eeb2403b[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue May 7 10:38:54 2024 +0100
+
+    mobile height adjustment
+
+[33mcommit b6beacfc8daeb2347288ea51d9e87c38063ec0e2[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue May 7 10:29:32 2024 +0100
+
+    Update global page
+
+[33mcommit ecdc5096054ac90c4108593f4e91470333838d42[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Apr 23 08:30:58 2024 +0100
+
+    Update Map text
+
+[33mcommit f579d8aaf3842928d93e903ec27e104c5a11a06b[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Apr 22 13:54:12 2024 +0100
+
+    Update buisness
+
+[33mcommit 232ad3c26f0b9c6037eeb3435db379f7786a8214[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Apr 22 11:18:29 2024 +0100
+
+    Update news and rossman
+
+[33mcommit 724e7aeacac70cdc6bc61cd838e8f9a2fafd1024[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Apr 19 13:01:50 2024 +0100
+
+    Add GA
+
+[33mcommit 4c9263a8522b779c152d8ed15bfd82effe0f79e4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Apr 18 12:04:39 2024 +0100
+
+    redirect /home on region sites
+
+[33mcommit 301ff3d0caef8011e01f5a4ab3b602fff30e75a7[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Apr 18 12:02:36 2024 +0100
+
+    Global page updates & video covers
+
+[33mcommit 91dc03aed9c077613b895cc77b8a958fab180224[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Apr 17 18:36:47 2024 +0100
+
+    MAJOR REFACTOR
+    
+    i18n introduced along with new routing methodoloy.
+    Also includes some performance improving changes
+
+[33mcommit 66f04af9155b58d0d6f7c84f0e62308edbc80c0c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Apr 16 08:09:29 2024 +0100
+
+    Update or case state
+
+[33mcommit 1eb5f339bdea34700d3d758eaef8a9a5d0bf08e4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Apr 15 16:24:51 2024 +0100
+
+    Update to structured
+
+[33mcommit b15ee3af484e72c0a6176071038550d1f83ca51b[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Apr 15 15:25:37 2024 +0100
+
+    update structured text linking
+
+[33mcommit 17a4681e60b9f897753d824012d1a0d676b5f98f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Apr 11 09:33:05 2024 +0100
+
+    Update PartnerLogo.vue
+
+[33mcommit 033ce0f67f0f257f408974cc18c10f0a800f4baf[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Apr 9 13:55:18 2024 +0100
+
+    Add link to haftung
+
+[33mcommit cc205b55daad70de82ab5614a26b869937096dd9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Apr 8 12:39:19 2024 +0100
+
+    Update sizes
+
+[33mcommit 228c78ae850fd899dbc3f0ede47f445e9b0a1afa[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Apr 8 09:33:17 2024 +0100
+
+    Update impressum padding
+
+[33mcommit 79b391c426c072efea71c6eff1e322e87a56395d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Apr 4 09:36:10 2024 +0100
+
+    Update registered logo position for FF
+
+[33mcommit fa7af4f13cf3a28226f752db6ad91bda4beaca93[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Apr 2 08:26:45 2024 +0100
+
+    Update gmaps
+
+[33mcommit b5d44a435deca835baa4653e1e4e2b27b92cdb29[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Apr 2 08:16:33 2024 +0100
+
+    update
+
+[33mcommit c807f24182d45e4773616b08420a3c4279082243[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Apr 2 07:25:07 2024 +0100
+
+    Update news page styling
+
+[33mcommit 4bca701ea79079b987660d27e20938cb8afc6722[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Mar 25 10:27:04 2024 +0000
+
+    Fix public key issue
+
+[33mcommit 9c22b37cac215fd413e7d6e27bd4590a89e6156f[m
+Merge: ac26380 ed81032
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Mar 25 10:26:49 2024 +0000
+
+    Merge branch 'feature/add-news-page'
+
+[33mcommit ac26380d751f7e826d47f8cc25731f5e62db0e29[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Mar 25 10:07:51 2024 +0000
+
+    Add i18n location based translations
+
+[33mcommit bd51fb33a94e53103db7e95a46f76b8884ab39aa[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Mar 20 12:13:34 2024 +0000
+
+    Fix env variables
+
+[33mcommit 5cb4e44516d082e7339914ad990ec3dc69dd535d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Mar 20 11:19:18 2024 +0000
+
+    Update env settings
+
+[33mcommit 08445b7dcf33c750b173c2bc42ad2e583ef70926[m
+Merge: b95b7d6 5f1b70f
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Wed Mar 20 11:13:42 2024 +0000
+
+    Merge pull request #4 from overnice/feature/nimiq-locations
+    
+    Feature/nimiq locations
+
+[33mcommit 5f1b70f09a63083acf26626bd62ba3a95fe052b8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Mar 20 10:59:23 2024 +0000
+
+    Fix event carousel overflow
+
+[33mcommit ed81032842808e6e8a5abe52f3995cfb07cd2cfe[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Mar 19 12:36:30 2024 +0000
+
+    Localisation flag fix
+
+[33mcommit 109b2ae91f8c6442b4c40574d49af0fd2f21b9d6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Mar 19 11:28:16 2024 +0000
+
+    Add featured article to news page
+
+[33mcommit 5191147ab75b887f48f43417de7f794ffd6598f1[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Mar 19 10:13:45 2024 +0000
+
+    news page rerouting with localisation
+
+[33mcommit 1ce843b0ed36244ff5a3b8bd97a36fdb829d1cc0[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Mar 18 16:10:18 2024 +0000
+
+    Create display logic for news articles
+
+[33mcommit b95b7d6e4ee5006fb0cccf96bcb46be31cceec00[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Mar 18 08:28:16 2024 +0000
+
+    Split footer into Germany/Rest of world
+
+[33mcommit b4cc94fc53b2ac1bd4ce5e0fa5461607c3b0cecd[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Mar 14 13:47:32 2024 +0000
+
+    Remove footer on global page
+
+[33mcommit ee6b89313594a0cf59156b14476a028a58adbd87[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Mar 14 13:39:36 2024 +0000
+
+    add all news page
+
+[33mcommit 3cce7caa110fbff3b8a634eb5fe08a3f068db819[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Mar 14 12:10:31 2024 +0000
+
+    Add individual news pages
+
+[33mcommit 36a64cd2ec2a6a0cc0b885b08caf5651ee1c91a8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 29 14:30:41 2024 +0000
+
+    Event card images and adress added
+
+[33mcommit 1e0501e208a384f46cd8c5d3a941618f1ba94062[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 28 15:33:11 2024 +0000
+
+    Add new carousel and star component
+
+[33mcommit 89f984b8b782d15359d74cd40606d5071b8944d6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 28 10:20:01 2024 +0000
+
+    Add locations to grid card
+
+[33mcommit 027e6c71a8446927db0da736830c710bff1c1a5c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 21 12:25:20 2024 +0000
+
+    Lazy load iframes
+
+[33mcommit 82b5eee14293da565b9f8cfdf8e9d5591f5f68f3[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 21 12:15:31 2024 +0000
+
+    Remove unused css and defer iubenda
+
+[33mcommit 4c30c3a1ff8e7fe1892d9688d2919873677847bf[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 21 11:46:30 2024 +0000
+
+    Lazy load contact form
+
+[33mcommit 7322d6120ba1541fcd70b56385f398ec886755a9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 21 11:10:11 2024 +0000
+
+    Increase hero fetch priorities
+
+[33mcommit 0759d992626032ad693f780c5673832123fbbb50[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 21 10:41:33 2024 +0000
+
+    Update image rendering
+
+[33mcommit 05b1d03f35689da8f998f92960874981fa4e4f30[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 16:38:02 2024 +0000
+
+    Re add alt
+
+[33mcommit b155e5e4ad3c901093d8f80d0721198b390845f8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 16:22:54 2024 +0000
+
+    Fix global page name
+
+[33mcommit 2e8d94972fa4d0a7174b5d68149f9dc437335c58[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 16:13:53 2024 +0000
+
+    fix: stop flash on locale change
+
+[33mcommit 50b853ef7e27d5498b4393640145081bf5f1b78e[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 15:39:54 2024 +0000
+
+    Tweaking padding and error checking
+
+[33mcommit b01156b200c19a18221225426c3106a982d61b50[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 14:25:37 2024 +0000
+
+    fix: add checks for locales
+
+[33mcommit 2a3a06527f108d08667723f710a327c16c6468e9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 13:55:02 2024 +0000
+
+    Reinstantiate key
+
+[33mcommit 9be708447c34fd781703e95b21556c6a4f6a4c15[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 13:50:02 2024 +0000
+
+    SSR rerouting fix
+
+[33mcommit b4afec78970d04d23c7c04f6892f9f502a22b9cb[m
+Merge: 9135f36 beb17a5
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 12:45:01 2024 +0000
+
+    Merge branch 'main' of https://github.com/overnice/cryptocity-nuxt
+
+[33mcommit 9135f363d53469bb1bf9a545086d501fc1cd8942[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 12:10:38 2024 +0000
+
+    Spacing updates
+
+[33mcommit beb17a5a20cb55f3aa783a1bf15712145553ef92[m
+Merge: 8f5c8a0 6906d9d
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Tue Feb 20 11:49:07 2024 +0000
+
+    Merge pull request #2 from overnice/feature/enable-ssr
+    
+    Enable SSR
+
+[33mcommit 6906d9dd9450d7e80f11fa7934654a7d8d2bb2c2[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 11:46:38 2024 +0000
+
+    update index meta
+
+[33mcommit f28058071e0e8aff161b4eaa29a703b09680d82a[m
+Merge: a312f37 8f5c8a0
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 11:33:22 2024 +0000
+
+    Merge branch 'main' into feature/enable-ssr
+
+[33mcommit 8f5c8a081c4a8bdfade795a61e5d63c4372deaa9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 11:21:01 2024 +0000
+
+    fix: add twitter card
+
+[33mcommit 488d09fa55b59846344462eca7559baf705c8193[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 11:20:02 2024 +0000
+
+    SEO Updates
+
+[33mcommit 99ab2e2184ce789f988321a6a1e76c10b706140a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 09:58:17 2024 +0000
+
+    fix: media carousel sizing
+
+[33mcommit d54452353c8edf2f0f06e3f886afaf90965e323b[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 09:45:22 2024 +0000
+
+    fix: add registered trademark to logos
+
+[33mcommit 0778fcb0f9ceff942ea8dfd4b6c7852e1de1569c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 09:31:03 2024 +0000
+
+    fix: accessibility improvements
+
+[33mcommit cf8c483e7b88a1ed49c68424e9d8bd3d56031ce5[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 20 08:51:40 2024 +0000
+
+    fix: update h1
+
+[33mcommit a312f370de4a67afbd55a38188de4e532ee7288d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 19 22:45:18 2024 +0000
+
+    Enable SSR
+    
+    Update setNavigation call to utilise useAsyncData. Current issue with SSR only rendering the'default' language
+
+[33mcommit fe8c612ef2fb91a666d33149619f475f06917abe[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 19 09:41:44 2024 +0000
+
+    Update Readme
+
+[33mcommit 9e9d05931e5c86bd84f2f24e2e7fa3e69ab5bb82[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 19 09:33:57 2024 +0000
+
+    Update Readme
+
+[33mcommit e78ab482d136beb5e3c4d06689d163ba7ff8e5d0[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 19 09:05:52 2024 +0000
+
+    Add state to regions
+
+[33mcommit da2e5ec2b43ed518058f37e8e3260264b23ec84a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Sun Feb 18 21:05:23 2024 +0000
+
+    Allow draft pages to be viewed and fix error message
+
+[33mcommit 25f53d6c68d9df6c7fde83c298586797bdbf13fa[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Sun Feb 18 20:53:46 2024 +0000
+
+    Add preview functionality
+
+[33mcommit 51a53d1d2893bf6f84281c44218ae8e00aa07f92[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 18:41:17 2024 +0000
+
+    Feat: add preview env variable
+    
+    Adding a NUXT_PUBLIC_DATO_DRAFT_PREVIEW env as 'true' will include all drafts
+
+[33mcommit 6d806587ce17643138e8512bd4ae8276990e917a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 18:25:07 2024 +0000
+
+    Clean up typescript files and remove comments
+
+[33mcommit fd158042b7a160e1f97b4b207b0f4cb437d52555[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 17:52:22 2024 +0000
+
+    Fix: update linting
+
+[33mcommit 56c0c82e142712013e20b03cd3a3cd7787687fc2[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 17:27:03 2024 +0000
+
+    Fix: Massive typescript refactor
+
+[33mcommit 29819692fd85a7fe5e667dbf986b8d1913616560[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 14:08:10 2024 +0000
+
+    update env naming
+
+[33mcommit fbc08d148844199ac9011aee03156d9669e7b751[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 13:40:51 2024 +0000
+
+    Fix: Update spinner animation for safari
+
+[33mcommit 71ab158c93fe1fc0161d910a2548715870240d06[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 13:28:37 2024 +0000
+
+    Fix: Page data error handling
+
+[33mcommit 63cd157fd46da83f5783a0efb1fe791abc067544[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 11:48:32 2024 +0000
+
+    Fix: iframe fullscreen button moved + loading state added
+
+[33mcommit db91f261ee9fbd507292dc97ff652addbd11687f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 10:28:06 2024 +0000
+
+    fix: stop nav logo showing static route name
+
+[33mcommit 96f5564c9fe7c0e0f5ec14107a265ea3642ec759[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 16 10:26:09 2024 +0000
+
+    Feature: Add navigation logo animation
+
+[33mcommit 1d126efa0d27268ddfa32474c7dabf0dc9a18f95[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 15:09:04 2024 +0000
+
+    Update error page
+
+[33mcommit daf34cafa807828e55cbb52164161e5d9b191ee9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 15:03:28 2024 +0000
+
+    add error page
+
+[33mcommit 4d7b19e4d0856e94300bdbbbb846866eb0c7ceae[m
+Merge: 52e09db 32eb1ae
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 14:56:14 2024 +0000
+
+    Merge branch 'main' of https://github.com/overnice/cryptocity-nuxt
+
+[33mcommit 52e09dba0c91091334a88eb8f1ad5d7ffa5c0897[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 14:54:30 2024 +0000
+
+    Update env naming
+
+[33mcommit 32eb1ae3028cc1ef25cf680b5817a3f3924033e4[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Thu Feb 15 14:51:56 2024 +0000
+
+    Update README.md
+
+[33mcommit 2c32222f302713b3e571e36213eb4912a77945b5[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 14:49:08 2024 +0000
+
+    Update readme
+
+[33mcommit 6950af4acbe041f18961ecddb018f0fd2dfb6edc[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 14:37:19 2024 +0000
+
+    Update initial redirection
+
+[33mcommit 0bf8b45315879ff96ea5cb49e0f3644208d039b6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 13:13:02 2024 +0000
+
+    Iframe rounding, video padding
+
+[33mcommit 1976b5f7f3a49147ed690d703d921d773ea8df2b[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 12:59:02 2024 +0000
+
+    Update overlay z-index
+
+[33mcommit c555f844dba61130ae6da28517aec8f901dbdb27[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 12:46:33 2024 +0000
+
+    fix class declaration error
+
+[33mcommit b911ba90a1f9678001491d5e3f0fd8ecbe90beb6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 12:44:44 2024 +0000
+
+    Add teleport to map fullscreen
+
+[33mcommit d5d36d5349306beeb50d5c293d9051bf0eacd982[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 12:33:22 2024 +0000
+
+    Remove language selector on global page
+
+[33mcommit 2769c746ca021cec7e022aa9521379cd0d6493a8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 12:04:24 2024 +0000
+
+    Remove region text
+
+[33mcommit 7d59bf2ec8003f152305b53744933bb88e2cad2d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 11:59:01 2024 +0000
+
+    Add unknown url redirect
+
+[33mcommit 6d5633892b882f648570375c7da129bd530c3a96[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 11:48:08 2024 +0000
+
+    Routes cleanup
+
+[33mcommit e61c936ca1528b9b2c94d798e781a9988872fe97[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 10:54:44 2024 +0000
+
+    Clean up repo
+
+[33mcommit 2758897c1c482ba5ac0f0246db8741eb51234798[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 10:31:46 2024 +0000
+
+    Add app versions of link
+
+[33mcommit 6c797117741925bbd7e916870d39af1c338e469f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 09:52:54 2024 +0000
+
+    Update region card with city names
+
+[33mcommit 86c14610655257de1e56e57c3e9d4a28857024ab[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 08:10:40 2024 +0000
+
+    Center homepage contact cta
+
+[33mcommit 1e52e4f656c539fce074dce6ba0c6e94a9d4ed8c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 15 08:03:19 2024 +0000
+
+    Update favicons
+
+[33mcommit c2145d0b6933519136ba2ea6e928c1687da4ad44[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 14 17:35:56 2024 +0000
+
+    Page transitions / media carousel
+    
+    Add in page transitions
+    
+    Simplify media carousel
+
+[33mcommit e301a6b6cfa0f03d754c6245e5e4126f27fc51cb[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 14 15:57:36 2024 +0000
+
+    Fix typo
+
+[33mcommit 1227af8bf8eba04e62962d75dc4d14af38c994df[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 14 15:46:26 2024 +0000
+
+    Update meta title
+
+[33mcommit a8a6923e4290bfb307200ab7598b2749b9479229[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 14 15:15:26 2024 +0000
+
+    Fixes
+    
+    - Iframe 'not loaded' state
+    - Partner logo component responsiveness
+    - Fix inability to spell the word business
+
+[33mcommit f1ccbccee2183b3ffe5e371794a3f1a91eb43eac[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 13 11:28:26 2024 +0000
+
+    Fix logo widths on iOS
+
+[33mcommit d964ce969122dd422c24b22f183217051300e960[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 13 09:45:36 2024 +0000
+
+    Hide mobile menu when link clicked
+
+[33mcommit 061f2dcb5652e3fd70d4f73fa45ff1b8c4aa2cc2[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 13 09:43:30 2024 +0000
+
+    Add 'coming soon' on small screens
+
+[33mcommit b9198648a16386036f794ddb58a98c6075f904e8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 13 09:16:58 2024 +0000
+
+    City carousel ammends and hero padding
+
+[33mcommit 6dc6cd90a5aa12838d47a1001450999049fac971[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 12 13:07:17 2024 +0000
+
+    Padding fixes
+
+[33mcommit 5d1b7a2f09ef7d760f2c00e470ff5c6b037850ff[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 12 12:58:01 2024 +0000
+
+    Update mobile nav
+
+[33mcommit e95ac1c228862bed8416e025ac23bca5430652dc[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 9 14:03:58 2024 +0000
+
+    Remove events for upcoming cities
+
+[33mcommit b04240cc26febc7cafeab91057c27d074810cc86[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 9 14:00:12 2024 +0000
+
+    Add title to starting grid
+
+[33mcommit 5c3b6d96f16e4a876a18077b0e1db3f4887a6da1[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 9 12:48:38 2024 +0000
+
+    Map Buisnesses update
+
+[33mcommit 232e662624d60cab704e934966a19c93b17dd9db[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 9 11:57:28 2024 +0000
+
+    Partner grid and hero padding ammends
+
+[33mcommit 30100d9a389ba3375a792c25e988f9faf5a86827[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 9 11:49:35 2024 +0000
+
+    Block padding ammendments
+
+[33mcommit 24401358bac13194e76c09320883746f6298ee28[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 9 11:41:31 2024 +0000
+
+    Card hover distance adjustments
+
+[33mcommit fa0ebea4044910d0c7c5f4f72b7621d7be7fb795[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 9 11:37:38 2024 +0000
+
+    Footer padding ammends
+
+[33mcommit aafa14e1424a5bdaf9d8748ad35e10e4b6513fa7[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 8 14:45:06 2024 +0000
+
+    Partner logos to full colour
+
+[33mcommit 143a4c8f9195963bffbcd0ec7cff740eeec0f7bd[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 8 09:36:03 2024 +0000
+
+    Add preliminary cookies banner to site
+
+[33mcommit 599ea5216955962d32d41ef771cf64d5e934cbd8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 7 21:16:13 2024 +0000
+
+    Update queries to account for status
+
+[33mcommit 924bf323db99be1257e9659281a23d45fb217956[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 7 21:09:33 2024 +0000
+
+    Update Carousels and Zig Zag component
+
+[33mcommit a2dd4ddec90522e4beb33e5abebbb81c2e3cefda[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 7 15:36:27 2024 +0000
+
+    Network and Beginner page content upload
+
+[33mcommit 10bd11ea48d767256db6c182733b9d4e8636dcf5[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 7 12:41:43 2024 +0000
+
+    Updates for merchant page
+    
+    Refactor simple link queries
+    Fixes for ZigZag Component
+
+[33mcommit 16e08b21d84560ceaea4bbe8aaec9a0d68df6fb5[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Feb 7 10:48:04 2024 +0000
+
+    Update
+    
+    Zig zag image sizings
+    Logos opacity
+    Events carousel alignment
+
+[33mcommit 834bc1428f2ef31bb175617b347ade3f2949107b[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 6 16:33:58 2024 +0000
+
+    Add contact form page
+
+[33mcommit 2c99ea0200cb8915d28083a081bc58d26f3cccaa[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 6 15:38:51 2024 +0000
+
+    Implement brand name
+
+[33mcommit 6f9e956278391c4f4204ca9157201b3f4818394c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 6 14:47:56 2024 +0000
+
+    Firefox bug fixes
+
+[33mcommit 991825da5e65650cce21da56966754a82a51dad4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 6 11:09:17 2024 +0000
+
+    Update live sites
+
+[33mcommit ad593a3b07a923dd78a4fe02201c27a81a0343c0[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Feb 6 08:29:46 2024 +0000
+
+    Kwadwo highlighted bugs
+
+[33mcommit ee9ca74a32e479fb895f75df2a515248347e0d7a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 5 23:36:43 2024 +0000
+
+    Fixes for extra cities/regions
+
+[33mcommit 8ee33a8475fe59a2e9ceddbf023973c02eece854[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 5 23:17:02 2024 +0000
+
+    Update background color model
+
+[33mcommit b1cbf214f8cd6688546d31ecad6528251c31e0f1[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Feb 5 12:31:21 2024 +0000
+
+    Mobile responsiveness fixes
+
+[33mcommit 59ffdd41c0093f5e78b02c1aec440fa29db4add3[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 16:20:38 2024 +0000
+
+    Update contact routes
+
+[33mcommit a35083270444d16c649da897ab170e8262c17ef4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 15:52:23 2024 +0000
+
+    New Starting Grid Compoennt
+
+[33mcommit e0f10be6df9c841fb4ffda77f3619f63276ea8f9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 15:09:00 2024 +0000
+
+    Fix event carousel alignment
+
+[33mcommit 4c9433c0f640f402792f2a43fe0106cb3b7219f9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 15:04:23 2024 +0000
+
+    Iframe error state
+
+[33mcommit 1d32295e58e93e16b504e2bed659eb4396279570[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 14:48:52 2024 +0000
+
+    Footer fixes
+
+[33mcommit d6cc9d973f9e2842aa85b9f1b8527030f792bce9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 14:03:17 2024 +0000
+
+    Quick text color fixes
+
+[33mcommit a27b849310bef32c14de75e956145521e77f992a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 12:24:54 2024 +0000
+
+    Update for cms
+
+[33mcommit 61d1cc4b5da55be36ae133a3df516c951e4c4bd2[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 11:59:24 2024 +0000
+
+    Remove need for static pages to be referenced in cms
+
+[33mcommit 9d54e671b13bc16d144e8b1a65cbb8e3209438ad[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 11:34:23 2024 +0000
+
+    Consolidate page head tilte code
+
+[33mcommit ccba7e09ed298b5f4e8479fad4dce76d821af987[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 11:27:25 2024 +0000
+
+    Update Favicons and titles
+
+[33mcommit 5b3dd7dbe22d3c1363d83059a4ece53749f63772[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Feb 2 10:27:29 2024 +0000
+
+    Add headline component
+
+[33mcommit 32d500dfeff4bfd172753034f0cdee85d1cb60c6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 16:51:27 2024 +0000
+
+    Add localisation and loading state
+
+[33mcommit 2456fe28adfebb3e8ebf78f6c3412a61550d2c67[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 15:04:51 2024 +0000
+
+    Remove localisation from nav bar
+
+[33mcommit d79919e42d70abf52fc8b8f6fad4469606ca246f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 15:02:50 2024 +0000
+
+    Add Haftungsausschluss!
+
+[33mcommit 4edeb4e17373799ca9388de675f1c10cc8ce003b[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 14:39:37 2024 +0000
+
+    Footer styling fixes
+
+[33mcommit 6f1eb7f0d8639d3dfb29bcf50651408f4bafd25d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 13:47:06 2024 +0000
+
+    Remove region carousel from global
+
+[33mcommit cee3d6500ee11201d2bf8247309cf7d9d12199d9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 12:52:03 2024 +0000
+
+    Clean up files
+
+[33mcommit 36e3e31556edeee080842d4ab97c0e343a244cd7[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 12:29:23 2024 +0000
+
+    Fix linting errors
+
+[33mcommit 04bf87e425359e8680e17063ccb05aed2b2d49a6[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 12:24:28 2024 +0000
+
+    Change all references to Country->Region
+
+[33mcommit f022c9a991c55632f0c80473e4373e4e0d48cc4e[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Feb 1 11:39:24 2024 +0000
+
+    Navigation highlighting and other fixes
+
+[33mcommit 69c8279f128b77c9eea3b6cb7ae459c091b3cfad[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 31 14:29:53 2024 +0000
+
+    Run global page based on published
+
+[33mcommit e260c18a34f71153408441935be9ba7a476f65be[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 31 13:53:36 2024 +0000
+
+    Team review fixes
+    
+    Partner logo colours
+    Detail Citu Card remove url
+    Dynamic logo errors
+    Footer dynamic logos added
+
+[33mcommit 2fe1e8a33af079e8ffa8c48b7ee12068075f8b5f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 31 13:39:13 2024 +0000
+
+    Update locaisation dropdown with local text
+
+[33mcommit e0e9df6876dc4b86e2aa65dc8206958b60e1cd5c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 31 12:37:01 2024 +0000
+
+    Update Half Image Hero
+    
+    Padding and text sizes
+
+[33mcommit 57c20d65df0630a96f868b18f6838a61218f0292[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 31 12:22:54 2024 +0000
+
+    Ammend Partner Model
+    
+    Remove label and badge fields
+    Left in code incase of future use case
+
+[33mcommit d8688f45606d2e636ef279cf850e0bf6fba0824f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 31 12:08:42 2024 +0000
+
+    Update global grid
+
+[33mcommit bb079d23994426c07159da4b4efa65347d074905[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 31 11:43:57 2024 +0000
+
+    Add dynamic logs and add grid component
+
+[33mcommit 3f5cea2fc54b3b31fdb971e1eae800da8d4abee9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 21:15:03 2024 +0000
+
+    Nav logo ammends
+
+[33mcommit bd71e275517eba0ca5187839b27cccd4d1e76664[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 21:04:48 2024 +0000
+
+    Add navigation dynamic logo
+
+[33mcommit 1839ff0057a15e9ccb2f545bd12e334bde9a35e9[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 20:38:36 2024 +0000
+
+    Fix string error
+
+[33mcommit 9a55745113a9edc77b7af15aa0f019c070bfe171[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 20:36:06 2024 +0000
+
+    Add city carousel
+
+[33mcommit 2a034c7d1c33a096f50b24f7700077a07f866aca[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 19:34:09 2024 +0000
+
+    remove prerender routes
+
+[33mcommit f5bd12c08457711aed87ed92eb4aeba7394acac4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 18:30:51 2024 +0000
+
+    Attempt cache clearing
+
+[33mcommit 4954bfe3ba69629e689005d7f956518883482a8a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 18:14:59 2024 +0000
+
+    Experimental fix, add $fetch
+
+[33mcommit 1a7ed3022b4f9d813529cccfb56e5bead4294b31[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 18:02:11 2024 +0000
+
+    Update request
+    
+    Experimental fix for gql requests
+
+[33mcommit 6c9ef60fdeed3a69fe5457530eec7200a80f535c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 16:51:53 2024 +0000
+
+    cleanup queries
+
+[33mcommit 7da4f4dec215aa73f18688160003d9bd647ae880[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 16:12:11 2024 +0000
+
+    Add homepage for global url
+
+[33mcommit 693ec4dc1b1347fc57a2ad03375f4ef6d0477df3[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 10:00:15 2024 +0000
+
+    Remove page transition
+
+[33mcommit 33af00e5c0fbb791f43f34c35613c12b760039cf[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 08:53:12 2024 +0000
+
+    Fix for language routing
+
+[33mcommit 8852c6a7ea9ee9a5012159d83e6b03e5b8592abd[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 30 08:49:42 2024 +0000
+
+    Fix local city issue
+
+[33mcommit c6f25fe39e53f2a47b647b5671defa8aae709df8[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 17:31:15 2024 +0000
+
+    Fixes for carousels
+    
+    These all need to be merged
+
+[33mcommit d199863636777fbc77afbe329945c89e210ed1f0[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 15:21:34 2024 +0000
+
+    Iframe fullscreen toggle
+
+[33mcommit c1e9bfad70e3e47b555bcfe800351aa5c2c7eaca[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 14:58:55 2024 +0000
+
+    Add iframe component
+
+[33mcommit 05b9e5e8fb7e692f73a0dcdf92cbbf6231c2fe75[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 14:38:55 2024 +0000
+
+    Events carousel
+
+[33mcommit 9638539bd88d0552d19372384766d42f7243a0b4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 13:13:39 2024 +0000
+
+    Refactor partner grid
+
+[33mcommit 6fab2b04373055e15bee065de11298832724c802[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 13:09:39 2024 +0000
+
+    Refactor network partners data
+
+[33mcommit c3d266b4ef544381bdf7a4dd4827a41a1387f1fe[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 11:44:50 2024 +0000
+
+    add partner hero to city page
+
+[33mcommit 8196f4d74580e4fb17a9559a0296475e9be789ff[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 11:19:22 2024 +0000
+
+    Add cities carousel and fallbacks
+
+[33mcommit a959de8afceefef5b90c6de7c861415ee0e9489d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 09:22:27 2024 +0000
+
+    Footer and navigation styling
+
+[33mcommit 3d55861fb36944a73d88915c45c252660af69a00[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 29 08:49:52 2024 +0000
+
+    Update footer styling
+
+[33mcommit 45f04972a53a53b32f66d78530e541f133361886[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 17:20:07 2024 +0000
+
+    Add mobiel menu
+
+[33mcommit 78ff70fb9ce0b2f3fa6e327a684bc0ad3b098c3d[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 17:05:30 2024 +0000
+
+    Add cookies, data protection and impressum connections
+
+[33mcommit 326be40fbfede3bc2f9f49943000b958a21ef824[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 16:22:18 2024 +0000
+
+    More routing issues
+
+[33mcommit 548021ecf14253094d6c004e04b70edd2ec2fc52[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 15:22:23 2024 +0000
+
+    Test push for vercel
+
+[33mcommit 6be57548f56f1659b1ae2074cb20662bfa4f8c8d[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:20:19 2024 +0000
+
+    Delete graphql/networkPage.js
+
+[33mcommit 90c7cdb18799ad5d1b5edc719f3a77bd3032527c[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:20:12 2024 +0000
+
+    Delete graphql/merchantPage.js
+
+[33mcommit b5827d17bcaebe8c78a0b27ee0f2b418a67cc67b[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:19:55 2024 +0000
+
+    Delete graphql/homepage.js
+
+[33mcommit 9589998db01fdc8531b1e571c1ef36f4e1408f52[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:19:45 2024 +0000
+
+    Delete graphql/footer.js
+
+[33mcommit 2393394ec5ce5d5f3c3eac864bc6aee86d073f5c[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:19:35 2024 +0000
+
+    Delete graphql/city.js
+
+[33mcommit 191426641bd4395103b7fa029cf1564848213891[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:19:27 2024 +0000
+
+    Delete graphql/citiesByCountry.js
+
+[33mcommit 0e9f68c9bd7d1965ecaaa1d854fd313cf9074b79[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:19:18 2024 +0000
+
+    Delete graphql/beginnerPage.js
+
+[33mcommit 149fb2296c4e02df81b4bbfb25004ae8d058b5ac[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:19:09 2024 +0000
+
+    Delete graphql/allCities.js
+
+[33mcommit 5a39381d332f93a2ecfe26010e6a2a884d62611b[m
+Author: Jon Snow <47143928+therealJonSnow@users.noreply.github.com>
+Date:   Fri Jan 26 15:18:57 2024 +0000
+
+    Delete graphql/aboutPage.js
+
+[33mcommit f62ffa193dfdc6e58651c2383faf700b7d12d5dd[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 15:15:42 2024 +0000
+
+    Add files, case sensitive
+
+[33mcommit 1f3463a8768111958f992f7d3f7c3a1ed2783982[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 15:13:25 2024 +0000
+
+    Casing attempt to fix Vercel
+
+[33mcommit 821678bf62999a6f98d4be2ddef5a649abbc3e42[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 15:00:23 2024 +0000
+
+    Fix city navigation
+
+[33mcommit 312d0782ae4e59371095d4f38db6792dc35d8f76[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 14:49:48 2024 +0000
+
+    Navigation fixes
+
+[33mcommit 8d93ebc8369a2d6188d30671a354fa842695c199[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 14:05:32 2024 +0000
+
+    Fix directory structure
+
+[33mcommit 3ede00d916561183c0e4361b8f27efb0ccd23d69[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 12:44:05 2024 +0000
+
+    Localisation routing
+
+[33mcommit 92ede757a485f8b611efa1f1c86476dc3cf34857[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 12:00:16 2024 +0000
+
+    Update routing for localisation
+
+[33mcommit 69043e59e5a845e4227f437e1e0ccf3b53213c16[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 26 09:45:06 2024 +0000
+
+    Add navigation locales
+
+[33mcommit 3aef1682b03ad06a329364504bff80394db738e2[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 25 17:35:37 2024 +0000
+
+    About page creation
+
+[33mcommit 766d6692228b0b41036707a8d00eb914420073de[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 25 15:00:03 2024 +0000
+
+    add js extensions
+
+[33mcommit fb285dfc2f0902fb42a570ae5c3f6a23e0d7b42f[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 25 14:34:15 2024 +0000
+
+    Add prerender
+
+[33mcommit 5a9b3c22af55eec04389e3844bf01508ad55a7b5[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 25 14:25:11 2024 +0000
+
+    update pathing
+
+[33mcommit 439286cf28152878eda564fa6835971564f542c3[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 25 14:22:10 2024 +0000
+
+    Refactor and types
+
+[33mcommit ceb2f4327cd4688d740c5915a28f059a943d3f29[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 25 11:46:21 2024 +0000
+
+    Fix (nearly) all typescript issues
+
+[33mcommit c8a9c1f6eca211f88ed3fd5ef0cf4dca6a722514[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 24 20:56:12 2024 +0000
+
+    Graphql call refactor
+    
+    - Moved block calls into own functions for reusability
+
+[33mcommit 1d0dd0b23cc92d19ca54c166fe8e286e1c557722[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 24 16:08:40 2024 +0000
+
+    Basic contact form
+
+[33mcommit cd2ccee49a223958eadf4a983a878aa5ea68a81c[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 24 15:25:46 2024 +0000
+
+    Fixes for Dato update
+
+[33mcommit 8c99c3a019708de922febed237bf34b8a56993bf[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 23 16:55:00 2024 +0000
+
+    Add Partner Grid component
+
+[33mcommit c78c63267926d7140a4b7ab87830607f70f43065[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 23 14:00:24 2024 +0000
+
+    Finish beginner page
+    
+    -Add video to Zig Zag component
+    - Add ZigZag and grid to graphql requests
+
+[33mcommit fc4cc0d6604f159a3b174f3ab5a56bf291601888[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Tue Jan 23 12:00:36 2024 +0000
+
+    Add media carousel component
+
+[33mcommit d03b8aefb28a2287abe093d3c9776b01ada6fdf7[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 22 15:06:00 2024 +0000
+
+    Basic half image hero implementation
+    
+    TODO: Contact form variant
+
+[33mcommit 50b817d7fae4cdaf3ba9ae23cf5367d14846ff81[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 22 13:55:59 2024 +0000
+
+    Basic grid component creation
+
+[33mcommit 6297df14cf5de6bdc3cc5fbb1a9cea00e3524c38[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 22 13:32:56 2024 +0000
+
+    ZigZag Content component
+
+[33mcommit 37979dad3f445b2b5627f16130523e8f0bf919fc[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 22 11:34:11 2024 +0000
+
+    Refactor component padding/rendering
+
+[33mcommit 340cb126a057abdedaebf95a10c839178d79c2df[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 22 11:16:06 2024 +0000
+
+    Add localisation to static pages
+
+[33mcommit 531d0359b295e2e70cd393f1aa3c3cfb45215894[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Mon Jan 22 11:00:09 2024 +0000
+
+    Add tilted video component
+
+[33mcommit cf401f6002557907e09f24b04e12784082d45305[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 19 11:57:25 2024 +0000
+
+    Move cities to load by country
+    
+    No longer need to define cities within each homepage. Then are dynamically loaded by the component based on the domain country
+
+[33mcommit 2e0d5f90372ecb1f2e5c86c8fd17858ef46ea0e4[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 19 11:02:51 2024 +0000
+
+    Localization for footer
+
+[33mcommit d1755c40ec812902ea67d975f78fb8927e0b091a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Fri Jan 19 10:37:48 2024 +0000
+
+    basic localization implemented
+
+[33mcommit fe52ea23a9202f9d75372a98465c226867aada68[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 18 17:46:40 2024 +0000
+
+    Base Pages and api queries added
+
+[33mcommit 9dfa4b5085f34fec1d158c1edb1545ae95d56bec[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 18 12:59:15 2024 +0000
+
+    Basic card carousel
+
+[33mcommit 1541a23a32a53e26666c57e423aca3e4038d2292[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Thu Jan 18 11:58:01 2024 +0000
+
+    Setup for dynamic components
+
+[33mcommit df1ea0b6b1e38e56cb38f0dc5096ed955553a67a[m
+Author: Jon Snow <jonny96snow@googlemail.com>
+Date:   Wed Jan 17 17:12:53 2024 +0000
+
+    Initial Commit
