@@ -78,6 +78,11 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
     }
   }
 
+  // Exclude locations with names that contain any of the following strings
+  const ignoreLocationsNames = [
+    'paróquia', 'nossa senhora'
+  ]
+
   const citiesDatabase: Record<string, string> = {
     'Muenchen': 'Munich',
     'Zuerich': 'Zurich',
@@ -107,7 +112,11 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
       loadingLocations.value = false
       return
     }
-    locations.value[cityName] = locations.value[cityName]?.concat(res.data) || res.data
+
+    const allLocations = locations.value[cityName]
+      .filter(location => !location.photo)
+      .filter(location => !ignoreLocationsNames.some(name => location.name.toLowerCase().includes(name)))
+    locations.value[cityName] = locations.value[cityName]?.concat(allLocations) || allLocations
     locationsCount.value[cityName] = res.pagination.total_items
     if (!fetchedPages.value[cityName]) {
       fetchedPages.value[cityName] = { pages: new Set(), totalPages: res.pagination.total_pages }
