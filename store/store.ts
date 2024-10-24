@@ -113,8 +113,8 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
       return
     }
 
-    const allLocations = locations.value[cityName]
-      .filter(location => !location.photo)
+    const allLocations = res.data
+      .filter(location => location.photo)
       .filter(location => !ignoreLocationsNames.some(name => location.name.toLowerCase().includes(name)))
     locations.value[cityName] = locations.value[cityName]?.concat(allLocations) || allLocations
     locationsCount.value[cityName] = res.pagination.total_items
