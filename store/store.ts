@@ -46,6 +46,7 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
     translations: undefined as JSON | undefined
   })
   const locations = ref<Record<string, Location[]>>({})
+  const locationsCount = ref<Record<string, number>>({})
   const loadingLocations = ref(false)
   const fetchedPages = ref<Record<string, { pages: Set<number>, totalPages: number }>>({})// Map of fetched pages by city name
 
@@ -106,6 +107,7 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
       return
     }
     locations.value[cityName] = locations.value[cityName]?.concat(res.data) || res.data
+    locationsCount.value[cityName] = res.pagination.total_items
     if (!fetchedPages.value[cityName]) {
       fetchedPages.value[cityName] = { pages: new Set(), totalPages: res.pagination.total_pages }
     }
@@ -120,6 +122,7 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
     pages,
     localization,
     locations,
+    locationsCount,
     getLocations,
     fetchedPages,
     hasCityFetchedAllLocations: computed<Record<string, boolean>>(() => {
