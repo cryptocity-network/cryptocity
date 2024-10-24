@@ -63,6 +63,7 @@
             ref="slides"
             class="w-[clamp(320px,370px,calc(100vw-40px))] shrink-0 snap-center snap-always"
             data-location
+            :data-location-uuid="location.uuid"
           >
             <TheCard
               :title="location.name"

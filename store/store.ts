@@ -19,6 +19,7 @@ interface Location {
   address: string
   enabled: boolean
   category: string
+  uuid: string
 }
 
 interface LoadLocationsByCityOptions {
