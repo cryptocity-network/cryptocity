@@ -79,6 +79,7 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
   const citiesDatabase: Record<string, string> = {
     'Muenchen': 'Munich',
     'Zuerich': 'Zurich',
+    'São_Paulo': 'SaoPaulo',
   }
   async function loadLocationsByCity({ cityName, page = 1 }: LoadLocationsByCityOptions) {
     const _supabaseCityName = cityName.replace(/-/g, ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace(/ /g, '_')
