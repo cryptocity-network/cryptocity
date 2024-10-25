@@ -1,3 +1,5 @@
+import ResponsiveImage from './ResponsiveImage'
+
 export function getRegionQuery (locale) {
   const pageFields = (navigationLabel = true) => `
         id
@@ -38,6 +40,17 @@ export function getRegionQuery (locale) {
           }
           _allReferencingCities {
             name
+          }
+          paymentOptions {
+            id
+            fees
+            acceptedCrypto
+            logo {
+              ${ResponsiveImage()}
+            }
+            nimiqPay
+            payment
+            releaseDate
           }
           partners {
             companyName

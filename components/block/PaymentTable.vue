@@ -7,12 +7,12 @@
   >
     <table
       class="merchants-table"
-      :style="`--cols: ${tableData.length}; --rows: ${Object.keys(tableData[0]).length - 2};`"
+      :style="`--cols: ${paymentOptions.length}; --rows: ${Object.keys(paymentOptions[0]).length - 2};`"
     >
       <div class="test" />
       <tr>
         <th />
-        <th v-for="item in tableData" :key="item.id">
+        <th v-for="item in paymentOptions" :key="item.id">
           <DatoImage
             v-if="item.logo"
             :image="item.logo"
@@ -23,7 +23,7 @@
       </tr>
       <tr>
         <td>{{ axisData.acceptedCryptoCurrencies }}</td>
-        <td v-for="item in tableData" :key="item.id">
+        <td v-for="item in paymentOptions" :key="item.id">
           <div class="flex gap-4">
             <svg
               v-if="item.acceptedCrypto.includes('btc')"
@@ -115,7 +115,7 @@
       </tr>
       <tr>
         <td>{{ axisData.fees }}</td>
-        <td v-for="item in tableData" :key="item.id">
+        <td v-for="item in paymentOptions" :key="item.id">
           {{ item.fees }}
         </td>
       </tr>
@@ -176,7 +176,7 @@
             </div>
           </div>
         </td>
-        <td v-for="item in tableData" :key="item.id" class="z-1">
+        <td v-for="item in paymentOptions" :key="item.id" class="z-1">
           <svg
             v-if="item.nimiqPay"
             width="21"
@@ -205,13 +205,13 @@
       </tr>
       <tr>
         <td>{{ axisData.releaseDate }}</td>
-        <td v-for="item in tableData" :key="item.id">
+        <td v-for="item in paymentOptions" :key="item.id">
           {{ item.releaseDate }}
         </td>
       </tr>
       <tr>
         <td>{{ axisData.payment }}</td>
-        <td v-for="item in tableData" :key="item.id">
+        <td v-for="item in paymentOptions" :key="item.id">
           {{ item.payment }}
         </td>
       </tr>
@@ -224,8 +224,11 @@
 
 <script lang="ts" setup>
 
+import { useWebsiteStore } from '../../store/store'
 import AppleStore from '@/assets/Apple-store-square.svg'
 import PlayStore from '@/assets/Play-store-square.svg'
+import type { PaymentOption } from '@/types/dato-models/PaymentOption'
+
 const props = defineProps({
   data: {
     type: Object,
@@ -241,8 +244,11 @@ const props = defineProps({
     default: 'white'
   }
 })
-const tableData = computed(() => {
-  return props.data.table.table
+
+const store = useWebsiteStore()
+
+const paymentOptions = computed(() => {
+  return store.region?.paymentOptions as Array<PaymentOption>
 })
 
 const axisData = computed(() => {

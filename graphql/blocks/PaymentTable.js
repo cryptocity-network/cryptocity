@@ -1,20 +1,20 @@
-import ResponsiveImage from '../ResponsiveImage'
+// import ResponsiveImage from '../ResponsiveImage'
+// table {
+//   id
+//   fees
+//   acceptedCrypto
+//   logo {
+//     ${ResponsiveImage()}
+//   }
+//   nimiqPay
+//   payment
+//   releaseDate
+// }
 import baseBlockValues from './blockValues'
 export default () => {
   return `
     ${baseBlockValues()}
     table {
-      table {
-        id
-        fees
-        acceptedCrypto
-        logo {
-          ${ResponsiveImage()}
-        }
-        nimiqPay
-        payment
-        releaseDate
-      }
       axis {
         releaseDate
         payment

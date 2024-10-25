@@ -1,5 +1,7 @@
 import type { Page } from '@/types/dato-models/Page'
 import type { Partner } from '@/types/dato-models/Partner'
+import type { PaymentOption } from '@/types/dato-models/PaymentOption'
+
 export interface Region {
     id?: string,
     _locales: [string],
@@ -36,4 +38,5 @@ export interface Region {
     partners?: Array<Partner>,
     socialLinks?: SocialLinks,
     pages: Array<Page>
+    paymentOptions: Array<PaymentOption>
 }

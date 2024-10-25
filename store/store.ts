@@ -51,11 +51,11 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
   const loadingLocations = ref(false)
   const fetchedPages = ref<Record<string, { pages: Set<number>, totalPages: number }>>({})// Map of fetched pages by city name
 
-  function getLocations(cityName: string) {
+  function getLocations (cityName: string) {
     return locations.value[cityName] || undefined
   }
 
-  async function setNavigation(isGlobalPage: boolean | undefined) {
+  async function setNavigation (isGlobalPage: boolean | undefined) {
     if (isGlobalPage) {
       const QUERY = globalPage()
       const { data: { value: body } } = await useGraphqlQuery(QUERY) as AsyncData<DatoGlobalResponse, RTCError>
@@ -84,11 +84,11 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
   ]
 
   const citiesDatabase: Record<string, string> = {
-    'Muenchen': 'Munich',
-    'Zuerich': 'Zurich',
-    'São_Paulo': 'Sao_Paulo',
+    Muenchen: 'Munich',
+    Zuerich: 'Zurich',
+    São_Paulo: 'Sao_Paulo'
   }
-  async function loadLocationsByCity({ cityName, page = 1 }: LoadLocationsByCityOptions) {
+  async function loadLocationsByCity ({ cityName, page = 1 }: LoadLocationsByCityOptions) {
     const _supabaseCityName = cityName.replace(/-/g, ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace(/ /g, '_')
     const supabaseCityName = citiesDatabase[_supabaseCityName] || _supabaseCityName
 
