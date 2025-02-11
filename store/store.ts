@@ -85,6 +85,7 @@ export const useWebsiteStore = defineStore('websiteStore', () => {
 
   const citiesDatabase: Record<string, string> = {
     Muenchen: 'Munich',
+    'München': 'Munich',
     Zuerich: 'Zurich',
     São_Paulo: 'Sao_Paulo'
   }
