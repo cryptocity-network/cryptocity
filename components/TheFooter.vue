@@ -63,6 +63,101 @@
             />
           </nuxt-link>
         </div>
+        <div v-if="region?.socialLinks?.facebook || region?.socialLinks?.facebook || region?.socialLinks?.linkedIn || region?.socialLinks?.whatsapp || region?.socialLinks?.telegram || region?.socialLinks?.youtube || region?.socialLinks?.discord || region?.socialLinks?.instagram" class="flex flex-col">
+          <div class="mb-12 text-15 font-bold text-blue-dark/60">
+            Join our Social Channels!
+          </div>
+          <ul v-if="region?.socialLinks" class="flex gap-24 sm:gap-32">
+            <li
+              v-if="region?.socialLinks.twitter"
+            >
+              <SocialLink
+                :social-media="{
+                  name: 'twitter',
+                  key: 'twitter',
+                  url: `${region.socialLinks.twitter}`,
+                }"
+              />
+            </li>
+            <li
+              v-if="region?.socialLinks.facebook"
+            >
+              <SocialLink
+                :social-media="{
+                  name: 'facebook',
+                  key: 'facebook',
+                  url: `${region.socialLinks.facebook}`,
+                }"
+              />
+            </li>
+            <li
+              v-if="region?.socialLinks.instagram"
+            >
+              <SocialLink
+                :social-media="{
+                  name: 'instagram',
+                  key: 'instagram',
+                  url: `${region.socialLinks.instagram}`,
+                }"
+              />
+            </li>
+            <li
+              v-if="region?.socialLinks.pintrest"
+            >
+              <SocialLink
+                :social-media="{
+                  name: 'pintrest',
+                  key: 'pintrest',
+                  url: `${region.socialLinks.pintrest}`,
+                }"
+              />
+            </li>
+            <li
+              v-if="region?.socialLinks.youtube"
+            >
+              <SocialLink
+                :social-media="{
+                  name: 'youtube',
+                  key: 'youtube',
+                  url: `${region.socialLinks.youtube}`,
+                }"
+              />
+            </li>
+            <li
+              v-if="region?.socialLinks.linkedIn"
+            >
+              <SocialLink
+                :social-media="{
+                  name: 'linkedin',
+                  key: 'linked_in',
+                  url: `${region.socialLinks.linkedIn}`,
+                }"
+              />
+            </li>
+            <li
+              v-if="region?.socialLinks.tikTok"
+            >
+              <SocialLink
+                :social-media="{
+                  name: 'tiktok',
+                  key: 'tiktok',
+                  url: `${region.socialLinks.tikTok}`,
+                }"
+              />
+            </li>
+            <li
+              v-if="region?.socialLinks.telegram"
+            >
+              <SocialLink
+                :social-media="{
+                  name: 'telegram',
+                  key: 'telegram',
+                  url: `${region.socialLinks.telegram}`,
+                }"
+              />
+            </li>
+          </ul>
+        </div>
         <div class="flex flex-col gap-8 text-blue-dark/60 ">
           <StructuredText
             class="footer-prose"
@@ -135,7 +230,6 @@ import FooterQuery from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
 import PaymentOptions from '@/static/icons/payment-options.svg'
 import type { DynamicLogo } from '#build/components'
-// import type { Region } from '@/types/dato-models/Region'
 import type { Footer } from '@/types/dato-models/Footer'
 defineProps({
   backgroundColor: {

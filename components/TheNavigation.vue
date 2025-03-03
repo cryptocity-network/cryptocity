@@ -2,7 +2,7 @@
   <header
     v-if="pages && !onGlobalPage"
     ref="root$"
-    class="fixed left-0 top-16 z-50 mt-0 w-full px-16 transition-opacity"
+    class="fixed left-0 top-16 z-[90] mt-0 w-full px-16  transition-opacity"
     :class="[{
       'pointer-events-none opacity-0': localState.isScrolled,
       'pointer-events-auto !opacity-100': localState.isSticky,
@@ -53,7 +53,7 @@
   <header
     v-else
     ref="root$"
-    class="fixed left-0 top-16 z-50 mt-0 w-full px-16 transition-opacity"
+    class="fixed left-0 top-16 z-[90] mt-0 w-full px-16 transition-opacity"
     :class="[{
       'pointer-events-none opacity-0': localState.isScrolled,
       'pointer-events-auto !opacity-100': localState.isSticky,

@@ -5,6 +5,7 @@ export interface City {
     _seoMetaTags: Array<SeoMetaTag>,
     backgroundColors: Object,
     heroSection: Object,
+    tv: Object,
     startingGrid: Object,
     partnersHeadline: Object,
     partnerLogos: Object,

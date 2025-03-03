@@ -15,7 +15,7 @@
         :subline="data.subline"
         :email="socialLinks.email"
         :telegram="socialLinks.telegram"
-        :linkedin="socialLinks.linkedin"
+        :linkedin="socialLinks.linkedIn"
       />
       <iframe
         aria-label="Contact form"

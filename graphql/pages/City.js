@@ -2,6 +2,7 @@ import HeroSection from '../blocks/HeroSection'
 import CityGrid from '../blocks/CityGrid'
 import PartnerLogos from '../blocks/PartnerLogos'
 import EventsCarousel from '../blocks/EventsCarousel'
+import TV from '../blocks/TV'
 import Iframe from '../blocks/Iframe'
 import Headline from '../blocks/Headline'
 import StartingGrid from '../blocks/StartingGrid'
@@ -23,6 +24,9 @@ export default (citySlug, locale) => {
       }
       iframe {
         ${Iframe()}
+      }
+      tv {
+        ${TV()}
       }
       mapBusinesses {
         ${MapBusiness()}

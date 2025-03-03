@@ -64,6 +64,7 @@
         :background-color="backgroundColorArray?.[index]"
       />
     </template> -->
+    <BlockTV v-if="pageData.tv" :data="pageData.tv" :index="2" :background-color="backgroundColorArray?.[1]" />
   </main>
   <ErrorMessage v-else-if="!data.city" />
 </template>

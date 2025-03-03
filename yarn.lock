@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.0.4.tgz#9606eb651955499525d068ce0ad8bea596286ce2"
   integrity sha512-W3ezhHGfO0MS1PtGloaTpg0PbaT8aZSmmaerL7idtU5F7oCI+uu25k+MsMS31BVFlp4aMkHSrNRxiD72IlK8TA==
 
+"@0no-co/graphql.web@^1.0.11":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.0.13.tgz#978f4d3a869240f2d487fa1c1009028b34bc33b5"
+  integrity sha512-jqYxOevheVTU1S36ZdzAkJIdvRp2m3OYIG5SEoKDw5NI8eVwkoI0D/Q3DYNGmXCxkA6CQuoa7zvMiDPTLqUNuw==
+
 "@aashutoshrathi/word-wrap@^1.2.3":
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
@@ -369,6 +374,13 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/utilities/-/utilities-1.0.0.tgz#42f3c213f2fb929324d465684ab9f46a0febd4bb"
   integrity sha512-tAgvZQe/t2mlvpNosA4+CkMiZ2azISW5WPAcdSalZlEjQvUfghHxfQcrCiK/7/CrfAWVxyM88kGFYO82heIGDg==
+
+"@datocms/cda-client@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@datocms/cda-client/-/cda-client-0.2.5.tgz#49e89b8b8b5316312e46e0eecebd74052ef9ece1"
+  integrity sha512-oBO4L/roXtUXsQIfweITAW9KSiu4+Hes7gL0h9R8NiM0zfskUkEdllyVqVe7K/dQB5IT2DPJAbFbCaIeSwX8qQ==
+  dependencies:
+    "@0no-co/graphql.web" "^1.0.11"
 
 "@esbuild/aix-ppc64@0.20.2":
   version "0.20.2"

@@ -28,6 +28,10 @@
       v-if="socialMediaData.key === 'youtube'"
       class="youtube"
     />
+    <PintrestLogo
+      v-if="socialMediaData.key === 'pintrest'"
+      class="pintrest"
+    />
 
     <InstagramLogo
       v-if="socialMediaData.key === 'instagram'"
@@ -54,6 +58,11 @@
       class="github"
     />
 
+    <TikTokLogo
+      v-if="socialMediaData.key === 'tiktok'"
+      class="tiktok"
+    />
+
     <LinkedInLogo
       v-if="socialMediaData.key === 'linked_in'"
       class="linkedin"
@@ -72,18 +81,20 @@
 </template>
 
 <script lang="ts" setup>
-import TwitterLogo from '@/static/logos/twitter.svg'
+import TwitterLogo from '@/static/logos/twitter-new.svg'
 import RedditLogo from '@/static/logos/reddit.svg'
-import FacebookLogo from '@/static/logos/facebook.svg'
-import YouTubeLogo from '@/static/logos/youtube.svg'
-import InstagramLogo from '@/static/logos/instagram.svg'
+import FacebookLogo from '@/static/logos/facebook-new.svg'
+import YouTubeLogo from '@/static/logos/youtube-new.svg'
+import InstagramLogo from '@/static/logos/instagram-new.svg'
 import DiscordLogo from '@/static/logos/discord.svg'
-import TelegramLogo from '@/static/logos/telegram.svg'
+import TelegramLogo from '@/static/logos/telegram-new.svg'
 import NimiqForumLogo from '@/static/logos/nimiq-forum.svg'
 import GithubLogo from '@/static/logos/github.svg'
-import LinkedInLogo from '@/static/logos/linkedin.svg'
+import LinkedInLogo from '@/static/logos/linkedin-new.svg'
 import EmailLogo from '@/static/logos/email.svg'
 import WhatsappLogo from '@/static/logos/whatsapp.svg'
+import PintrestLogo from '@/static/logos/pintrest-new.svg'
+import TikTokLogo from '@/static/logos/tiktok-new.svg'
 
 const props = defineProps({
   socialMedia: {
@@ -201,14 +212,16 @@ if (props.socialMediaKey) {
 .facebook,
 .linkedin,
 .instagram,
+.pintrest,
+.tiktok,
 .telegram {
-  @apply h-22;
+  @apply h-28;
 }
 
 .twitter,
 .nimiq-forum,
 .discord,
 .github {
-  @apply h-24;
+  @apply h-28;
 }
 </style>

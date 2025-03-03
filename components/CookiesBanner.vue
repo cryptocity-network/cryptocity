@@ -12,7 +12,7 @@ onMounted(() => {
   // @ts-ignore
   window._iub.csConfiguration = {
     askConsentAtCookiePolicyUpdate: true,
-    floatingPreferencesButtonDisplay: 'anchored-bottom-right',
+    floatingPreferencesButtonDisplay: 'anchored-bottom-left',
     lang,
     perPurposeConsent: true,
     siteId: 3331742,

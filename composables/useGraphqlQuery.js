@@ -1,4 +1,27 @@
-export default (query) => {
+import { buildRequestInit } from '@datocms/cda-client'
+
+export default (query, options) => {
+  const optionsWithToken = {
+    ...options,
+    token: useRuntimeConfig().public.DATO_TOKEN
+  }
+
+  return useFetch('https://graphql.datocms.com/', {
+    ...buildRequestInit(query, optionsWithToken),
+    key: JSON.stringify([query, optionsWithToken]),
+    transform: ({ data, errors }) => {
+      if (errors) {
+        throw new Error(
+          `Something went wrong while executing the query: ${JSON.stringify(errors)}`
+        )
+      }
+
+      return data
+    }
+  })
+}
+
+export function OldUseQuery (query) {
   const runtimeConfig = useRuntimeConfig()
   const key = JSON.stringify(query)
   const datoApiUrl = 'https://graphql.datocms.com'

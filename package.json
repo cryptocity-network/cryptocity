@@ -30,6 +30,7 @@
     "vue-tsc": "^1.8.27"
   },
   "dependencies": {
+    "@datocms/cda-client": "^0.2.5",
     "@mux/mux-player": "^2.6.0",
     "@nuxtjs/robots": "^3.0.0",
     "highlight.js": "^11.9.0",

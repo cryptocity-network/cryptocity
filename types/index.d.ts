@@ -43,9 +43,17 @@ interface Component {
 interface SocialLinks {
   role: string,
   name: string,
-  email: string,
+  youtube: string,
+  whatsapp: string,
+  twitter: string,
   telegram: string,
-  linkedin: string,
+  linkedIn: string,
+  instagram: string,
+  facebook: string,
+  tikTok: string,
+  pintrest: string,
+  email: string,
+  discord: string,
   image: Object,
   logo: Object
 }

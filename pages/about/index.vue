@@ -33,7 +33,6 @@
         :page-response="pageData"
         :background-color="pageData.backgroundColors?.carouselHeadline"
       />
-
       <BlockAllRegionsCarousel
         :data="pageData.allCitiesCarousel"
         :index="1"

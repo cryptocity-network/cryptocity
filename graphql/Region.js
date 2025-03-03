@@ -74,10 +74,15 @@ export function getRegionQuery (locale) {
             }
           }
           socialLinks {
+            youtube
             twitter
+            tikTok
             telegram
-            email
+            pintrest
             linkedIn
+            instagram
+            facebook
+            email
           }
         }
         translation(locale: ${locale}) {
