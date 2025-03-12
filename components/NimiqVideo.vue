@@ -34,6 +34,7 @@
       <template v-else-if="thumbnail">
         <div class="absolute z-1 size-full bg-blue-dark/[.15]" />
         <img
+          ref="thumbnailImg"
           :src="thumbnail"
           class="absolute size-full object-contain"
         >
@@ -69,7 +70,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import PlayButton from '~/static/icons/play-button.svg'
 
 const props = defineProps({
@@ -84,10 +85,35 @@ const props = defineProps({
   poster: {
     type: Object,
     default: () => {}
+  },
+  aspectRatio: {
+    type: String,
+    default: null
   }
 })
+
+const emit = defineEmits(['aspectRatioCalculated'])
+
 const showingVideo = ref(false)
 const hasPoster = computed(() => !!props.poster?.url)
+const thumbnailImg = ref(null)
+const calculatedAspectRatio = ref(props.aspectRatio)
+
+onMounted(() => {
+  if (!props.aspectRatio && props.thumbnail && !calculatedAspectRatio.value) {
+    calculateAspectRatio(props.thumbnail)
+  }
+})
+
+function calculateAspectRatio (imageUrl: string) {
+  const img = new Image()
+  img.onload = () => {
+    const ratio = `${img.width} / ${img.height}`
+    calculatedAspectRatio.value = ratio
+    emit('aspectRatioCalculated', ratio)
+  }
+  img.src = imageUrl
+}
 
 function showVideo () {
   showingVideo.value = true

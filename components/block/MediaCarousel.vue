@@ -18,22 +18,22 @@
         :class="{ active: step === i }"
         @click="() => goToStep(i)"
       >
-        <!-- <div class="flex max-h-full  max-w-full items-start"> -->
         <NimiqVideo
           v-if="isVideo(i)"
           :video="item.media.url"
           :thumbnail="item.media.video.thumbnailUrl"
           :poster="item.poster"
+          :aspect-ratio="slidesAspectRatios[i]"
           class="nimiq-video mx-auto flex aspect-[var(--aspect)] h-[60vh] max-h-[570px] !w-auto items-center child:w-full"
-          :style="`--aspect: ${item.ratio || '9 / 19.5'};`"
+          :style="`--aspect: ${slidesAspectRatios[i] || item.ratio || '9 / 19.5'};`"
           :class="{ 'pointer-events-none': step !== i }"
+          @aspect-ratio-calculated="ratio => updateAspectRatio(i, ratio)"
         />
         <DatoImage
           v-else
           :image="item.media"
           class="size-full rounded-6 object-cover shadow"
         />
-        <!-- </div> -->
         <div
           class="mx-auto mt-32 flex max-w-xl grow flex-col justify-start gap-y-16 child:z-50 child:text-center "
         >
@@ -69,6 +69,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed, reactive } from 'vue'
+
 const props = defineProps({
   data: {
     type: Object,
@@ -84,6 +86,7 @@ const props = defineProps({
 const step = ref(0)
 const $scroller = ref<HTMLDivElement | null>(null)
 const $slides = ref<Array<HTMLDivElement>>([])
+const slidesAspectRatios = reactive<Record<number, string>>({})
 
 const windowWidth = ref(0)
 
@@ -96,7 +99,7 @@ useEventListener('resize', onWindowResize, undefined, {
   passive: true
 })
 
-const slideWidth = computed(() => $slides.value[0].clientWidth)
+const slideWidth = computed(() => $slides.value[0]?.clientWidth || 0)
 const padding = computed(() => windowWidth.value - slideWidth.value)
 const numberOfSlides = computed(() => props.data.carousel.length)
 
@@ -128,6 +131,10 @@ function goToStep (step: number) {
 function isVideo (i: number) {
   return props.data.carousel[i].media?.mimeType.includes('video')
 }
+
+function updateAspectRatio (index: number, ratio: string) {
+  slidesAspectRatios[index] = ratio
+}
 </script>
 
 <style scoped>
@@ -136,7 +143,7 @@ function isVideo (i: number) {
   @apply snap-x snap-mandatory overflow-x-auto !px-[calc((100vw-250px-16px)/2)];
 
   .slide {
-    @apply shrink-0 w-[250px] items-center justify-between flex flex-col;
+    @apply shrink-0 w-max items-center justify-between flex flex-col;
     @apply snap-center snap-always;
     @apply opacity-20 transition-[opacity,filter];
 
