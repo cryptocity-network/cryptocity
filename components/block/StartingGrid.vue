@@ -83,7 +83,7 @@ const links = computed(() => {
 </script>
 
 <style scoped>
-  * ::v-deep .small.prose p {
+  * :deep(.small.prose p) {
     color: rgba(255, 255, 255, 0.8) !important;
   }
 
