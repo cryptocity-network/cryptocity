@@ -1,7 +1,6 @@
 import type { StructuredTextDocument } from 'vue-datocms'
 
 export interface Footer {
-    acceptedCryptoText: string
     wpig: StructuredTextDocument,
     legal: string,
     dataProtection: string,
