@@ -83,6 +83,7 @@
 </template>
 
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
 import { useWebsiteStore } from '~/store/store'
 
 defineProps({
@@ -102,9 +103,14 @@ defineProps({
 })
 
 const { locale: lang } = useI18n()
+const { region } = storeToRefs(useWebsiteStore())
 const stickerUrl = computed(() => {
   const stickers = ['de', 'es', 'fr', 'et']
-  return `/icons/payment-sticker-${stickers.includes(lang.value) ? lang.value : 'en'}.svg`
+  const inEurope = () => {
+    if (!region.value?.id) { return false }
+    return ['fTo46Ty8To6ukIQsBTRhPQ', 'ItSfO4b-ShGskhWemzcm_A', 'GgJBM4vBTX647gZjplJ6qQ', 'YNd4iULPSOKR7Ot4u58MXg'].includes(region.value.id)
+  }
+  return `/icons/payment-sticker-${stickers.includes(lang.value) ? lang.value : 'en'}${inEurope() ? '-usdc' : ''}.svg`
 })
 
 const cityName = computed(() => {

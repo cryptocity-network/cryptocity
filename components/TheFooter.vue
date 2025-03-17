@@ -12,9 +12,14 @@
       "
     >
       <div class="col-span-2 row-span-1 mb-48 flex w-full flex-col items-center gap-12 rounded-8 border-1 border-blue-darker/20 p-20 text-center text-blue-dark/60 xl:mb-24">
-        <PaymentOptions class="h-26" />
+        <div class="flex gap-8">
+          <img v-for="crypto in region?.supportedCryptocurrencies" v-show="region?.supportedCryptocurrencies" :key="crypto.abbreviation" :src="crypto.icon?.url" :alt="crypto.fullName" class="h-26">
+        </div>
         <p class="text-14 xl:text-16">
-          {{ footerData.acceptedCryptoText }}
+          {{ t('We accept') }}
+          <span v-for="(crypto, i) in region?.supportedCryptocurrencies || []" :key="crypto.abbreviation">
+            {{ crypto.fullName }} ({{ crypto.abbreviation }})<span v-if="i < (region?.supportedCryptocurrencies || []).length - 1">, </span>
+          </span>
         </p>
       </div>
       <!-- LINKS -->
@@ -202,15 +207,6 @@
             secondary
             compact
           />
-          <!-- <span class="opacity-0">|</span>
-          <TheLink
-            class="pointer-events-none !opacity-0"
-            :text="footerData.privacy"
-            url="/privacy"
-            hide-arrow
-            secondary
-            compact
-          /> -->
         </div>
         <p class="mt-16 text-blue-dark/30 sm:mt-16">
           {{ footerData.copyrightText }}
@@ -228,9 +224,11 @@ import type { AsyncData } from 'nuxt/app'
 import useGraphqlQuery from '../composables/useGraphqlQuery'
 import FooterQuery from '../graphql/Footer'
 import { useWebsiteStore } from '../store/store'
-import PaymentOptions from '@/static/icons/payment-options.svg'
 import type { DynamicLogo } from '#build/components'
 import type { Footer } from '@/types/dato-models/Footer'
+
+const { locale, t } = useI18n()
+
 defineProps({
   backgroundColor: {
     type: String,
@@ -241,8 +239,6 @@ defineProps({
     default: false
   }
 })
-
-const { locale } = useI18n()
 
 onMounted(() => {
   const iubendaScript = document.getElementById('iubenda-widgets')

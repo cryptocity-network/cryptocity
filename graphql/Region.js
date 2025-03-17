@@ -52,6 +52,22 @@ export function getRegionQuery (locale) {
             payment
             releaseDate
           }
+          supportedCryptocurrencies {
+            icon {
+              url
+            }
+            labelledIcon {
+              url
+            }
+            fullName
+            abbreviation
+            benefits {
+              description
+              icon {
+                url
+              }
+            }
+          }
           partners {
             companyName
             description
