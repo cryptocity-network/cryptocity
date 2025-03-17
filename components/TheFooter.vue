@@ -18,7 +18,8 @@
         <p class="text-14 xl:text-16">
           {{ t('We accept') }}
           <span v-for="(crypto, i) in region?.supportedCryptocurrencies || []" :key="crypto.abbreviation">
-            {{ crypto.fullName }} ({{ crypto.abbreviation }})<span v-if="i < (region?.supportedCryptocurrencies || []).length - 1">, </span>
+            {{ crypto.fullName }} ({{ crypto.abbreviation }})<span v-if="i < (region?.supportedCryptocurrencies || []).length - 2">, </span>
+            <span v-if="i === (region?.supportedCryptocurrencies || []).length - 2"> & </span>
           </span>
         </p>
       </div>
