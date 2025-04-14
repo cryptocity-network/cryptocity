@@ -2,7 +2,14 @@
   <main>
     <div v-if="pageData">
       <section class="min-h-screen bg-gray !py-0">
-        <BlockContactForm show-header class="!pt-144" />
+        <div class="!pt-144">
+          <HeadlineSection
+            :headline="pageData.header"
+            :subline="pageData.subline"
+            tag="h1"
+          />
+        </div>
+        <BlockContactForm show-header class="!pt-96 !pb-0" />
       </section>
     </div>
     <ErrorMessage v-else-if="error" />
@@ -15,7 +22,6 @@ import type { AsyncData } from 'nuxt/app'
 import ContactQuery from '../../graphql/pages/ContactPage'
 import useGraphqlQuery from '@/composables/useGraphqlQuery'
 import type { ContactPage, SeoTags } from '@/types/dato-api-responses/ContactPage'
-
 const { locale } = useI18n()
 const query = ContactQuery(useRuntimeConfig().public.DATO_REGION_ID, locale.value)
 const { data: { value: response }, error } = await useGraphqlQuery(query) as AsyncData<ContactPage, RTCError>

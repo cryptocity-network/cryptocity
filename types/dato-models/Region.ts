@@ -39,6 +39,11 @@ export interface Region {
     socialLinks?: SocialLinks,
     pages: Array<Page>,
     paymentOptions: Array<PaymentOption>,
+    employee?: {
+        name: string,
+        jobTitle: string,
+        quote: string
+    },
     supportedCryptocurrencies?: Array<{
         icon: {
             url: string
