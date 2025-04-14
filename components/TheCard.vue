@@ -19,14 +19,34 @@
         'opacity-0': fullScreen
       }"
     >
-      <DatoImage v-if="image" :key="imageUrl" loading="lazy" :image class="size-full rounded-4 object-cover" />
-      <img v-else :src="imageUrl" loading="lazy" class="size-full rounded-4 object-cover">
+   
+      <DatoImage
+        v-if="image"
+        :key="imageUrl"
+        loading="lazy"
+        :image
+        class="size-full rounded-4 object-cover"
+        @load="showPlaceholder = false"
+        @error="handleError"
+      />
+      <img
+        v-else
+        :src="imageUrl"
+        loading="lazy"
+        class="size-full rounded-4 object-cover"
+        @load="showPlaceholder = false"
+        @error="handleError"
+      >
       <div class="absolute left-0 top-0 size-full bg-blue/20 transition-opacity group-hover:opacity-50" />
       <div
         v-if="label && !fullScreen"
         class="shadow-md absolute left-14 top-2 mt-12 flex w-max items-center rounded-[32px] bg-white px-14 py-6 text-16 font-bold text-blue-dark"
         v-html="label"
       />
+      <div v-if="showPlaceholder" class="absolute inset-0 flex items-center justify-center bg-gray-200">
+        <div v-if="!hasError" class="size-12 animate-spin rounded-full border-2 border-blue border-t-transparent"/>
+        <div v-else class="text-18 flex items-center justify-center font-semibold bg-[#c6c6c7] w-full h-full text-blue-dark/50">Image failed to load</div>
+      </div>
     </div>
 
     <div
@@ -215,7 +235,13 @@ defineProps({
   }
 })
 
-// const showPlaceHolder = ref(false)
+const showPlaceholder = ref(true)
+const hasError = ref(false)
+
+const handleError = () => {
+  showPlaceholder.value = true
+  hasError.value = true
+}
 </script>
 
 <style scoped>
