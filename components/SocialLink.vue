@@ -79,7 +79,7 @@
     />
 
     <div v-if="socialMediaData.key === 'phone_number'" class="flex items-center gap-2">
-      <TelephoneLogo class="phone_number" />
+      <TelephoneLogo class="phone_number h-28" />
       <span>{{ socialMediaData.url.replace('tel:','' ) }}</span>
     </div>
   </a>
