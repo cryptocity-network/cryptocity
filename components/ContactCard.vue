@@ -63,6 +63,14 @@
         }"
       />
       <SocialLink
+        v-if="phoneNumber"
+        :social-media="{
+          name: 'Phone number',
+          key: 'phone_number',
+          url: `tel:${phoneNumber}`,
+        }"
+      />
+      <SocialLink
         v-if="whatsapp"
         :social-media="{
           name: 'Whatsapp',
@@ -107,6 +115,11 @@ defineProps({
     type: String
   },
   whatsapp: {
+    required: false,
+    default: '',
+    type: String
+  },
+  phoneNumber: {
     required: false,
     default: '',
     type: String

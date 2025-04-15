@@ -77,6 +77,11 @@
       v-if="socialMediaData.key === 'whatsapp'"
       class="whatsapp"
     />
+
+    <div v-if="socialMediaData.key === 'phone_number'" class="flex items-center gap-2">
+      <TelephoneLogo class="phone_number" />
+      <span>{{ socialMediaData.url.replace('tel:','' ) }}</span>
+    </div>
   </a>
 </template>
 
@@ -95,6 +100,7 @@ import EmailLogo from '@/static/logos/email.svg'
 import WhatsappLogo from '@/static/logos/whatsapp.svg'
 import PintrestLogo from '@/static/logos/pintrest-new.svg'
 import TikTokLogo from '@/static/logos/tiktok-new.svg'
+import TelephoneLogo from '@/static/logos/telephone.svg'
 
 const props = defineProps({
   socialMedia: {
@@ -119,64 +125,54 @@ const onClick = (e: MouseEvent) => {
 interface SocialMedia {
   url: string,
   name: string,
-  key: string,
-  color: string,
+  key: string
 }
 
 const socialMedias = [
   {
     url: 'https://twitter.com/nimiq',
     name: 'Twitter',
-    key: 'twitter',
-    color: '#1da1f2'
+    key: 'twitter'
   },
   {
     url: 'https://t.me/joinchat/AAAAAEJW-ozFwo7Er9jpHw',
     name: 'Telegram',
-    key: 'telegram',
-    color: '#0088cc'
+    key: 'telegram'
   },
   {
     url: 'https://www.reddit.com/r/Nimiq',
     name: 'Reddit',
-    key: 'reddit',
-    color: '#ff4500'
+    key: 'reddit'
   },
   {
     url: 'https://github.com/nimiq',
     name: 'Github',
-    key: 'github',
-    color: '#333333'
+    key: 'github'
   },
   {
     url: 'https://www.youtube.com/c/nimiq',
     name: 'Youtube',
-    key: 'youtube',
-    color: '#ff0000'
+    key: 'youtube'
   },
   {
     url: 'https://discord.gg/cMHemg8',
     name: 'Discord',
-    key: 'discord',
-    color: '#5865F2'
+    key: 'discord'
   },
   {
     url: 'https://forum.nimiq.community',
     name: 'Nimiq Forum',
-    key: 'nimiq_forum',
-    color: '#E9B213'
+    key: 'nimiq_forum'
   },
   {
     url: 'https://www.facebook.com/nimiq',
     name: 'Facebook',
-    key: 'facebook',
-    color: '#4267B2'
+    key: 'facebook'
   },
   {
     url: 'https://www.instagram.com/wearenimiq',
     name: 'Instagram',
-    key: 'instagram',
-    color: '#c13584'
+    key: 'instagram'
   }
 ]
 
@@ -204,7 +200,9 @@ if (props.socialMediaKey) {
 }
 
 .email,
-.reddit {
+.reddit,
+.phone_number,
+.whatsapp {
   @apply h-20;
 }
 

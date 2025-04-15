@@ -100,6 +100,27 @@ export function getRegionQuery (locale) {
             facebook
             email
           }
+          employee {
+            name
+            jobTitle
+            quote
+            profilePhoto {
+              ${ResponsiveImage()}
+            }
+            socials {
+              youtube
+              twitter
+              tikTok
+              telegram
+              pintrest
+              linkedIn
+              instagram
+              facebook
+              email
+              whatsapp
+              phoneNumber
+            }
+          }
         }
         translation(locale: ${locale}) {
           translations
