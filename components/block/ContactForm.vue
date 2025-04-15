@@ -32,9 +32,7 @@
           v-if="showHeader && socialLinks"
           :header="data.header"
           :subline="data.subline"
-          :email="socialLinks.email"
-          :telegram="socialLinks.telegram"
-          :linkedin="socialLinks.linkedIn"
+          v-bind="socialLinks"
         />
       </template>
     </div>

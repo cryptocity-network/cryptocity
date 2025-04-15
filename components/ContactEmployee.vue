@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="grid grid-cols-[min-content_1fr] items-center grid-rows-[min-content_min-content] gap-x-24 p-18 sm:p-32  ">
+    <div class="grid grid-cols-[min-content_1fr] grid-rows-[min-content_min-content] items-center gap-x-24 p-18 sm:p-32  ">
       <div class="sm:row-span-2">
-        <DatoImage v-if="employee?.profilePhoto" :image="employee?.profilePhoto" :priority="true" class=" object-cover object-center rounded-full h-96 w-96" />
+        <DatoImage v-if="employee?.profilePhoto" :image="employee?.profilePhoto" :priority="true" class="size-96 rounded-full object-cover object-center" style="width: 96px;height:96px" />
         <svg
           v-else
           class="row-span-2 w-80 pt-4"
@@ -28,7 +28,7 @@
           {{ employee?.jobTitle }}
         </p>
       </div>
-      <div class="col-span-2 sm:col-span-1 sm:col-start-2 mt-16 flex items-center gap-x-16 justify-start">
+      <div class="col-span-2 mt-16 flex items-center justify-start gap-x-16 sm:col-span-1 sm:col-start-2">
         <TheLink
           v-if="employee?.socials?.email"
           :social-media="{ url: `mailto:${employee.socials.email}`, name: 'Email', key: 'email' }"
@@ -69,15 +69,22 @@
             v-if="employee?.socials?.facebook"
             :social-media="{ url: employee.socials.facebook, name: 'Facebook', key: 'facebook' }"
           />
+          <SocialLink
+            v-if="employee?.socials?.whatsapp"
+            :social-media="{ url: employee.socials.whatsapp, name: 'WhatsApp', key: 'whatsapp' }"
+          />
+          <SocialLink
+            v-if="employee?.socials?.phoneNumber"
+            :social-media="{ url: `tel:${employee.socials.phoneNumber}`, name: 'Phone number', key: 'phone_number' }"
+          />
         </div>
       </div>
     </div>
-    <div></div>
-    <div class=" bg-blue/5 border-t-1 border-blue/10 text-blue-dark p-16 sm:p-32 botf">
-      <p class="text-16 sm:text-18 leading-[1.5] text-blue/60 text-center">
-        <span class="text-blue-dark font-bold">“</span>
+    <div v-if="employee?.quote" class="border-t-1 border-blue/10 bg-blue/5 p-16 text-blue-dark sm:p-32">
+      <p class="text-center text-16 leading-1.5 text-blue/60 sm:text-18">
+        <span class="font-bold text-blue-dark">“</span>
         {{ employee?.quote }}
-        <span class="text-blue-dark font-bold">”</span>
+        <span class="font-bold text-blue-dark">”</span>
       </p>
     </div>
   </div>
@@ -106,6 +113,8 @@ interface Employee {
     instagram?: string
     facebook?: string
     email?: string
+    whatsapp?: string
+    phoneNumber?: string
   }
 }
 
@@ -134,6 +143,11 @@ defineProps({
     type: String
   },
   whatsapp: {
+    required: false,
+    default: '',
+    type: String
+  },
+  phoneNumber: {
     required: false,
     default: '',
     type: String

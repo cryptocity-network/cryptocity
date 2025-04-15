@@ -117,6 +117,8 @@ export function getRegionQuery (locale) {
               instagram
               facebook
               email
+              whatsapp
+              phoneNumber
             }
           }
         }

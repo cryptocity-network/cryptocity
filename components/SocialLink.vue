@@ -77,6 +77,11 @@
       v-if="socialMediaData.key === 'whatsapp'"
       class="whatsapp"
     />
+
+    <div v-if="socialMediaData.key === 'phone_number'" class="flex items-center gap-2">
+      <TelephoneLogo class="phone_number" />
+      <span>{{ socialMediaData.url.replace('tel:','' ) }}</span>
+    </div>
   </a>
 </template>
 
@@ -95,6 +100,7 @@ import EmailLogo from '@/static/logos/email.svg'
 import WhatsappLogo from '@/static/logos/whatsapp.svg'
 import PintrestLogo from '@/static/logos/pintrest-new.svg'
 import TikTokLogo from '@/static/logos/tiktok-new.svg'
+import TelephoneLogo from '@/static/logos/telephone.svg'
 
 const props = defineProps({
   socialMedia: {
