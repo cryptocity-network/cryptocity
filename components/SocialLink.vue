@@ -79,7 +79,7 @@
     />
 
     <div v-if="socialMediaData.key === 'phone_number'" class="flex items-center gap-2">
-      <TelephoneLogo class="phone_number h-28" />
+      <TelephoneLogo class="phone_number" />
       <span>{{ socialMediaData.url.replace('tel:','' ) }}</span>
     </div>
   </a>
@@ -200,7 +200,9 @@ if (props.socialMediaKey) {
 }
 
 .email,
-.reddit {
+.reddit,
+.phone_number,
+.whatsapp {
   @apply h-20;
 }
 
