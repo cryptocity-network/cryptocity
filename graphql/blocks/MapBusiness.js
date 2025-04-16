@@ -1,3 +1,4 @@
+import ResponsiveImage from '../ResponsiveImage'
 import Headline from './Headline'
 import baseBlockValues from './blockValues'
 
@@ -11,5 +12,8 @@ export default () => {
     joinCardDescription
     joinLinkLabel
     joinLink
+    locationPlaceholderImage {
+      ${ResponsiveImage()}
+    }
 `
 }

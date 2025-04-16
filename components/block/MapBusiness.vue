@@ -38,7 +38,7 @@
             <TheCard :title="location.name" :description="location.address"
               :event-type="location.category.replace(/_/g, ' & ')" :stars="location.rating" :footer="cityName"
               :link-label="cityName" :link="location.gmaps || `https://map.nimiq.com/?uuid=${location.uuid}`"
-              :image-url="location.photo" />
+              :image-url="location.photo" :placeholder-image="data.locationPlaceholderImage" />
           </li>
           <div
             v-show="(!locations || locations.length === 0 || loadingLocations || true) && !hasCityFetchedAllLocations[cityName]"

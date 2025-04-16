@@ -19,7 +19,6 @@
         'opacity-0': fullScreen
       }"
     >
-   
       <DatoImage
         v-if="image"
         :key="imageUrl"
@@ -45,7 +44,12 @@
       />
       <div v-if="showPlaceholder" class="absolute inset-0 flex items-center justify-center bg-gray-200">
         <div v-if="!hasError" class="size-12 animate-spin rounded-full border-2 border-blue border-t-transparent"/>
-        <div v-else class="text-18 flex items-center justify-center font-semibold bg-[#c6c6c7] w-full h-full text-blue-dark/50">Image failed to load</div>
+        <div v-else class="text-18 flex items-center justify-center font-semibold bg-[#c6c6c7] w-full h-full text-blue-dark/50">
+          <DatoImage v-if="placeholderImage" :image="placeholderImage" class="size-12" />
+          <template v-else>
+            Image failed to load
+          </template>
+        </div>
       </div>
     </div>
 
@@ -230,6 +234,11 @@ defineProps({
   },
   countries: {
     type: Array,
+    required: false,
+    default: null
+  },
+  placeholderImage: {
+    type: Object,
     required: false,
     default: null
   }
